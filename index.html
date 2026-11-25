@@ -72,7 +72,7 @@ h2{font-size:clamp(22px,3vw,28px);margin-bottom:16px}
 <header class="top band">
   <div class="wrap brand">
     <div class="m" aria-hidden="true">М</div>
-    <div><h1>Грамматика</h1><p class="sub">Russian grammar practice, with a full explanation for every answer</p></div>
+    <div><h1>Грамматика</h1><p class="sub">Russian grammar practice: five lines, 379 sentences, a full explanation for every answer</p></div>
   </div>
 </header>
 
@@ -96,12 +96,20 @@ h2{font-size:clamp(22px,3vw,28px);margin-bottom:16px}
 <script>
 {
 const EX=[
-  {href:'verbs-of-motion/',n:1,c:'#d4202c',ru:'Глаголы движения',en:'Verbs of motion: pick the verb, then the form',total:154,seenKey:'vom-seen',missKey:'vom-miss',
-   stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','With prefixes','приходить or прийти?']}
+  {href:'verbs-of-motion/',n:1,c:'#d4202c',ru:'Глаголы движения',en:'Verbs of motion: pick the verb, then the form',total:154,id:'vom',
+   stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','With prefixes','приходить or прийти?']},
+  {href:'cases/',n:2,c:'#1f8a3b',ru:'Падежи',en:'The six cases: pick the case, then the form',total:85,id:'cases',
+   stops:['Where and about','Objects and direction','Genitive','Dative','Instrumental','Pronouns','Adjective + noun','Plural']},
+  {href:'aspect/',n:3,c:'#0a68b0',ru:'Вид глагола',en:'Aspect and conjugation: imperfective or perfective, then the form',total:49,id:'aspect',
+   stops:['Aspect in the past','Aspect in the future','Imperative','Irregular verbs']},
+  {href:'numbers/',n:4,c:'#c25e00',ru:'Числа',en:'Numbers and quantity: 1, 2–4, 5+, age, time, money',total:48,id:'numbers',
+   stops:['Counting things','Age','Time','Money','много, мало, сколько']},
+  {href:'advanced/',n:5,c:'#7a2a8c',ru:'Продвинутый уровень',en:'Participles, verbal adverbs, -ся verbs, бы and чтобы',total:43,id:'advanced',
+   stops:['Participles','Verbal adverbs','-ся verbs','бы and чтобы']}
 ];
 const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
 document.getElementById('lines').innerHTML=EX.map(x=>{
-  const seen=get(x.seenKey).length,miss=get(x.missKey).length,pct=Math.min(100,Math.round(seen/x.total*100));
+  const seen=get(x.id+'-seen').length,miss=get(x.id+'-miss').length,pct=Math.min(100,Math.round(seen/x.total*100));
   const done=Math.round(pct/100*x.stops.length);
   return`<a class="ex" href="${x.href}" style="--c:${x.c}">
   <div class="exh"><span class="num">${x.n}</span><h3 lang="ru">${x.ru}</h3></div>

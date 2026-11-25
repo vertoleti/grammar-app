@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Числа</title>
+<meta name="description" content="Practise Russian numbers with nouns: 1, 2–4, 5+, age, time, money and quantities.">
+<meta name="theme-color" content="#c25e00">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/engine.css">
+<style>:root{--red:#c25e00}.m{color:#c25e00}</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">4</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Числа</h1><p class="sub">Numbers and quantity: pick the form, then the word · <span id="count"></span> sentences</p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap">
+    <div class="ctrls">
+      <div class="seg" id="topics" role="group" aria-label="Topic"></div>
+      <div class="row">
+        <div class="seg" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose the form</button><button id="m-type" data-m="type">Type the form</button></div>
+        <span class="lbl" id="sizes-lbl">Questions per round</span>
+        <div class="seg" id="sizes" role="group" aria-labelledby="sizes-lbl"></div>
+      </div>
+    </div>
+    <section class="card" id="card" aria-live="polite"></section>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet</h2>
+<div class="cols"><div><h3>The counting rule</h3><div class="tbl"><table><thead><tr><th>Number ends in</th><th>Noun</th><th>Example</th></tr></thead><tbody><tr><td>1 (not 11)</td><td>nominative singular</td><td>21 год, один рубль</td></tr><tr><td>2, 3, 4 (not 12–14)</td><td>genitive singular</td><td>22 года, три рубля</td></tr><tr><td>5–9, 0, and 11–14</td><td>genitive plural</td><td>25 лет, двенадцать рублей</td></tr></tbody></table></div><p class="note">Only the last word of the number counts: сто двадцать один рубль, сто двенадцать рублей.</p></div><div><h3>Words to know</h3><div class="tbl"><table><thead><tr><th>Word</th><th>1</th><th>2–4</th><th>5+</th></tr></thead><tbody><tr><td>год</td><td>год</td><td>года</td><td>лет</td></tr><tr><td>час</td><td>час</td><td>часа</td><td>часов</td></tr><tr><td>минута</td><td>минута</td><td>минуты</td><td>минут</td></tr><tr><td>рубль</td><td>рубль</td><td>рубля</td><td>рублей</td></tr><tr><td>человек</td><td>человек</td><td>человека</td><td>человек</td></tr><tr><td>день</td><td>день</td><td>дня</td><td>дней</td></tr></tbody></table></div><p class="note">много, мало, сколько, несколько: genitive plural for things you count (много книг), genitive singular for things you can’t (много воды).</p></div></div>
+  </div>
+</section>
+<script src="data.js"></script>
+<script src="../shared/engine.js"></script>
+</body>
+</html>

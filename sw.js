@@ -1,8 +1,10 @@
 // Offline support for Грамматика. Bump VERSION whenever files change.
-const VERSION = 'grammar-v1';
+const VERSION = 'grammar-v2';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'verbs-of-motion/', 'verbs-of-motion/index.html',
+  'shared/engine.css', 'shared/engine.js',
+  'cases/', 'cases/data.js', 'aspect/', 'aspect/data.js', 'numbers/', 'numbers/data.js', 'advanced/', 'advanced/data.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png', 'icons/favicon-32.png'
 ];
 
