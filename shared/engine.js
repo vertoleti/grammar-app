@@ -27,6 +27,7 @@ $('count').textContent = Q.length;
 const cur = () => Q[st.round[st.i]];
 const opt = o => EX.opts[o.kind] || { name: o.kind, use: '' };
 const optLabel = o => o.label || opt(o).name;
+const optHTML = o => { const t = optLabel(o); const i = t.indexOf(' · '); return i < 0 ? t : `<span lang="ru">${t.slice(0, i)}</span><small class="en2">${t.slice(i + 3)}</small>`; };
 
 function reveal(el) {
   if (!el) return;
@@ -57,7 +58,7 @@ function newRound() {
 }
 
 function renderControls() {
-  $('lvls').innerHTML = `<button id="l-all" data-l="all" aria-pressed="${st.level === 'all'}">All levels<small>${poolFor('all', 'all').length}</small></button>` +
+  $('lvls').innerHTML = `<button id="l-all" data-l="all" aria-pressed="${st.level === 'all'}">All<small>${poolFor('all', 'all').length}</small></button>` +
     LEVELS.map(l => `<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level === l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all', l.code).length}</small></button>`).join('');
   $('topics').innerHTML = Object.entries(TOP).map(([k, v]) => `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}">${v}<small>${poolFor(k).length}</small></button>`).join('');
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === st.mode));
@@ -104,7 +105,7 @@ function qHTML() {
     const o = q.o1[k]; let c = '';
     if (st.step > 1) { if (k === q.a1) c = 'ok'; else if (k === st.p1) c = 'bad'; }
     if (fx === 'a' && k === st.p1) c += fxc(r.a);
-    return `<button class="opt ${c}" data-act="a" data-k="${k}" ${st.step > 1 ? 'disabled' : ''}><kbd>${n + 1}</kbd>${optLabel(o)}</button>`;
+    return `<button class="opt ${c}" data-act="a" data-k="${k}" ${st.step > 1 ? 'disabled' : ''}><kbd>${n + 1}</kbd>${optHTML(o)}</button>`;
   }).join('');
   const quick = st.step > 1 ? `<p class="quick ${r.a ? 'ok' : 'bad'} ${fx === 'a' ? 'in' : ''}">${r.a ? 'Right: ' + optLabel(right1) + '.' : `Not quite: it’s ${optLabel(right1)}.`}${st.step === 2 ? ' <span>The full explanation comes after the form.</span>' : ''}</p>` : '';
   let s2 = '', exp = '';
@@ -134,7 +135,7 @@ function qHTML() {
 <div class="dock"><span>${r.a && r.f ? 'Both right ✓' : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
-  return `<div class="meta"><span>${q.lv}${L ? ' · ' + L.en : ''} · ${TOP[q.t]}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
+  return `<div class="meta"><span>${q.lv} · ${TOP[q.t]}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
 <p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>
 <div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>${s2}${exp}`;
 }

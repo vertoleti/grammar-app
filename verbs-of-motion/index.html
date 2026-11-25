@@ -166,12 +166,13 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
 @media(max-width:600px){.top{padding-bottom:20px}.score{gap:16px}.score b{font-size:21px}.m{width:46px;height:46px;font-size:24px}.st{width:18px;height:18px;border-width:3px;margin-top:8px}.opt{font-size:18px}.opt kbd{display:none}.exp{padding-inline:14px}.formgrid{grid-template-columns:minmax(0,1fr)}#topics{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 2px;scrollbar-width:none}#topics::-webkit-scrollbar{display:none}#topics button{flex:none;scroll-snap-align:start}.dock{padding-left:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel,.more i{transition:none}.rail i,.st{transition:none}.in,.card.enter,.card.leave,.pop,.shake,.bump{animation:none}}
 </style>
+<link rel="stylesheet" href="../shared/ui.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">1</a><div><h1>Глаголы движения</h1><p class="home"><a href="../">← All exercises</a></p><p class="sub" id="sub">Verbs of motion: pick the verb, then the form</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">1</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Глаголы движения</h1><p class="sub" id="sub">Verbs of motion: pick the verb, then the form</p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -179,17 +180,18 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
 </header>
 
 <main class="band">
-  <div class="wrap">
-    <div class="ctrls">
-      <div class="row"><span class="lbl">Level · Уровень</span><div class="seg" id="lvls" role="group" aria-label="Level"></div></div>
-      <div class="seg" id="topics" role="group" aria-label="Topic"></div>
-      <div class="row">
-        <div class="seg" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose the form</button><button id="m-type" data-m="type">Type the form</button></div>
-        <span class="lbl" id="sizes-lbl">Questions per round</span>
-        <div class="seg" id="sizes" role="group" aria-labelledby="sizes-lbl"></div>
-      </div>
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
     </div>
-    <section class="card" id="card" aria-live="polite"></section>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
+    </aside>
   </div>
 </main>
 
@@ -220,11 +222,11 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
         </table>
       </div>
     </div>
-    <p class="note" style="margin-top:28px">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
   </div>
 </section>
 
 <script src="../shared/levels.js"></script>
+<script src="../shared/ui.js"></script>
 <script>
 {
 /* ---------- verb engine: every form is generated from the infinitive ---------- */
@@ -355,6 +357,13 @@ walk|Подожди, я ___!|Wait, I’m coming!|идти|n|0|ходить,ез�
 walk|Вы ___ в кино в эти выходные?|Did you go to the cinema this weekend?|ходить|p|3|идти,ехать,уйти|round|в эти выходные|
 walk|Она весь день ___ по магазинам.|She spent the whole day going round the shops.|ходить|p|1|идти,ехать,уйти|around|по магазинам|ходить по магазинам = to go shopping.
 walk|Когда мы ___ из кино, начался дождь.|As we were walking back from the cinema, it started to rain.|идти|p|3|ходить,уйти,ездить|progress_past|Когда|
+walk|Куда ты ___ так поздно?|Where are you walking to so late?|идти|n|1|ходить,ехать,ездить|now|Куда|
+walk|Мы с мужем часто ___ в театр.|My husband and I often go to the theatre.|ходить|n|3|идти,ехать,пойти|habit|часто|
+walk|Вчера мама ___ к врачу. Всё в порядке.|Yesterday Mum went to the doctor’s. Everything’s fine.|ходить|p|1|идти,ехать,уйти|round|Вчера|
+walk|Посмотри, какой маленький, а уже ___!|Look how little he is, and he can already walk!|ходить|n|2|идти,ехать,ездить|ability|уже|
+walk|Когда мы ___ в школу, начался снег.|As we were walking to school, it started snowing.|идти|p|3|ходить,ехать,ездить|progress_past|Когда|
+walk|Я ___ на работу пешком каждый день.|I walk to work every day.|ходить|n|0|идти,ехать,ездить|habit|каждый день|
+walk|Туристы ___ по музею три часа.|The tourists walked around the museum for three hours.|ходить|p|3|идти,ехать,пойти|around|по музею|
 ride|Летом мы обычно ___ на дачу.|In summer we usually go to the dacha (by car).|ездить|n|3|ехать,ходить,поехать|habit|обычно|
 ride|Сейчас я ___ на работу на автобусе.|Right now I’m on the bus on my way to work.|ехать|n|0|ездить,идти,поехать|now|Сейчас|
 ride|В прошлом году она ___ в Италию.|Last year she went to Italy (and came back).|ездить|p|1|ехать,поехать,ходить|round|В прошлом году|
@@ -375,6 +384,13 @@ ride|Обычно он ___ на работу на машине, но сегод�
 ride|Тише, мы ___ мимо больницы.|Quiet, we’re driving past the hospital.|ехать|n|3|ездить,идти,ходить|now||
 ride|В детстве Оля каждое лето ___ к бабушке в деревню.|As a child, Olya went to her grandma’s in the village every summer.|ездить|p|1|ехать,ходить,поехать|habit|каждое лето|
 ride|Куда ты ___ в отпуск в этом году?|Where are you going on holiday this year?|ехать|n|1|ездить,ходить,идти|plan|в этом году|
+ride|Куда вы ___ на выходных?|Where did you go (by car) at the weekend?|ездить|p|3|ехать,ходить,поехать|round|на выходных|
+ride|Сейчас мы ___ через мост.|We’re driving over the bridge right now.|ехать|n|3|ездить,идти,ходить|now|Сейчас|
+ride|Он ___ на работу на велосипеде каждый день.|He cycles to work every day.|ездить|n|2|ехать,ходить,идти|habit|каждый день|
+ride|Когда я ___ в автобусе, я встретил одноклассника.|While I was on the bus, I ran into a classmate.|ехать|p|0|ездить,идти,ходить|progress_past|Когда|встретил shows the speaker is a man.
+ride|Моя сестра хорошо ___ на лошади.|My sister rides horses well.|ездить|n|2|ехать,ходить,идти|ability|хорошо|
+ride|Мы ___ в Петербург три раза.|We’ve been to St Petersburg three times.|ездить|p|3|ехать,ходить,поехать|round|три раза|Several round trips → ездить.
+ride|Завтра я ___ на дачу на электричке.|Tomorrow I’m going to the dacha on the suburban train.|ехать|n|0|ездить,идти,ходить|plan|Завтра|
 move|Завтра я ___ в Москву.|Tomorrow I’m flying to Moscow.|лететь|n|0|летать,ехать,плыть|plan|Завтра|
 move|Над озером ___ чайки.|Seagulls are circling over the lake.|летать|n|5|лететь,плавать,плыть|around|Над озером|
 move|Мой брат отлично ___.|My brother is an excellent swimmer.|плавать|n|2|плыть,бегать,ходить|ability|отлично|
@@ -397,6 +413,12 @@ move|Раньше мой папа ___ марафоны.|My dad used to run marat
 move|Корабль ___ в Новороссийск.|The ship is sailing to Novorossiysk.|плыть|n|2|плавать,лететь,ехать|now|в Новороссийск|Sailors themselves often say корабль идёт.
 move|Как быстро ___ время!|How time flies!|лететь|n|2|летать,ехать,плыть|fixed||время летит is a set phrase: time only moves one way.
 move|Мы ___ над Альпами, и я смотрел в окно.|We were flying over the Alps and I was looking out of the window.|лететь|p|3|летать,ехать,плыть|progress_past|смотрел|
+move|Ребёнок ___ к маме.|The child is running to his mum.|бежать|n|2|бегать,идти,ходить|now|к маме|
+move|Мой брат ___ очень быстро.|My brother runs very fast.|бегать|n|2|бежать,ходить,идти|ability|очень быстро|
+move|Самолёт ___ в Сочи.|The plane is flying to Sochi.|лететь|n|2|летать,ехать,плыть|now|в Сочи|
+move|Бабушка никогда не ___ на самолёте.|Grandma has never flown.|летать|p|1|лететь,ездить,плыть|ability|никогда|
+move|Летом дети целыми днями ___ в реке.|In summer the children swim in the river all day long.|плавать|n|5|плыть,бегать,ходить|around|целыми днями|
+move|Мы ___ к берегу, когда увидели дельфинов.|We were swimming towards the shore when we saw dolphins.|плыть|p|3|плавать,летать,бегать|progress_past|когда|
 carry|Подожди, я ___ тебе книгу!|Hold on, I’m bringing you the book (in my hands)!|нести|n|0|носить,везти,вести|now|Подожди|
 carry|Она всегда ___ очки.|She always wears glasses.|носить|n|2|нести,водить,возить|fixed|очки|
 carry|Отец каждый день ___ детей в школу на машине.|Every day the father drives the kids to school.|возить|n|2|везти,водить,вести|habit|каждый день|
@@ -425,6 +447,13 @@ carry|Ветер ___ мою шляпу!|The wind has blown my hat away!|унес
 carry|Каждый вечер он ___ детей из садика домой.|Every evening he brings the kids home from kindergarten.|приводить|n|2|привести,водить,вести|impf_pref|Каждый вечер|
 carry|Я всегда ___ на работу обед из дома.|I always bring lunch to work from home.|приносить|n|0|принести,нести,приводить|impf_pref|всегда|
 carry|Каждое утро он ___ сына в школу, а потом едет на работу.|Every morning he drops his son off at school, then drives to work.|отвозить|n|2|отвезти,везти,вести|impf_pref|Каждое утро|
+carry|Мама ___ ребёнка на руках.|Mum is carrying the baby in her arms.|нести|n|2|носить,везти,вести|now|на руках|
+carry|Курьер ___ посылки по всему городу.|The courier delivers parcels all over town (by van).|возить|n|2|везти,носить,водить|around|по всему городу|
+carry|Учитель ___ детей в музей.|The teacher is taking the children to the museum (on foot).|вести|n|2|водить,везти,нести|now|в музей|
+carry|Папа ___ нас на дачу на машине.|Dad is driving us to the dacha.|везти|n|2|возить,вести,нести|now|на дачу|
+carry|Каждую неделю она ___ бабушке продукты.|Every week she takes groceries to her grandma (on foot).|носить|n|2|нести,возить,водить|habit|Каждую неделю|
+carry|Официант ___ нам меню.|The waiter brought us the menu.|принести|p|0|нести,носить,привезти|arrive|нам меню|
+carry|Друзья ___ нас в аэропорт.|Our friends drove us to the airport.|отвезти|p|3|отнести,везти,привезти|away|в аэропорт|With carrying verbs, от- means taking someone somewhere and leaving them there.
 pref|Он встал и ___ к двери.|He got up and headed for the door.|пойти|p|0|идти,ходить,прийти|start|встал и|
 pref|Вчера Маша ___ домой в десять часов.|Yesterday Masha got home at ten.|прийти|p|1|уйти,идти,ходить|arrive|в десять часов|
 pref|Когда ты ___ из Берлина?|When will you get back from Berlin?|приехать|n|1|уехать,ехать,ездить|arrive|из Берлина|
@@ -463,6 +492,12 @@ pref|Собака ___ к нам и начала нюхать сумку.|The dog
 pref|Лодка медленно ___ от берега.|The boat slowly moved away from the shore.|отплыть|p|1|приплыть,плыть,плавать|away|от берега|
 pref|Через час мы ___ к острову.|In an hour we’ll reach the island (by boat).|приплыть|n|3|отплыть,плыть,плавать|arrive|Через час|
 pref|Мы случайно ___ свою остановку.|We accidentally went past our stop.|проехать|p|3|переехать,доехать,заехать|pass|свою остановку|
+pref|Мы ___ в кафе выпить кофе.|We dropped into a café for a coffee.|зайти|p|3|войти,прийти,выйти|dropin|выпить кофе|
+pref|Автобус ___ от остановки.|The bus pulled away from the stop.|отъехать|p|0|подъехать,въехать,заехать|away|от остановки|
+pref|Гости ___ в семь часов.|The guests arrived at seven.|прийти|p|3|уйти,идти,ходить|arrive|в семь часов|
+pref|Мы ___ мост и оказались в старом городе.|We crossed the bridge and found ourselves in the old town.|перейти|p|3|подойти,дойти,зайти|cross|мост|
+pref|Мама ___ к окну и посмотрела на улицу.|Mum went over to the window and looked out.|подойти|p|1|прийти,зайти,войти|approach|к окну|
+pref|Когда вы ___ из отпуска?|When will you be back from holiday?|приехать|n|4|уехать,ехать,ездить|arrive|из отпуска|
 aspect|Каждый день я ___ домой в шесть.|I get home at six every day.|приходить|n|0|прийти,уходить,ходить|impf_pref|Каждый день|
 aspect|Обычно поезд ___ вовремя.|The train usually arrives on time.|приходить|n|2|прийти,уходить,идти|impf_pref|Обычно|Trains “walk” in Russian: поезд идёт, поезд приходит.
 aspect|Почему вы так поздно ___?|Why did you get here so late?|прийти|p|3|приходить,уйти,идти|arrive|так поздно|One arrival with a result (you are here now) → perfective. вы always takes the plural past.
@@ -484,7 +519,14 @@ aspect|Осенью птицы ___ на юг.|In autumn the birds fly away south
 aspect|Не люблю, когда гости ___ без звонка.|I don’t like it when guests turn up without calling.|приходить|n|5|прийти,уходить,входить|impf_pref|без звонка|
 aspect|Сейчас мы ___ к Казани.|We’re now approaching Kazan (by train).|подъезжать|n|3|подъехать,приезжать,доезжать|impf_progress|Сейчас|
 aspect|Кто-то ___ к тебе, пока тебя не было.|Someone came by to see you (and left) while you were out.|приходить|p|0|прийти,уйти,ходить|annul|пока тебя не было|кто-то takes a masculine singular verb.
-aspect|Каждое лето он ___ из Италии вино.|Every summer he brings back wine from Italy.|привозить|n|2|привезти,приносить,приводить|impf_pref|Каждое лето|`;
+aspect|Каждое лето он ___ из Италии вино.|Every summer he brings back wine from Italy.|привозить|n|2|привезти,приносить,приводить|impf_pref|Каждое лето|
+aspect|Почтальон обычно ___ в десять.|The postman usually comes at ten.|приходить|n|2|прийти,уходить,идти|impf_pref|обычно|
+aspect|Каждое утро я ___ из дома в семь.|Every morning I leave the house at seven.|выходить|n|0|выйти,входить,приходить|impf_pref|Каждое утро|
+aspect|Мы всегда ___ в аэропорт за два часа до вылета.|We always get to the airport two hours before the flight.|приезжать|n|3|приехать,уезжать,ездить|impf_pref|всегда|
+aspect|Самолёт уже ___ на посадку.|The plane is already coming in to land.|заходить|n|2|зайти,входить,подходить|impf_progress|на посадку|заходить на посадку = to come in to land.
+aspect|Когда Миша ___ к дому, пошёл дождь.|As Misha was approaching the house, it started raining.|подходить|p|0|подойти,приходить,доходить|impf_progress|Когда|
+aspect|Он ___ и закрыл за собой дверь.|He came in and shut the door behind him.|войти|p|0|входить,выйти,прийти|sequence|и закрыл|
+aspect|Он часто ___ ко мне за советом.|He often comes to me for advice.|приходить|n|2|прийти,уходить,входить|impf_pref|часто|`;
 const Q=DATA.split('\n').map(l=>{const [t,ru,en,v,tn,i,d,rule,cue,note]=l.split('|');return{t,ru,en,v,tn,i:+i,d:d.split(','),rule,cue:cue||'',note:note||''}});
 
 const TOP={all:'Все · All',walk:'идти / ходить · on foot',ride:'ехать / ездить · by transport',move:'бежать, лететь, плыть · run, fly, swim',carry:'нести, везти, вести · carry, lead',pref:'С приставками · With prefixes',aspect:'приходить или прийти? · Prefixed aspect',miss:'Мои ошибки · My mistakes'};
@@ -550,7 +592,7 @@ function newRound(){
 
 const SIZES=[5,10,20,30,0];
 function renderTopics(){
-  $('lvls').innerHTML=`<button id="l-all" data-l="all" aria-pressed="${st.level==='all'}">All levels<small>${poolFor('all','all').length}</small></button>`+LVS.map(l=>`<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level===l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all',l.code).length}</small></button>`).join('');
+  $('lvls').innerHTML=`<button id="l-all" data-l="all" aria-pressed="${st.level==='all'}">All<small>${poolFor('all','all').length}</small></button>`+LVS.map(l=>`<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level===l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all',l.code).length}</small></button>`).join('');
   $('sizes').innerHTML=SIZES.map(n=>`<button id="n-${n||'all'}" data-n="${n}" aria-pressed="${n===st.size}">${n||'All'}</button>`).join('');
   $('topics').innerHTML=Object.entries(TOP).map(([k,v])=>`<button id="t-${k}" data-t="${k}" aria-pressed="${k===st.topic}">${v}<small>${poolFor(k).length}</small></button>`).join('');
 }
@@ -619,8 +661,7 @@ function qHTML(){
 <table class="par" aria-label="Full conjugation">${forms.map((f,k)=>`<tr class="${k===q.i?'hit':f===st.pickF?'miss':''}"><td>${pr[k]}</td><td>${f}</td></tr>`).join('')}</table></section></div></div></div>
 <div class="dock"><span>${r.v&&r.f?'Both right ✓':(st.i+1)+' / '+st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next station →':'See results'}</button></div>`;
   }
-  const LL=(window.CEFR||[]).find(l=>l.code===q.lv);
-  return`<div class="meta"><span>${q.lv}${LL?' · '+LL.en:''} · ${TOP[q.t]}</span><span>Station ${st.i+1} of ${st.round.length}</span></div>
+  return`<div class="meta"><span>${q.lv} · ${TOP[q.t]}</span><span>Station ${st.i+1} of ${st.round.length}</span></div>
 <p class="ru" lang="ru">${markCue(a)}<span class="gap ${gc}">${gap}</span>${markCue(b)}</p><p class="en">${q.en}</p>
 <div class="step"><h2><b>1</b> Pick the verb</h2><div class="opts">${vBtns}</div>${quick}</div>${s2}${exp}`;
 }

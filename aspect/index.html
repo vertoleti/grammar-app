@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
 <style>:root{--red:#0a68b0}.m{color:#0a68b0}</style>
 </head>
 <body>
@@ -32,17 +33,18 @@
 </header>
 
 <main class="band">
-  <div class="wrap">
-    <div class="ctrls">
-      <div class="row"><span class="lbl">Level · Уровень</span><div class="seg" id="lvls" role="group" aria-label="Level"></div></div>
-      <div class="seg" id="topics" role="group" aria-label="Topic"></div>
-      <div class="row">
-        <div class="seg" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose the form</button><button id="m-type" data-m="type">Type the form</button></div>
-        <span class="lbl" id="sizes-lbl">Questions per round</span>
-        <div class="seg" id="sizes" role="group" aria-labelledby="sizes-lbl"></div>
-      </div>
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
     </div>
-    <section class="card" id="card" aria-live="polite"></section>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
+    </aside>
   </div>
 </main>
 
@@ -50,11 +52,11 @@
   <div class="wrap">
     <h2>Cheat sheet</h2>
 <div class="cols"><div><h3>When to use which aspect</h3><div class="tbl"><table><thead><tr><th>Imperfective</th><th>Perfective</th></tr></thead><tbody><tr><td>process, duration: долго, весь день</td><td>one completed action, result: уже, наконец</td></tr><tr><td>repetition: часто, всегда, каждый день</td><td>a chain of actions: открыл и вышел</td></tr><tr><td>general fact: Ты читал эту книгу?</td><td>за + time: за час</td></tr><tr><td>background: Когда я шёл…</td><td>the event that interrupts: …пошёл дождь</td></tr><tr><td>present tense</td><td>no present: прочитаю = will read</td></tr><tr><td>future: буду читать</td><td>future: прочитаю</td></tr><tr><td>не + imperative; invitations: Садитесь!</td><td>single request: Закрой окно</td></tr></tbody></table></div></div><div><h3>How pairs are formed</h3><div class="tbl"><table><thead><tr><th>Type</th><th>Imperfective</th><th>Perfective</th></tr></thead><tbody><tr><td>prefix</td><td>писать, делать, читать</td><td>написать, сделать, прочитать</td></tr><tr><td>suffix</td><td>решать, открывать, давать</td><td>решить, открыть, дать</td></tr><tr><td>different root</td><td>брать, говорить, ложиться</td><td>взять, сказать, лечь</td></tr></tbody></table></div><h3 style="margin-top:20px">Irregular verbs to know</h3><p>есть: ем, ешь, ест, едим, едите, едят. дать: дам, дашь, даст, дадим, дадите, дадут. хотеть: хочу, хочешь, хочет, хотим, хотите, хотят. мочь: могу, можешь, могут.</p></div></div>
-    <p class="note" style="margin-top:28px">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
   </div>
 </section>
 <script src="../shared/levels.js"></script>
 <script src="data.js"></script>
+<script src="../shared/ui.js"></script>
 <script src="../shared/engine.js"></script>
 </body>
 </html>

@@ -8,11 +8,11 @@ Live site: https://vertoleti.github.io/grammar-app/
 
 | Line | Folder | Sentences | Topics |
 |---|---|---|---|
-| 1 Глаголы движения | `verbs-of-motion/` | 154 | идти/ходить, ехать/ездить, бежать/лететь/плыть, нести/везти/вести, prefixes, prefixed aspect |
-| 2 Падежи | `cases/` | 85 | prepositional, accusative, genitive, dative, instrumental, pronouns, adjective + noun, plural |
-| 3 Вид глагола | `aspect/` | 49 | aspect in the past and future, imperative, irregular verbs |
-| 4 Числа | `numbers/` | 48 | counting, age, time, money, много/мало/сколько |
-| 5 Продвинутый уровень | `advanced/` | 43 | participles, verbal adverbs, -ся verbs, бы and чтобы |
+| 1 Глаголы движения | `verbs-of-motion/` | 194 | идти/ходить, ехать/ездить, бежать/лететь/плыть, нести/везти/вести, prefixes, prefixed aspect |
+| 2 Падежи | `cases/` | 133 | prepositional, accusative, genitive, dative, instrumental, pronouns, adjective + noun, plural |
+| 3 Вид глагола | `aspect/` | 79 | aspect in the past and future, imperative, irregular verbs |
+| 4 Числа | `numbers/` | 78 | counting, age, time, money, много/мало/сколько |
+| 5 Продвинутый уровень | `advanced/` | 75 | participles, verbal adverbs, -ся verbs, бы and чтобы |
 | 6 Словарь | `vocabulary/` | 448 words | Anki-style flashcards, A1–C2, by theme |
 
 ### CEFR levels
@@ -21,11 +21,11 @@ Every task and every word has a level. Grammar topics are levelled in each `data
 
 | Level | Grammar tasks | Words |
 |---|---|---|
-| A1 | 53 | 88 |
-| A2 | 130 | 181 |
-| B1 | 143 | 83 |
-| B2 | 53 | 58 |
-| C1 | – | 26 |
+| A1 | 83 | 88 |
+| A2 | 194 | 181 |
+| B1 | 198 | 83 |
+| B2 | 82 | 58 |
+| C1 | 2 | 26 |
 | C2 | – | 12 |
 
 ### Vocabulary (Словарь)
@@ -49,7 +49,7 @@ Every exercise has: topic filters, a "My mistakes" review list, choose or type t
 
 ## How it is built
 
-Plain static files, no build step. `shared/levels.js` holds the CEFR names and `shared/progress.js` the progress storage; every page loads both. Lines 2–5 share `shared/engine.js` and `shared/engine.css`; each has an `index.html` (header and cheat sheet) and a `data.js` with its sentences, rules and explanations. Line 1 is a self-contained page that generates every verb form from rules. `manifest.webmanifest` makes the site installable and `sw.js` keeps it working offline.
+Plain static files, no build step. `shared/ui.css` and `shared/ui.js` turn each page's settings into a bottom sheet on phones and a sidebar on computers. `shared/levels.js` holds the CEFR names and `shared/progress.js` the progress storage; every page loads both. Lines 2–5 share `shared/engine.js` and `shared/engine.css`; each has an `index.html` (header and cheat sheet) and a `data.js` with its sentences, rules and explanations. Line 1 is a self-contained page that generates every verb form from rules. `manifest.webmanifest` makes the site installable and `sw.js` keeps it working offline.
 
 ### Adding sentences
 

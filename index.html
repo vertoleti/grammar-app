@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/ui.css">
 <style>
 /* VOICE everyday study tool, same Moscow-metro look as the exercises
    IDEA a metro network map: each exercise is a line you ride
@@ -91,6 +92,7 @@ input[type=password]{width:100%;font:16px "PT Sans",sans-serif;min-height:44px;p
 ol.steps{margin:6px 0 10px;padding-left:1.2em}
 ol.steps li{margin-bottom:4px}
 @media(max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.m{width:46px;height:46px;font-size:24px}.lvrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 2px}.lvrow::-webkit-scrollbar{display:none}.lvrow button{flex:none;padding:4px 10px}}
+@media(min-width:900px){.lines{grid-template-columns:repeat(2,minmax(0,1fr))}.ex{display:flex;flex-direction:column}.ex .go{margin-top:auto;align-self:flex-start}.ex .stats{margin-bottom:14px}}
 @media(prefers-reduced-motion:reduce){.route i,.ex{transition:none}}
 </style>
 </head>
@@ -163,15 +165,15 @@ ol.steps li{margin-bottom:4px}
 {
 const EX=[
   {href:'verbs-of-motion/',n:1,c:'#d4202c',ru:'Глаголы движения',en:'Verbs of motion',d:'Pick the verb, then the form',id:'vom',
-   lv:{A2:44,B1:88,B2:22},stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','приставки','приходить или прийти?']},
+   lv:{A2:58,B1:107,B2:29},stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','приставки','приходить или прийти?']},
   {href:'cases/',n:2,c:'#1f8a3b',ru:'Падежи',en:'Cases',d:'Pick the case, then the form',id:'cases',
-   lv:{A1:23,A2:45,B1:17},stops:['Где? Куда?','Родительный','Дательный','Творительный','Местоимения','Прилагательные','Множественное число']},
+   lv:{A1:35,A2:69,B1:29},stops:['Где? Куда?','Родительный','Дательный','Творительный','Местоимения','Прилагательные','Множественное число']},
   {href:'aspect/',n:3,c:'#0a68b0',ru:'Вид глагола',en:'Verb aspect',d:'Imperfective or perfective, then the form',id:'aspect',
-   lv:{A2:23,B1:26},stops:['Прошедшее','Будущее','Повелительное','Неправильные глаголы']},
+   lv:{A2:37,B1:42},stops:['Прошедшее','Будущее','Повелительное','Неправильные глаголы']},
   {href:'numbers/',n:4,c:'#c25e00',ru:'Числа',en:'Numbers',d:'1, 2–4, 5+: age, time, money, quantity',id:'numbers',
-   lv:{A1:30,A2:18},stops:['Счёт','Возраст','Время','Деньги','Много, мало, сколько']},
+   lv:{A1:48,A2:30},stops:['Счёт','Возраст','Время','Деньги','Много, мало, сколько']},
   {href:'advanced/',n:5,c:'#7a2a8c',ru:'Продвинутый уровень',en:'Advanced grammar',d:'Participles, verbal adverbs, -ся verbs, бы and чтобы',id:'advanced',
-   lv:{B1:12,B2:31},stops:['Причастия','Деепричастия','Глаголы на -ся','Бы и чтобы']},
+   lv:{B1:20,B2:53,C1:2},stops:['Причастия','Деепричастия','Глаголы на -ся','Бы и чтобы']},
   {href:'vocabulary/',n:6,c:'#00897b',ru:'Словарь',en:'Vocabulary',d:'Anki-style flashcards with spaced repetition',id:'voc',vocab:true,
    lv:{A1:88,A2:181,B1:83,B2:58,C1:26,C2:12},stops:['Люди','Дом','Город','Еда','Работа','Учёба','Чувства','Общество']}
 ];

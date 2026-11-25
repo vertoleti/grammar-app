@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
 <style>
 /* VOICE everyday study tool; IDEA a flashcard box like Anki, on line 6 of the metro map
    PICTURE the big card in the middle, with the six levels as a strip above it
@@ -25,13 +26,13 @@
    TYPE Unbounded + PT Sans; LAYOUT levels strip, filters, card, browse and import below */
 :root{--red:#00897b;--new:light-dark(#1565c0,#7ab4f5);--lrn:light-dark(#c62828,#ff8a80);--rev:light-dark(#2e7d32,#69d48a)}
 .m{color:#00897b}
-.levels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.levels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:14px}
 .lv{font:inherit;color:var(--ink);text-align:left;background:var(--soft);border:2px solid transparent;border-radius:14px;padding:10px 12px;cursor:pointer;min-height:44px;transition:border-color .2s,background-color .2s,transform .12s}
 .lv:active{transform:scale(.98)}
 .lv[aria-pressed=true]{border-color:var(--red);background:var(--bg)}
 .lv[aria-pressed=false]{opacity:.6}
 .lv b{display:block;font:700 22px/1.1 Unbounded,sans-serif;color:var(--red)}
-.lv .nm{display:block;font-size:14px;line-height:1.25;margin-top:2px}
+.lv .nm{display:block;font-size:14px;line-height:1.25;margin-top:2px;overflow-wrap:anywhere}
 .lv .ru{color:var(--mute)}
 .lv .bar{display:block;height:5px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}
 .lv .bar i{display:block;height:100%;background:var(--red)}
@@ -81,10 +82,6 @@ details.box>div{padding-bottom:18px}
 textarea{width:100%;min-height:120px;font:15px/1.4 ui-monospace,Menlo,monospace;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
 select{font:16px "PT Sans",sans-serif;min-height:44px;padding:4px 10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
 .msg{margin:8px 0 0;color:var(--mute)}
-#dirs{display:inline-flex;flex-wrap:nowrap;gap:0;background:var(--soft);border-radius:999px;padding:4px}
-#dirs button{border:0;background:transparent;min-height:40px;padding:6px 14px;white-space:nowrap}
-#dirs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
-.below{margin-top:16px}
 .settings{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
 @media(max-width:760px){.levels{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:600px){.levels{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.lv{padding:8px 4px;text-align:center;border-radius:12px}.lv b{font-size:16px}.lv .nm,.lv .ct{display:none}.lv .bar{margin-top:6px}#dirs button{padding:6px 10px}}
@@ -102,49 +99,47 @@ select{font:16px "PT Sans",sans-serif;min-height:44px;padding:4px 10px;border:2p
 </header>
 
 <main class="band">
-  <div class="wrap">
-    <div class="levels" id="levels" role="group" aria-label="Levels to study"></div>
-    <div class="ctrls">
-      <div class="seg" id="topics" role="group" aria-label="Theme"></div>
-    </div>
-    <section class="vcard" id="card" aria-live="polite"></section>
-    <div class="ctrls below">
-      <div class="row">
-        <div class="seg" id="dirs" role="group" aria-label="Card direction"><button id="d-both" data-d="both">Both ways</button><button id="d-r" data-d="r">RU → EN</button><button id="d-p" data-d="p">EN → RU</button></div>
-        <span class="lbl" id="newlbl">New cards per day</span>
-        <div class="seg" id="sizes" role="group" aria-labelledby="newlbl"></div>
-      </div>
-      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
-    </div>
-
+  <div class="wrap layout">
+    <div class="maincol">
+      <div class="levels" id="levels" role="group" aria-label="Levels to study"></div>
+      <section class="vcard" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>Space</kbd> to show the answer, then <kbd>1</kbd> Again · <kbd>2</kbd> Hard · <kbd>3</kbd> Good · <kbd>4</kbd> Easy</p>
     <details class="box" id="browse">
-      <summary>All cards · Все карточки</summary>
-      <div>
-        <div class="browse-tools"><input id="q" type="search" placeholder="Search Russian or English" aria-label="Search cards"></div>
-        <div class="tbl"><table class="blist"><tbody id="blist"></tbody></table></div>
-        <p class="msg" id="bmore"></p>
-      </div>
-    </details>
-
-    <details class="box" id="importbox">
-      <summary>Import Anki cards · Импорт</summary>
-      <div>
-        <p>Paste or open an Anki text export (.txt or .tsv). Files with a <code>#columns:</code> header, like your anki-decks repo, keep all their fields; otherwise the first column is read as Russian and the second as English.</p>
-        <p><input type="file" id="ifile" accept=".txt,.tsv,.csv,text/plain"></p>
-        <textarea id="itext" placeholder="дом&#9;house&#10;кот&#9;cat"></textarea>
-        <div class="settings" style="margin-top:10px">
-          <label for="ilevel">Level for cards without one</label>
-          <select id="ilevel"></select>
-          <button class="btn go" id="ido">Import</button>
-          <button class="btn" id="iclear">Remove imported cards</button>
+        <summary>All cards · Все карточки</summary>
+        <div>
+          <div class="browse-tools"><input id="q" type="search" placeholder="Search Russian or English" aria-label="Search cards"></div>
+          <div class="tbl"><table class="blist"><tbody id="blist"></tbody></table></div>
+          <p class="msg" id="bmore"></p>
         </div>
-        <p class="msg" id="imsg"></p>
-        <p class="msg">The built-in decks can go straight into Anki: <a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (148 cards for A1, A2, B2, C1, C2).</p>
-      </div>
-    </details>
+      </details>
+
+      <details class="box" id="importbox">
+        <summary>Import Anki cards · Импорт</summary>
+        <div>
+          <p>Paste or open an Anki text export (.txt or .tsv). Files with a <code>#columns:</code> header, like your anki-decks repo, keep all their fields; otherwise the first column is read as Russian and the second as English.</p>
+          <p><input type="file" id="ifile" accept=".txt,.tsv,.csv,text/plain"></p>
+          <textarea id="itext" placeholder="дом&#9;house&#10;кот&#9;cat"></textarea>
+          <div class="settings" style="margin-top:10px">
+            <label for="ilevel">Level for cards without one</label>
+            <select id="ilevel"></select>
+            <button class="btn go" id="ido">Import</button>
+            <button class="btn" id="iclear">Remove imported cards</button>
+          </div>
+          <p class="msg" id="imsg"></p>
+          <p class="msg">The built-in decks can go straight into Anki: <a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (148 cards for A1, A2, B2, C1, C2).</p>
+        </div>
+      </details>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp"><h3>Card direction · Направление</h3><div class="seg segctl" id="dirs" role="group" aria-label="Card direction"><button id="d-both" data-d="both">Both ways</button><button id="d-r" data-d="r">RU → EN</button><button id="d-p" data-d="p">EN → RU</button></div></section>
+      <section class="grp" data-fmt="{v} new a day"><h3>New cards per day · Новых в день</h3><div class="seg segctl" id="sizes" role="group" aria-label="New cards per day"></div></section>
+      <section class="grp" data-all="All themes"><h3>Theme · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Theme"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
+    </aside>
   </div>
 </main>
 <script src="../shared/levels.js"></script>
+<script src="../shared/ui.js"></script>
 <script src="vocab.js"></script>
 </body>
 </html>

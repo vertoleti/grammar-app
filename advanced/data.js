@@ -1,4 +1,4 @@
-/* Advanced. Line format: topic|sentence|English|word|options (kind or verb:kind, separated by ;)|answer index|forms (;)|answer form index|rule|signal|note|table labels n or p (optional) */
+/* Advanced. Line format: topic|sentence|English|word|options (kind or verb:kind, separated by ;)|answer index|forms (;)|answer form index|rule|signal|note|table labels n or p (optional)|CEFR level if different from the topic's (optional) */
 {
 const OPTS = {
   apres: { name: 'Действительное причастие наст. вр. · Active present participle', use: '“who is doing / which is doing”, from imperfective verbs: -ущий / -ющий (1st conjugation), -ащий / -ящий (2nd): читающий, говорящий' },
@@ -42,6 +42,14 @@ part|Задача, ___ учителем, была очень трудной.|The
 part|Это очень ___ писатель.|He is a very widely read writer.|читать|ppres;apres;ppast|0|читаемый;читающий;прочитанный;читаемая|0|part_ppres|очень|The writer is read by many people regularly: passive present.|
 part|Я нашёл ___ ключи.|I found the lost keys.|потерять|ppast;apast;apres|0|потерянные;потерявшие;теряющие;потерянный|0|part_ppast||Agrees with ключи: plural accusative (inanimate, so the same as the nominative).|
 part|Человек, ___ в дверь, уже ушёл.|The man who knocked on the door has already left.|стучать|apast;apres;ppast|0|стучавший;стучащий;стучавшая;стучавшего|0|part_apast|уже ушёл|He knocked before he left, so the past participle.|
+part|Девушка, ___ у окна, — моя сестра.|The girl standing by the window is my sister.|стоять|apres;apast;ppast|0|стоящая;стоявшая;стоящий;стоящую|0|part_apres|у окна|Agrees with девушка: feminine nominative.||
+part|Мы купили книгу, ___ в прошлом году.|We bought a book published last year.|издать|ppast;apast;apres|0|изданную;издавшую;издающую;изданная|0|part_ppast|в прошлом году|Agrees with книгу: feminine accusative.||
+part|Человек, ___ эту статью, хорошо знает тему.|The person who wrote this article knows the subject well.|написать|apast;apres;ppast|0|написавший;пишущий;написанный;написавшего|0|part_apast||Agrees with человек: masculine nominative.||
+part|Я перечитываю письмо, ___ вчера.|I’m rereading the letter I got yesterday.|получить|ppast;apast;apres|0|полученное;получившее;получающее;полученный|0|part_ppast|вчера|получить → полученный (-ить → -енный).||
+part|Дети, ___ в этом доме, ходят в одну школу.|The children who live in this house go to the same school.|жить|apres;apast;ppast|0|живущие;жившие;живущих;живущий|0|part_apres||Agrees with дети: plural nominative.||
+part|Он показал мне ___ дверь.|He showed me the broken door.|сломать|ppast;apast;apres|0|сломанную;сломавшую;ломающую;сломанная|0|part_ppast||Agrees with дверь: feminine accusative.||
+part|Это ___ всеми певец.|He is a singer loved by everyone.|любить|ppres;apres;apast|0|любимый;любящий;любивший;любимая|0|part_ppres|всеми|любить → любимый; the people who love him go in the instrumental: всеми.||C1
+part|Это задача, ___ особого внимания.|This is a task requiring special attention.|требовать|apres;apast;ppres|0|требующая;требовавшая;требуемая;требующую|0|part_apres||Agrees with задача: feminine nominative. требовать takes the genitive: требует внимания.||C1
 adv|___ домой, я встретил друга.|Walking home, I met a friend.|идти|advi;advp|0|идя;пойдя;идущий;шедший|0|adv_impf||идти gives the irregular идя.|
 adv|___ книгу, он лёг спать.|Having read the book, he went to bed.|прочитать|advp;advi|0|прочитав;читая;прочитавший;прочитанную|0|adv_pf||
 adv|Она слушала музыку, ___ ужин.|She listened to music while cooking dinner.|готовить|advi;advp|0|готовя;приготовив;готовящая;готовившая|0|adv_impf||
@@ -52,6 +60,14 @@ adv|___ по-русски, он часто делает ошибки.|When speak
 adv|___ письмо, она заплакала.|Having received the letter, she burst into tears.|получить|advp;advi|0|получив;получая;получившая;полученное|0|adv_pf||
 adv|Он ушёл, не ___.|He left without saying goodbye.|попрощаться|advp;advi|0|попрощавшись;прощаясь;попрощавшийся;попрощался|0|adv_pf|не|не + verbal adverb = “without doing”. -ся verbs: -вшись (perfective), -ясь (imperfective).|
 adv|___ в кресле, дедушка читал газету.|Sitting in an armchair, Grandpa was reading the paper.|сидеть|advi;advp|0|сидя;посидев;сидящий;сидевший|0|adv_impf||
+adv|___ домой, он купил хлеб.|On his way back home he bought some bread.|возвращаться|advi;advp|0|возвращаясь;вернувшись;возвращающийся;возвращался|0|adv_impf||-ся verbs form the imperfective adverb with -ясь / -аясь.||
+adv|___ все документы, она вышла из офиса.|Having signed all the documents, she left the office.|подписать|advp;advi|0|подписав;подписывая;подписавшая;подписанные|0|adv_pf||||
+adv|Он слушал лекцию, ___ заметки.|He listened to the lecture, taking notes.|делать|advi;advp|0|делая;сделав;делающий;делавший|0|adv_impf||||
+adv|___ в Москву, мы сразу пошли на Красную площадь.|Having arrived in Moscow, we went straight to Red Square.|приехать|advp;advi|0|приехав;приезжая;приехавший;приедет|0|adv_pf|сразу|||
+adv|Не ___ ответа, он промолчал.|Not knowing the answer, he said nothing.|знать|advi;advp|0|зная;узнав;знающий;знавший|0|adv_impf|Не|||B2
+adv|___ ужин, мама позвала детей.|Having cooked dinner, Mum called the children.|приготовить|advp;advi|0|приготовив;готовя;приготовивший;приготовленный|0|adv_pf||||
+adv|___ с подругой, она забыла о времени.|Chatting with her friend, she lost track of time.|болтать|advi;advp|0|болтая;поболтав;болтающая;болтавшая|0|adv_impf||||
+adv|___ руки, садитесь за стол.|Once you’ve washed your hands, sit down at the table.|помыть|advp;advi|0|помыв;моя;помывший;помытые|0|adv_pf||The verbal adverb shares the subject of the main verb, here “you”.||
 sya|Магазин ___ в девять.|The shop opens at nine.|открывать / открываться|открывать:trans;открываться:refl|1|открываюсь;открываешься;открывается;открываемся;открываетесь;открываются|2|sya_refl|||n
 sya|Мама ___ ребёнка.|Mum is dressing the child.|одевать / одеваться|одевать:trans;одеваться:refl|0|одеваю;одеваешь;одевает;одеваем;одеваете;одевают|2|sya_trans|ребёнка||n
 sya|Я быстро ___ и вышел.|I quickly got dressed and went out.|одеть / одеться|одеть:trans;одеться:refl|1|оделся;оделась;оделось;оделись|0|sya_refl||вышел shows the speaker is a man.|p
@@ -64,6 +80,14 @@ sya|Она ___ новые слова каждый день.|She learns new words
 sya|Дверь медленно ___.|The door slowly closed.|закрыть / закрыться|закрыть:trans;закрыться:refl|1|закрылся;закрылась;закрылось;закрылись|1|sya_refl||дверь is feminine.|p
 sya|Нас ___ общие друзья.|Mutual friends introduced us.|познакомить / познакомиться|познакомить:trans;познакомиться:refl|0|познакомил;познакомила;познакомило;познакомили|3|sya_trans|Нас|нас is the object; the friends did the introducing.|p
 sya|Мы ___ в Москве пять лет назад.|We met in Moscow five years ago.|познакомить / познакомиться|познакомить:trans;познакомиться:refl|1|познакомился;познакомилась;познакомилось;познакомились|3|sya_recip|||p
+sya|Фильм ___ в десять.|The film ends at ten.|заканчивать / заканчиваться|заканчивать:trans;заканчиваться:refl|1|заканчиваюсь;заканчиваешься;заканчивается;заканчиваемся;заканчиваетесь;заканчиваются|2|sya_refl|||n|
+sya|Я ___ работу в шесть.|I finish work at six.|заканчивать / заканчиваться|заканчивать:trans;заканчиваться:refl|0|заканчиваю;заканчиваешь;заканчивает;заканчиваем;заканчиваете;заканчивают|0|sya_trans|работу||n|
+sya|Цены ___ каждый год.|Prices go up every year.|повышать / повышаться|повышать:trans;повышаться:refl|1|повышаюсь;повышаешься;повышается;повышаемся;повышаетесь;повышаются|5|sya_refl|||n|
+sya|Магазины ___ цены перед праздниками.|Shops put up their prices before the holidays.|повышать / повышаться|повышать:trans;повышаться:refl|0|повышаю;повышаешь;повышает;повышаем;повышаете;повышают|5|sya_trans|цены||n|
+sya|Мы часто ___ из-за денег.|We often quarrel about money.|ссорить / ссориться|ссорить:trans;ссориться:refl|1|ссорюсь;ссоришься;ссорится;ссоримся;ссоритесь;ссорятся|3|sya_recip|||n|
+sya|Мальчик ___ собаку.|The boy is washing the dog.|мыть / мыться|мыть:trans;мыться:refl|0|мою;моешь;моет;моем;моете;моют|2|sya_trans|собаку||n|
+sya|Я ___ каждое утро.|I have a wash every morning.|мыть / мыться|мыть:trans;мыться:refl|1|моюсь;моешься;моется;моемся;моетесь;моются|0|sya_refl|каждое утро||n|
+sya|Они ___ после долгой разлуки.|They kissed after a long separation.|целовать / целоваться|целовать:trans;целоваться:refl|1|целовался;целовалась;целовалось;целовались|3|sya_recip|||p|
 cond|Если бы у меня были деньги, я ___ машину.|If I had money, I’d buy a car.|купить|cond;real|0|купил бы;куплю;купил;покупал бы|0|cond_unreal|Если бы||
 cond|Если завтра будет дождь, мы ___ дома.|If it rains tomorrow, we’ll stay at home.|остаться|real;cond|0|останемся;остались бы;остаёмся;остались|0|cond_real|Если завтра|Russian uses the future after если (English uses the present).|
 cond|Я хочу, чтобы ты ___ со мной.|I want you to come with me.|пойти|chtoby_past;chtoby_inf|0|пошёл;пойдёшь;пойти;пошёл бы|0|chtoby_diff|хочу, чтобы||
@@ -73,16 +97,24 @@ cond|Если бы ты ___ раньше, ты бы успел на поезд.|
 cond|Мама попросила, чтобы мы ___ домой до десяти.|Mum asked us to come home before ten.|вернуться|chtoby_past;chtoby_inf|0|вернулись;вернёмся;вернуться;возвращаемся|0|chtoby_diff|попросила, чтобы||
 cond|Он копит деньги, чтобы ___ квартиру.|He is saving money to buy a flat.|купить|chtoby_inf;chtoby_past|0|купить;купил;купит;покупал|0|chtoby_same|||
 cond|Если ты не ___ мне, я всё сделаю сам.|If you don’t help me, I’ll do it all myself.|помочь|real;cond|0|поможешь;помог бы;помогаешь;помочь|0|cond_real|я всё сделаю||
-cond|Я бы с удовольствием ___, но я занят.|I’d love to come, but I’m busy.|прийти|cond;real|0|пришёл;приду;прихожу;прийти|0|cond_unreal|но я занят|занят shows the speaker is a man.|`;
+cond|Я бы с удовольствием ___, но я занят.|I’d love to come, but I’m busy.|прийти|cond;real|0|пришёл;приду;прихожу;прийти|0|cond_unreal|но я занят|занят shows the speaker is a man.|
+cond|Если бы я знал ответ, я бы ___ тебе.|If I knew the answer, I would tell you.|сказать|cond;real|0|сказал;скажу;говорю;сказать|0|cond_unreal|Если бы|бы is already in the sentence, so only the past form is needed.||
+cond|Если ты ___ эту книгу, тебе понравится.|If you read this book, you’ll like it.|прочитать|real;cond|0|прочитаешь;прочитал бы;читаешь;прочитать|0|cond_real|тебе понравится|||
+cond|Учитель хочет, чтобы мы ___ текст.|The teacher wants us to translate the text.|перевести|chtoby_past;chtoby_inf|0|перевели;переведём;перевести;переводим|0|chtoby_diff|хочет, чтобы|||
+cond|Я записал адрес, чтобы не ___ его.|I wrote down the address so as not to forget it.|забыть|chtoby_inf;chtoby_past|0|забыть;забыл;забуду;забывал|0|chtoby_same|||
+cond|Если бы не дождь, мы бы ___ в парк.|If it hadn’t been for the rain, we would have gone to the park.|пойти|cond;real|0|пошли;пойдём;идём;пойти|0|cond_unreal|Если бы не|||B2
+cond|Скажи ему, чтобы он ___ мне.|Tell him to call me.|позвонить|chtoby_past;chtoby_inf|0|позвонил;позвонит;позвонить;звонит|0|chtoby_diff|чтобы он|||
+cond|Если завтра будет солнце, мы ___ на пляж.|If it’s sunny tomorrow, we’ll go to the beach.|поехать|real;cond|0|поедем;поехали бы;едем;поехать|0|cond_real|Если завтра|||
+cond|Мы встали рано, чтобы ___ на поезд.|We got up early so as to catch the train.|успеть|chtoby_inf;chtoby_past|0|успеть;успели;успеем;успевать|0|chtoby_same|||`;
 const LAB = { n: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], p: ['он', 'она', 'оно', 'они'] };
 window.EXERCISE = {
   id: 'advanced', step1: 'Which form or construction?', step1Short: 'Choice', scoreLabel: 'Choices right',
   topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
-    const [t, ru, en, hint, opts, a1, forms, a2, rule, cue, note, lab] = l.split('|');
+    const [t, ru, en, hint, opts, a1, forms, a2, rule, cue, note, lab, lv] = l.split('|');
     const o1 = opts.split(';').map(s => { const [x, y] = s.split(':'); return y ? { label: x, kind: y } : { kind: x }; });
     const right = o1[+a1];
-    return { t, ru, en, hint, o1, a1: +a1, forms: forms.split(';'), a2: +a2, labels: lab ? LAB[lab] : null, tag: '', rule, cue, note,
+    return { t, ru, en, hint, o1, a1: +a1, forms: forms.split(';'), a2: +a2, labels: lab ? LAB[lab] : null, tag: '', rule, cue, note, lv: lv || undefined,
       fnote: `Needed: ${right.label ? right.label + ', ' : ''}${OPTS[right.kind].name.split(' · ').pop().toLowerCase()} (${OPTS[right.kind].name.split(' · ')[0]}): ${OPTS[right.kind].use}.` };
   })
 };

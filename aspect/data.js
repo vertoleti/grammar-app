@@ -35,6 +35,14 @@ past|Кто ___ окно? Холодно!|Who opened the window? It’s cold!|о
 past|Пока я ___ посуду, муж смотрел телевизор.|While I was washing the dishes, my husband watched TV.|мыть/помыть|i|p|мыл,мыла,мыло,мыли|1|simult|Пока|муж tells you the speaker is a woman, so feminine.
 past|Вчера я ___ ключи и не мог попасть домой.|Yesterday I lost my keys and couldn’t get into the house.|терять/потерять|p|p|потерял,потеряла,потеряло,потеряли|0|result|не мог|не мог shows the speaker is a man.
 past|Студенты ___ на вопросы преподавателя целый час.|The students answered the teacher’s questions for a whole hour.|отвечать/ответить|i|p|отвечал,отвечала,отвечало,отвечали|3|process|целый час|
+past|Он долго ___ задачу, но так и не решил её.|He spent a long time on the problem but never solved it.|решать/решить|i|p|решал,решала,решало,решали|0|process|долго|
+past|Ученик наконец ___ задачу.|The pupil finally solved the problem.|решать/решить|p|p|решил,решила,решило,решили|0|result|наконец|
+past|Каждое лето мы ___ дом на даче.|Every summer we rented a house at the dacha.|снимать/снять|i|p|снимал,снимала,снимало,снимали|3|repeat|Каждое лето|
+past|Она ___ платье и пошла на вечеринку.|She put on her dress and went to the party.|надевать/надеть|p|p|надел,надела,надело,надели|1|sequence|и пошла|
+past|Пока дети ___, родители готовили ужин.|While the children played, the parents cooked dinner.|играть/поиграть|i|p|играл,играла,играло,играли|3|simult|Пока|
+past|Вы когда-нибудь ___ этот фильм?|Have you ever seen this film?|смотреть/посмотреть|i|p|смотрел,смотрела,смотрело,смотрели|3|fact|когда-нибудь|
+past|Маша ___ все слова за час.|Masha learned all the words in an hour.|учить/выучить|p|p|выучил,выучила,выучило,выучили|1|result|за час|
+past|Они ___ квартиру и сразу переехали.|They bought a flat and moved in straight away.|покупать/купить|p|p|купил,купила,купило,купили|3|sequence|и сразу|
 fut|Завтра я ___ тебе.|I’ll call you tomorrow.|звонить/позвонить|p|f|позвоню,позвонишь,позвонит,позвоним,позвоните,позвонят|0|fut_result|Завтра|
 fut|В отпуске я ___ каждый день.|On holiday I’ll read every day.|читать/прочитать|i|f|буду читать,будешь читать,будет читать,будем читать,будете читать,будут читать|0|fut_process|каждый день|
 fut|Я ___ эту книгу до пятницы.|I’ll finish reading this book by Friday.|читать/прочитать|p|f|прочитаю,прочитаешь,прочитает,прочитаем,прочитаете,прочитают|0|fut_result|до пятницы|
@@ -47,6 +55,14 @@ fut|Через неделю они ___ новую квартиру.|In a week th
 fut|Мы ___ вам каждую неделю.|We’ll write to you every week.|писать/написать|i|f|буду писать,будешь писать,будет писать,будем писать,будете писать,будут писать|3|fut_process|каждую неделю|
 fut|Сегодня я ___ спать пораньше.|Tonight I’ll go to bed early.|ложиться/лечь|p|f|лягу,ляжешь,ляжет,ляжем,ляжете,лягут|0|fut_result|Сегодня|лечь is irregular: лягу, ляжешь… лягут.
 fut|Ты ___ мне свой номер?|Will you give me your number?|давать/дать|p|f|дам,дашь,даст,дадим,дадите,дадут|1|fut_result||дать is irregular: дам, дашь, даст, дадим, дадите, дадут.
+fut|Я ___ тебе, как только приеду.|I’ll call you as soon as I arrive.|звонить/позвонить|p|f|позвоню,позвонишь,позвонит,позвоним,позвоните,позвонят|0|fut_result|как только|
+fut|Завтра я весь день ___ дома.|Tomorrow I’ll be working from home all day.|работать/поработать|i|f|буду работать,будешь работать,будет работать,будем работать,будете работать,будут работать|0|fut_process|весь день|
+fut|Когда ты ___ эту книгу, дай её мне.|When you’ve finished this book, give it to me.|читать/прочитать|p|f|прочитаю,прочитаешь,прочитает,прочитаем,прочитаете,прочитают|1|fut_result|Когда|
+fut|Летом мы ___ на даче каждые выходные.|In summer we’ll be relaxing at the dacha every weekend.|отдыхать/отдохнуть|i|f|буду отдыхать,будешь отдыхать,будет отдыхать,будем отдыхать,будете отдыхать,будут отдыхать|3|fut_process|каждые выходные|
+fut|Не волнуйтесь, мы всё ___ к пятнице.|Don’t worry, we’ll get everything done by Friday.|делать/сделать|p|f|сделаю,сделаешь,сделает,сделаем,сделаете,сделают|3|fut_result|к пятнице|
+fut|Я ___ тебя, сколько нужно.|I’ll wait for you as long as it takes.|ждать/подождать|i|f|буду ждать,будешь ждать,будет ждать,будем ждать,будете ждать,будут ждать|0|fut_process|сколько нужно|
+fut|Через год они ___ новый дом.|In a year they’ll have built a new house.|строить/построить|p|f|построю,построишь,построит,построим,построите,построят|5|fut_result|Через год|
+fut|Обещаю, я больше не ___!|I promise I won’t be late any more!|опаздывать/опоздать|i|f|буду опаздывать,будешь опаздывать,будет опаздывать,будем опаздывать,будете опаздывать,будут опаздывать|0|fut_process|больше не|“Never again / no more” usually takes the imperfective future: не буду опаздывать.
 imp|Миша, ___ окно, пожалуйста.|Misha, close the window, please.|закрывать/закрыть|p|imp|закрой,закройте|0|imp_request|пожалуйста|Talking to one friend → ты-form.
 imp|Дети, не ___ окно, на улице холодно!|Kids, don’t open the window, it’s cold outside!|открывать/открыть|i|imp|открывай,открывайте|1|imp_neg|не|Talking to several people → вы-form with -те.
 imp|Проходите, ___, пожалуйста!|Come in, sit down, please!|садиться/сесть|i|imp|садись,садитесь|1|imp_invite|Проходите|
@@ -58,6 +74,13 @@ imp|Игорь, не ___ мне так поздно!|Igor, don’t call me so la
 imp|Дима, ___ мне, пожалуйста, соль.|Dima, pass me the salt, please.|передавать/передать|p|imp|передай,передайте|0|imp_request|пожалуйста|
 imp|Ну что же вы стоите? ___!|Why are you standing there? Come in!|входить/войти|i|imp|входи,входите|1|imp_invite|Ну что же вы стоите|Urging someone to do what they are already expected to do → imperfective.
 imp|Не ___ эту книгу, Лена, она скучная.|Don’t read this book, Lena, it’s boring.|читать/прочитать|i|imp|читай,читайте|0|imp_neg|Не|
+imp|Петя, ___ дверь, пожалуйста.|Petya, shut the door, please.|закрывать/закрыть|p|imp|закрой,закройте|0|imp_request|пожалуйста|
+imp|Мама, не ___ свет, я ещё читаю!|Mum, don’t turn the light off, I’m still reading!|выключать/выключить|i|imp|выключай,выключайте|0|imp_neg|не|
+imp|Наталья Ивановна, ___ мне, пожалуйста, завтра.|Natalya Ivanovna, please call me tomorrow.|звонить/позвонить|p|imp|позвони,позвоните|1|imp_request|Наталья Ивановна|
+imp|Саша, не ___ мне, я работаю.|Sasha, don’t disturb me, I’m working.|мешать/помешать|i|imp|мешай,мешайте|0|imp_neg|не|
+imp|Олег, ___ мне свой адрес.|Oleg, send me your address.|присылать/прислать|p|imp|пришли,пришлите|0|imp_request||прислать: imperative пришли, пришлите.
+imp|Входите, ___, чувствуйте себя как дома!|Come in, take your coats off, make yourselves at home!|раздеваться/раздеться|i|imp|раздевайся,раздевайтесь|1|imp_invite|Входите|
+imp|Миша, не ___ эти документы, они ещё нужны!|Misha, don’t throw these documents away, we still need them!|выбрасывать/выбросить|i|imp|выбрасывай,выбрасывайте|0|imp_neg|не|
 irr|Что ты обычно ___ на завтрак?|What do you usually eat for breakfast?|есть/съесть|i|n|ем,ешь,ест,едим,едите,едят|1|repeat|обычно|есть is irregular: ем, ешь, ест, едим, едите, едят.
 irr|Мы ___ поехать на море.|We want to go to the seaside.|хотеть/захотеть|i|n|хочу,хочешь,хочет,хотим,хотите,хотят|3|present||хотеть is mixed: хочу, хочешь, хочет, but хотим, хотите, хотят.
 irr|Они ___ на втором этаже.|They live on the second floor.|жить/пожить|i|n|живу,живёшь,живёт,живём,живёте,живут|5|present||жить: stem жив- (живу, живёшь… живут).
@@ -69,7 +92,14 @@ irr|Он ___ это слово и не может вспомнить.|He has for
 irr|Мама ___ нам каждый вечер сказки.|Mum read us fairy tales every evening.|читать/прочитать|i|p|читал,читала,читало,читали|1|repeat|каждый вечер|
 irr|Почему ты не ___ суп?|Why aren’t you eating your soup?|есть/съесть|i|n|ем,ешь,ест,едим,едите,едят|1|present||
 irr|Завтра я ___ в шесть утра.|Tomorrow I’ll get up at six.|вставать/встать|p|f|встану,встанешь,встанет,встанем,встанете,встанут|0|fut_result|Завтра|встать: встану, встанешь… встанут.
-irr|Я обычно ___ в семь.|I usually get up at seven.|вставать/встать|i|n|встаю,встаёшь,встаёт,встаём,встаёте,встают|0|repeat|обычно|Verbs in -вать after да-, зна-, ста- drop -ва- in the present: встаю, даю, узнаю.`;
+irr|Я обычно ___ в семь.|I usually get up at seven.|вставать/встать|i|n|встаю,встаёшь,встаёт,встаём,встаёте,встают|0|repeat|обычно|Verbs in -вать after да-, зна-, ста- drop -ва- in the present: встаю, даю, узнаю.
+irr|Мы ___ в Берлине уже пять лет.|We’ve been living in Berlin for five years.|жить/пожить|i|n|живу,живёшь,живёт,живём,живёте,живут|3|present|уже пять лет|Russian uses the present for something still going on (English: have been living).
+irr|Что вы ___ на ужин?|What are you having for dinner?|есть/съесть|i|n|ем,ешь,ест,едим,едите,едят|4|present||
+irr|Кто ___ этот торт?|Who baked this cake?|печь/испечь|p|p|испёк,испекла,испекло,испекли|0|result||испечь: past испёк, испекла. кто takes a masculine verb.
+irr|Можно я ___ твою ручку?|Can I take your pen?|брать/взять|p|f|возьму,возьмёшь,возьмёт,возьмём,возьмёте,возьмут|0|fut_result||брать / взять come from different roots; взять: возьму, возьмёшь.
+irr|Она всегда ___ правду.|She always tells the truth.|говорить/сказать|i|n|говорю,говоришь,говорит,говорим,говорите,говорят|2|repeat|всегда|
+irr|Дети пьют много сока, а взрослые ___ кофе.|The children drink a lot of juice, and the adults drink coffee.|пить/выпить|i|n|пью,пьёшь,пьёт,пьём,пьёте,пьют|5|present||
+irr|Мы ___ тебе, когда всё узнаем.|We’ll write to you when we find everything out.|писать/написать|p|f|напишу,напишешь,напишет,напишем,напишете,напишут|3|fut_result|когда всё узнаем|`;
 const LAB = { n: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], f: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], p: ['он', 'она', 'оно', 'они'], imp: ['ты', 'вы'] };
 const PERS = { n: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], f: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], p: ['masculine', 'feminine', 'neuter', 'plural'], imp: ['ты-form', 'вы-form'] };
 window.EXERCISE = {

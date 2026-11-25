@@ -135,14 +135,14 @@ function renderLevels() {
     const list = cards.filter(c => c.level === l.code);
     const learned = list.filter(c => ['r', 'p'].some(d => srs[c.id + '|' + d] && srs[c.id + '|' + d].q === 'review')).length;
     const pct = list.length ? Math.round(learned / list.length * 100) : 0;
-    return `<button class="lv" id="lv-${l.code}" data-l="${l.code}" aria-pressed="${cfg.levels.includes(l.code)}" title="${l.code}: ${l.en} · ${l.ru} (${l.test})"><b>${l.code}</b><span class="nm">${l.en}</span><span class="nm ru">${l.ru} · ${l.test}</span><span class="bar"><i style="width:${pct}%"></i></span><span class="ct">${learned} of ${list.length} learned</span></button>`;
+    return `<button class="lv" id="lv-${l.code}" data-l="${l.code}" aria-pressed="${cfg.levels.includes(l.code)}" title="${l.code}: ${l.en} · ${l.ru} (${l.test})"><b>${l.code}</b><span class="nm">${l.en}</span><span class="nm ru">${l.ru}</span><span class="bar"><i style="width:${pct}%"></i></span><span class="ct">${learned} of ${list.length} learned</span></button>`;
   }).join('');
 }
 function renderControls() {
   const inLv = cards.filter(c => cfg.levels.includes(c.level));
   const counts = {}; inLv.forEach(c => { counts[c.theme] = (counts[c.theme] || 0) + 1; });
   if (cfg.theme !== 'all' && !counts[cfg.theme]) cfg.theme = 'all';
-  $('topics').innerHTML = `<button id="t-all" data-t="all" aria-pressed="${cfg.theme === 'all'}">Все темы · All themes<small>${inLv.length}</small></button>` +
+  $('topics').innerHTML = `<button id="t-all" data-t="all" aria-pressed="${cfg.theme === 'all'}">Все темы · All<small>${inLv.length}</small></button>` +
     Object.keys(THEMES).filter(t => counts[t]).map(t => `<button id="t-${t}" data-t="${t}" aria-pressed="${cfg.theme === t}">${THEMES[t]}<small>${counts[t]}</small></button>`).join('');
   document.querySelectorAll('#dirs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === cfg.dir));
   $('sizes').innerHTML = PER_DAY.map(n => `<button id="n-${n}" data-n="${n}" aria-pressed="${n === cfg.perDay}">${n}</button>`).join('');
