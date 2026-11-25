@@ -1,18 +1,18 @@
 /* Advanced. Line format: topic|sentence|English|word|options (kind or verb:kind, separated by ;)|answer index|forms (;)|answer form index|rule|signal|note|table labels n or p (optional) */
 {
 const OPTS = {
-  apres: { name: 'Active present participle', use: '“who is doing / which is doing”, from imperfective verbs: -ущий / -ющий (1st conjugation), -ащий / -ящий (2nd): читающий, говорящий' },
-  apast: { name: 'Active past participle', use: '“who did / who was doing”: past stem + -вший (after a vowel) or -ший (after a consonant): прочитавший, принёсший' },
-  ppres: { name: 'Passive present participle', use: '“which is (being) done”, from imperfective verbs: -емый / -имый: читаемый, любимый. Rare in speech.' },
-  ppast: { name: 'Passive past participle', use: '“which has been done”, mostly from perfective verbs: -нный / -енный / -тый: прочитанный, построенный, открытый' },
-  advi: { name: 'Imperfective verbal adverb', use: '“while doing”: an action at the same time as the main verb; present stem + -я (-а after ж, ш, ч, щ): читая, говоря, слыша' },
-  advp: { name: 'Perfective verbal adverb', use: '“having done”: an action completed before the main verb; past stem + -в (-вшись for -ся verbs): прочитав, закончив, попрощавшись' },
-  refl: { name: 'with -ся', use: 'the verb has no direct object: the subject does it to itself, things happen on their own (дверь закрылась), or people do it to each other (встречаемся)' },
-  trans: { name: 'without -ся', use: 'the verb takes a direct object in the accusative: someone does it to someone or something else' },
-  cond: { name: 'past form + бы', use: 'an unreal or hypothetical situation: what would happen or would have happened (если бы…, я бы…). The verb is in the past form whatever the time.' },
-  real: { name: 'future (real condition)', use: 'a real, possible condition about the future: если + future, then future' },
-  chtoby_inf: { name: 'чтобы + infinitive', use: 'purpose when the subject of both parts is the same person: I came (so that I could) help' },
-  chtoby_past: { name: 'чтобы + past form', use: 'a wish, request or purpose aimed at a different person: I want you to…, she asked us to…' }
+  apres: { name: 'Действительное причастие наст. вр. · Active present participle', use: '“who is doing / which is doing”, from imperfective verbs: -ущий / -ющий (1st conjugation), -ащий / -ящий (2nd): читающий, говорящий' },
+  apast: { name: 'Действительное причастие прош. вр. · Active past participle', use: '“who did / who was doing”: past stem + -вший (after a vowel) or -ший (after a consonant): прочитавший, принёсший' },
+  ppres: { name: 'Страдательное причастие наст. вр. · Passive present participle', use: '“which is (being) done”, from imperfective verbs: -емый / -имый: читаемый, любимый. Rare in speech.' },
+  ppast: { name: 'Страдательное причастие прош. вр. · Passive past participle', use: '“which has been done”, mostly from perfective verbs: -нный / -енный / -тый: прочитанный, построенный, открытый' },
+  advi: { name: 'Деепричастие несов. вида · Imperfective verbal adverb', use: '“while doing”: an action at the same time as the main verb; present stem + -я (-а after ж, ш, ч, щ): читая, говоря, слыша' },
+  advp: { name: 'Деепричастие сов. вида · Perfective verbal adverb', use: '“having done”: an action completed before the main verb; past stem + -в (-вшись for -ся verbs): прочитав, закончив, попрощавшись' },
+  refl: { name: 'с -ся · with -ся', use: 'the verb has no direct object: the subject does it to itself, things happen on their own (дверь закрылась), or people do it to each other (встречаемся)' },
+  trans: { name: 'без -ся · without -ся', use: 'the verb takes a direct object in the accusative: someone does it to someone or something else' },
+  cond: { name: 'прош. вр. + бы · past form + бы', use: 'an unreal or hypothetical situation: what would happen or would have happened (если бы…, я бы…). The verb is in the past form whatever the time.' },
+  real: { name: 'будущее время · future (real condition)', use: 'a real, possible condition about the future: если + future, then future' },
+  chtoby_inf: { name: 'чтобы + инфинитив · infinitive', use: 'purpose when the subject of both parts is the same person: I came (so that I could) help' },
+  chtoby_past: { name: 'чтобы + прош. вр. · past form', use: 'a wish, request or purpose aimed at a different person: I want you to…, she asked us to…' }
 };
 const RULES = {
   part_apres: ['Active present participle: “who is doing”', 'An active present participle replaces который + present tense. It is formed from imperfective verbs: take the они-form, drop -т and add -щий (читают → читающий, живут → живущий, сидят → сидящий). It declines like an adjective and agrees with its noun.', 'мальчик, который сидит → мальчик, сидящий на скамейке.'],
@@ -29,7 +29,8 @@ const RULES = {
   chtoby_same: ['Purpose, same subject: чтобы + infinitive', 'When the person doing the main action is also the one who will do the second, use чтобы + infinitive (“in order to”).', 'Я пришёл, чтобы помочь.'],
   chtoby_diff: ['Wish or request for someone else: чтобы + past form', 'After хотеть, просить, сказать and similar verbs, when the second action is done by someone else, use чтобы + the past form of the verb.', 'Я хочу, чтобы ты пришёл. Мама просит, чтобы мы вернулись.']
 };
-const TOPICS = { part: 'Participles', adv: 'Verbal adverbs', sya: '-ся verbs', cond: 'бы and чтобы' };
+const TOPICS = { part: 'Причастия · Participles', adv: 'Деепричастия · Verbal adverbs', sya: 'Глаголы на -ся · -ся verbs', cond: 'Бы и чтобы · Conditional and purpose' };
+const LEVELS = { part: 'B2', adv: 'B2', sya: 'B1', cond: 'B2' };
 const DATA = `part|Мальчик, ___ на скамейке, — мой брат.|The boy sitting on the bench is my brother.|сидеть|apres;apast;ppast|0|сидящий;сидевший;сидящая;сидящего|0|part_apres|на скамейке|Agrees with мальчик: masculine nominative.|
 part|Я видел женщину, ___ эту картину.|I saw the woman who painted this picture.|написать|apast;apres;ppast|0|написавшую;написавшая;пишущую;написанную|0|part_apast||Agrees with женщину: feminine accusative.|
 part|На столе лежит ___ письмо.|There’s a letter on the table that has been read.|прочитать|ppast;apast;apres|0|прочитанное;прочитавшее;читающее;прочитанный|0|part_ppast||Agrees with письмо: neuter nominative.|
@@ -76,13 +77,13 @@ cond|Я бы с удовольствием ___, но я занят.|I’d love t
 const LAB = { n: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], p: ['он', 'она', 'оно', 'они'] };
 window.EXERCISE = {
   id: 'advanced', step1: 'Which form or construction?', step1Short: 'Choice', scoreLabel: 'Choices right',
-  topics: TOPICS, opts: OPTS, rules: RULES,
+  topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
     const [t, ru, en, hint, opts, a1, forms, a2, rule, cue, note, lab] = l.split('|');
     const o1 = opts.split(';').map(s => { const [x, y] = s.split(':'); return y ? { label: x, kind: y } : { kind: x }; });
     const right = o1[+a1];
     return { t, ru, en, hint, o1, a1: +a1, forms: forms.split(';'), a2: +a2, labels: lab ? LAB[lab] : null, tag: '', rule, cue, note,
-      fnote: `Needed: ${right.label ? right.label + ', ' : ''}${OPTS[right.kind].name.toLowerCase()}: ${OPTS[right.kind].use}.` };
+      fnote: `Needed: ${right.label ? right.label + ', ' : ''}${OPTS[right.kind].name.split(' · ').pop().toLowerCase()} (${OPTS[right.kind].name.split(' · ')[0]}): ${OPTS[right.kind].use}.` };
   })
 };
 }

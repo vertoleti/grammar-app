@@ -1,0 +1,160 @@
+/* Progress storage for Грамматика.
+   Everything the app remembers lives in localStorage under these prefixes. This file:
+   - stamps every write with a time, so two copies can be merged (newest wins);
+   - asks the browser to keep the data (persistent storage);
+   - exports and imports a backup file;
+   - optionally syncs through a private GitHub Gist, so phone and computer share progress.
+   Load it before any other script on the page. */
+(function () {
+  const PREFIXES = ['vom-', 'cases-', 'aspect-', 'numbers-', 'advanced-', 'voc-', 'gr-'];
+  const META = 'gr-meta', SYNC = 'gr-sync', FILE = 'grammar-app-progress.json';
+  const SKIP = new Set([META, SYNC]);
+  const tracked = k => typeof k === 'string' && !SKIP.has(k) && PREFIXES.some(p => k.startsWith(p));
+  let ls; try { ls = window.localStorage; ls.getItem('x'); } catch (e) { ls = null; }
+  const listeners = new Set();
+  const emit = () => listeners.forEach(f => { try { f(api.status()); } catch (e) {} });
+  if (!ls) { window.GRProgress = { available: false, on() {}, status: () => ({ available: false }) }; return; }
+
+  const rawSet = Storage.prototype.setItem;
+  const rawRemove = Storage.prototype.removeItem;
+  const readJSON = (k, d) => { try { const v = ls.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  let meta = readJSON(META, {});
+  let syncCfg = readJSON(SYNC, {});
+  let timer = null, busy = false, lastError = '';
+
+  Storage.prototype.setItem = function (k, v) {
+    rawSet.call(this, k, v);
+    if (this === ls && tracked(k)) { meta[k] = Date.now(); rawSet.call(ls, META, JSON.stringify(meta)); schedule(); }
+  };
+  Storage.prototype.removeItem = function (k) {
+    rawRemove.call(this, k);
+    if (this === ls && tracked(k)) { meta[k] = Date.now(); rawSet.call(ls, META, JSON.stringify(meta)); schedule(); }
+  };
+
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
+
+  function keys() { const out = []; for (let i = 0; i < ls.length; i++) { const k = ls.key(i); if (tracked(k)) out.push(k); } return out; }
+  function snapshot() {
+    const data = {};
+    keys().forEach(k => { data[k] = { v: ls.getItem(k), t: meta[k] || 0 }; });
+    Object.keys(meta).forEach(k => { if (tracked(k) && !(k in data)) data[k] = { v: null, t: meta[k] }; });
+    return { app: 'grammar-app', version: 1, saved: Date.now(), data };
+  }
+  // Merge one snapshot into this device. Returns true if anything changed here.
+  function merge(snap) {
+    if (!snap || snap.app !== 'grammar-app' || !snap.data) throw new Error('This is not a Грамматика progress file.');
+    let changed = false;
+    Object.entries(snap.data).forEach(([k, rec]) => {
+      if (!tracked(k) || !rec) return;
+      const localT = meta[k] || 0;
+      if (k === 'voc-srs' && rec.v && ls.getItem(k)) {
+        // Card by card: keep the most recently reviewed version of each card.
+        let a, b; try { a = JSON.parse(ls.getItem(k)) || {}; b = JSON.parse(rec.v) || {}; } catch (e) { return; }
+        let ch = false;
+        Object.entries(b).forEach(([id, c]) => { if (!a[id] || (c.m || 0) > (a[id].m || 0)) { a[id] = c; ch = true; } });
+        if (ch) { rawSet.call(ls, k, JSON.stringify(a)); meta[k] = Math.max(localT, rec.t || 0); changed = true; }
+        return;
+      }
+      if ((rec.t || 0) > localT) {
+        if (rec.v === null) rawRemove.call(ls, k); else rawSet.call(ls, k, rec.v);
+        meta[k] = rec.t; changed = true;
+      }
+    });
+    rawSet.call(ls, META, JSON.stringify(meta));
+    return changed;
+  }
+
+  // ---------- backup file ----------
+  function exportFile() {
+    const blob = new Blob([JSON.stringify(snapshot())], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `grammar-progress-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+  async function importFile(file) {
+    const snap = JSON.parse(await file.text());
+    const changed = merge(snap);
+    schedule();
+    return changed;
+  }
+
+  // ---------- GitHub Gist sync ----------
+  const GH = 'https://api.github.com';
+  async function gh(path, opts = {}) {
+    const res = await fetch(GH + path, Object.assign({}, opts, {
+      headers: Object.assign({ Accept: 'application/vnd.github+json', Authorization: 'Bearer ' + syncCfg.token, 'X-GitHub-Api-Version': '2022-11-28' }, opts.body ? { 'Content-Type': 'application/json' } : {})
+    }));
+    if (res.status === 401) throw new Error('GitHub did not accept the token. Check that it is correct and has Gist access.');
+    if (res.status === 403 || res.status === 404) throw new Error('The token can’t reach your Gists. Give it the “Gists: read and write” permission.');
+    if (!res.ok) throw new Error('GitHub answered ' + res.status + '.');
+    return res.status === 204 ? null : res.json();
+  }
+  async function findGist() {
+    if (syncCfg.gist) return syncCfg.gist;
+    for (let page = 1; page <= 5; page++) {
+      const list = await gh(`/gists?per_page=100&page=${page}`);
+      const hit = list.find(g => g.files && g.files[FILE]);
+      if (hit) return hit.id;
+      if (list.length < 100) break;
+    }
+    return null;
+  }
+  async function readRemote(id) {
+    const g = await gh('/gists/' + id);
+    const f = g.files && g.files[FILE];
+    if (!f) return null;
+    let text = f.content;
+    if (f.truncated && f.raw_url) text = await (await fetch(f.raw_url)).text();
+    return JSON.parse(text);
+  }
+  async function sync() {
+    if (!syncCfg.token || busy) return;
+    busy = true; lastError = ''; emit();
+    try {
+      let id = await findGist(), remote = null;
+      if (id) remote = await readRemote(id);
+      const changedHere = remote ? merge(remote) : false;
+      const body = JSON.stringify({ files: { [FILE]: { content: JSON.stringify(snapshot()) } } });
+      if (id) await gh('/gists/' + id, { method: 'PATCH', body });
+      else { const g = await gh('/gists', { method: 'POST', body: JSON.stringify({ description: 'Грамматика: Russian grammar app progress', public: false, files: { [FILE]: { content: JSON.stringify(snapshot()) } } }) }); id = g.id; }
+      syncCfg.gist = id; syncCfg.last = Date.now();
+      rawSet.call(ls, SYNC, JSON.stringify(syncCfg));
+      if (changedHere) { window.dispatchEvent(new CustomEvent('gr-progress-merged')); toast(); }
+    } catch (e) { lastError = e.message || String(e); }
+    busy = false; emit();
+  }
+  function toast() {
+    if (window.GR_NO_TOAST || document.getElementById('gr-toast')) return;
+    const d = document.createElement('div');
+    d.id = 'gr-toast';
+    d.setAttribute('role', 'status');
+    d.style.cssText = 'position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9;display:flex;gap:12px;align-items:center;max-width:calc(100% - 32px);padding:10px 10px 10px 18px;border-radius:999px;background:#141414;color:#fff;font:16px/1.3 "PT Sans",system-ui,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.25)';
+    d.innerHTML = '<span>Progress from your other device has arrived.</span><button style="font:700 15px \'PT Sans\',sans-serif;min-height:40px;padding:4px 16px;border:0;border-radius:999px;background:#fff;color:#141414;cursor:pointer">Refresh</button>';
+    d.querySelector('button').onclick = () => location.reload();
+    document.body.appendChild(d);
+  }
+  function schedule() { if (!syncCfg.token) { emit(); return; } clearTimeout(timer); timer = setTimeout(sync, 4000); emit(); }
+  async function connect(token) {
+    syncCfg = { token: token.trim() }; rawSet.call(ls, SYNC, JSON.stringify(syncCfg));
+    await sync();
+    if (lastError) { const err = lastError; syncCfg = {}; rawRemove.call(ls, SYNC); emit(); throw new Error(err); }
+  }
+  function disconnect() { syncCfg = {}; rawRemove.call(ls, SYNC); lastError = ''; emit(); }
+
+  const api = {
+    available: true,
+    exportFile, importFile, connect, disconnect, sync,
+    on(f) { listeners.add(f); f(api.status()); },
+    status() {
+      return { available: true, keys: keys().length, synced: !!syncCfg.token, last: syncCfg.last || 0, busy, error: lastError };
+    }
+  };
+  window.GRProgress = api;
+  // Pull from GitHub when a page opens, and once more when the tab comes back into view.
+  if (syncCfg.token) {
+    window.addEventListener('load', () => setTimeout(sync, 300));
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && Date.now() - (syncCfg.last || 0) > 60000) sync(); });
+  }
+})();

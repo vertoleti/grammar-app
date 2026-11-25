@@ -1,10 +1,11 @@
 /* Numbers and quantity. Line format: topic|sentence|English|word|form 0 nom sg, 1 gen sg, 2 gen pl|forms nom sg,gen sg,gen pl|rule|signal|note */
 {
-const LABELS = ['Nominative singular', 'Genitive singular', 'Genitive plural'];
+const EN = ['nominative singular', 'genitive singular', 'genitive plural'];
+const LABELS = ['Им. п. ед. ч. · Nominative singular', 'Род. п. ед. ч. · Genitive singular', 'Род. п. мн. ч. · Genitive plural'];
 const OPTS = {
-  ns: { name: 'Nominative singular', use: 'after 1 and numbers ending in 1 (21, 31, 101…), but not 11' },
-  gs: { name: 'Genitive singular', use: 'after 2, 3, 4 and numbers ending in them (22, 33, 104…), but not 12–14; also amounts of uncountable things (много воды, мало времени)' },
-  gp: { name: 'Genitive plural', use: 'after 5–20, numbers ending in 5–9 or 0, and 11–14; after много, мало, сколько, несколько with things you can count' }
+  ns: { name: 'Им. ед. · Nominative singular', use: 'after 1 and numbers ending in 1 (21, 31, 101…), but not 11' },
+  gs: { name: 'Род. ед. · Genitive singular', use: 'after 2, 3, 4 and numbers ending in them (22, 33, 104…), but not 12–14; also amounts of uncountable things (много воды, мало времени)' },
+  gp: { name: 'Род. мн. · Genitive plural', use: 'after 5–20, numbers ending in 5–9 or 0, and 11–14; after много, мало, сколько, несколько with things you can count' }
 };
 const RULES = {
   one: ['1, 21, 31…: nominative singular', 'When a number ends in один / одна / одно (but is not 11), the noun stays in the nominative singular. один, одна, одно agree with the gender of the noun.', 'один брат, двадцать одна книга, сто одно окно.'],
@@ -14,7 +15,8 @@ const RULES = {
   qty: ['много, мало, сколько, несколько + genitive plural', 'Quantity words take the genitive. With things you can count, use the genitive plural.', 'много книг, сколько братьев, несколько ресторанов.'],
   qty_mass: ['Uncountable amounts: genitive singular', 'With things you cannot count (water, time, sugar, juice), много, мало, сколько and containers (стакан, пакет) take the genitive singular.', 'много воды, мало времени, пакет сока.']
 };
-const TOPICS = { count: 'Counting things', age: 'Age', time: 'Time', money: 'Money', qty: 'много, мало, сколько' };
+const TOPICS = { count: 'Счёт · Counting', age: 'Возраст · Age', time: 'Время · Time', money: 'Деньги · Money', qty: 'Много, мало, сколько · Quantity' };
+const LEVELS = { count: 'A1', age: 'A1', time: 'A1', money: 'A2', qty: 'A2' };
 const DATA = `count|У меня один ___.|I have one brother.|брат|0|брат,брата,братьев|one|один|
 count|У нас две ___.|We have two cars.|машина|1|машина,машины,машин|few|две|
 count|В классе двадцать ___.|There are twenty students in the class.|студент|2|студент,студента,студентов|many|двадцать|
@@ -67,10 +69,10 @@ const KINDS = ['ns', 'gs', 'gp'];
 const GP = 'Genitive plural endings: -ов / -ев (студентов, музеев), -ей after soft consonants and ж, ш, ч, щ (рублей, этажей, гостей), and no ending for most nouns in -а / -о (книг, минут, яблок), sometimes with an inserted vowel (ошибок, копеек). A few are irregular: лет, человек, друзей, братьев, сестёр.';
 window.EXERCISE = {
   id: 'numbers', step1: 'Which form does the noun take?', step1Short: 'Form type', scoreLabel: 'Rules right', keepOrder1: true,
-  topics: TOPICS, opts: OPTS, rules: RULES,
+  topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
     const [t, ru, en, hint, k, forms, rule, cue, note] = l.split('|');
-    return { t, ru, en, hint, o1: KINDS.map(x => ({ kind: x })), a1: +k, forms: forms.split(','), a2: +k, labels: LABELS, tag: '', rule, cue, note, fnote: `Needed: the ${LABELS[+k].toLowerCase()} of ${hint}. ${+k === 2 ? GP : +k === 1 ? 'Genitive singular: -а / -я for masculine and neuter (брата, рубля, окна), -ы / -и for feminine (машины, недели); after г, к, х, ж, ш, ч, щ write -и (книги, копейки).' : 'The nominative singular is the dictionary form.'}` };
+    return { t, ru, en, hint, o1: KINDS.map(x => ({ kind: x })), a1: +k, forms: forms.split(','), a2: +k, labels: LABELS, tag: '', rule, cue, note, fnote: `Needed: the ${EN[+k]} of ${hint}. ${+k === 2 ? GP : +k === 1 ? 'Genitive singular: -а / -я for masculine and neuter (брата, рубля, окна), -ы / -и for feminine (машины, недели); after г, к, х, ж, ш, ч, щ write -и (книги, копейки).' : 'The nominative singular is the dictionary form.'}` };
   })
 };
 }

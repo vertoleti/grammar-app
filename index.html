@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Грамматика</title>
-<meta name="description" content="Russian grammar practice: short exercises with a full explanation for every answer.">
+<meta name="description" content="Russian grammar and vocabulary practice, sorted by CEFR level, with a full explanation for every answer.">
 <meta name="theme-color" content="#d4202c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -13,6 +13,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="shared/progress.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -22,8 +23,8 @@
    PICTURE the exercise cards drawn as metro lines with their stations
    COLOUR white ground, metro red band, ink black, one line colour per exercise
    TYPE Unbounded + PT Sans
-   LAYOUT red band with title; exercise lines stacked full width; install tips below */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121214);--ink:light-dark(#141414,#f2f0ee);--mute:light-dark(#5d5853,#a9a4a0);--soft:light-dark(#f5f2ef,#1c1b1f);--line:light-dark(#dcd6d0,#38353b);--red:light-dark(#d4202c,#b81b26);--blue:light-dark(#0b5cad,#7ab4f5)}
+   LAYOUT red band with title and level picker; lines stacked; progress and install below */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121214);--ink:light-dark(#141414,#f2f0ee);--mute:light-dark(#5d5853,#a9a4a0);--soft:light-dark(#f5f2ef,#1c1b1f);--line:light-dark(#dcd6d0,#38353b);--red:light-dark(#d4202c,#b81b26);--blue:light-dark(#0b5cad,#7ab4f5);--ok:light-dark(#13804a,#55d08f);--bad:light-dark(#c4122b,#ff7f89)}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
@@ -35,18 +36,28 @@ body{background:var(--bg);color:var(--ink);font:17px/1.55 "PT Sans",system-ui,sa
 h1,h2{font-family:Unbounded,"PT Sans",sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0}
 .top{background:var(--red);color:#fff;padding-top:max(clamp(24px,4vw,48px),calc(env(safe-area-inset-top) + 16px))}
 .brand{display:flex;gap:16px;align-items:center}
-.m{flex:none;width:56px;height:56px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;font:700 30px/1 Unbounded,sans-serif}
+.m{flex:none;width:56px;height:56px;border-radius:50%;background:#fff;color:#d4202c;display:grid;place-items:center;font:700 30px/1 Unbounded,sans-serif}
 h1{font-size:clamp(32px,6vw,52px);font-weight:700}
 .sub{margin:6px 0 0;opacity:.92}
+.picker{margin-top:22px}
+.picker p{margin:0 0 8px;font-size:15px;opacity:.92}
+.lvrow{display:flex;flex-wrap:wrap;gap:6px}
+.lvrow button{font:inherit;color:#fff;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5);border-radius:12px;min-height:48px;padding:4px 12px;cursor:pointer;text-align:left;line-height:1.15;transition:background-color .2s,transform .12s}
+.lvrow button:active{transform:scale(.97)}
+.lvrow button b{font:700 17px Unbounded,sans-serif;display:block}
+.lvrow button small{font-size:12px;opacity:.9}
+.lvrow button[aria-pressed=true]{background:#fff;color:#d4202c;border-color:#fff}
+button:focus-visible,a:focus-visible,input:focus-visible,label:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 h2{font-size:clamp(22px,3vw,28px);margin-bottom:16px}
 .lines{display:grid;gap:16px}
-.ex{display:block;text-decoration:none;color:inherit;background:var(--soft);border-radius:20px;padding:clamp(18px,3vw,28px);border:2px solid transparent;transition:border-color .2s,transform .12s}
+.ex{display:block;text-decoration:none;color:inherit;background:var(--soft);border-radius:20px;padding:clamp(18px,3vw,28px);border:2px solid transparent;transition:border-color .2s,transform .12s,opacity .2s}
 .ex:active{transform:scale(.99)}
 @media(hover:hover){.ex:hover{border-color:var(--c)}}
-.ex:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.ex.dim{opacity:.5}
 .exh{display:flex;gap:14px;align-items:center}
 .num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font:700 20px Unbounded,sans-serif}
 .ex h3{font:700 clamp(22px,3vw,28px)/1.15 "PT Sans",sans-serif;margin:0}
+.ex h3 span+br+span{font-weight:400;color:var(--mute);font-size:.72em}
 .ex p{margin:10px 0 0;color:var(--mute)}
 .route{position:relative;height:30px;margin:18px 4px 6px}
 .route::before{content:"";position:absolute;left:0;right:0;top:12px;height:6px;border-radius:3px;background:var(--c);opacity:.25}
@@ -56,70 +67,161 @@ h2{font-size:clamp(22px,3vw,28px);margin-bottom:16px}
 .route li.done{background:var(--c)}
 .stops{display:flex;flex-wrap:wrap;gap:6px;font-size:15px;color:var(--mute);margin:0}
 .stops span{background:var(--bg);border-radius:999px;padding:2px 12px}
+.lvs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.lvs span{font-size:13px;padding:2px 10px;border-radius:999px;border:1.5px solid var(--line);color:var(--mute);font-variant-numeric:tabular-nums}
+.lvs span.on{border-color:var(--c);color:var(--ink);font-weight:700}
 .stats{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:12px;font-size:15px}
 .stats b{font-variant-numeric:tabular-nums}
-.go{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:6px 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:700}
-.tips{border-top:1px solid var(--line)}
+.go{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:6px 22px;border-radius:999px;background:var(--c);color:#fff;font-weight:700}
+.sec{border-top:1px solid var(--line)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 48px}
 .cols h3{font:700 17px "PT Sans",sans-serif;margin:0 0 6px}
-.cols p{margin:0}
-#install{font:700 16px "PT Sans",sans-serif;min-height:44px;padding:6px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;margin-top:12px}
-@media(max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.m{width:46px;height:46px;font-size:24px}}
+.cols p{margin:0 0 10px}
+.btn{font:700 16px "PT Sans",sans-serif;min-height:44px;padding:6px 20px;border-radius:999px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.state{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:14px;padding:14px 16px;margin-bottom:20px}
+.dot{flex:none;width:12px;height:12px;border-radius:50%;margin-top:7px;background:var(--mute)}
+.dot.ok{background:var(--ok)}
+.dot.bad{background:var(--bad)}
+.state p{margin:0}
+input[type=password]{width:100%;font:16px "PT Sans",sans-serif;min-height:44px;padding:6px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.msg{color:var(--mute);font-size:15px;margin:6px 0 0}
+.msg.err{color:var(--bad)}
+ol.steps{margin:6px 0 10px;padding-left:1.2em}
+ol.steps li{margin-bottom:4px}
+@media(max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.m{width:46px;height:46px;font-size:24px}.lvrow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 2px}.lvrow::-webkit-scrollbar{display:none}.lvrow button{flex:none;padding:4px 10px}}
 @media(prefers-reduced-motion:reduce){.route i,.ex{transition:none}}
 </style>
 </head>
 <body>
 <header class="top band">
-  <div class="wrap brand">
-    <div class="m" aria-hidden="true">М</div>
-    <div><h1>Грамматика</h1><p class="sub">Russian grammar practice: five lines, 379 sentences, a full explanation for every answer</p></div>
+  <div class="wrap">
+    <div class="brand">
+      <div class="m" aria-hidden="true">М</div>
+      <div><h1>Грамматика</h1><p class="sub">Russian grammar and vocabulary · Русская грамматика и лексика</p></div>
+    </div>
+    <div class="picker">
+      <p id="lvl-lbl">My level · Мой уровень: exercises and flashcards open at this level</p>
+      <div class="lvrow" id="lvrow" role="group" aria-labelledby="lvl-lbl"></div>
+    </div>
   </div>
 </header>
 
 <main class="band">
   <div class="wrap">
-    <h2>Exercises</h2>
+    <h2>Lines · Линии</h2>
     <div class="lines" id="lines"></div>
   </div>
 </main>
 
-<section class="band tips">
+<section class="band sec" id="progress">
   <div class="wrap">
-    <h2>Keep it on your phone</h2>
+    <h2>Your progress · Ваш прогресс</h2>
+    <div class="state"><span class="dot" id="sdot"></span><p id="sstate">Checking…</p></div>
     <div class="cols">
-      <div><h3>iPhone and iPad</h3><p>Open this page in Safari, tap the Share button, then “Add to Home Screen”. It opens full screen and works offline.</p></div>
-      <div><h3>Android and computers</h3><p>In Chrome, open the menu and choose “Install app” or “Add to Home screen”.</p><button id="install" hidden>Install Грамматика</button></div>
+      <div>
+        <h3>Backup file · Резервная копия</h3>
+        <p>Download everything the app remembers (answers, mistakes, flashcard reviews, settings) as one file. Open it on another device to restore it there. Newer progress always wins, so restoring never replaces recent work with older data.</p>
+        <div class="btns"><button class="btn fill" id="bexp">Download backup</button><label class="btn" for="bimp" tabindex="0">Restore from file</label><input type="file" id="bimp" accept="application/json,.json" hidden></div>
+        <p class="msg" id="bmsg"></p>
+      </div>
+      <div>
+        <h3>Sync with GitHub · Синхронизация</h3>
+        <div id="sync-off">
+          <p>Keep progress in a private Gist on your GitHub account, so your phone and computer stay in step. It syncs a few seconds after each answer and whenever you open the app.</p>
+          <ol class="steps">
+            <li>On github.com open Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li>
+            <li>Under Account permissions, set <b>Gists</b> to <b>Read and write</b>. Nothing else is needed.</li>
+            <li>Paste the token here, once on each device.</li>
+          </ol>
+          <input type="password" id="tok" placeholder="github_pat_…" autocomplete="off" aria-label="GitHub token">
+          <div class="btns"><button class="btn fill" id="bcon">Connect</button></div>
+        </div>
+        <div id="sync-on" hidden>
+          <p>Synced with a private Gist on your GitHub account. The token is stored only in this browser.</p>
+          <div class="btns"><button class="btn fill" id="bsync">Sync now</button><button class="btn" id="bdis">Disconnect this device</button></div>
+        </div>
+        <p class="msg" id="smsg"></p>
+      </div>
     </div>
   </div>
 </section>
 
+<section class="band sec">
+  <div class="wrap">
+    <h2>Keep it on your phone</h2>
+    <div class="cols">
+      <div><h3>iPhone and iPad</h3><p>Open this page in Safari, tap the Share button, then “Add to Home Screen”. It opens full screen and works offline.</p></div>
+      <div><h3>Android and computers</h3><p>In Chrome, open the menu and choose “Install app” or “Add to Home screen”.</p><button class="btn" id="install" hidden>Install Грамматика</button></div>
+    </div>
+  </div>
+</section>
+
+<script src="shared/levels.js"></script>
 <script>
 {
 const EX=[
-  {href:'verbs-of-motion/',n:1,c:'#d4202c',ru:'Глаголы движения',en:'Verbs of motion: pick the verb, then the form',total:154,id:'vom',
-   stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','With prefixes','приходить or прийти?']},
-  {href:'cases/',n:2,c:'#1f8a3b',ru:'Падежи',en:'The six cases: pick the case, then the form',total:85,id:'cases',
-   stops:['Where and about','Objects and direction','Genitive','Dative','Instrumental','Pronouns','Adjective + noun','Plural']},
-  {href:'aspect/',n:3,c:'#0a68b0',ru:'Вид глагола',en:'Aspect and conjugation: imperfective or perfective, then the form',total:49,id:'aspect',
-   stops:['Aspect in the past','Aspect in the future','Imperative','Irregular verbs']},
-  {href:'numbers/',n:4,c:'#c25e00',ru:'Числа',en:'Numbers and quantity: 1, 2–4, 5+, age, time, money',total:48,id:'numbers',
-   stops:['Counting things','Age','Time','Money','много, мало, сколько']},
-  {href:'advanced/',n:5,c:'#7a2a8c',ru:'Продвинутый уровень',en:'Participles, verbal adverbs, -ся verbs, бы and чтобы',total:43,id:'advanced',
-   stops:['Participles','Verbal adverbs','-ся verbs','бы and чтобы']}
+  {href:'verbs-of-motion/',n:1,c:'#d4202c',ru:'Глаголы движения',en:'Verbs of motion',d:'Pick the verb, then the form',id:'vom',
+   lv:{A2:44,B1:88,B2:22},stops:['идти / ходить','ехать / ездить','бежать, лететь, плыть','нести, везти, вести','приставки','приходить или прийти?']},
+  {href:'cases/',n:2,c:'#1f8a3b',ru:'Падежи',en:'Cases',d:'Pick the case, then the form',id:'cases',
+   lv:{A1:23,A2:45,B1:17},stops:['Где? Куда?','Родительный','Дательный','Творительный','Местоимения','Прилагательные','Множественное число']},
+  {href:'aspect/',n:3,c:'#0a68b0',ru:'Вид глагола',en:'Verb aspect',d:'Imperfective or perfective, then the form',id:'aspect',
+   lv:{A2:23,B1:26},stops:['Прошедшее','Будущее','Повелительное','Неправильные глаголы']},
+  {href:'numbers/',n:4,c:'#c25e00',ru:'Числа',en:'Numbers',d:'1, 2–4, 5+: age, time, money, quantity',id:'numbers',
+   lv:{A1:30,A2:18},stops:['Счёт','Возраст','Время','Деньги','Много, мало, сколько']},
+  {href:'advanced/',n:5,c:'#7a2a8c',ru:'Продвинутый уровень',en:'Advanced grammar',d:'Participles, verbal adverbs, -ся verbs, бы and чтобы',id:'advanced',
+   lv:{B1:12,B2:31},stops:['Причастия','Деепричастия','Глаголы на -ся','Бы и чтобы']},
+  {href:'vocabulary/',n:6,c:'#00897b',ru:'Словарь',en:'Vocabulary',d:'Anki-style flashcards with spaced repetition',id:'voc',vocab:true,
+   lv:{A1:88,A2:181,B1:83,B2:58,C1:26,C2:12},stops:['Люди','Дом','Город','Еда','Работа','Учёба','Чувства','Общество']}
 ];
-const get=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
-document.getElementById('lines').innerHTML=EX.map(x=>{
-  const seen=get(x.id+'-seen').length,miss=get(x.id+'-miss').length,pct=Math.min(100,Math.round(seen/x.total*100));
-  const done=Math.round(pct/100*x.stops.length);
-  return`<a class="ex" href="${x.href}" style="--c:${x.c}">
-  <div class="exh"><span class="num">${x.n}</span><h3 lang="ru">${x.ru}</h3></div>
-  <p>${x.en}. ${x.total} sentences in ${x.stops.length} topics.</p>
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function draw(){
+  const lvl=LS.get('gr-level','all');
+  document.getElementById('lvrow').innerHTML=`<button id="p-all" data-l="all" aria-pressed="${lvl==='all'}"><b>All</b><small>Все уровни</small></button>`+
+    window.CEFR.map(l=>`<button id="p-${l.code}" data-l="${l.code}" aria-pressed="${lvl===l.code}" title="${l.en} · ${l.ru} (${l.test})"><b>${l.code}</b><small>${l.en} · ${l.ru}</small></button>`).join('');
+  document.getElementById('lines').innerHTML=EX.map(x=>{
+    const total=Object.values(x.lv).reduce((a,b)=>a+b,0);
+    let seen,miss,learned=0;
+    if(x.vocab){const s=LS.get('voc-srs',{});seen=new Set(Object.keys(s).map(k=>k.split('|')[0])).size;learned=new Set(Object.entries(s).filter(([,v])=>v.q==='review').map(([k])=>k.split('|')[0])).size;}
+    else{seen=LS.get(x.id+'-seen',[]).length;miss=LS.get(x.id+'-miss',[]).length;}
+    const pct=Math.min(100,Math.round(seen/total*100)),done=Math.round(pct/100*x.stops.length);
+    const atLvl=lvl==='all'?total:(x.lv[lvl]||0);
+    const unit=x.vocab?'words':'tasks';
+    const stats=x.vocab?(seen?`<span><b>${seen}</b> of ${total} words started</span><span><b>${learned}</b> learned</span>`:'<span>Not started yet</span>'):(seen?`<span><b>${seen}</b> of ${total} practised</span><span><b>${miss}</b> in My mistakes</span>`:'<span>Not started yet</span>');
+    return`<a class="ex${atLvl?'':' dim'}" href="${x.href}" style="--c:${x.c}">
+  <div class="exh"><span class="num">${x.n}</span><h3><span lang="ru">${x.ru}</span><br><span>${x.en}</span></h3></div>
+  <p>${x.d}. ${total} ${unit}.${lvl!=='all'?` <b>${atLvl}</b> at ${lvl}.`:''}</p>
   <div class="route" aria-hidden="true"><i style="width:${pct}%"></i><ul>${x.stops.map((_,k)=>`<li class="${k<done?'done':''}"></li>`).join('')}</ul></div>
-  <p class="stops">${x.stops.map(s=>`<span>${s}</span>`).join('')}</p>
-  <div class="stats">${seen?`<span><b>${seen}</b> of ${x.total} practised</span><span><b>${miss}</b> in My mistakes</span>`:'<span>Not started yet</span>'}</div>
+  <p class="stops">${x.stops.map(s=>`<span lang="ru">${s}</span>`).join('')}</p>
+  <div class="lvs">${window.CEFR.filter(l=>x.lv[l.code]).map(l=>`<span class="${lvl===l.code?'on':''}">${l.code} · ${x.lv[l.code]}</span>`).join('')}</div>
+  <div class="stats">${stats}</div>
   <span class="go">${seen?'Continue':'Start'} →</span></a>`;
-}).join('');
-let deferred=null;const btn=document.getElementById('install');
+  }).join('');
+}
+draw();
+document.getElementById('lvrow').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;LS.set('gr-level',b.dataset.l);
+  const v=LS.get('voc-settings',{});v.levels=b.dataset.l==='all'?window.CEFR.map(l=>l.code):[b.dataset.l];LS.set('voc-settings',v);draw()});
+window.GR_NO_TOAST=true;
+window.addEventListener('gr-progress-merged',draw);
+
+const P=window.GRProgress,$=id=>document.getElementById(id);
+const ago=t=>{const s=Math.round((Date.now()-t)/1000);return s<60?'just now':s<3600?Math.round(s/60)+' min ago':s<86400?Math.round(s/3600)+' h ago':new Date(t).toLocaleDateString()};
+if(!P||!P.available){$('sstate').textContent='This browser is blocking saved data (private mode?). Progress will be lost when you close the tab.';$('sdot').className='dot bad';}
+else P.on(s=>{
+  $('sync-off').hidden=s.synced;$('sync-on').hidden=!s.synced;
+  $('sdot').className='dot '+(s.error?'bad':'ok');
+  $('sstate').textContent=s.error?`Saved on this device. Sync problem: ${s.error}`:s.busy?'Syncing with GitHub…':s.synced?`Saved on this device and synced with GitHub (${s.last?ago(s.last):'not yet'}).`:'Saved on this device only. Download a backup or connect GitHub to keep it safe.';
+});
+$('bexp').onclick=()=>{P.exportFile();$('bmsg').textContent='Backup downloaded. Keep the file somewhere safe, for example in your cloud drive.'};
+$('bimp').onchange=async()=>{const f=$('bimp').files[0];if(!f)return;try{const ch=await P.importFile(f);$('bmsg').textContent=ch?'Progress restored.':'This device already had everything in that file.';draw()}catch(e){$('bmsg').textContent=e.message||'That file couldn’t be read.'}$('bimp').value=''};
+document.querySelector('label[for=bimp]').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('bimp').click()}});
+$('bcon').onclick=async()=>{const t=$('tok').value.trim();if(!t){$('smsg').textContent='Paste your token first.';return}$('bcon').disabled=true;$('smsg').className='msg';$('smsg').textContent='Connecting…';
+  try{await P.connect(t);$('tok').value='';$('smsg').textContent='Connected. Progress is now synced.';draw()}catch(e){$('smsg').className='msg err';$('smsg').textContent=e.message}$('bcon').disabled=false};
+$('bsync').onclick=async()=>{await P.sync();draw()};
+$('bdis').onclick=()=>{P.disconnect();$('smsg').className='msg';$('smsg').textContent='This device no longer syncs. Your Gist on GitHub is kept.'};
+
+let deferred=null;const btn=$('install');
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;btn.hidden=false});
 btn.addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;btn.hidden=true});
 try{if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}catch(e){}

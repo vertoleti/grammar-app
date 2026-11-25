@@ -13,6 +13,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">5</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Продвинутый уровень</h1><p class="sub">Participles, verbal adverbs, -ся and бы · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">5</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Продвинутый уровень</h1><p class="sub">Advanced grammar · participles, verbal adverbs, -ся, бы · <span id="count"></span> sentences</p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -33,6 +34,7 @@
 <main class="band">
   <div class="wrap">
     <div class="ctrls">
+      <div class="row"><span class="lbl">Level · Уровень</span><div class="seg" id="lvls" role="group" aria-label="Level"></div></div>
       <div class="seg" id="topics" role="group" aria-label="Topic"></div>
       <div class="row">
         <div class="seg" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose the form</button><button id="m-type" data-m="type">Type the form</button></div>
@@ -48,8 +50,10 @@
   <div class="wrap">
     <h2>Cheat sheet</h2>
 <div class="cols"><div><h3>Participles and verbal adverbs</h3><div class="tbl"><table><thead><tr><th>Form</th><th>Built from</th><th>Example</th></tr></thead><tbody><tr><td>active present</td><td>они-form − т + щий</td><td>читающий, сидящий</td></tr><tr><td>active past</td><td>past − л + вший / ший</td><td>прочитавший, принёсший</td></tr><tr><td>passive present</td><td>мы-form + ый</td><td>читаемый, любимый</td></tr><tr><td>passive past</td><td>-анный / -енный / -тый</td><td>прочитанный, построенный, открытый</td></tr><tr><td>verbal adverb, impf</td><td>они-form − ending + я</td><td>читая, говоря, идя</td></tr><tr><td>verbal adverb, pf</td><td>past − л + в / вшись</td><td>прочитав, попрощавшись</td></tr></tbody></table></div></div><div><h3>-ся, бы and чтобы</h3><div class="tbl"><table><thead><tr><th>Pattern</th><th>Use</th><th>Example</th></tr></thead><tbody><tr><td>verb + -ся</td><td>no object; to oneself; each other</td><td>урок начинается, мы встречаемся</td></tr><tr><td>verb without -ся</td><td>takes an object</td><td>учитель начинает урок</td></tr><tr><td>если бы + past, бы + past</td><td>unreal: would / would have</td><td>Если бы я знал, я бы пришёл</td></tr><tr><td>если + future</td><td>real future condition</td><td>Если будет дождь, мы останемся</td></tr><tr><td>чтобы + infinitive</td><td>purpose, same person</td><td>Я пришёл, чтобы помочь</td></tr><tr><td>чтобы + past</td><td>wish for someone else</td><td>Я хочу, чтобы ты пришёл</td></tr></tbody></table></div></div></div>
+    <p class="note" style="margin-top:28px">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
   </div>
 </section>
+<script src="../shared/levels.js"></script>
 <script src="data.js"></script>
 <script src="../shared/engine.js"></script>
 </body>

@@ -1,7 +1,8 @@
 /* Cases. Line format: topic|sentence|English|word|case N G D A I P|six forms N,G,D,A,I,P|rule|signal|note|ending group */
 {
 const CASES = ['N', 'G', 'D', 'A', 'I', 'P'];
-const LABELS = ['Nominative', 'Genitive', 'Dative', 'Accusative', 'Instrumental', 'Prepositional'];
+const EN = ['Nominative', 'Genitive', 'Dative', 'Accusative', 'Instrumental', 'Prepositional'];
+const LABELS = ['Именительный · Nominative', 'Родительный · Genitive', 'Дательный · Dative', 'Винительный · Accusative', 'Творительный · Instrumental', 'Предложный · Prepositional'];
 const ENDINGS = {
   m: 'Masculine noun ending in a consonant: стол → стола, столу, стол, столом, столе. Animate nouns (people, animals) use the genitive form in the accusative: вижу брата.',
   ms: 'Masculine noun in -ь or -й takes soft endings: словарь → словаря, словарю, словарём, словаре; музей → музея, музею, музеем, музее. Animate: accusative = genitive (учителя).',
@@ -17,12 +18,12 @@ const ENDINGS = {
   pl: 'Plural: nominative -ы/-и/-а; dative -ам/-ям; instrumental -ами/-ями; prepositional -ах/-ях. The genitive plural varies: -ов/-ев (магазинов), -ей (друзей, соседей) or no ending at all (книг, проблем). Animate plurals of any gender use the genitive form in the accusative: люблю собак.'
 };
 const OPTS = {
-  N: { name: 'Nominative', use: 'the subject of the sentence (кто? что?), after это, and the thing someone has in у меня есть…' },
-  G: { name: 'Genitive', use: '“of” and possession; after нет / не было; after у, без, для, из, от, с (“from”), до, после, около, напротив; after quantities (много, стакан…)' },
-  D: { name: 'Dative', use: 'the person something is given, said or shown to; the person in impersonal phrases (мне холодно, надо, нравится, age); after к and по' },
-  A: { name: 'Accusative', use: 'the direct object of a verb; direction with в / на (куда?); time with в and через (в субботу, через неделю)' },
-  I: { name: 'Instrumental', use: '“with” (с) and the tool you use; a role after быть, стать, работать; after заниматься, интересоваться, гордиться; after над, под, перед, за, между' },
-  P: { name: 'Prepositional', use: 'location with в / на (где?) and “about” with о / об; it is only ever used after a preposition' }
+  N: { name: 'Именительный · Nominative', use: 'the subject of the sentence (кто? что?), after это, and the thing someone has in у меня есть…' },
+  G: { name: 'Родительный · Genitive', use: '“of” and possession; after нет / не было; after у, без, для, из, от, с (“from”), до, после, около, напротив; after quantities (много, стакан…)' },
+  D: { name: 'Дательный · Dative', use: 'the person something is given, said or shown to; the person in impersonal phrases (мне холодно, надо, нравится, age); after к and по' },
+  A: { name: 'Винительный · Accusative', use: 'the direct object of a verb; direction with в / на (куда?); time with в and через (в субботу, через неделю)' },
+  I: { name: 'Творительный · Instrumental', use: '“with” (с) and the tool you use; a role after быть, стать, работать; after заниматься, интересоваться, гордиться; after над, под, перед, за, между' },
+  P: { name: 'Предложный · Prepositional', use: 'location with в / на (где?) and “about” with о / об; it is only ever used after a preposition' }
 };
 const RULES = {
   P_loc: ['Location: в / на + prepositional', 'To say where something is or happens (где?), use в or на with the prepositional. Most places take в; open areas, events and some fixed words take на (на работе, на почте, на концерте, на площади).', 'Я живу в Берлине. Мы были на концерте.'],
@@ -43,7 +44,8 @@ const RULES = {
   I_prep: ['Location prepositions with the instrumental', 'над (above), под (under), перед (in front of), за (behind), между (between) take the instrumental when they describe where something is.', 'под столом, перед домом, между банком и почтой.'],
   I_means: ['The tool or means: instrumental', 'The thing you do something with, without a preposition, is in the instrumental.', 'писать ручкой, есть ложкой.']
 };
-const TOPICS = { place: 'Where and about (P)', object: 'Objects and direction (A)', gen: 'Genitive', dat: 'Dative', ins: 'Instrumental', pron: 'Pronouns', adj: 'Adjective + noun', plur: 'Plural' };
+const TOPICS = { place: 'Где? О чём? · Location and “about”', object: 'Что? Куда? · Objects and direction', gen: 'Родительный · Genitive', dat: 'Дательный · Dative', ins: 'Творительный · Instrumental', pron: 'Местоимения · Pronouns', adj: 'Прилагательные · Adjectives', plur: 'Множественное число · Plural' };
+const LEVELS = { place: 'A1', object: 'A1', gen: 'A2', dat: 'A2', ins: 'A2', pron: 'A2', adj: 'B1', plur: 'B1' };
 const DATA = `place|Я живу в ___.|I live in Moscow.|Москва|P|Москва,Москвы,Москве,Москву,Москвой,Москве|P_loc|живу в||f
 place|Книга лежит на ___.|The book is on the table.|стол|P|стол,стола,столу,стол,столом,столе|P_loc|лежит на||m
 place|Мы встретимся на ___.|We’ll meet at the station.|станция|P|станция,станции,станции,станцию,станцией,станции|P_loc|встретимся на|станция takes на: на станции, на вокзале.|fi
@@ -131,11 +133,11 @@ plur|Я люблю ___.|I love dogs.|собаки|A|собаки,собак,со
 plur|У нас нет ___.|We don’t have any problems.|проблемы|G|проблемы,проблем,проблемам,проблемы,проблемами,проблемах|G_neg|нет||pl`;
 window.EXERCISE = {
   id: 'cases', step1: 'Which case?', step1Short: 'Case', scoreLabel: 'Cases right', keepOrder1: true,
-  topics: TOPICS, opts: OPTS, rules: RULES,
+  topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
     const [t, ru, en, hint, c, forms, rule, cue, note, grp] = l.split('|');
     const ci = CASES.indexOf(c);
-    return { t, ru, en, hint, o1: CASES.map(k => ({ kind: k })), a1: ci, forms: forms.split(','), a2: ci, labels: LABELS, tag: '', rule, cue, note, fnote: `Needed: the ${LABELS[ci].toLowerCase()} of ${hint}. ${ENDINGS[grp]}` };
+    return { t, ru, en, hint, o1: CASES.map(k => ({ kind: k })), a1: ci, forms: forms.split(','), a2: ci, labels: LABELS, tag: '', rule, cue, note, fnote: `Needed: the ${EN[ci].toLowerCase()} (${LABELS[ci].split(' · ')[0].toLowerCase()} падеж) of ${hint}. ${ENDINGS[grp]}` };
   })
 };
 }

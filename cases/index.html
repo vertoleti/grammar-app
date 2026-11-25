@@ -13,6 +13,7 @@
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">2</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Падежи</h1><p class="sub">The six cases: pick the case, then the form · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">2</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Падежи</h1><p class="sub">Cases · pick the case, then the form · <span id="count"></span> sentences</p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -33,6 +34,7 @@
 <main class="band">
   <div class="wrap">
     <div class="ctrls">
+      <div class="row"><span class="lbl">Level · Уровень</span><div class="seg" id="lvls" role="group" aria-label="Level"></div></div>
       <div class="seg" id="topics" role="group" aria-label="Topic"></div>
       <div class="row">
         <div class="seg" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose the form</button><button id="m-type" data-m="type">Type the form</button></div>
@@ -48,8 +50,10 @@
   <div class="wrap">
     <h2>Cheat sheet</h2>
 <div class="cols"><div><h3>The six cases</h3><div class="tbl"><table><thead><tr><th>Case</th><th>Asks</th><th>Main uses</th></tr></thead><tbody><tr><td>Nominative</td><td>кто? что?</td><td>subject; у меня есть…</td></tr><tr><td>Genitive</td><td>кого? чего?</td><td>of; нет; quantities; у, без, для, из, от, с, до, после</td></tr><tr><td>Dative</td><td>кому? чему?</td><td>to whom; мне холодно, надо, нравится, age; к, по</td></tr><tr><td>Accusative</td><td>кого? что? куда?</td><td>direct object; в / на + direction; в субботу, через</td></tr><tr><td>Instrumental</td><td>кем? чем?</td><td>with (с); tool; работать, стать, заниматься; над, под, перед, за, между</td></tr><tr><td>Prepositional</td><td>о ком? о чём? где?</td><td>location with в / на; about with о</td></tr></tbody></table></div></div><div><h3>Singular endings</h3><div class="tbl"><table><thead><tr><th></th><th>стол</th><th>книга</th><th>окно</th><th>площадь</th></tr></thead><tbody><tr><td>Nom</td><td>стол</td><td>книга</td><td>окно</td><td>площадь</td></tr><tr><td>Gen</td><td>стола</td><td>книги</td><td>окна</td><td>площади</td></tr><tr><td>Dat</td><td>столу</td><td>книге</td><td>окну</td><td>площади</td></tr><tr><td>Acc</td><td>стол</td><td>книгу</td><td>окно</td><td>площадь</td></tr><tr><td>Ins</td><td>столом</td><td>книгой</td><td>окном</td><td>площадью</td></tr><tr><td>Prep</td><td>столе</td><td>книге</td><td>окне</td><td>площади</td></tr></tbody></table></div><p class="note">Animate masculine nouns and all animate plurals use the genitive form in the accusative: вижу брата, люблю собак.</p></div></div>
+    <p class="note" style="margin-top:28px">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
   </div>
 </section>
+<script src="../shared/levels.js"></script>
 <script src="data.js"></script>
 <script src="../shared/engine.js"></script>
 </body>

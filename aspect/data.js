@@ -1,8 +1,8 @@
 /* Aspect and conjugation. Line format: topic|sentence|English|imperfective/perfective|answer i or p|tense n=present f=future p=past imp=imperative|forms of the answer verb|index|rule|signal|note */
 {
 const OPTS = {
-  i: { name: 'Imperfective', use: 'the process, duration or repetition of an action; general facts (“have you ever…”); a background action; two actions at the same time; the future with буду; negative commands and polite invitations' },
-  p: { name: 'Perfective', use: 'one action completed with a result; a chain of actions one after another; one future action that will be done (no present tense); a single request' }
+  i: { name: 'Несовершенный вид · Imperfective', use: 'the process, duration or repetition of an action; general facts (“have you ever…”); a background action; two actions at the same time; the future with буду; negative commands and polite invitations' },
+  p: { name: 'Совершенный вид · Perfective', use: 'one action completed with a result; a chain of actions one after another; one future action that will be done (no present tense); a single request' }
 };
 const RULES = {
   process: ['Process and duration → imperfective', 'When the sentence focuses on the action going on, or on how long it lasted (весь вечер, два часа, целый час, долго), use the imperfective. The perfective can’t combine with a plain length of time.', 'Мы делали задание три часа. Он долго читал.'],
@@ -19,7 +19,8 @@ const RULES = {
   imp_invite: ['Invitations and urging → imperfective imperative', 'Polite invitations (come in, sit down, help yourself) and urging someone to start right away use the imperfective imperative.', 'Проходите, садитесь! Берите ещё.'],
   imp_neg: ['Don’t…: imperfective imperative', 'Negative commands and advice not to do something normally use the imperfective imperative.', 'Не открывай окно! Не ешь так много сладкого.']
 };
-const TOPICS = { past: 'Aspect in the past', fut: 'Aspect in the future', imp: 'Imperative', irr: 'Irregular verbs' };
+const TOPICS = { past: 'Прошедшее время · Past', fut: 'Будущее время · Future', imp: 'Повелительное наклонение · Imperative', irr: 'Неправильные глаголы · Irregular verbs' };
+const LEVELS = { past: 'B1', fut: 'B1', imp: 'A2', irr: 'A2' };
 const DATA = `past|Вчера Олег весь вечер ___ письма.|Yesterday Oleg spent all evening writing letters.|писать/написать|i|p|писал,писала,писало,писали|0|process|весь вечер|
 past|Олег наконец ___ письмо и отправил его.|Oleg finally wrote the letter and sent it.|писать/написать|p|p|написал,написала,написало,написали|0|result|наконец|
 past|Мы часто ___ в этом ресторане.|We often had dinner in this restaurant.|ужинать/поужинать|i|p|ужинал,ужинала,ужинало,ужинали|3|repeat|часто|
@@ -73,7 +74,7 @@ const LAB = { n: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], f: [
 const PERS = { n: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], f: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], p: ['masculine', 'feminine', 'neuter', 'plural'], imp: ['ты-form', 'вы-form'] };
 window.EXERCISE = {
   id: 'aspect', step1: 'Which verb?', step1Short: 'Verb', scoreLabel: 'Aspects right',
-  topics: TOPICS, opts: OPTS, rules: RULES,
+  topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
     const [t, ru, en, pair, a, tn, forms, idx, rule, cue, note] = l.split('|');
     const [iv, pv] = pair.split('/'); const verb = a === 'i' ? iv : pv;

@@ -1,0 +1,155 @@
+#separator:tab
+#html:true
+#notetype:Vocab
+#deck:Languages::Russian
+#guid column:24
+#tags column:25
+#columns:term	language	kind	category	article	gender	forms	grammar	meaning_en	example_target	example_en	common_mistake	register	cefr	frequency	notes	ipa	image	audio	audio_sentence	voice	headword	partner_word	id	tags
+дом	ru	word	noun		m	мн. дома́		house, home	Мой дом недалеко от метро.	My house is not far from the metro.		neutral	A1							ru_RU			ru-wrd-1001	ru word home a1
+семья́	ru	word	noun		f			family	У меня большая семья.	I have a big family.		neutral	A1							ru_RU			ru-wrd-1002	ru word people a1
+мать	ru	word	noun		f	Р. ма́тери		mother	Моя мать работает врачом.	My mother works as a doctor.		neutral	A1		irregular: матери, матерью; everyday мама					ru_RU			ru-wrd-1003	ru word people a1
+оте́ц	ru	word	noun		m	Р. отца́		father	Отец читает газету.	Father is reading the paper.		neutral	A1		fleeting е: отца, отцу					ru_RU			ru-wrd-1004	ru word people a1
+брат	ru	word	noun		m	мн. бра́тья		brother	Мой брат живёт в Москве.	My brother lives in Moscow.		neutral	A1		irregular plural: братья, братьев					ru_RU			ru-wrd-1005	ru word people a1
+сестра́	ru	word	noun		f	мн. сёстры		sister	У меня есть сестра.	I have a sister.		neutral	A1		plural сёстры, genitive сестёр					ru_RU			ru-wrd-1006	ru word people a1
+друг	ru	word	noun		m	мн. друзья́		friend	Это мой старый друг.	This is an old friend of mine.		neutral	A1		irregular plural: друзья, друзей					ru_RU			ru-wrd-1007	ru word people a1
+челове́к	ru	word	noun		m	мн. лю́ди		person	Он хороший человек.	He is a good person.		neutral	A1		plural люди; after numbers: пять человек					ru_RU			ru-wrd-1008	ru word people a1
+вода́	ru	word	noun		f	В. во́ду		water	Можно стакан воды?	Can I have a glass of water?		neutral	A1							ru_RU			ru-wrd-1009	ru word food a1
+хлеб	ru	word	noun		m			bread	Купи, пожалуйста, хлеб.	Please buy some bread.		neutral	A1							ru_RU			ru-wrd-1010	ru word food a1
+молоко́	ru	word	noun		n			milk	Я пью кофе с молоком.	I drink coffee with milk.		neutral	A1							ru_RU			ru-wrd-1011	ru word food a1
+чай	ru	word	noun		m			tea	Хотите чаю?	Would you like some tea?		neutral	A1							ru_RU			ru-wrd-1012	ru word food a1
+ко́фе	ru	word	noun		m	не скл.		coffee	Я пью кофе каждое утро.	I drink coffee every morning.		neutral	A1		masculine and indeclinable: мой кофе					ru_RU			ru-wrd-1013	ru word food a1
+я́блоко	ru	word	noun		n	мн. я́блоки		apple	Это яблоко очень сладкое.	This apple is very sweet.		neutral	A1							ru_RU			ru-wrd-1014	ru word food a1
+суп	ru	word	noun		m			soup	На обед у нас суп.	We’re having soup for lunch.		neutral	A1							ru_RU			ru-wrd-1015	ru word food a1
+го́род	ru	word	noun		m	мн. города́		town, city	Это красивый город.	This is a beautiful city.		neutral	A1		stressed plural ending: города					ru_RU			ru-wrd-1016	ru word city a1
+шко́ла	ru	word	noun		f			school	Дети идут в школу.	The children are going to school.		neutral	A1							ru_RU			ru-wrd-1017	ru word study a1
+кни́га	ru	word	noun		f			book	Я читаю интересную книгу.	I’m reading an interesting book.		neutral	A1							ru_RU			ru-wrd-1018	ru word study a1
+день	ru	word	noun		m	Р. дня		day	Хорошего дня!	Have a good day!		neutral	A1		fleeting е: дня, дни					ru_RU			ru-wrd-1019	ru word time a1
+ночь	ru	word	noun		f			night	Спокойной ночи!	Good night!		neutral	A1		ночью = at night					ru_RU			ru-wrd-1020	ru word time a1
+у́тро	ru	word	noun		n			morning	Доброе утро!	Good morning!		neutral	A1		утром = in the morning					ru_RU			ru-wrd-1021	ru word time a1
+год	ru	word	noun		m	мн. го́ды		year	Я живу здесь два года.	I’ve lived here for two years.		neutral	A1		after 5 and more: лет					ru_RU			ru-wrd-1022	ru word time a1
+сего́дня	ru	word	adverb					today	Сегодня холодно.	It’s cold today.		neutral	A1		pronounced [сево́дня]					ru_RU			ru-wrd-1023	ru word time a1
+за́втра	ru	word	adverb					tomorrow	Увидимся завтра!	See you tomorrow!		neutral	A1							ru_RU			ru-wrd-1024	ru word time a1
+вчера́	ru	word	adverb					yesterday	Вчера я был дома.	Yesterday I was at home.		neutral	A1							ru_RU			ru-wrd-1025	ru word time a1
+жить	ru	word	verb			живу́, живёшь		to live	Где ты живёшь?	Where do you live?		neutral	A1							ru_RU			ru-wrd-1026	ru word basic a1
+рабо́тать	ru	word	verb			рабо́таю, рабо́таешь		to work	Я работаю в банке.	I work at a bank.		neutral	A1							ru_RU			ru-wrd-1027	ru word work a1
+говори́ть	ru	word	verb			говорю́, говори́шь; св сказа́ть		to speak, to say	Вы говорите по-русски?	Do you speak Russian?		neutral	A1		perfective сказать means “to say”					ru_RU			ru-wrd-1028	ru word basic a1
+знать	ru	word	verb			зна́ю, зна́ешь		to know	Я не знаю, где он.	I don’t know where he is.		neutral	A1							ru_RU			ru-wrd-1029	ru word basic a1
+хоте́ть	ru	word	verb			хочу́, хо́чешь, хоти́м, хотя́т		to want	Я хочу пить.	I’m thirsty.		neutral	A1		mixed conjugation					ru_RU			ru-wrd-1030	ru word basic a1
+люби́ть	ru	word	verb			люблю́, лю́бишь		to love, to like	Я люблю музыку.	I love music.		neutral	A1		б → бл in the я-form					ru_RU			ru-wrd-1031	ru word feelings a1
+чита́ть	ru	word	verb			чита́ю; св прочита́ть		to read	Что ты читаешь?	What are you reading?		neutral	A1							ru_RU			ru-wrd-1032	ru word study a1
+писа́ть	ru	word	verb			пишу́, пи́шешь; св написа́ть		to write	Я пишу письмо.	I’m writing a letter.		neutral	A1		с → ш in the whole present					ru_RU			ru-wrd-1033	ru word study a1
+идти́	ru	word	verb			иду́, идёшь; пр. шёл, шла		to go (on foot, one way)	Я иду домой.	I’m going home.		neutral	A1		verb of motion: see Глаголы движения					ru_RU			ru-wrd-1034	ru word basic a1
+есть	ru	word	verb			ем, ешь, ест, еди́м, еди́те, едя́т		to eat	Что ты хочешь есть?	What do you want to eat?		neutral	A1		irregular					ru_RU			ru-wrd-1035	ru word food a1
+пить	ru	word	verb			пью, пьёшь		to drink	Я пью чай.	I’m drinking tea.		neutral	A1							ru_RU			ru-wrd-1036	ru word food a1
+спать	ru	word	verb			сплю, спишь		to sleep	Ребёнок уже спит.	The baby is already asleep.		neutral	A1		п → пл in the я-form					ru_RU			ru-wrd-1037	ru word basic a1
+большо́й	ru	word	adjective					big	У нас большая квартира.	We have a big flat.		neutral	A1							ru_RU			ru-wrd-1038	ru word basic a1
+ма́ленький	ru	word	adjective					small	Это маленький город.	It’s a small town.		neutral	A1							ru_RU			ru-wrd-1039	ru word basic a1
+хоро́ший	ru	word	adjective					good	Это хороший фильм.	It’s a good film.		neutral	A1							ru_RU			ru-wrd-1040	ru word basic a1
+плохо́й	ru	word	adjective					bad	Сегодня плохая погода.	The weather is bad today.		neutral	A1							ru_RU			ru-wrd-1041	ru word basic a1
+но́вый	ru	word	adjective					new	У меня новый телефон.	I have a new phone.		neutral	A1							ru_RU			ru-wrd-1042	ru word basic a1
+ста́рый	ru	word	adjective					old	Это старый дом.	It’s an old house.		neutral	A1							ru_RU			ru-wrd-1043	ru word basic a1
+краси́вый	ru	word	adjective					beautiful	Какой красивый парк!	What a beautiful park!		neutral	A1							ru_RU			ru-wrd-1044	ru word basic a1
+дёшево	ru	word	adverb					cheap, cheaply	Здесь всё дёшево.	Everything is cheap here.		neutral	A1							ru_RU			ru-wrd-1045	ru word shopping a1
+спаси́бо	ru	word	interjection					thank you	Спасибо за помощь!	Thanks for the help!		neutral	A1		спасибо за + accusative					ru_RU			ru-wrd-1046	ru word basic a1
+пожа́луйста	ru	word	interjection					please; you’re welcome	Помогите, пожалуйста.	Help me, please.		neutral	A1		often pronounced [пожа́лста]					ru_RU			ru-wrd-1047	ru word basic a1
+где	ru	word	adverb					where	Где туалет?	Where is the toilet?		neutral	A1		answer with в / на + prepositional					ru_RU			ru-wrd-1048	ru word basic a1
+куда́	ru	word	adverb					where to	Куда ты идёшь?	Where are you going?		neutral	A1		answer with в / на + accusative					ru_RU			ru-wrd-1049	ru word basic a1
+ско́лько	ru	word	adverb			+ Р.		how much, how many	Сколько это стоит?	How much does it cost?		neutral	A1							ru_RU			ru-wrd-1050	ru word shopping a1
+метро́	ru	word	noun		n	не скл.		metro, underground	Я езжу на работу на метро.	I take the metro to work.		neutral	A1		indeclinable					ru_RU			ru-wrd-1051	ru word city a1
+маши́на	ru	word	noun		f			car	У него новая машина.	He has a new car.		neutral	A1							ru_RU			ru-wrd-1052	ru word travel a1
+дере́вня	ru	word	noun		f	Р. мн. дереве́нь		village; the countryside	Летом мы живём в деревне.	In summer we live in the countryside.		neutral	A2							ru_RU			ru-wrd-1053	ru word nature a2
+мо́ре	ru	word	noun		n	мн. моря́		sea	Мы отдыхали на море.	We had a holiday by the sea.		neutral	A2		на море = at the seaside					ru_RU			ru-wrd-1054	ru word nature a2
+дождь	ru	word	noun		m	Р. дождя́		rain	Идёт дождь.	It’s raining.		neutral	A2		идёт дождь = it’s raining					ru_RU			ru-wrd-1055	ru word nature a2
+снег	ru	word	noun		m			snow	Вчера шёл снег.	It snowed yesterday.		neutral	A2							ru_RU			ru-wrd-1056	ru word nature a2
+лес	ru	word	noun		m	в лесу́		forest	Мы гуляли в лесу.	We went for a walk in the forest.		neutral	A2		location: в лесу					ru_RU			ru-wrd-1057	ru word nature a2
+пое́здка	ru	word	noun		f			trip	Как прошла поездка?	How was the trip?		neutral	A2							ru_RU			ru-wrd-1058	ru word travel a2
+самолёт	ru	word	noun		m			plane	Самолёт прилетает в семь.	The plane arrives at seven.		neutral	A2							ru_RU			ru-wrd-1059	ru word travel a2
+гости́ница	ru	word	noun		f			hotel	Мы остановились в гостинице в центре.	We stayed at a hotel in the centre.		neutral	A2							ru_RU			ru-wrd-1060	ru word travel a2
+боле́ть	ru	word	verb			боле́ю, боле́ешь; боли́т, боля́т		to be ill; to hurt	У меня болит голова.	I have a headache.		neutral	A2		two verbs: болею (I’m ill) and болит (it hurts)					ru_RU			ru-wrd-1061	ru word health a2
+продава́ть	ru	word	verb			продаю́, продаёшь; св прода́ть		to sell	Здесь продают свежий хлеб.	They sell fresh bread here.		neutral	A2		-ва- disappears in the present					ru_RU			ru-wrd-1062	ru word shopping a2
+отдыха́ть	ru	word	verb			отдыха́ю; св отдохну́ть		to rest; to be on holiday	Где вы отдыхали летом?	Where did you go on holiday in summer?		neutral	A2							ru_RU			ru-wrd-1063	ru word travel a2
+путеше́ствовать	ru	word	verb			путеше́ствую, путеше́ствуешь		to travel	Я люблю путешествовать.	I love travelling.		neutral	A2		-овать → -ую					ru_RU			ru-wrd-1064	ru word travel a2
+звони́ть	ru	word	verb			звоню́, звони́шь; св позвони́ть	+ Дат.	to call, to ring	Позвони мне вечером.	Call me this evening.		neutral	A2		takes the dative: звонить маме					ru_RU			ru-wrd-1065	ru word basic a2
+встава́ть	ru	word	verb			встаю́, встаёшь; св встать		to get up	Я встаю в семь.	I get up at seven.		neutral	A2		-ва- disappears in the present					ru_RU			ru-wrd-1066	ru word time a2
+ложи́ться	ru	word	verb			ложу́сь, ложи́шься; св лечь (ля́гу)		to lie down	Я ложусь спать в одиннадцать.	I go to bed at eleven.		neutral	A2		ложиться спать = to go to bed					ru_RU			ru-wrd-1067	ru word time a2
+мыть	ru	word	verb			мо́ю, мо́ешь; св помы́ть		to wash	Я мою посуду.	I’m washing the dishes.		neutral	A2		ы → о in the present					ru_RU			ru-wrd-1068	ru word home a2
+ве́село	ru	word	adverb					fun, cheerful	Нам было весело.	We had fun.		neutral	A2							ru_RU			ru-wrd-1069	ru word feelings a2
+ску́чно	ru	word	adverb					boring; bored	Мне скучно.	I’m bored.		neutral	A2							ru_RU			ru-wrd-1070	ru word feelings a2
+уста́лый	ru	word	adjective			кр. уста́л		tired	У него усталый вид.	He looks tired.		neutral	A2		“I’m tired” is usually я устал (a verb)					ru_RU			ru-wrd-1071	ru word feelings a2
+голо́дный	ru	word	adjective			кр. го́лоден		hungry	Ты голодный?	Are you hungry?		neutral	A2							ru_RU			ru-wrd-1072	ru word food a2
+све́жий	ru	word	adjective					fresh	Свежий хлеб пахнет очень вкусно.	Fresh bread smells delicious.		neutral	A2							ru_RU			ru-wrd-1073	ru word food a2
+бы́стро	ru	word	adverb					quickly	Он быстро говорит.	He speaks fast.		neutral	A2							ru_RU			ru-wrd-1074	ru word basic a2
+ме́дленно	ru	word	adverb					slowly	Говорите медленнее, пожалуйста.	Please speak more slowly.		neutral	A2		comparative: медленнее					ru_RU			ru-wrd-1075	ru word basic a2
+всегда́	ru	word	adverb					always	Он всегда опаздывает.	He’s always late.		neutral	A2							ru_RU			ru-wrd-1076	ru word time a2
+сейча́с	ru	word	adverb					now; right away	Я сейчас приду.	I’ll be right there.		neutral	A2							ru_RU			ru-wrd-1077	ru word time a2
+мя́со	ru	word	noun		n			meat	Я не ем мясо.	I don’t eat meat.		neutral	A2							ru_RU			ru-wrd-1078	ru word food a2
+ры́ба	ru	word	noun		f			fish	На ужин у нас рыба.	We’re having fish for dinner.		neutral	A2							ru_RU			ru-wrd-1079	ru word food a2
+предполага́ть	ru	word	verb			предполага́ю; св предположи́ть		to suppose, to assume	Предполагаю, что он уже уехал.	I suppose he has already left.		neutral	B2							ru_RU			ru-wrd-1080	ru word abstract b2
+утвержда́ть	ru	word	verb			утвержда́ю; св утверди́ть		to claim; to approve	Он утверждает, что ничего не знал.	He claims he knew nothing.		neutral	B2		also “to approve” a plan or budget					ru_RU			ru-wrd-1081	ru word society b2
+избега́ть	ru	word	verb			избега́ю; св избежа́ть	+ Р.	to avoid	Он избегает трудных разговоров.	He avoids difficult conversations.		neutral	B2		takes the genitive					ru_RU			ru-wrd-1082	ru word abstract b2
+обеспе́чивать	ru	word	verb			обеспе́чиваю; св обеспе́чить	+ В. + Тв.	to provide, to ensure	Компания обеспечивает сотрудников жильём.	The company provides its staff with housing.		neutral	B2							ru_RU			ru-wrd-1083	ru word work b2
+влия́ть	ru	word	verb			влия́ю; св повлия́ть	на + В.	to influence, to affect	Погода влияет на настроение.	The weather affects your mood.		neutral	B2							ru_RU			ru-wrd-1084	ru word abstract b2
+сто́имость	ru	word	noun		f			cost, value	Стоимость билетов выросла.	Ticket prices have gone up.		neutral	B2							ru_RU			ru-wrd-1085	ru word economy b2
+дохо́д	ru	word	noun		m			income	Его доход вырос в два раза.	His income has doubled.		neutral	B2							ru_RU			ru-wrd-1086	ru word economy b2
+нало́г	ru	word	noun		m		на + В.	tax	Налоги снова повысили.	Taxes have been raised again.		neutral	B2							ru_RU			ru-wrd-1087	ru word economy b2
+предприя́тие	ru	word	noun		n		на + Пр.	enterprise, company	Он работает на крупном предприятии.	He works at a large company.		neutral	B2							ru_RU			ru-wrd-1088	ru word work b2
+руководи́тель	ru	word	noun		m			manager, head	Руководитель отдела в отпуске.	The head of department is on leave.		neutral	B2							ru_RU			ru-wrd-1089	ru word work b2
+обя́занность	ru	word	noun		f			duty, responsibility	Это входит в мои обязанности.	That’s part of my job.		neutral	B2							ru_RU			ru-wrd-1090	ru word work b2
+усло́вие	ru	word	noun		n			condition	Условия работы здесь отличные.	The working conditions here are excellent.		neutral	B2							ru_RU			ru-wrd-1091	ru word work b2
+дости́жение	ru	word	noun		n			achievement	Это большое достижение для команды.	It’s a big achievement for the team.		neutral	B2							ru_RU			ru-wrd-1092	ru word abstract b2
+после́дствие	ru	word	noun		n			consequence	Последствия кризиса чувствуются до сих пор.	The consequences of the crisis are still felt.		neutral	B2							ru_RU			ru-wrd-1093	ru word society b2
+вы́бросы	ru	word	noun		pl			emissions	Выбросы в атмосферу нужно сократить.	Emissions into the atmosphere must be cut.		neutral	B2							ru_RU			ru-wrd-1094	ru word nature b2
+доказа́тельство	ru	word	noun		n			proof, evidence	У полиции нет доказательств.	The police have no evidence.		neutral	B2							ru_RU			ru-wrd-1095	ru word society b2
+справедли́вый	ru	word	adjective					fair, just	Это справедливое решение.	That’s a fair decision.		neutral	B2							ru_RU			ru-wrd-1096	ru word society b2
+очеви́дный	ru	word	adjective			кр. очеви́ден		obvious	Ответ очевиден.	The answer is obvious.		neutral	B2							ru_RU			ru-wrd-1097	ru word abstract b2
+надёжный	ru	word	adjective					reliable	Он надёжный человек.	He’s a reliable person.		neutral	B2							ru_RU			ru-wrd-1098	ru word people b2
+равноду́шный	ru	word	adjective				к + Дат.	indifferent	Он равнодушен к политике.	He’s indifferent to politics.		neutral	B2							ru_RU			ru-wrd-1099	ru word feelings b2
+противоре́чие	ru	word	noun		n			contradiction	В его словах есть противоречие.	There’s a contradiction in what he says.		neutral	B2							ru_RU			ru-wrd-1100	ru word abstract b2
+сле́довательно	ru	word	adverb					consequently, therefore	Он не пришёл, следовательно, он занят.	He didn’t come, so he must be busy.		neutral	B2		formal					ru_RU			ru-wrd-1101	ru word abstract b2
+тем не ме́нее	ru	phrase	expression					nevertheless	Было трудно, тем не менее мы справились.	It was hard; nevertheless, we managed.		neutral	B2							ru_RU			ru-phr-1001	ru phrase abstract b2
+в це́лом	ru	phrase	expression					on the whole	В целом я доволен результатом.	On the whole I’m happy with the result.		neutral	B2							ru_RU			ru-phr-1002	ru phrase abstract b2
+благодаря́	ru	word	preposition				+ Дат.	thanks to	Благодаря твоей помощи всё получилось.	Thanks to your help, it all worked out.		neutral	B2		takes the dative; for good outcomes					ru_RU			ru-wrd-1102	ru word abstract b2
+из-за	ru	word	preposition				+ Р.	because of	Из-за пробки я опоздал.	I was late because of the traffic jam.		neutral	B2		takes the genitive; usually for bad outcomes					ru_RU			ru-wrd-1103	ru word abstract b2
+добива́ться	ru	word	verb			добива́юсь; св доби́ться	+ Р.	to achieve, to strive for	Она всегда добивается своего.	She always gets what she wants.		neutral	B2		takes the genitive					ru_RU			ru-wrd-1104	ru word abstract b2
+сокраща́ть	ru	word	verb			сокраща́ю; св сократи́ть		to reduce, to cut	Компания сокращает расходы.	The company is cutting costs.		neutral	B2							ru_RU			ru-wrd-1105	ru word economy b2
+расхо́ды	ru	word	noun		pl			expenses, spending	Расходы растут быстрее доходов.	Spending is growing faster than income.		neutral	B2							ru_RU			ru-wrd-1106	ru word economy b2
+убежда́ть	ru	word	verb			убежда́ю; св убеди́ть		to convince	Он убедил меня поехать.	He convinced me to go.		neutral	B2		убедить has no я-form in the future					ru_RU			ru-wrd-1107	ru word abstract b2
+забо́титься	ru	word	verb			забо́чусь, забо́тишься; св позабо́титься	о + Пр.	to take care of	Она заботится о родителях.	She takes care of her parents.		neutral	B2		т → ч in the я-form					ru_RU			ru-wrd-1108	ru word people b2
+противоре́чить	ru	word	verb			противоре́чу, противоре́чишь	+ Дат.	to contradict	Это противоречит здравому смыслу.	That goes against common sense.		neutral	C1							ru_RU			ru-wrd-1109	ru word abstract c1
+подразумева́ть	ru	word	verb			подразумева́ю		to imply, to mean	Что вы подразумеваете под этим?	What do you mean by that?		neutral	C1		подразумевать под + instrumental					ru_RU			ru-wrd-1110	ru word abstract c1
+пренебрега́ть	ru	word	verb			пренебрега́ю; св пренебре́чь	+ Тв.	to neglect, to disregard	Нельзя пренебрегать безопасностью.	Safety must not be neglected.		neutral	C1		takes the instrumental					ru_RU			ru-wrd-1111	ru word abstract c1
+осуществля́ть	ru	word	verb			осуществля́ю; св осуществи́ть		to carry out, to implement	Проект осуществляется при поддержке города.	The project is being carried out with the city’s support.		neutral	C1		formal					ru_RU			ru-wrd-1112	ru word work c1
+подверга́ть	ru	word	verb			подверга́ю; св подве́ргнуть	+ В. + Дат.	to subject to	Его решение подвергли критике.	His decision came in for criticism.		neutral	C1							ru_RU			ru-wrd-1113	ru word society c1
+обусло́вливать	ru	word	verb			обусло́вливаю; св обусло́вить		to cause, to determine	Рост цен обусловлен инфляцией.	The rise in prices is due to inflation.		neutral	C1		often passive: обусловлен + instrumental					ru_RU			ru-wrd-1114	ru word economy c1
+соотве́тствовать	ru	word	verb			соотве́тствую	+ Дат.	to correspond to, to meet	Качество не соответствует цене.	The quality doesn’t match the price.		neutral	C1							ru_RU			ru-wrd-1115	ru word abstract c1
+предпосы́лка	ru	word	noun		f			prerequisite, precondition	Для реформы есть все предпосылки.	All the preconditions for reform are in place.		neutral	C1							ru_RU			ru-wrd-1116	ru word society c1
+тенде́нция	ru	word	noun		f		к + Дат.	tendency, trend	Наблюдается тенденция к росту цен.	There is an upward trend in prices.		neutral	C1		е is pronounced [э]: [тэндэ́нцыя]					ru_RU			ru-wrd-1117	ru word economy c1
+неизбе́жный	ru	word	adjective					inevitable	Перемены неизбежны.	Change is inevitable.		neutral	C1							ru_RU			ru-wrd-1118	ru word abstract c1
+неоднозна́чный	ru	word	adjective					ambiguous, controversial	Это неоднозначный вопрос.	It’s a controversial question.		neutral	C1							ru_RU			ru-wrd-1119	ru word abstract c1
+целесообра́зный	ru	word	adjective					advisable, expedient	Целесообразно перенести встречу.	It would be advisable to move the meeting.		neutral	C1							ru_RU			ru-wrd-1120	ru word work c1
+обосно́ванный	ru	word	adjective					well-founded, justified	Это обоснованное решение.	It’s a well-founded decision.		neutral	C1							ru_RU			ru-wrd-1121	ru word abstract c1
+внедре́ние	ru	word	noun		n			introduction, implementation	Внедрение новых технологий займёт год.	Introducing the new technology will take a year.		neutral	C1							ru_RU			ru-wrd-1122	ru word work c1
+усто́йчивый	ru	word	adjective					stable; sustainable	Нам нужно устойчивое развитие.	We need sustainable development.		neutral	C1							ru_RU			ru-wrd-1123	ru word economy c1
+вопреки́	ru	word	preposition				+ Дат.	contrary to, in spite of	Вопреки прогнозам, погода была хорошей.	Contrary to the forecasts, the weather was good.		neutral	C1		takes the dative					ru_RU			ru-wrd-1124	ru word abstract c1
+в связи́ с	ru	word	preposition				+ Тв.	in connection with, due to	В связи с ремонтом музей закрыт.	The museum is closed for renovation.		neutral	C1		formal					ru_RU			ru-wrd-1125	ru word society c1
+по ме́ре	ru	word	preposition				+ Р.	as, in step with	По мере роста города растут и его проблемы.	As the city grows, so do its problems.		neutral	C1							ru_RU			ru-wrd-1126	ru word abstract c1
+поско́льку	ru	word	conjunction					since, inasmuch as	Поскольку все согласны, начнём.	Since everyone agrees, let’s begin.		neutral	C1							ru_RU			ru-wrd-1127	ru word abstract c1
+всле́дствие	ru	word	preposition				+ Р.	as a result of	Рейс отменили вследствие тумана.	The flight was cancelled because of fog.		neutral	C1		formal					ru_RU			ru-wrd-1128	ru word society c1
+недоразуме́ние	ru	word	noun		n			misunderstanding	Это просто недоразумение.	It’s just a misunderstanding.		neutral	C1							ru_RU			ru-wrd-1129	ru word people c1
+снисходи́тельный	ru	word	adjective					condescending; lenient	Он говорил снисходительным тоном.	He spoke in a condescending tone.		neutral	C1							ru_RU			ru-wrd-1130	ru word people c1
+уязви́мый	ru	word	adjective					vulnerable	Дети особенно уязвимы.	Children are especially vulnerable.		neutral	C1							ru_RU			ru-wrd-1131	ru word society c1
+приорите́т	ru	word	noun		m			priority	Безопасность — наш главный приоритет.	Safety is our top priority.		neutral	C1							ru_RU			ru-wrd-1132	ru word work c1
+урегули́ровать	ru	word	verb			урегули́рую, урегули́руешь		to settle, to resolve	Конфликт удалось урегулировать.	They managed to settle the conflict.		neutral	C1		used for both aspects					ru_RU			ru-wrd-1133	ru word society c1
+изли́шний	ru	word	adjective					excessive, unnecessary	Это излишняя осторожность.	That’s excessive caution.		neutral	C1							ru_RU			ru-wrd-1134	ru word abstract c1
+злободне́вный	ru	word	adjective					topical, pressing	Это злободневная тема.	It’s a hot topic.		neutral	C2							ru_RU			ru-wrd-1135	ru word society c2
+преслову́тый	ru	word	adjective					notorious, much-vaunted	Где же этот пресловутый порядок?	So where is this much-vaunted order?		neutral	C2		often ironic					ru_RU			ru-wrd-1136	ru word abstract c2
+ска́редный	ru	word	adjective					stingy, miserly	Он был скаредным стариком.	He was a miserly old man.		neutral	C2		literary					ru_RU			ru-wrd-1137	ru word people c2
+кропотли́вый	ru	word	adjective					painstaking	Это кропотливая работа.	It’s painstaking work.		neutral	C2							ru_RU			ru-wrd-1138	ru word work c2
+зау́рядный	ru	word	adjective					mediocre, ordinary	Это был заурядный фильм.	It was a mediocre film.		neutral	C2							ru_RU			ru-wrd-1139	ru word abstract c2
+не́га	ru	word	noun		f			bliss, languor	Он лежал на пляже в полной неге.	He lay on the beach in utter bliss.		neutral	C2		literary					ru_RU			ru-wrd-1140	ru word feelings c2
+вопию́щий	ru	word	adjective					flagrant, glaring	Это вопиющая несправедливость.	It’s a glaring injustice.		neutral	C2							ru_RU			ru-wrd-1141	ru word society c2
+подспу́дный	ru	word	adjective					hidden, latent	В его словах звучал подспудный страх.	There was a hidden fear in his words.		neutral	C2							ru_RU			ru-wrd-1142	ru word feelings c2
+спохвати́ться	ru	word	verb			спохвачу́сь, спохвати́шься		to realise suddenly, to catch oneself	Он спохватился, что забыл ключи.	He suddenly realised he’d forgotten his keys.		neutral	C2		perfective; т → ч in the я-form					ru_RU			ru-wrd-1143	ru word abstract c2
+кичи́ться	ru	word	verb			кичу́сь, кичи́шься	+ Тв.	to show off, to brag about	Он кичится своим богатством.	He flaunts his wealth.		neutral	C2		takes the instrumental					ru_RU			ru-wrd-1144	ru word people c2
+пиете́т	ru	word	noun		m		перед + Тв.	reverence	Он испытывал пиетет перед учителем.	He held his teacher in reverence.		neutral	C2		е is pronounced [э]: [пиэтэ́т]					ru_RU			ru-wrd-1145	ru word feelings c2
+ничто́же сумня́шеся	ru	phrase	expression					without a second thought	Он, ничтоже сумняшеся, подписал договор.	He signed the contract without a second thought.		neutral	C2		Church Slavonic idiom, ironic					ru_RU			ru-phr-1003	ru phrase abstract c2

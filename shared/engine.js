@@ -5,6 +5,8 @@
 {
 const EX = window.EXERCISE;
 const Q = EX.items;
+Q.forEach(q => { q.lv = q.lv || (EX.levels && EX.levels[q.t]) || 'B1'; });
+const LEVELS = (window.CEFR || []).filter(l => Q.some(q => q.lv === l.code));
 const $ = id => document.getElementById(id);
 const shuf = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[.,!?«»"]/g, '').replace(/\s+/g, ' ').trim();
@@ -31,8 +33,9 @@ function reveal(el) {
   const r = el.getBoundingClientRect();
   if (r.top > innerHeight * 0.7) window.scrollBy({ top: r.top - 110, behavior: RM.matches ? 'auto' : 'smooth' });
 }
-function poolFor(t) {
-  return Q.map((q, k) => k).filter(k => t === 'all' || (t === 'miss' ? miss.has(Q[k].ru) : Q[k].t === t));
+function poolFor(t, lv) {
+  lv = lv || st.level;
+  return Q.map((q, k) => k).filter(k => (lv === 'all' || Q[k].lv === lv) && (t === 'all' || (t === 'miss' ? miss.has(Q[k].ru) : Q[k].t === t)));
 }
 function enterQ() {
   const q = cur(); if (!q) return;
@@ -54,6 +57,8 @@ function newRound() {
 }
 
 function renderControls() {
+  $('lvls').innerHTML = `<button id="l-all" data-l="all" aria-pressed="${st.level === 'all'}">All levels<small>${poolFor('all', 'all').length}</small></button>` +
+    LEVELS.map(l => `<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level === l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all', l.code).length}</small></button>`).join('');
   $('topics').innerHTML = Object.entries(TOP).map(([k, v]) => `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}">${v}<small>${poolFor(k).length}</small></button>`).join('');
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === st.mode));
   $('sizes').innerHTML = SIZES.map(n => `<button id="n-${n || 'all'}" data-n="${n}" aria-pressed="${n === st.size}">${n || 'All'}</button>`).join('');
@@ -83,6 +88,7 @@ function render() {
 }
 
 function emptyHTML() {
+  if (st.topic !== 'miss') return `<p class="meta"><span>${TOP[st.topic]}</span></p><p class="ru" style="font-size:24px">No sentences at this level here.</p><p class="en">This topic has no ${st.level} sentences. Pick another level or topic.</p><button class="btn go" data-act="level" data-k="all">Show all levels</button>`;
   return `<p class="meta"><span>My mistakes</span></p><p class="ru" style="font-size:24px">Nothing to review yet.</p><p class="en">Every sentence you get wrong is saved here, and it leaves the list once you answer it fully right.</p><button class="btn go" data-act="topic" data-k="all">Practise all sentences</button>`;
 }
 
@@ -123,11 +129,12 @@ function qHTML() {
 <div class="panel ${open ? 'open' : ''}" id="panel" ${open ? '' : 'inert'}><div><div class="exp">
 <section><h3>The rule</h3><p class="rt">${R[0]}</p><p>${R[1]}</p><p class="idn">Example: ${R[2]}</p></section>
 <section><h3>In this sentence</h3><p>${q.cue ? `Signal: <mark>${q.cue}</mark>. ` : ''}${q.en}${q.note ? ` ${q.note}` : ''}</p></section>
-<section><h3>Why ${optLabel(right1)}</h3><p>${right1.label ? `${right1.label} is ${opt(right1).name.toLowerCase()}` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
+<section><h3>Why ${optLabel(right1)}</h3><p>${right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
 <section class="formgrid"><div><h3>The form</h3><p>${q.fnote || ''}</p></div>${table}</section></div></div></div>
 <div class="dock"><span>${r.a && r.f ? 'Both right ✓' : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
   }
-  return `<div class="meta"><span>${TOP[q.t]}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
+  const L = (window.CEFR || []).find(l => l.code === q.lv);
+  return `<div class="meta"><span>${q.lv}${L ? ' · ' + L.en : ''} · ${TOP[q.t]}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
 <p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>
 <div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>${s2}${exp}`;
 }
@@ -179,6 +186,7 @@ function toggleMore() {
   if (st.open) setTimeout(() => reveal(p), RM.matches ? 0 : 120);
 }
 const savePrefs = () => LS.set(EX.id + '-prefs', { topic: st.topic, mode: st.mode });
+function setLevel(l) { st.level = l; LS.set('gr-level', l); newRound(); }
 function setTopic(t) { st.topic = t; savePrefs(); newRound(); const b = $('t-' + t); if (b) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
 
 $('card').addEventListener('click', e => {
@@ -190,6 +198,7 @@ $('card').addEventListener('click', e => {
   else if (a === 'new') newRound();
   else if (a === 'topic') setTopic(b.dataset.k);
   else if (a === 'more') toggleMore();
+  else if (a === 'level') setLevel(b.dataset.k);
 });
 $('card').addEventListener('submit', e => { e.preventDefault(); const v = $('ans').value; if (!v.trim()) return; pickF(v); });
 document.addEventListener('keydown', e => {
@@ -201,12 +210,14 @@ document.addEventListener('keydown', e => {
   }
 });
 $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTopic(b.dataset.t); });
+$('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setLevel(b.dataset.l); });
 $('modes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.mode = b.dataset.m; savePrefs(); render(); });
 $('sizes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.size = +b.dataset.n; LS.set('gr-size', st.size); newRound(); });
 
 const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
-st = { topic: TOP[prefs.topic] ? prefs.topic : 'all', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true };
+const lvPref = LS.get('gr-level', 'all');
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[prefs.topic] ? prefs.topic : 'all', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
 }

@@ -1,7 +1,7 @@
 {
-  "name": "Грамматика: Russian grammar practice",
+  "name": "Грамматика: Russian grammar and vocabulary",
   "short_name": "Грамматика",
-  "description": "Russian grammar exercises with a full explanation for every answer.",
+  "description": "Russian grammar exercises and Anki-style vocabulary, sorted by CEFR level.",
   "lang": "ru",
   "start_url": "./",
   "scope": "./",
@@ -9,11 +9,56 @@
   "background_color": "#d4202c",
   "theme_color": "#d4202c",
   "icons": [
-    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
-    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    {"name": "Глаголы движения", "short_name": "Verbs of motion", "url": "verbs-of-motion/", "icons": [{"src": "icons/icon-192.png", "sizes": "192x192"}]}
+    {
+      "name": "Словарь · Vocabulary",
+      "short_name": "Словарь",
+      "url": "vocabulary/",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Глаголы движения · Verbs of motion",
+      "short_name": "Движение",
+      "url": "verbs-of-motion/",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Падежи · Cases",
+      "short_name": "Падежи",
+      "url": "cases/",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }
