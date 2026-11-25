@@ -22,8 +22,8 @@ Every task and every word has a level. Grammar topics are levelled in each `data
 | Level | Grammar tasks | Words |
 |---|---|---|
 | A1 | 53 | 88 |
-| A2 | 153 | 181 |
-| B1 | 169 | 83 |
+| A2 | 130 | 181 |
+| B1 | 143 | 83 |
 | B2 | 53 | 58 |
 | C1 | – | 26 |
 | C2 | – | 12 |
