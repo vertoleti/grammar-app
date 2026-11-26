@@ -9,6 +9,8 @@ const LINES = [
   { id: 'numbers', href: 'numbers/', n: 4, c: '#c25e00', ru: 'Числа', en: 'Numbers', d: '1, 2–4, 5+: age, time, money, quantity', group: 'nouns', src: 'numbers' },
   { id: 'compare', href: 'compare/', n: 8, c: '#c2185b', ru: 'Сравнение и краткие формы', en: 'Comparison and short forms', d: 'Comparatives, superlatives, short adjectives, adverbs', group: 'adj', src: 'compare' },
   { id: 'advanced', href: 'advanced/', n: 5, c: '#7a2a8c', ru: 'Продвинутый уровень', en: 'Advanced grammar', d: 'Participles, verbal adverbs, -ся verbs, бы and чтобы', group: 'adv', src: 'advanced' },
+  { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
+  { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
   { id: 'voc', href: 'vocabulary/', n: 6, c: '#00897b', ru: 'Словарь', en: 'Vocabulary', d: 'Anki-style flashcards with spaced repetition', group: 'vocab', vocab: true }
 ];
 const out = [];
@@ -30,6 +32,18 @@ for (const L of LINES) {
     rows.forEach(r => { const t = r.split('|')[0]; cnt[t] = (cnt[t] || 0) + 1; });
     line.topics = Object.keys(tlv).map(k => ({ k, name: top[k], lv: tlv[k], count: cnt[k] || 0 }));
     line.total = rows.length;
+  } else if (L.practice === 'sentences') {
+    const window = {}; new Function('window', fs.readFileSync('sentences/data.js', 'utf8'))(window);
+    const D = window.SENTENCES;
+    line.modes = [{ k: 'tr', name: 'Перевод · Translate' }, { k: 'order', name: 'Порядок слов · Word order' }, { k: 'dict', name: 'Диктант · Dictation' }, { k: 'err', name: 'Найди ошибку · Find the mistake' }];
+    line.total = D.S.length + D.M.length; line.unit = 'sentences';
+    line.levels = {}; [...D.S, ...D.M].forEach(x => { line.levels[x[0]] = (line.levels[x[0]] || 0) + 1; });
+  } else if (L.practice === 'tables') {
+    const window = {}; new Function('window', fs.readFileSync('tables/data.js', 'utf8'))(window);
+    const D = window.TABLES;
+    line.modes = [{ k: 'pres', name: 'Спряжение · Present and future' }, { k: 'past', name: 'Прошедшее время · Past tense' }, { k: 'noun', name: 'Склонение · Nouns' }, { k: 'pron', name: 'Местоимения · Pronouns' }];
+    line.total = D.V.length + D.N.length + 1; line.unit = 'verbs, nouns and pronouns';
+    line.levels = {}; [...D.V, ...D.N].forEach(x => { line.levels[x[0]] = (line.levels[x[0]] || 0) + 1; });
   } else if (L.vocab) {
     const lv = {};
     ['vocabulary/decks/ru-core.tsv', 'vocabulary/decks/ru-levels.tsv'].forEach(f => fs.readFileSync(f, 'utf8').split('\n').filter(l => l && !l.startsWith('#')).forEach(l => { const c = l.split('\t')[13]; lv[c] = (lv[c] || 0) + 1; }));

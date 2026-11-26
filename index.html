@@ -241,7 +241,7 @@ ol.steps{margin:6px 0 10px;padding-left:1.2em;font-size:16px}
 const $=id=>document.getElementById(id);
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const C=window.GRCoach,CAT=window.CATALOG,ORDER=C.ORDER;
-const GRAM=CAT.filter(x=>x.topics),VOC=CAT.find(x=>x.vocab);
+const GRAM=CAT.filter(x=>x.topics),VOC=CAT.find(x=>x.vocab),PRAC=CAT.filter(x=>x.practice);
 const GROUPS=[['verbs','Глаголы · Verbs'],['nouns','Существительные и предлоги · Nouns and prepositions'],['adj','Прилагательные · Adjectives'],['adv','Продвинутый уровень · Advanced'],['vocab','Лексика · Vocabulary']];
 const lvName=c=>{const l=window.CEFR.find(x=>x.code===c);return l?`${l.en} · ${l.ru}`:''};
 const short=n=>n.split(' · ')[0];
@@ -302,6 +302,8 @@ function draw(){
   const v=vocab();
   const card=L=>{
     if(L.vocab)return`<a class="ex wide" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="ru">${L.ru}<span>${L.en} · ${L.total} words · flashcards with spaced repetition</span></h4></div><div class="segs" aria-hidden="true"><i class="mastered" style="flex:${v.learned}"></i><i class="started" style="flex:${Math.max(0,v.started-v.learned)}"></i><i style="flex:${Math.max(1,L.total-v.started)}"></i></div><div class="exf"><span>${v.started?`${v.learned} learned · ${v.started} started · ${v.due} due today`:'Not started yet'}</span><span class="lvs">${ORDER.filter(c=>L.levels[c]).map(c=>`<span class="${lvl===c?'on':''}">${c} ${L.levels[c]}</span>`).join('')}</span></div></a>`;
+    if(L.practice){const s=C.stats(L.id),ms=L.modes.map(m=>Object.assign({m},C.state(L.id,m.k,s))),n=ms.reduce((a,x)=>a+x.n,0);
+      return`<a class="ex" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="ru">${L.ru}<span>${L.en} · ${L.total} ${L.unit}</span></h4></div><div class="segs" title="One bar per exercise" aria-hidden="true">${ms.map(x=>`<i class="${x.st==='new'?'':x.st}"></i>`).join('')}</div><div class="exf"><span>${n?ms.filter(x=>x.n).map(x=>`${x.m.name.split(' · ')[1]} ${x.pct}%`).join(' · '):L.d}</span><span class="lvs">${ORDER.filter(c=>L.levels[c]).map(c=>`<span class="${lvl===c?'on':''}">${c}</span>`).join('')}</span></div></a>`}
     const s=C.stats(L.id),states=L.topics.map(t=>C.state(L.id,t.k,s));
     const mastered=states.filter(x=>x.st==='mastered').length,started=states.filter(x=>x.n).length;
     const lvs=ORDER.filter(c=>L.topics.some(t=>t.lv===c));
@@ -309,7 +311,7 @@ function draw(){
     return`<a class="ex" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="ru">${L.ru}<span>${L.en} · ${L.total} sentences</span></h4></div><div class="segs" title="One bar per topic" aria-hidden="true">${states.map(x=>`<i class="${x.st==='new'?'':x.st}"></i>`).join('')}</div><div class="exf"><span>${started?`${mastered} of ${L.topics.length} topics mastered`:`${L.topics.length} topics · not started`}</span><span class="lvs">${lvs.map(c=>`<span class="${lvl===c?'on':''}">${c}</span>`).join('')}</span></div></a>`;
   };
   const order=['verbs','nouns','adj','adv'];
-  $('groups').innerHTML=`<div class="group"><h3>Грамматика · Grammar</h3><div class="lines">${GRAM.slice().sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group)).map(card).join('')}</div></div><div class="group"><h3>Лексика · Vocabulary</h3><div class="lines">${card(VOC)}</div></div>`;
+  $('groups').innerHTML=`<div class="group"><h3>Грамматика · Grammar</h3><div class="lines">${GRAM.slice().sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group)).map(card).join('')}</div></div><div class="group"><h3>Навыки · Skills: whole sentences and tables</h3><div class="lines">${PRAC.map(card).join('')}</div></div><div class="group"><h3>Лексика · Vocabulary</h3><div class="lines">${card(VOC)}</div></div>`;
   $('map').innerHTML=ORDER.filter(c=>GRAM.some(L=>L.topics.some(t=>t.lv===c))).map(c=>`<div class="mrow"><b>${c}</b><div class="chips">${GRAM.flatMap(L=>{const s=C.stats(L.id);return L.topics.filter(t=>t.lv===c).map(t=>{const m=C.state(L.id,t.k,s);return`<a class="chip ${m.st==='new'?'':m.st}" href="${L.href}#${t.k}" data-level="${c}" title="${L.en}: ${C.LABEL[m.st]}">${short(t.name)}<small>${m.pct!==null?m.pct+'%':L.ru}</small></a>`})}).join('')}</div></div>`).join('');
 }
 draw();

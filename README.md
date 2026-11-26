@@ -49,6 +49,14 @@ The flashcards read Anki text files directly, in the same 25-column `Vocab` form
 
 Both files import straight into Anki. Scheduling follows Anki's defaults: learning steps 1 and 10 minutes, graduating interval 1 day, easy 4 days, starting ease 250 %, Again/Hard/Good/Easy. Cards can be studied RU → EN, EN → RU or both, and you can import your own Anki exports on the page.
 
+### Sentences and Tables
+
+`sentences/` practises whole sentences in four ways: translate from English (checked word by word; another word order counts as right; a one-letter slip in a long word is accepted and shown; “My answer was right too” overrides the check), put the words in order, dictation (needs a Russian voice in the browser), and find the mistake (exactly one wrong word per sentence). Data: `sentences/data.js`.
+
+`tables/` asks you to fill in conjugation tables (present or future, past), noun declension tables (singular and plural) and the personal pronoun table, with a few gaps, half or the whole table. Data: `tables/data.js`.
+
+Both lines record progress per exercise type with the coach, and wrong answers come back after 1, 3, 7 and 21 days. They are not part of the grammar level estimate.
+
 ### Daily mix and placement test
 
 `mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.

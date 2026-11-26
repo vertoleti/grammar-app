@@ -314,6 +314,81 @@ window.CATALOG = [
   "total": 75
  },
  {
+  "id": "sent",
+  "href": "sentences/",
+  "n": 9,
+  "c": "#3949ab",
+  "ru": "Предложения",
+  "en": "Sentences",
+  "d": "Translate, word order, dictation, find the mistake",
+  "group": "practice",
+  "practice": "sentences",
+  "modes": [
+   {
+    "k": "tr",
+    "name": "Перевод · Translate"
+   },
+   {
+    "k": "order",
+    "name": "Порядок слов · Word order"
+   },
+   {
+    "k": "dict",
+    "name": "Диктант · Dictation"
+   },
+   {
+    "k": "err",
+    "name": "Найди ошибку · Find the mistake"
+   }
+  ],
+  "total": 117,
+  "unit": "sentences",
+  "levels": {
+   "A1": 26,
+   "A2": 27,
+   "B1": 28,
+   "B2": 22,
+   "C1": 14
+  }
+ },
+ {
+  "id": "tables",
+  "href": "tables/",
+  "n": 10,
+  "c": "#5d7a00",
+  "ru": "Таблицы",
+  "en": "Tables",
+  "d": "Fill in conjugation and declension tables",
+  "group": "practice",
+  "practice": "tables",
+  "modes": [
+   {
+    "k": "pres",
+    "name": "Спряжение · Present and future"
+   },
+   {
+    "k": "past",
+    "name": "Прошедшее время · Past tense"
+   },
+   {
+    "k": "noun",
+    "name": "Склонение · Nouns"
+   },
+   {
+    "k": "pron",
+    "name": "Местоимения · Pronouns"
+   }
+  ],
+  "total": 72,
+  "unit": "verbs, nouns and pronouns",
+  "levels": {
+   "A1": 11,
+   "A2": 21,
+   "B1": 26,
+   "B2": 13
+  }
+ },
+ {
   "id": "voc",
   "href": "vocabulary/",
   "n": 6,

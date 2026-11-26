@@ -144,3 +144,23 @@ multi('placement','buildPlacement','#3d3d3d','Тест на уровень','Pla
  'Find your Russian grammar level in 16 questions.',
  '<h2>How the test works</h2><div class="cols"><div><p>Four questions at each level from A1 to B2, easiest first, drawn from all the grammar lines. You pass a level with 3 of 4 right; the test places you at the highest level you pass without a gap.</p></div><div><p>At the end you can accept the result: your level is set to the next one up, and topics at and below your level are marked as known so the coach doesn’t send you back to them. You can retake it any time.</p></div></div>',True)
 print('multi ok')
+
+# ---------- practice lines with their own scripts: Sentences and Tables ----------
+import re
+def practice(slug,v,aside,keys):
+    h=T.format(**v)
+    h=re.sub(r'<aside class="ctrls" data-sheet>.*?</aside>','<aside class="ctrls" data-sheet>'+aside+'</aside>',h,flags=re.S)
+    h=h.replace('<script src="../shared/engine.js"></script>','<script src="app.js"></script>')
+    h=re.sub(r'<p class="keys">.*?</p>','<p class="keys">'+keys+'</p>',h)
+    os.makedirs(slug,exist_ok=True); open(f'{slug}/index.html','w').write(h)
+LV='<section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>'
+NOTE='<p class="note">Progress is saved in this browser. <a href="../profile/">Sign in to keep it on every device · Профиль</a></p>'
+practice('sentences',dict(num='9',color='#3949ab',title='Предложения',en='Sentences',sub='translate, order, dictation, mistakes',desc='Whole-sentence Russian practice: translate, put words in order, write what you hear, find the mistake.',
+ cheat='<div class="cols"><div><h3>How answers are checked</h3><p>Translations are checked word by word. Russian word order is flexible, so the same words in another order count as right. A one-letter slip in a long word counts as right and is shown. If your translation is right but different from ours, tap <b>My answer was right too</b>.</p></div><div><h3>Finding mistakes</h3><p>Every sentence has exactly one wrong word: usually an ending (case, agreement, person), sometimes aspect or a missing не. Check what the verb or preposition needs, then whether the endings agree.</p></div></div>'),
+ LV+'<section class="grp" data-all="Recommended"><h3>Exercise · Упражнение</h3><div class="seg list" id="topics" role="group" aria-label="Exercise"></div></section><section class="grp" data-fmt="{v} per round"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>'+NOTE,
+ 'Keyboard: <kbd>Enter</kbd> to check and for the next station')
+practice('tables',dict(num='10',color='#5d7a00',title='Таблицы',en='Tables',sub='conjugation and declension',desc='Fill in Russian conjugation and declension tables: irregular verbs, nouns and pronouns.',
+ cheat='<div class="cols"><div><h3>Verb patterns to watch</h3><p>Consonant changes in the я-form only: видеть → вижу, сидеть → сижу, платить → плачу, готовить → готовлю, любить → люблю. In some verbs the change runs through every form: писать → пишу, пишешь; плакать → плачу, плачешь; искать → ищу, ищешь. Perfective verbs have no present: their person forms are the future.</p></div><div><h3>Noun patterns to watch</h3><p>Fleeting vowels: день → дня, ребёнок → ребёнка. Plurals with -ья: брат → братья, друг → друзья, стул → стулья. Different stems: человек → люди, ребёнок → дети, мать → матери, имя → имени. Animate plurals use the genitive in the accusative.</p></div></div>'),
+ LV+'<section class="grp" data-all="Recommended"><h3>Table · Таблица</h3><div class="seg list" id="topics" role="group" aria-label="Table"></div></section><section class="grp" data-fmt="{v}"><h3>Gaps · Пропуски</h3><div class="seg segctl" id="gaps" role="group" aria-label="Gaps"></div></section><section class="grp" data-fmt="{v} per round"><h3>Tables per round · Таблиц в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Tables per round"></div></section>'+NOTE,
+ '<kbd>Enter</kbd> moves to the next gap, then checks the table')
+print('practice ok')

@@ -109,7 +109,7 @@ function draw(){
   // totals
   const log=LS.get('gr-log',{});let ans=0,ok=0,cards=0;Object.values(log).forEach(d=>{ans+=d.a||0;ok+=d.ok||0;cards+=d.c||0});
   const srs=LS.get('voc-srs',{}),learned=new Set(Object.entries(srs).filter(([,v])=>v.q==='review').map(([k])=>k.split('|')[0])).size;
-  let mastered=0,topics=0,due=0;window.CATALOG.filter(x=>x.topics).forEach(L=>{const s=C.stats(L.id);L.topics.forEach(tp=>{topics++;if(C.state(L.id,tp.k,s).st==='mastered')mastered++});due+=C.dueReviews(L.id).length});
+  let mastered=0,topics=0,due=0;window.CATALOG.filter(x=>x.topics).forEach(L=>{const s=C.stats(L.id);L.topics.forEach(tp=>{topics++;if(C.state(L.id,tp.k,s).st==='mastered')mastered++});due+=C.dueReviews(L.id).length});window.CATALOG.filter(x=>x.practice).forEach(L=>{due+=C.dueReviews(L.id).length});
   const est=C.estimate(window.CATALOG.filter(x=>x.topics));
   $('nums').innerHTML=[[ans,'answers'],[ans?Math.round(ok/ans*100)+'%':'—','right'],[learned,'words learned'],[`${mastered}/${topics}`,'topics mastered'],[due,'mistakes due'],[est.reached||'—','grammar level']].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
   calendar(log,t.goal);act(log);lvl();
