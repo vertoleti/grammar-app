@@ -6,7 +6,7 @@
    - optionally syncs through a private GitHub Gist, so phone and computer share progress.
    Load it before any other script on the page. */
 (function () {
-  const PREFIXES = ['vom-', 'cases-', 'aspect-', 'numbers-', 'advanced-', 'voc-', 'gr-'];
+  const PREFIXES = ['vom-', 'cases-', 'aspect-', 'numbers-', 'advanced-', 'prep-', 'compare-', 'voc-', 'gr-'];
   const META = 'gr-meta', SYNC = 'gr-sync', FILE = 'grammar-app-progress.json';
   const SKIP = new Set([META, SYNC]);
   const tracked = k => typeof k === 'string' && !SKIP.has(k) && PREFIXES.some(p => k.startsWith(p));

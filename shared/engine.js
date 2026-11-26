@@ -17,7 +17,9 @@ const LS = {
 };
 const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
 const SIZES = [5, 10, 20, 30, 0];
-const TOP = Object.assign({ all: 'All' }, EX.topics, { miss: 'My mistakes' });
+const TOP = Object.assign({ smart: 'Рекомендуем · Recommended', all: 'Все темы · All topics' }, EX.topics, { miss: 'Мои ошибки · My mistakes' });
+const COACH = window.GRCoach;
+const NAMES = Object.assign({}, EX.topics);
 const miss = new Set(LS.get(EX.id + '-miss', []));
 const seen = new Set(LS.get(EX.id + '-seen', []));
 let st, lastScore = [];
@@ -36,7 +38,7 @@ function reveal(el) {
 }
 function poolFor(t, lv) {
   lv = lv || st.level;
-  return Q.map((q, k) => k).filter(k => (lv === 'all' || Q[k].lv === lv) && (t === 'all' || (t === 'miss' ? miss.has(Q[k].ru) : Q[k].t === t)));
+  return Q.map((q, k) => k).filter(k => (lv === 'all' || Q[k].lv === lv) && (t === 'all' || t === 'smart' || (t === 'miss' ? miss.has(Q[k].ru) : Q[k].t === t)));
 }
 function enterQ() {
   const q = cur(); if (!q) return;
@@ -48,19 +50,33 @@ function enterQ() {
   st.fo = shuf([ans, ...others]);
 }
 function newRound() {
-  const pool = poolFor(st.topic);
-  const want = st.size ? Math.min(st.size, pool.length) : pool.length;
-  let fresh = pool.filter(k => !seen.has(Q[k].ru));
-  if (fresh.length < want) { pool.forEach(k => seen.delete(Q[k].ru)); fresh = pool.slice(); }
-  const pick = shuf(fresh).slice(0, want);
+  let pick;
+  st.frontier = null;
+  if (st.topic === 'smart' && COACH) {
+    const want = st.size || 20;
+    const r = COACH.smartPick(EX.id, Q, want, seen, st.level);
+    pick = r.picks; st.frontier = r.frontier;
+  } else {
+    const pool = poolFor(st.topic);
+    const want = st.size ? Math.min(st.size, pool.length) : pool.length;
+    let fresh = pool.filter(k => !seen.has(Q[k].ru));
+    if (fresh.length < want) { pool.forEach(k => seen.delete(Q[k].ru)); fresh = pool.slice(); }
+    pick = shuf(fresh).slice(0, want);
+  }
   st.round = shuf(pick); st.i = 0; st.res = [];
+  if (COACH) { const s = COACH.stats(EX.id); st.before = {}; [...new Set(st.round.map(k => Q[k].t))].forEach(t => { st.before[t] = COACH.state(EX.id, t, s).pct; }); }
   enterQ(); st.fx = 'card'; render();
 }
 
 function renderControls() {
   $('lvls').innerHTML = `<button id="l-all" data-l="all" aria-pressed="${st.level === 'all'}">All<small>${poolFor('all', 'all').length}</small></button>` +
     LEVELS.map(l => `<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level === l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all', l.code).length}</small></button>`).join('');
-  $('topics').innerHTML = Object.entries(TOP).map(([k, v]) => `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}">${v}<small>${poolFor(k).length}</small></button>`).join('');
+  const cs = COACH ? COACH.stats(EX.id) : {};
+  $('topics').innerHTML = Object.entries(TOP).map(([k, v]) => {
+    const real = EX.topics[k], m = real && COACH ? COACH.state(EX.id, k, cs) : null;
+    const extra = m && m.pct !== null ? ` · ${m.pct}%` : '';
+    return `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}"${m ? ` data-st="${m.st}" title="${COACH.LABEL[m.st]}"` : ''}>${v}<small>${poolFor(k).length}${extra}</small></button>`;
+  }).join('');
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === st.mode));
   $('sizes').innerHTML = SIZES.map(n => `<button id="n-${n || 'all'}" data-n="${n}" aria-pressed="${n === st.size}">${n || 'All'}</button>`).join('');
 }
@@ -89,6 +105,7 @@ function render() {
 }
 
 function emptyHTML() {
+  if (st.topic === 'smart') return `<p class="meta"><span>${TOP.smart}</span></p><p class="ru" style="font-size:24px">Nothing to recommend at this level.</p><p class="en">Pick another level, or practise all topics.</p><button class="btn go" data-act="level" data-k="all">Show all levels</button>`;
   if (st.topic !== 'miss') return `<p class="meta"><span>${TOP[st.topic]}</span></p><p class="ru" style="font-size:24px">No sentences at this level here.</p><p class="en">This topic has no ${st.level} sentences. Pick another level or topic.</p><button class="btn go" data-act="level" data-k="all">Show all levels</button>`;
   return `<p class="meta"><span>My mistakes</span></p><p class="ru" style="font-size:24px">Nothing to review yet.</p><p class="en">Every sentence you get wrong is saved here, and it leaves the list once you answer it fully right.</p><button class="btn go" data-act="topic" data-k="all">Practise all sentences</button>`;
 }
@@ -99,7 +116,7 @@ function qHTML() {
   const [a, b] = q.ru.split('___');
   const ans = q.forms[q.a2], right1 = q.o1[q.a1];
   let gap = q.hint ? `<span class="hint">${q.hint}</span>` : '?', gc = '';
-  if (st.step === 3) { gap = ans; gc = (r.f ? 'ok' : 'bad') + (fx === 'f' ? ' pop' : ''); }
+  if (st.step === 3) { gap = EX.gapPrefix ? optLabel(right1) + ' ' + ans : ans; gc = (r.f ? 'ok' : 'bad') + (fx === 'f' ? ' pop' : ''); }
   const fxc = ok => ok ? ' pop' : ' shake';
   const b1 = st.o1.map((k, n) => {
     const o = q.o1[k]; let c = '';
@@ -116,11 +133,11 @@ function qHTML() {
     } else if (st.step === 2) {
       body = `<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
     } else body = `<p class="quick ${r.f ? 'ok' : 'bad'}">${r.f ? 'Right: ' : `You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
-    s2 = `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
+    s2 = `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
   }
   if (st.step === 3) {
     const R = EX.rules[q.rule], open = st.open;
-    const nots = q.o1.map((o, k) => k === q.a1 ? '' : `<li><b>${optLabel(o)}</b>${o.label ? ` (${opt(o).name})` : ''}: ${opt(o).use}</li>`).join('');
+    const nots = q.o1.map((o, k) => k === q.a1 ? '' : `<li><b>${optLabel(o)}</b>${o.label && opt(o).name !== o.label ? ` (${opt(o).name})` : ''}: ${opt(o).use}</li>`).join('');
     const table = q.labels ? `<table class="par casetbl" aria-label="All forms">${q.labels.map((l, k) => q.forms[k] === undefined ? '' : `<tr class="${k === q.a2 ? 'hit' : q.forms[k] === st.pickF && q.forms[k] !== ans ? 'miss' : ''}"><td>${l}</td><td>${q.forms[k]}</td></tr>`).join('')}</table>` : '';
     exp = `<div class="sum ${fx === 'f' ? 'in' : ''}" id="exp">
 <p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
@@ -130,12 +147,13 @@ function qHTML() {
 <div class="panel ${open ? 'open' : ''}" id="panel" ${open ? '' : 'inert'}><div><div class="exp">
 <section><h3>The rule</h3><p class="rt">${R[0]}</p><p>${R[1]}</p><p class="idn">Example: ${R[2]}</p></section>
 <section><h3>In this sentence</h3><p>${q.cue ? `Signal: <mark>${q.cue}</mark>. ` : ''}${q.en}${q.note ? ` ${q.note}` : ''}</p></section>
-<section><h3>Why ${optLabel(right1)}</h3><p>${right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
+<section><h3>Why ${optLabel(right1)}</h3><p>${right1.label && opt(right1).name !== right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
 <section class="formgrid"><div><h3>The form</h3><p>${q.fnote || ''}</p></div>${table}</section></div></div></div>
 <div class="dock"><span>${r.a && r.f ? 'Both right ✓' : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
-  return `<div class="meta"><span>${q.lv} · ${TOP[q.t]}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
+  const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === 1 ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
+  return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (NAMES[q.t] || TOP[q.t]) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
 <p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>
 <div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>${s2}${exp}`;
 }
@@ -146,11 +164,31 @@ function endHTML() {
   const ms = st.round.map((k, j) => ({ q: Q[k], r: st.res[j] })).filter(o => !(o.r.a && o.r.f));
   return `<p class="meta"><span>End of the line</span></p><p class="big">${tot}/${n * 2}</p>
 <p>${tot === n * 2 ? 'A perfect ride: every choice and every form right.' : `You got ${st.res.filter(r => r.a).length} of ${n} choices and ${st.res.filter(r => r.f).length} of ${n} forms right.`}</p>
-${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="ru">${o.q.ru.replace('___', '<b>' + o.q.forms[o.q.a2] + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
-<button class="btn go" data-act="new" id="again">New round</button>`;
+${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="ru">${o.q.ru.replace('___', '<b>' + (EX.gapPrefix ? optLabel(o.q.o1[o.q.a1]) + ' ' : '') + o.q.forms[o.q.a2] + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
+${report()}
+<div class="btns" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px"><button class="btn go" data-act="new" id="again">${st.topic === 'smart' ? 'Next recommended round' : 'New round'}</button>${nextButtons()}</div>`;
+}
+function report() {
+  if (!COACH) return '';
+  const s = COACH.stats(EX.id), tops = [...new Set(st.round.map(k => Q[k].t))];
+  const rows = tops.map(t => {
+    const a = COACH.state(EX.id, t, s), b = st.before ? st.before[t] : null;
+    const ch = b === null || b === undefined ? '' : a.pct > b ? ' up' : a.pct < b ? ' down' : '';
+    return `<li><span>${NAMES[t]}</span><span class="mstate" data-st="${a.st}">${b === null || b === undefined ? '' : b + '% → '}<b class="${ch}">${a.pct}%</b> · ${COACH.LABEL[a.st]}</span></li>`;
+  }).join('');
+  const nx = COACH.nextStep(EX.id, Q, NAMES, st.level);
+  st.next = nx;
+  return `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul><p class="coachline">${nx.text}</p>`;
+}
+function nextButtons() {
+  const nx = st.next; if (!nx) return '';
+  if (nx.kind === 'up') return `<button class="btn" data-act="up" data-k="${nx.level}">Move up to ${nx.level}</button>`;
+  if (nx.topic && nx.topic !== st.topic) return `<button class="btn" data-act="topic" data-k="${nx.topic}">Practise ${NAMES[nx.topic].split(' · ')[0]}</button>`;
+  return '';
 }
 
 function track(q, ok) {
+  if (COACH) COACH.record(EX.id, q.t, ok);
   seen.add(q.ru); LS.set(EX.id + '-seen', [...seen]);
   if (ok) miss.delete(q.ru); else miss.add(q.ru);
   LS.set(EX.id + '-miss', [...miss]);
@@ -200,6 +238,7 @@ $('card').addEventListener('click', e => {
   else if (a === 'topic') setTopic(b.dataset.k);
   else if (a === 'more') toggleMore();
   else if (a === 'level') setLevel(b.dataset.k);
+  else if (a === 'up') { st.topic = 'smart'; savePrefs(); setLevel(b.dataset.k); }
 });
 $('card').addEventListener('submit', e => { e.preventDefault(); const v = $('ans').value; if (!v.trim()) return; pickF(v); });
 document.addEventListener('keydown', e => {
@@ -218,7 +257,8 @@ $('sizes').addEventListener('click', e => { const b = e.target.closest('button')
 const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
 const lvPref = LS.get('gr-level', 'all');
-st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[prefs.topic] ? prefs.topic : 'all', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true };
+const hashT = decodeURIComponent((location.hash || '').slice(1));
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
 }

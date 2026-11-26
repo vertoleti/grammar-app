@@ -14,6 +14,8 @@ Live site: https://vertoleti.github.io/grammar-app/
 | 4 Числа | `numbers/` | 78 | counting, age, time, money, много/мало/сколько |
 | 5 Продвинутый уровень | `advanced/` | 75 | participles, verbal adverbs, -ся verbs, бы and чтобы |
 | 6 Словарь | `vocabulary/` | 448 words | Anki-style flashcards, A1–C2, by theme |
+| 7 Предлоги | `prep/` | 43 | where, where to, where from, у/к/от, time, other prepositions |
+| 8 Сравнение и краткие формы | `compare/` | 35 | comparatives, superlatives, short adjectives, adjective or adverb |
 
 ### CEFR levels
 
@@ -21,12 +23,18 @@ Every task and every word has a level. Grammar topics are levelled in each `data
 
 | Level | Grammar tasks | Words |
 |---|---|---|
-| A1 | 83 | 88 |
-| A2 | 194 | 181 |
-| B1 | 198 | 83 |
-| B2 | 82 | 58 |
-| C1 | 2 | 26 |
-| C2 | – | 12 |
+| A1 | see the home page | 88 |
+
+### The coach
+
+`shared/coach.js` keeps the last 12 answers for every topic (`<exercise>-stats` in localStorage). A topic is *mastered* at 85 % or better over at least 8 answers, *good* at 65 %, otherwise *needs work*.
+
+- **Recommended rounds** (the default topic on every exercise page) skip mastered topics, weight weak and new ones, and add the next CEFR level once the current one is solid.
+- After every round a report shows each topic's change and the next step.
+- The home page estimates your grammar level (a level counts as reached when 70 % of its topics are good or mastered), suggests up to three next steps, and shows a skill map of every topic.
+- The topic name and tense stay hidden until you have answered.
+
+`shared/catalog.js` lists every line and topic for the home page. It is generated: run `node tools/build_catalog.js` after changing any `data.js`.
 
 ### Vocabulary (Словарь)
 
@@ -51,9 +59,16 @@ Every exercise has: topic filters, a "My mistakes" review list, choose or type t
 
 Plain static files, no build step. `shared/ui.css` and `shared/ui.js` turn each page's settings into a bottom sheet on phones and a sidebar on computers. `shared/levels.js` holds the CEFR names and `shared/progress.js` the progress storage; every page loads both. Lines 2–5 share `shared/engine.js` and `shared/engine.css`; each has an `index.html` (header and cheat sheet) and a `data.js` with its sentences, rules and explanations. Line 1 is a self-contained page that generates every verb form from rules. `manifest.webmanifest` makes the site installable and `sw.js` keeps it working offline.
 
+### Tools
+
+- `node tools/validate.js` checks every exercise's data; `node tools/check_vom.js` checks verbs of motion.
+- `python3 tools/build_pages.py` regenerates the exercise pages; `python3 tools/build_vom.py` builds `verbs-of-motion/index.html` from `tools/verbs-of-motion.src.html`.
+- `node tools/build_catalog.js` regenerates the home page catalog.
+- `tools/test_rounds.py` and `tools/test_coach.py` are browser tests (Playwright) against a local server on port 8765.
+
 ### Adding sentences
 
-Each `data.js` has a `DATA` block with one sentence per line; the comment at the top of the file explains the fields. Add a line, then bump `VERSION` in `sw.js` so installed copies update.
+Each `data.js` has a `DATA` block with one sentence per line; the comment at the top of the file explains the fields. Add a line, run `node tools/build_catalog.js`, then bump `VERSION` in `sw.js` so installed copies update.
 
 ### Adding an exercise
 

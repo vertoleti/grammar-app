@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сравнение и краткие формы</title>
+<meta name="description" content="Practise Russian comparatives, superlatives, short adjectives and adverbs.">
+<meta name="theme-color" content="#c2185b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
+<style>:root{--red:#c2185b}.m{color:#c2185b}</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">8</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Сравнение и краткие формы</h1><p class="sub">Comparison and short forms · pick the form type, then the word · <span id="count"></span> sentences</p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
+    </aside>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet</h2>
+<div class="cols"><div><h3>Comparatives and superlatives</h3><div class="tbl"><table><thead><tr><th>Adjective</th><th>Comparative</th><th>Superlative</th></tr></thead><tbody><tr><td>хороший</td><td>лучше</td><td>лучший, самый лучший</td></tr><tr><td>плохой</td><td>хуже</td><td>худший</td></tr><tr><td>большой</td><td>больше</td><td>самый большой</td></tr><tr><td>маленький</td><td>меньше</td><td>самый маленький</td></tr><tr><td>дешёвый</td><td>дешевле</td><td>самый дешёвый</td></tr><tr><td>высокий</td><td>выше</td><td>самый высокий</td></tr><tr><td>тёплый</td><td>теплее</td><td>самый тёплый</td></tr></tbody></table></div></div><div><h3>Which form when</h3><div class="tbl"><table><thead><tr><th>Form</th><th>Use</th><th>Example</th></tr></thead><tbody><tr><td>short comparative</td><td>after the noun, with чем or genitive</td><td>Он выше меня</td></tr><tr><td>более + adjective</td><td>before a noun</td><td>более тёплая куртка</td></tr><tr><td>short adjective</td><td>temporary state; рад, должен, прав</td><td>Я занят</td></tr><tr><td>full adjective</td><td>describes a noun</td><td>холодная погода</td></tr><tr><td>adverb in -о</td><td>describes a verb, or a state</td><td>говорит хорошо, холодно</td></tr></tbody></table></div></div></div>
+  </div>
+</section>
+<script src="../shared/levels.js"></script>
+<script src="data.js"></script>
+<script src="../shared/coach.js"></script>
+<script src="../shared/ui.js"></script>
+<script src="../shared/engine.js"></script>
+</body>
+</html>

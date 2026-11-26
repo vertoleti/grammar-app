@@ -1,11 +1,11 @@
 // Offline support for Грамматика. Bump VERSION whenever files change.
-const VERSION = 'grammar-v4';
+const VERSION = 'grammar-v5';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'verbs-of-motion/', 'verbs-of-motion/index.html',
-  'shared/engine.css', 'shared/engine.js', 'shared/progress.js', 'shared/levels.js', 'shared/ui.css', 'shared/ui.js',
+  'shared/engine.css', 'shared/engine.js', 'shared/progress.js', 'shared/levels.js', 'shared/ui.css', 'shared/ui.js', 'shared/coach.js', 'shared/catalog.js',
   'vocabulary/', 'vocabulary/vocab.js', 'vocabulary/decks/ru-core.tsv', 'vocabulary/decks/ru-levels.tsv',
-  'cases/', 'cases/data.js', 'aspect/', 'aspect/data.js', 'numbers/', 'numbers/data.js', 'advanced/', 'advanced/data.js',
+  'cases/', 'cases/data.js', 'aspect/', 'aspect/data.js', 'numbers/', 'numbers/data.js', 'advanced/', 'advanced/data.js', 'prep/', 'prep/data.js', 'compare/', 'compare/data.js',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png', 'icons/favicon-32.png'
 ];
 

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Глаголы движения</title>
+<meta name="description" content="Practise Russian verbs of motion: pick the right verb, then the right form, with a full explanation for every answer.">
+<meta name="theme-color" content="#d4202c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Движение">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday study tool: calm, clear, a little bit of Moscow
+   IDEA a metro line: each question is a station, the round is a ride
+   PICTURE the red line band with stations and a moving train, above a large exercise card
+   COLOUR white ground, metro red band, ink black, blue for focus, green/red for verdicts
+   TYPE Unbounded (Cyrillic display) + PT Sans (made for Russian text)
+   LAYOUT red band with title, score and line; card full width under it; cheat sheet in two columns below, stacked on phones */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121214);--ink:light-dark(#141414,#f2f0ee);--mute:light-dark(#5d5853,#a9a4a0);--soft:light-dark(#f5f2ef,#1c1b1f);--line:light-dark(#dcd6d0,#38353b);--red:light-dark(#d4202c,#b81b26);--blue:light-dark(#0b5cad,#7ab4f5);--ok:light-dark(#13804a,#55d08f);--bad:light-dark(#c4122b,#ff7f89);--okbg:light-dark(#e6f5ec,#13281d);--badbg:light-dark(#fdecee,#2e1518);--mark:light-dark(#fff1a8,#4a3f0c)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.55 "PT Sans",system-ui,sans-serif;overflow-x:clip}
+.band{padding-block:clamp(24px,4vw,48px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1000px;margin:0 auto}
+h1,h2,.big{font-family:Unbounded,"PT Sans",sans-serif;letter-spacing:-.02em;line-height:1.05}
+.top{background:var(--red);color:#fff;padding-bottom:28px;padding-top:max(clamp(24px,4vw,48px),calc(env(safe-area-inset-top) + 16px))}
+.head{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:16px;align-items:center}
+.m{flex:none;width:56px;height:56px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;font:700 30px/1 Unbounded,sans-serif}
+h1{font-size:clamp(28px,5vw,44px);margin:0;font-weight:700;text-wrap:balance}
+.sub{margin:4px 0 0;opacity:.92}
+.score{display:flex;gap:22px;flex-wrap:wrap}
+.score div{display:flex;flex-direction:column}
+.score b{font:700 26px/1.1 Unbounded,sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums}
+.score span{font-size:14px;opacity:.92}
+.track{position:relative;margin-top:30px;height:34px}
+.rail{position:absolute;left:12px;right:12px;top:15px;height:5px;background:rgba(255,255,255,.45);border-radius:3px}
+.rail i{position:absolute;inset:0 auto 0 0;background:#fff;border-radius:3px;transition:width .5s ease}
+.stops{position:absolute;inset:0;display:flex;justify-content:space-between}
+.st{width:24px;height:24px;margin-top:5px;border-radius:50%;background:var(--red);border:4px solid rgba(255,255,255,.6);transition:transform .3s}
+.st.ok{background:#fff;border-color:#fff}
+.st.bad{background:#2a0507;border-color:#fff}
+.st.now{transform:scale(1.35);border-color:#fff;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.3)}
+.ctrls{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button,.btn,.opt{font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:999px;min-height:44px;padding:6px 16px;cursor:pointer}
+.seg button small{color:var(--mute);margin-left:4px;font-size:14px}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button[aria-pressed=true] small{color:inherit;opacity:.75}
+button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.card{background:var(--soft);border-radius:20px;padding:clamp(18px,4vw,40px)}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--mute);font-size:15px;margin:0}
+.ru{font-size:clamp(24px,4.2vw,36px);line-height:1.3;margin:14px 0 6px;font-weight:700}
+.ru mark{background:var(--mark);color:inherit;border-radius:4px;padding:0 3px}
+.gap{display:inline-block;min-width:3.2em;border-bottom:4px solid var(--red);color:var(--red);text-align:center;padding:0 6px}
+.gap.ok{color:var(--ok);border-color:var(--ok)}
+.gap.bad{color:var(--bad);border-color:var(--bad)}
+.en{color:var(--mute);margin:0 0 22px;font-size:18px}
+.step{border-top:2px solid var(--line);padding-top:18px;margin-top:18px}
+.step>h2{font-size:18px;font-weight:500;margin:0 0 14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.step>h2 b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-size:15px}
+.step>h2 em{font-style:normal;font-family:"PT Sans",sans-serif;font-weight:700;font-size:21px;letter-spacing:0}
+.tag{font:400 15px "PT Sans",sans-serif;letter-spacing:0;color:var(--mute)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:10px}
+.opt{border-radius:14px;font-size:20px;min-height:54px;text-align:center;position:relative}
+.opt kbd{position:absolute;left:10px;top:6px;font:12px "PT Sans",sans-serif;color:var(--mute)}
+.opt:disabled{cursor:default;opacity:.55}
+.opt.ok{opacity:1;border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:700}
+.opt.bad{opacity:1;border-color:var(--bad);background:var(--badbg);color:var(--bad);text-decoration:line-through}
+.exp{margin-top:16px;background:var(--bg);border-radius:14px;padding:4px 18px 14px}
+.exp section{padding-top:12px}
+.exp section+section{border-top:1px solid var(--line);margin-top:12px}
+.exp h3{font:700 14px "PT Sans",sans-serif;color:var(--mute);margin:0 0 4px}
+.exp p{margin:0 0 6px}
+.verdict{font-weight:700;font-size:18px}
+.verdict.ok{color:var(--ok)}
+.verdict.bad{color:var(--bad)}
+.rt{font-weight:700}
+.idn{color:var(--mute);font-size:15px}
+.nots{list-style:none;margin:0;padding:0}
+.nots li{padding:5px 0}
+.nots b{white-space:nowrap}
+form.type{display:flex;gap:10px;flex-wrap:wrap}
+form.type input{flex:1 1 220px;font:20px "PT Sans",sans-serif;min-height:54px;padding:8px 16px;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink)}
+.note{font-size:14px;color:var(--mute);margin:8px 0 0}
+.btn.go{background:var(--red);border-color:var(--red);color:#fff;font-weight:700;padding-inline:26px}
+.after{display:flex;flex-wrap:wrap;gap:18px 32px;align-items:flex-end;justify-content:space-between;margin-top:14px}
+table{border-collapse:collapse}
+.par td{padding:4px 18px 4px 0;font-size:18px;white-space:nowrap}
+.par td:first-child{color:var(--mute);width:5.5em}
+.par tr.hit td:last-child{color:var(--ok);font-weight:700}
+.par tr.miss td:last-child{color:var(--bad);text-decoration:line-through}
+.big{font-size:clamp(52px,10vw,84px);margin:8px 0 4px;color:var(--red)}
+.misses{list-style:none;padding:0;margin:18px 0}
+.misses li{padding:10px 0;border-top:1px solid var(--line)}
+.misses b{color:var(--ok)}
+.ref{border-top:1px solid var(--line)}
+.ref h2{font-size:clamp(24px,3.4vw,32px);margin:0 0 8px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 48px;margin-top:20px}
+.cols h3{font:700 17px "PT Sans",sans-serif;margin:0 0 10px}
+.rules{margin:0;padding-left:1.2em}
+.rules li{margin-bottom:6px}
+.tbl{overflow-x:auto}
+.tbl table{width:100%;font-size:16px}
+.tbl th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:6px 10px 6px 0}
+.tbl td{border-bottom:1px solid var(--line);padding:6px 10px 6px 0}
+.tbl td:not(:last-child){white-space:nowrap}
+html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
+.ctrls .row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.ctrls .lbl{font-size:15px;color:var(--mute)}
+#sizes{display:inline-flex;flex-wrap:nowrap;gap:0;background:var(--soft);border-radius:999px;padding:4px}
+#sizes button{border:0;background:transparent;min-height:40px;min-width:48px;padding:6px 12px}
+#sizes button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.track.long{height:50px}
+.track .cnt{position:absolute;left:12px;top:28px;font-size:14px;opacity:.92;font-variant-numeric:tabular-nums}
+button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.seg button,.btn,.opt{transition:background-color .2s,border-color .2s,color .2s,transform .12s,opacity .2s}
+.opt:active:not(:disabled),.btn:active,.seg button:active{transform:scale(.97)}
+@media(hover:hover){.seg button:hover,.opt:hover:not(:disabled){border-color:var(--blue)}}
+#modes{display:inline-flex;flex-wrap:nowrap;gap:0;align-self:flex-start;background:var(--soft);border-radius:999px;padding:4px}
+#modes button{border:0;background:transparent;min-height:40px}
+#modes button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.quick{margin:14px 0 0;font-weight:700}
+.quick.ok{color:var(--ok)}
+.quick.bad{color:var(--bad)}
+.quick span{font-weight:400;color:var(--mute)}
+.sum{margin-top:16px;background:var(--bg);border-radius:14px;padding:14px 18px}
+.sum .verdict{margin:0 0 2px;font-size:19px}
+.sum .verdict span{font-weight:400;color:var(--mute);font-size:16px}
+.sum .rt{margin:8px 0 0;color:var(--mute);font-weight:400}
+.more{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:12px;min-height:46px;padding:8px 14px;font:700 16px "PT Sans",sans-serif;color:var(--blue);background:var(--soft);border:0;border-radius:12px;cursor:pointer;transition:background-color .2s}
+.more i{width:10px;height:10px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+.more[aria-expanded=true] i{transform:translateY(2px) rotate(-135deg)}
+.panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.2,.8,.2,1),opacity .3s;opacity:0}
+.panel>div{overflow:hidden}
+.panel.open{grid-template-rows:1fr;opacity:1}
+.panel .exp{margin-top:10px}
+.formgrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 32px;align-items:start}
+.dock{position:sticky;bottom:max(12px,env(safe-area-inset-bottom));z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;padding:8px 8px 8px 20px;background:var(--ink);color:var(--bg);border-radius:999px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.dock .btn.go{min-height:48px;white-space:nowrap}
+.dock span{white-space:nowrap;font-variant-numeric:tabular-nums}
+.in{animation:rise .4s cubic-bezier(.2,.8,.2,1) both}
+.card.enter{animation:slide .42s cubic-bezier(.2,.8,.2,1) both}
+.card.leave{animation:leave .17s ease-in both}
+.pop{animation:pop .42s cubic-bezier(.3,1.6,.5,1)}
+.shake{animation:shake .4s}
+.bump{animation:pop .42s cubic-bezier(.3,1.6,.5,1)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+@keyframes slide{from{opacity:0;transform:translateX(28px)}}
+@keyframes leave{to{opacity:0;transform:translateX(-28px)}}
+@keyframes pop{40%{transform:scale(1.07)}}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+@media(max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.top{padding-bottom:20px}.score{gap:16px}.score b{font-size:21px}.m{width:46px;height:46px;font-size:24px}.st{width:18px;height:18px;border-width:3px;margin-top:8px}.opt{font-size:18px}.opt kbd{display:none}.exp{padding-inline:14px}.formgrid{grid-template-columns:minmax(0,1fr)}#topics{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 2px;scrollbar-width:none}#topics::-webkit-scrollbar{display:none}#topics button{flex:none;scroll-snap-align:start}.dock{padding-left:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel,.more i{transition:none}.rail i,.st{transition:none}.in,.card.enter,.card.leave,.pop,.shake,.bump{animation:none}}
+</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><div class="m" aria-hidden="true">М</div><div><h1>Глаголы движения</h1><p class="sub" id="sub">Verbs of motion: pick the verb, then the form</p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+    </aside>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet</h2>
+    <div class="cols">
+      <div>
+        <h3>When to use which</h3>
+        <ol class="rules">
+          <li><b>Unidirectional</b> (идти, ехать…): one trip, one direction, in progress now or at a moment in the past; also a firm near-future plan (Завтра я лечу в Рим).</li>
+          <li><b>Multidirectional</b> (ходить, ездить…): habits, a round trip in the past (Вчера я ходил в кино = went and came back), ability, and movement around a place.</li>
+          <li><b>Prefixes</b> add a direction. On the unidirectional stem they make a perfective (прийти, уехать); on the multidirectional stem an imperfective (приходить, уезжать).</li>
+          <li><b>Prefixed aspect:</b> perfective for one completed motion (Он пришёл = he is here); imperfective for habits, motion in progress, and visits that were undone (Он приходил = he came and left).</li>
+          <li><b>Foot or transport?</b> идти/ходить only on foot; ехать/ездить whenever you use a vehicle, even inside a city.</li>
+        </ol>
+        <div class="tbl" style="margin-top:20px">
+          <table>
+            <thead><tr><th>One way</th><th>Many ways</th><th>Meaning</th></tr></thead>
+            <tbody id="pairs"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Prefix</th><th>Example</th><th>Meaning</th></tr></thead>
+          <tbody id="prefs"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="levels.js"></script>
+<script>
+{
+/* ---------- verb engine: every form is generated from the infinitive ---------- */
+const ROOT={
+'идти':{man:'foot',u:1,t:'idti'},
+'йти':{man:'foot',u:1,t:'jti'},
+'ходить':{man:'foot',u:0,t:'i2',y:'хожу',s:'ход',pe:'ил'},
+'ехать':{man:'veh',u:1,t:'e1u',s:'ед',p:['ехал','ехала','ехало','ехали']},
+'ездить':{man:'veh',u:0,t:'i2',y:'езжу',s:'езд',pe:'ил'},
+'езжать':{man:'veh',u:0,t:'a',s:'езжа'},
+'лететь':{man:'fly',u:1,t:'i2',y:'лечу',s:'лет',pe:'ел'},
+'летать':{man:'fly',u:0,t:'a',s:'лета'},
+'бежать':{man:'run',u:1,t:'beg'},
+'бегать':{man:'run',u:0,t:'a',s:'бега'},
+'плыть':{man:'swim',u:1,t:'e1',s:'плыв',p:['плыл','плыла','плыло','плыли']},
+'плавать':{man:'swim',u:0,t:'a',s:'плава'},
+'плывать':{man:'swim',u:0,t:'a',s:'плыва'},
+'нести':{man:'carH',u:1,t:'e1',s:'нес',p:['нёс','несла','несло','несли']},
+'носить':{man:'carH',u:0,t:'i2',y:'ношу',s:'нос',pe:'ил'},
+'везти':{man:'carV',u:1,t:'e1',s:'вез',p:['вёз','везла','везло','везли']},
+'возить':{man:'carV',u:0,t:'i2',y:'вожу',s:'воз',pe:'ил'},
+'вести':{man:'lead',u:1,t:'e1',s:'вед',p:['вёл','вела','вело','вели']},
+'водить':{man:'lead',u:0,t:'i2',y:'вожу',s:'вод',pe:'ил'}
+};
+const ORDER=['езжать','ходить','ездить','ехать','лететь','летать','бежать','бегать','плывать','плыть','плавать','нести','носить','везти','возить','вести','водить','йти'];
+const CANON={'во':'в','въ':'в','ото':'от','отъ':'от','подо':'под','подъ':'под','обо':'об','объ':'об'};
+const MAN={foot:'go on foot',veh:'go by transport',fly:'fly',run:'run',swim:'swim / sail',carH:'carry in your hands, on foot',carV:'carry or take by vehicle',lead:'lead or take someone on foot'};
+const KIND={
+u:{l:'unidirectional',use:'one trip in one direction, under way or firmly planned'},
+m:{l:'multidirectional',use:'habits, a round trip, ability, or movement around a place'},
+p:{l:'perfective',use:'one completed motion with a result'},
+i:{l:'prefixed imperfective',use:'a repeated or in-progress directional motion, or a visit that was undone'}
+};
+const PRE={'по':'set off, start moving','при':'arrive, bring here','у':'leave, take away','в':'go in','вы':'go out, depart from','пере':'cross, move house','за':'drop in on the way','под':'approach, come up to','до':'reach, get as far as','от':'move a little way off, take somewhere','про':'pass by, go through','об':'go round'};
+const FAM={
+'идти':'Irregular. Present иду, идёшь… идут with stressed endings. The past comes from a different stem: шёл, шла, шло, шли.',
+'йти':'Prefixed идти. The stem becomes -йд- (пойду, зайдёшь); after a prefix ending in a consonant, -о- is inserted (войти → войду, подойти → подойду). прийти loses its й: приду, придёшь. Past: -шёл, -шла, -шли (пришёл, ушла).',
+'ходить':'2nd conjugation. д → ж only in the я-form: хожу, but ходишь, ходят. Past ходил, ходила.',
+'ехать':'1st conjugation on the stem ед-: еду, едешь… едут (stress stays on е). Past ехал, ехала. Prefixes before е take a hard sign: въехать, подъехать.',
+'ездить':'2nd conjugation. зд → зж in the я-form: езжу, but ездишь, ездят. With prefixes, ездить is replaced by -езжать (приезжать, уезжать).',
+'езжать':'Regular 1st conjugation like читать: -аю, -аешь… -ают (приезжаю, приезжаешь, приезжают).',
+'лететь':'2nd conjugation. т → ч only in the я-form: лечу, but летишь, летят. Past летел.',
+'летать':'Regular 1st conjugation like читать: летаю, летаешь… летают.',
+'бежать':'Mixed conjugation: бегу and бегут keep г; бежишь, бежит, бежим, бежите have ж and 2nd-conjugation endings. Past бежал.',
+'бегать':'Regular 1st conjugation like читать: бегаю, бегаешь… бегают.',
+'плыть':'Stem плыв-: плыву, плывёшь… плывут (stressed endings). Past плыл, плыла.',
+'плавать':'Regular 1st conjugation like читать: плаваю, плаваешь… плавают.',
+'плывать':'Regular 1st conjugation like читать: -плываю, -плываешь… -плывают.',
+'нести':'1st conjugation with stressed endings: несу, несёшь… несут. The masculine past has no -л: нёс; then несла, несло, несли.',
+'носить':'2nd conjugation. с → ш only in the я-form: ношу, but носишь, носят.',
+'везти':'Like нести: везу, везёшь… везут. Masculine past without -л: вёз; then везла, везли.',
+'возить':'2nd conjugation. з → ж in the я-form: вожу (the same я-form as водить!), возишь, возят.',
+'вести':'Stem вед-: веду, ведёшь… ведут. In the past д disappears before л: вёл, вела, вели.',
+'водить':'2nd conjugation. д → ж in the я-form: вожу (the same я-form as возить!), водишь, водят.'
+};
+const cache={};
+function info(inf){
+  if(cache[inf])return cache[inf];
+  let root,pre='';
+  if(inf==='идти')root='идти';
+  else{for(const r of ORDER){if(inf.endsWith(r)){root=r;pre=inf.slice(0,-r.length);break}}}
+  if(!root)throw new Error('unknown verb '+inf);
+  const R=ROOT[root];let n,p;
+  const E1=['у','ёшь','ёт','ём','ёте','ут'],E1u=['у','ешь','ет','ем','ете','ут'],A=['ю','ешь','ет','ем','ете','ют'],I2=['ишь','ит','им','ите','ят'],PS=['','а','о','и'];
+  if(R.t==='idti'){n=['иду','идёшь','идёт','идём','идёте','идут'];p=['шёл','шла','шло','шли']}
+  else if(R.t==='jti'){const fs=pre==='при'?'прид':pre+'йд';n=E1.map(e=>fs+e);p=['шёл','шла','шло','шли'].map(e=>pre+e)}
+  else if(R.t==='beg'){n=['бегу','бежишь','бежит','бежим','бежите','бегут'].map(e=>pre+e);p=['бежал','бежала','бежало','бежали'].map(e=>pre+e)}
+  else if(R.t==='e1'){n=E1.map(e=>pre+R.s+e);p=R.p.map(e=>pre+e)}
+  else if(R.t==='e1u'){n=E1u.map(e=>pre+R.s+e);p=R.p.map(e=>pre+e)}
+  else if(R.t==='a'){n=A.map(e=>pre+R.s+e);p=['л','ла','ло','ли'].map(e=>pre+R.s+e)}
+  else{n=[pre+R.y,...I2.map(e=>pre+R.s+e)];p=PS.map(e=>pre+R.s+R.pe+e)}
+  const k=pre?(R.u?'p':'i'):(R.u?'u':'m');
+  if(pre==='вы'&&k==='p'){n=n.map(f=>f.replace(/ё/g,'е'));p=p.map(f=>f.replace(/ё/g,'е'))}
+  return cache[inf]={inf,root,pre,cp:CANON[pre]||pre,man:R.man,k,n,p};
+}
+
+/* ---------- rule library: one stable explanation per rule ---------- */
+const RULES={
+now:['Motion happening right now, in one direction','When someone is on the way somewhere at the moment of speaking, use the unidirectional verb: идти, ехать, лететь, бежать, плыть, нести, везти, вести. Words like сейчас, смотри, вон, куда point to a single trip seen in progress.','Сейчас я иду в банк (I’m on my way to the bank) vs Я часто хожу в банк (I go to the bank often).'],
+progress_past:['One trip under way at a moment in the past','When the motion is the background to another event (когда…, и вдруг…, и упал), it was a single trip in one direction that was in progress. Use the unidirectional verb in the past.','Когда я шёл домой, пошёл дождь (as I was walking home, it started to rain) vs Вчера я ходил в парк (I went to the park and came back).'],
+plan:['A firm plan for the near future','As in English, the present of a unidirectional verb can describe a scheduled trip: “I’m flying tomorrow”. The multidirectional verb would turn it into a habit. A по- verb in the future (пойду, поеду) is the other common way to talk about a future trip.','Завтра я лечу в Рим = Tomorrow I’m flying to Rome.'],
+habit:['Habits and repeated trips','A repeated trip means going there and back many times, so it takes the multidirectional verb: ходить, ездить, летать, бегать, плавать, носить, возить, водить. Look for frequency words: каждый день, обычно, часто, всегда, иногда, раньше, по субботам.','Я каждый день хожу на работу vs Сейчас я иду на работу.'],
+round:['One round trip, completed in the past','The past tense of a multidirectional verb means “went somewhere and came back”, close to был. The perfective пошёл/поехал would only mean “set off” and says nothing about coming back.','Вчера я ходил в кино = Вчера я был в кино (I went to the cinema and I’m back).'],
+ability:['Ability, experience, or the activity in general','When you talk about whether someone can move in a certain way, how well, or whether they have ever done it, there is no single trip and no direction, so use the multidirectional verb.','Ребёнок уже ходит (the child can walk). Я хорошо плаваю. Вы когда-нибудь летали на вертолёте?'],
+around:['Movement around a place, or back and forth','With no single direction (around the park, up and down the corridor, round the shops), use the multidirectional verb. по + dative often signals this. With a goal (в парк, к реке) a single trip goes back to the unidirectional verb.','ходить по парку, бегать по двору, ездить по городу vs идти в парк.'],
+fixed:['A fixed meaning that ignores direction','Some meanings belong to one verb of the pair whatever the context. носить = to wear; водить машину = to drive a car; вести “to lead” is used for roads and paths. Idioms also fix the verb.','носить очки, водить машину, дорога ведёт к реке, время летит, идёт дождь.'],
+start:['Setting off: по- marks the start','по- + a unidirectional verb (пойти, поехать, побежать, полететь) is perfective and marks the start of a movement. In the past it means “set off”, and the person may not have arrived yet.','Он встал и пошёл к двери. Он пошёл в магазин = He has gone to the shop.'],
+futtrip:['A future trip with по-','To say “will go”, Russians very often use the future of пойти or поехать. After давай, the мы-form of the по- verb makes a suggestion. The unidirectional present (идём) would sound like it is already happening, and the multidirectional verb cannot express one future trip.','Завтра мы пойдём в кино. Летом мы поедем на море. Давай пойдём!'],
+arrive:['при-: arriving, bringing here','при- means reaching the destination: прийти (on foot), приехать (by transport), прилететь, прибежать, приплыть; with carrying verbs it means bringing: принести (by hand), привезти (by vehicle), привести (a person or animal). The perfective focuses on the result: they are here now.','Он пришёл = He has arrived (and is here).'],
+leave:['у-: leaving, taking away','у- means going away from a place: уйти, уехать, улететь, убежать. With carrying verbs it means taking something away: унести, увезти, увести.','Он ушёл = He has left (and is not here).'],
+enter:['в-: going in','в- (во- before some consonant clusters, въ- before е) means entering. It pairs with в + accusative. Its opposite is вы-.','войти в комнату, въехать во двор.'],
+exit:['вы-: going out, departing','вы- means moving out of something or departing from a place. It pairs with из + genitive. In a perfective, вы- is always stressed, so ё in the stem becomes е: выйдешь, вышел, вынес.','выйти из комнаты, выехать из дома, вылететь из клетки.'],
+cross:['пере-: crossing, moving house','пере- means across. The object can follow directly or with через. переехать also means “to move house”.','перейти улицу, переплыть реку, переехать в Берлин.'],
+dropin:['за-: dropping in on the way','за- means a short stop at a place, often on the way somewhere else. Look for по дороге, на минутку, and за + instrumental (за хлебом = to get bread, за тобой = to pick you up).','зайти в магазин за хлебом, заехать к друзьям.'],
+approach:['под-: coming up to','под- (подо-, подъ-) means approaching someone or something closely. It pairs with к + dative.','подойти к учителю, подъехать к подъезду.'],
+reach:['до-: reaching a point','до- means getting as far as a point, often after some distance or effort. It always pairs with до + genitive.','дойти до вокзала, доехать до Москвы.'],
+away:['от-: a little way off, or taking somewhere','от- means moving a short distance away from something (от + genitive). With carrying verbs it means taking something to a place and leaving it there.','отойти от окна, отплыть от берега, отнести тарелки на кухню.'],
+pass:['про-: passing by or through','про- means passing something (мимо + genitive), going through a place, or covering a distance — including going too far.','пройти мимо почты, пройти через парк, проехать свою остановку.'],
+about:['об-: going round','об- (обо-, объ-) means going around an obstacle, or visiting every part of a place.','обойти лужу, обойти весь музей, объехать пробку.'],
+impf_pref:['Repeated directional trips: the prefixed imperfective','Every prefixed perfective has an imperfective partner built on the multidirectional stem: прийти → приходить, уехать → уезжать, вылететь → вылетать, принести → приносить. Use it for habits and timetables. It keeps the direction of its prefix; it is not “multidirectional”.','Я прихожу домой в шесть (every day). Самолёты вылетают каждый час.'],
+impf_progress:['A directional motion in progress','The prefixed imperfective also shows a directional motion while it is happening. The perfective would present it as already completed.','Поезд подходит к станции (is pulling in). Когда я выходил из дома, зазвонил телефон.'],
+annul:['Came and went: the imperfective cancels the result','The past of a prefixed imperfective can mean that a visit happened but its result no longer holds: the person came and has gone again. The perfective means the result is still there.','Ко мне приходила сестра (she came by and left) vs Ко мне пришла сестра (she has come and is here).'],
+sequence:['A chain of completed actions','When actions follow one another (did X, then Y), each one is finished before the next begins, so all of them are perfective. The imperfective would turn the chain into a habit.','Она вошла и села. Мама пришла с работы и начала готовить.']
+};
+
+/* ---------- tasks: topic|sentence|English|verb|tense n/p|form index|distractors|rule|signal|note ---------- */
+const DATA=`walk|Смотри, вон ___ наш учитель!|Look, there goes our teacher!|идти|n|2|ходить,ехать,ездить|now|Смотри, вон|
+walk|Я каждый день ___ в спортзал.|I walk to the gym every day.|ходить|n|0|идти,ехать,пойти|habit|каждый день|
+walk|Вчера мы ___ в театр.|Yesterday we went to the theatre (and came back).|ходить|p|3|идти,ехать,уйти|round|Вчера|
+walk|Когда я ___ домой, я встретил старого друга.|When I was walking home, I met an old friend.|идти|p|0|ходить,прийти,ехать|progress_past|Когда|встретил shows the speaker is male, so the masculine past.
+walk|Нашему сыну год, и он уже ___.|Our son is one, and he can already walk.|ходить|n|2|идти,ехать,ездить|ability|уже|
+walk|Куда вы ___?|Where are you walking to (right now)?|идти|n|4|ходить,ехать,ездить|now|Куда|
+walk|Они часто ___ по парку.|They often walk around the park.|ходить|n|5|идти,ехать,пойти|around|по парку|Both часто and по парку point to ходить.
+walk|Анна ___ на работу и разговаривала по телефону.|Anna was walking to work, talking on the phone.|идти|p|1|ходить,пойти,ехать|progress_past|разговаривала|
+walk|Мы ___ в магазин. Тебе что-нибудь купить?|We’re on our way to the shop (on foot). Shall we get you anything?|идти|n|3|ходить,ехать,ездить|now||
+walk|Дети ___ в школу пять дней в неделю.|The children go to school five days a week.|ходить|n|5|идти,ехать,уйти|habit|пять дней в неделю|ходить в школу also simply means “to attend school”.
+walk|Бабушка плохо ___: у неё болит нога.|Grandma has trouble walking: her leg hurts.|ходить|n|2|идти,ехать,ездить|ability|плохо|
+walk|Завтра я ___ к врачу.|Tomorrow I’m going to the doctor’s (on foot).|идти|n|0|ходить,ехать,ездить|plan|Завтра|
+walk|Маша сегодня ___ в бассейн?|Did Masha go to the pool today?|ходить|p|1|идти,ехать,прийти|round|сегодня|
+walk|Я ___ по коридору и думал об экзамене.|I was pacing up and down the corridor, thinking about the exam.|ходить|p|0|идти,бегать,ехать|around|по коридору|
+walk|Раньше папа часто ___ в этот ресторан.|Dad used to go to this restaurant often.|ходить|p|0|идти,пойти,уйти|habit|часто|
+walk|Сейчас мы ___ мимо музея. Справа вы видите театр.|We’re now walking past the museum. On your right you can see the theatre.|идти|n|3|ходить,ехать,ездить|now|Сейчас|
+walk|Мы ___ туда-сюда, пока ждали автобус.|We walked back and forth while we waited for the bus.|ходить|p|3|идти,ехать,пойти|around|туда-сюда|
+walk|Куда вы ___ в прошлую субботу?|Where did you go (on foot) last Saturday?|ходить|p|3|идти,ехать,прийти|round|в прошлую субботу|
+walk|Эта девушка ___ как модель.|This girl walks like a model.|ходить|n|2|идти,ехать,ездить|ability|как модель|
+walk|Я ___ на остановку и вдруг увидел на земле сто рублей.|I was walking to the bus stop and suddenly saw 100 roubles on the ground.|идти|p|0|ходить,ехать,прийти|progress_past|вдруг|
+walk|Подожди, я ___!|Wait, I’m coming!|идти|n|0|ходить,ездить,ехать|now||Иду! is the standard reply when someone calls you.
+walk|Вы ___ в кино в эти выходные?|Did you go to the cinema this weekend?|ходить|p|3|идти,ехать,уйти|round|в эти выходные|
+walk|Она весь день ___ по магазинам.|She spent the whole day going round the shops.|ходить|p|1|идти,ехать,уйти|around|по магазинам|ходить по магазинам = to go shopping.
+walk|Когда мы ___ из кино, начался дождь.|As we were walking back from the cinema, it started to rain.|идти|p|3|ходить,уйти,ездить|progress_past|Когда|
+walk|Куда ты ___ так поздно?|Where are you walking to so late?|идти|n|1|ходить,ехать,ездить|now|Куда|
+walk|Мы с мужем часто ___ в театр.|My husband and I often go to the theatre.|ходить|n|3|идти,ехать,пойти|habit|часто|
+walk|Вчера мама ___ к врачу. Всё в порядке.|Yesterday Mum went to the doctor’s. Everything’s fine.|ходить|p|1|идти,ехать,уйти|round|Вчера|
+walk|Посмотри, какой маленький, а уже ___!|Look how little he is, and he can already walk!|ходить|n|2|идти,ехать,ездить|ability|уже|
+walk|Когда мы ___ в школу, начался снег.|As we were walking to school, it started snowing.|идти|p|3|ходить,ехать,ездить|progress_past|Когда|
+walk|Я ___ на работу пешком каждый день.|I walk to work every day.|ходить|n|0|идти,ехать,ездить|habit|каждый день|
+walk|Туристы ___ по музею три часа.|The tourists walked around the museum for three hours.|ходить|p|3|идти,ехать,пойти|around|по музею|
+ride|Летом мы обычно ___ на дачу.|In summer we usually go to the dacha (by car).|ездить|n|3|ехать,ходить,поехать|habit|обычно|
+ride|Сейчас я ___ на работу на автобусе.|Right now I’m on the bus on my way to work.|ехать|n|0|ездить,идти,поехать|now|Сейчас|
+ride|В прошлом году она ___ в Италию.|Last year she went to Italy (and came back).|ездить|p|1|ехать,поехать,ходить|round|В прошлом году|
+ride|Мы ___ в Казань уже два часа, когда сломалась машина.|We had been driving to Kazan for two hours when the car broke down.|ехать|p|3|ездить,поехать,идти|progress_past|когда|
+ride|Вы ___ на работу на метро?|Do you take the metro to work (as a rule)?|ездить|n|4|ехать,ходить,поехать|habit||
+ride|Ребята ___ в Петербург на поезде.|The guys are on the train to St Petersburg right now.|ехать|n|5|ездить,идти,ходить|now||
+ride|Мой брат ___ на велосипеде лучше всех.|My brother rides a bike better than anyone.|ездить|n|2|ехать,ходить,идти|ability|лучше всех|
+ride|Завтра мы ___ в аэропорт на такси.|Tomorrow we’re going to the airport by taxi.|ехать|n|3|ездить,идти,ходить|plan|Завтра|
+ride|Я ___ в метро и читал книгу.|I was riding the metro, reading a book.|ехать|p|0|ездить,идти,ходить|progress_past|читал|
+ride|Вы когда-нибудь ___ на верблюде?|Have you ever ridden a camel?|ездить|p|3|ехать,ходить,поехать|ability|когда-нибудь|
+ride|Мы весь день ___ по городу на машине.|We drove around the city all day.|ездить|p|3|ехать,ходить,идти|around|по городу|
+ride|Каждую зиму родители ___ в горы.|Every winter my parents go to the mountains.|ездить|n|5|ехать,ходить,идти|habit|Каждую зиму|
+ride|Смотри, к нам ___ полиция!|Look, the police are driving towards us!|ехать|n|2|ездить,идти,ходить|now|Смотри|полиция is singular in Russian, so the verb is 3rd person singular.
+ride|Когда мы ___ в деревню, мы увидели лису.|On our way (by car) to the village, we saw a fox.|ехать|p|3|ездить,идти,приехать|progress_past|Когда|
+ride|Мы с женой ___ в Париж на прошлой неделе.|My wife and I went to Paris last week (and came back).|ездить|p|3|ехать,идти,поехать|round|на прошлой неделе|мы с женой means “my wife and I” and takes a plural verb.
+ride|Почему ты ___ так быстро? Здесь нельзя!|Why are you driving so fast? You’re not allowed to here!|ехать|n|1|ездить,идти,бежать|now||
+ride|Обычно он ___ на работу на машине, но сегодня поехал на метро.|He usually drives to work, but today he took the metro.|ездить|n|2|ехать,ходить,идти|habit|Обычно|
+ride|Тише, мы ___ мимо больницы.|Quiet, we’re driving past the hospital.|ехать|n|3|ездить,идти,ходить|now||
+ride|В детстве Оля каждое лето ___ к бабушке в деревню.|As a child, Olya went to her grandma’s in the village every summer.|ездить|p|1|ехать,ходить,поехать|habit|каждое лето|
+ride|Куда ты ___ в отпуск в этом году?|Where are you going on holiday this year?|ехать|n|1|ездить,ходить,идти|plan|в этом году|
+ride|Куда вы ___ на выходных?|Where did you go (by car) at the weekend?|ездить|p|3|ехать,ходить,поехать|round|на выходных|
+ride|Сейчас мы ___ через мост.|We’re driving over the bridge right now.|ехать|n|3|ездить,идти,ходить|now|Сейчас|
+ride|Он ___ на работу на велосипеде каждый день.|He cycles to work every day.|ездить|n|2|ехать,ходить,идти|habit|каждый день|
+ride|Когда я ___ в автобусе, я встретил одноклассника.|While I was on the bus, I ran into a classmate.|ехать|p|0|ездить,идти,ходить|progress_past|Когда|встретил shows the speaker is a man.
+ride|Моя сестра хорошо ___ на лошади.|My sister rides horses well.|ездить|n|2|ехать,ходить,идти|ability|хорошо|
+ride|Мы ___ в Петербург три раза.|We’ve been to St Petersburg three times.|ездить|p|3|ехать,ходить,поехать|round|три раза|Several round trips → ездить.
+ride|Завтра я ___ на дачу на электричке.|Tomorrow I’m going to the dacha on the suburban train.|ехать|n|0|ездить,идти,ходить|plan|Завтра|
+move|Завтра я ___ в Москву.|Tomorrow I’m flying to Moscow.|лететь|n|0|летать,ехать,плыть|plan|Завтра|
+move|Над озером ___ чайки.|Seagulls are circling over the lake.|летать|n|5|лететь,плавать,плыть|around|Над озером|
+move|Мой брат отлично ___.|My brother is an excellent swimmer.|плавать|n|2|плыть,бегать,ходить|ability|отлично|
+move|Смотри, лодка ___ к берегу!|Look, the boat is heading for the shore!|плыть|n|2|плавать,летать,ехать|now|к берегу|
+move|Куда ты так ___?|Where are you rushing off to?|бежать|n|1|бегать,идти,ходить|now|Куда|
+move|Каждое утро она ___ в парке.|Every morning she goes running in the park.|бегать|n|2|бежать,ходить,идти|habit|Каждое утро|
+move|Дети весело ___ по двору.|The children are running around the yard happily.|бегать|n|5|бежать,ходить,идти|around|по двору|
+move|Я опаздываю, ___ на поезд!|I’m late, I’m running to catch the train!|бежать|n|0|бегать,ходить,ехать|now|опаздываю|
+move|Мой сын ещё не ___.|My son can’t swim yet.|плавать|n|2|плыть,летать,ходить|ability|ещё не|
+move|Летом мы каждый день ___ в море.|In summer we swam in the sea every day.|плавать|p|3|плыть,бегать,ходить|habit|каждый день|
+move|Мы ___ к острову, когда начался шторм.|We were swimming towards the island when the storm began.|плыть|p|3|плавать,летать,бегать|progress_past|когда|
+move|Вы часто ___ на самолёте?|Do you fly often?|летать|n|4|лететь,ездить,ехать|habit|часто|
+move|Птицы ___ на юг.|The birds are flying south.|лететь|n|5|летать,плыть,бежать|now|на юг|
+move|В прошлом месяце мы ___ в Стамбул.|Last month we flew to Istanbul (and back).|летать|p|3|лететь,ехать,плыть|round|В прошлом месяце|
+move|Самолёт ___ над океаном, когда пилот заметил проблему.|The plane was flying over the ocean when the pilot noticed a problem.|лететь|p|0|летать,плыть,ехать|progress_past|когда|
+move|Собака ___ за мячом.|The dog is running after the ball.|бежать|n|2|бегать,идти,ходить|now|за мячом|
+move|Кот всю ночь ___ по квартире.|The cat ran around the flat all night.|бегать|p|0|бежать,ходить,идти|around|по квартире|
+move|Утки ___ по озеру.|The ducks are swimming about on the lake.|плавать|n|5|плыть,летать,ходить|around|по озеру|
+move|Раньше мой папа ___ марафоны.|My dad used to run marathons.|бегать|p|0|бежать,ходить,плавать|habit|Раньше|
+move|Корабль ___ в Новороссийск.|The ship is sailing to Novorossiysk.|плыть|n|2|плавать,лететь,ехать|now|в Новороссийск|Sailors themselves often say корабль идёт.
+move|Как быстро ___ время!|How time flies!|лететь|n|2|летать,ехать,плыть|fixed||время летит is a set phrase: time only moves one way.
+move|Мы ___ над Альпами, и я смотрел в окно.|We were flying over the Alps and I was looking out of the window.|лететь|p|3|летать,ехать,плыть|progress_past|смотрел|
+move|Ребёнок ___ к маме.|The child is running to his mum.|бежать|n|2|бегать,идти,ходить|now|к маме|
+move|Мой брат ___ очень быстро.|My brother runs very fast.|бегать|n|2|бежать,ходить,идти|ability|очень быстро|
+move|Самолёт ___ в Сочи.|The plane is flying to Sochi.|лететь|n|2|летать,ехать,плыть|now|в Сочи|
+move|Бабушка никогда не ___ на самолёте.|Grandma has never flown.|летать|p|1|лететь,ездить,плыть|ability|никогда|
+move|Летом дети целыми днями ___ в реке.|In summer the children swim in the river all day long.|плавать|n|5|плыть,бегать,ходить|around|целыми днями|
+move|Мы ___ к берегу, когда увидели дельфинов.|We were swimming towards the shore when we saw dolphins.|плыть|p|3|плавать,летать,бегать|progress_past|когда|
+carry|Подожди, я ___ тебе книгу!|Hold on, I’m bringing you the book (in my hands)!|нести|n|0|носить,везти,вести|now|Подожди|
+carry|Она всегда ___ очки.|She always wears glasses.|носить|n|2|нести,водить,возить|fixed|очки|
+carry|Отец каждый день ___ детей в школу на машине.|Every day the father drives the kids to school.|возить|n|2|везти,водить,вести|habit|каждый день|
+carry|Бабушка ___ внука за руку.|Grandma is leading her grandson by the hand.|вести|n|2|водить,нести,везти|now|за руку|
+carry|Мой папа хорошо ___ машину.|My dad is a good driver.|водить|n|2|вести,возить,ездить|fixed|машину|
+carry|Грузовик ___ овощи на рынок.|The truck is taking vegetables to the market.|везти|n|2|возить,нести,вести|now|на рынок|
+carry|Он ___ тяжёлый чемодан и упал.|He was carrying a heavy suitcase and fell.|нести|p|0|носить,везти,водить|progress_past|упал|
+carry|Каждое утро мама ___ дочку в детский сад.|Every morning mum walks her daughter to kindergarten.|водить|n|2|вести,возить,носить|habit|Каждое утро|
+carry|Сейчас я ___ детей в зоопарк.|I’m taking the kids to the zoo right now (on foot).|вести|n|0|водить,везти,нести|now|Сейчас|
+carry|Почтальон каждый день ___ письма.|The postman delivers the letters (on foot) every day.|носить|n|2|нести,возить,водить|habit|каждый день|
+carry|Таксист ___ нас в аэропорт.|The taxi driver is taking us to the airport.|везти|n|2|возить,вести,нести|now|в аэропорт|
+carry|Этот автобус ___ туристов по городу.|This bus takes tourists around the city.|возить|n|2|везти,водить,носить|around|по городу|
+carry|Гид два часа ___ нас по музею.|The guide showed us around the museum for two hours.|водить|p|0|вести,возить,носить|around|по музею|
+carry|Зимой все ___ тёплые шапки.|In winter everyone wears warm hats.|носить|n|5|нести,водить,возить|fixed|шапки|все takes a plural verb.
+carry|Мама ___ сумки из магазина, когда ей позвонили.|Mum was carrying the bags home from the shop when someone rang her.|нести|p|1|носить,везти,вести|progress_past|когда|
+carry|Куда ты ___ эти цветы?|Where are you taking these flowers?|нести|n|1|носить,везти,водить|now|Куда|
+carry|Он всегда ___ с собой зонт.|He always carries an umbrella with him.|носить|n|2|нести,возить,водить|habit|всегда|
+carry|Поезд ___ нас на юг.|The train is carrying us south.|везти|n|2|возить,нести,вести|now|на юг|
+carry|Мы ___ собаку к ветеринару, и она всю дорогу спала.|We were driving the dog to the vet, and it slept the whole way.|везти|p|3|возить,вести,нести|progress_past|всю дорогу|
+carry|Эта дорога ___ к реке.|This road leads to the river.|вести|n|2|водить,везти,нести|fixed|дорога|
+carry|Завтра я ___ тебе словарь.|Tomorrow I’ll bring you the dictionary (in person).|принести|n|0|нести,носить,привезти|arrive|Завтра|
+carry|Папа ___ из Японии много подарков.|Dad brought back lots of presents from Japan.|привезти|p|0|принести,возить,везти|arrive|из Японии|From far away, things are brought by transport: привезти.
+carry|Кто ___ эту собаку сюда?|Who brought this dog here (on a lead)?|привести|p|0|принести,привезти,вести|arrive|сюда|кто takes a masculine singular verb.
+carry|Официант ___ тарелки на кухню.|The waiter took the plates to the kitchen.|отнести|p|0|принести,носить,вести|away|на кухню|
+carry|Ветер ___ мою шляпу!|The wind has blown my hat away!|унести|p|0|принести,нести,носить|leave||
+carry|Каждый вечер он ___ детей из садика домой.|Every evening he brings the kids home from kindergarten.|приводить|n|2|привести,водить,вести|impf_pref|Каждый вечер|
+carry|Я всегда ___ на работу обед из дома.|I always bring lunch to work from home.|приносить|n|0|принести,нести,приводить|impf_pref|всегда|
+carry|Каждое утро он ___ сына в школу, а потом едет на работу.|Every morning he drops his son off at school, then drives to work.|отвозить|n|2|отвезти,везти,вести|impf_pref|Каждое утро|
+carry|Мама ___ ребёнка на руках.|Mum is carrying the baby in her arms.|нести|n|2|носить,везти,вести|now|на руках|
+carry|Курьер ___ посылки по всему городу.|The courier delivers parcels all over town (by van).|возить|n|2|везти,носить,водить|around|по всему городу|
+carry|Учитель ___ детей в музей.|The teacher is taking the children to the museum (on foot).|вести|n|2|водить,везти,нести|now|в музей|
+carry|Папа ___ нас на дачу на машине.|Dad is driving us to the dacha.|везти|n|2|возить,вести,нести|now|на дачу|
+carry|Каждую неделю она ___ бабушке продукты.|Every week she takes groceries to her grandma (on foot).|носить|n|2|нести,возить,водить|habit|Каждую неделю|
+carry|Официант ___ нам меню.|The waiter brought us the menu.|принести|p|0|нести,носить,привезти|arrive|нам меню|
+carry|Друзья ___ нас в аэропорт.|Our friends drove us to the airport.|отвезти|p|3|отнести,везти,привезти|away|в аэропорт|With carrying verbs, от- means taking someone somewhere and leaving them there.
+pref|Он встал и ___ к двери.|He got up and headed for the door.|пойти|p|0|идти,ходить,прийти|start|встал и|
+pref|Вчера Маша ___ домой в десять часов.|Yesterday Masha got home at ten.|прийти|p|1|уйти,идти,ходить|arrive|в десять часов|
+pref|Когда ты ___ из Берлина?|When will you get back from Berlin?|приехать|n|1|уехать,ехать,ездить|arrive|из Берлина|
+pref|Директора нет, он уже ___.|The director isn’t here, he has already left.|уйти|p|0|прийти,зайти,идти|leave|уже|
+pref|Мы ___ улицу на зелёный свет.|We crossed the street on the green light.|перейти|p|3|зайти,выйти,идти|cross|улицу|
+pref|Она ___ из комнаты и закрыла за собой дверь.|She walked out of the room and closed the door behind her.|выйти|p|1|войти,прийти,зайти|exit|из комнаты|
+pref|По дороге домой я ___ в магазин за хлебом.|On the way home I’ll drop into the shop for bread.|зайти|n|0|войти,прийти,выйти|dropin|По дороге|
+pref|Самолёт ___ в Токио через три часа.|The plane will arrive in Tokyo in three hours.|прилететь|n|2|лететь,улететь,летать|arrive|через три часа|
+pref|Дети ___ к учителю и задали вопрос.|The children came up to the teacher and asked a question.|подойти|p|3|дойти,войти,выйти|approach|к учителю|
+pref|Мы наконец ___ до вокзала.|We finally made it to the station (on foot).|дойти|p|3|подойти,прийти,зайти|reach|до вокзала|
+pref|Мы ___ из дома в семь утра.|We set off from home (by car) at seven in the morning.|выехать|p|3|приехать,въехать,ехать|exit|из дома|
+pref|Через год она ___ в Канаду навсегда.|In a year she’ll leave for Canada for good.|уехать|n|2|приехать,выехать,ехать|leave|навсегда|
+pref|Летом мы ___ на море.|This summer we’ll go to the seaside.|поехать|n|3|ездить,приехать,выехать|futtrip|Летом|
+pref|Учитель ___ в класс, и все замолчали.|The teacher walked into the classroom and everyone fell silent.|войти|p|0|выйти,уйти,перейти|enter|в класс|
+pref|Машина ___ во двор.|The car drove into the courtyard.|въехать|p|1|выехать,уехать,переехать|enter|во двор|
+pref|В прошлом году мы ___ в новую квартиру.|Last year we moved to a new flat.|переехать|p|3|приехать,уехать,выехать|cross|в новую квартиру|
+pref|Он ___ от окна и сел.|He stepped away from the window and sat down.|отойти|p|0|подойти,уйти,выйти|away|от окна|
+pref|Мы ___ мимо почты и даже не заметили её.|We walked right past the post office without even noticing it.|пройти|p|3|перейти,зайти,дойти|pass|мимо почты|
+pref|Такси ___ к самому подъезду.|The taxi pulled up right at the front door.|подъехать|p|2|выехать,уехать,въехать|approach|к самому подъезду|такси is neuter, so the past ends in -о.
+pref|Мы ___ до Москвы за шесть часов.|We got to Moscow (by car) in six hours.|доехать|p|3|подъехать,заехать,переехать|reach|до Москвы|
+pref|Птица ___ из клетки.|The bird has flown out of the cage.|вылететь|p|1|прилететь,лететь,летать|exit|из клетки|
+pref|Журавли ___ на юг.|The cranes have flown away south.|улететь|p|3|прилететь,лететь,летать|leave|на юг|
+pref|Кошка ___ от собаки.|The cat ran away from the dog.|убежать|p|1|прибежать,бежать,бегать|leave|от собаки|
+pref|Сын ___ домой весь мокрый.|My son came running home soaking wet.|прибежать|p|0|убежать,бежать,бегать|arrive|домой|
+pref|Как только прозвенел звонок, дети ___ из класса.|As soon as the bell rang, the children ran out of the classroom.|выбежать|p|3|прибежать,бежать,бегать|exit|из класса|
+pref|Мы ___ реку на лодке за десять минут.|We crossed the river by boat in ten minutes.|переплыть|p|3|плыть,плавать,приплыть|cross|реку|
+pref|Давай ___ в кино!|Let’s go to the cinema!|пойти|n|3|идти,ходить,прийти|futtrip|Давай|
+pref|Если будет хорошая погода, мы ___ гулять.|If the weather is nice, we’ll go for a walk.|пойти|n|3|идти,ходить,уйти|futtrip|Если будет|
+pref|Он увидел автобус и ___.|He saw the bus and broke into a run.|побежать|p|0|бежать,бегать,прибежать|start|увидел|
+pref|Как только загорелся зелёный, машины ___.|As soon as the light turned green, the cars moved off.|поехать|p|3|ехать,ездить,приехать|start|Как только|
+pref|Когда ты ___ в Москву, позвони мне.|When you get to Moscow, call me.|приехать|n|1|ехать,ездить,уехать|arrive|позвони|After когда about the future, Russian uses the future tense (English uses the present).
+pref|По дороге на дачу мы ___ к друзьям на минутку.|On the way to the dacha we’ll stop by our friends’ place for a minute.|заехать|n|3|приехать,въехать,переехать|dropin|на минутку|
+pref|Не провожай меня, я сам ___ до метро.|Don’t see me off, I’ll make it to the metro by myself.|дойти|n|0|подойти,зайти,прийти|reach|до метро|
+pref|Мы ___ весь музей за два часа.|We went round the whole museum in two hours.|обойти|p|3|перейти,зайти,выйти|about|весь музей|
+pref|Собака ___ к нам и начала нюхать сумку.|The dog came up to us and started sniffing the bag.|подойти|p|1|прийти,дойти,войти|approach|к нам|
+pref|Лодка медленно ___ от берега.|The boat slowly moved away from the shore.|отплыть|p|1|приплыть,плыть,плавать|away|от берега|
+pref|Через час мы ___ к острову.|In an hour we’ll reach the island (by boat).|приплыть|n|3|отплыть,плыть,плавать|arrive|Через час|
+pref|Мы случайно ___ свою остановку.|We accidentally went past our stop.|проехать|p|3|переехать,доехать,заехать|pass|свою остановку|
+pref|Мы ___ в кафе выпить кофе.|We dropped into a café for a coffee.|зайти|p|3|войти,прийти,выйти|dropin|выпить кофе|
+pref|Автобус ___ от остановки.|The bus pulled away from the stop.|отъехать|p|0|подъехать,въехать,заехать|away|от остановки|
+pref|Гости ___ в семь часов.|The guests arrived at seven.|прийти|p|3|уйти,идти,ходить|arrive|в семь часов|
+pref|Мы ___ мост и оказались в старом городе.|We crossed the bridge and found ourselves in the old town.|перейти|p|3|подойти,дойти,зайти|cross|мост|
+pref|Мама ___ к окну и посмотрела на улицу.|Mum went over to the window and looked out.|подойти|p|1|прийти,зайти,войти|approach|к окну|
+pref|Когда вы ___ из отпуска?|When will you be back from holiday?|приехать|n|4|уехать,ехать,ездить|arrive|из отпуска|
+aspect|Каждый день я ___ домой в шесть.|I get home at six every day.|приходить|n|0|прийти,уходить,ходить|impf_pref|Каждый день|
+aspect|Обычно поезд ___ вовремя.|The train usually arrives on time.|приходить|n|2|прийти,уходить,идти|impf_pref|Обычно|Trains “walk” in Russian: поезд идёт, поезд приходит.
+aspect|Почему вы так поздно ___?|Why did you get here so late?|прийти|p|3|приходить,уйти,идти|arrive|так поздно|One arrival with a result (you are here now) → perfective. вы always takes the plural past.
+aspect|Летом к нам часто ___ внуки.|In summer the grandchildren often come to stay with us.|приезжать|n|5|приехать,уезжать,ездить|impf_pref|часто|
+aspect|Вчера ко мне ___ сестра, но сейчас её уже нет.|My sister came round yesterday, but she’s gone now.|приходить|p|1|прийти,уйти,ходить|annul|сейчас её уже нет|
+aspect|Брат ___ в гости и до сих пор живёт у нас.|My brother came to visit and is still staying with us.|приехать|p|0|приезжать,уехать,ездить|arrive|до сих пор|The result still holds (he is here), so the perfective.
+aspect|Я всегда ___ из дома в восемь.|I always leave home at eight.|уходить|n|0|уйти,приходить,выйти|impf_pref|всегда|
+aspect|Когда папа ___ из дома, зазвонил телефон.|As Dad was leaving the house, the phone rang.|выходить|p|0|выйти,входить,приходить|impf_progress|Когда|
+aspect|Она ___ в комнату и села.|She came into the room and sat down.|войти|p|1|входить,выйти,прийти|sequence|и села|
+aspect|Каждый раз, когда я ___ мимо этого кафе, я покупаю кофе.|Every time I walk past this café, I buy a coffee.|проходить|n|0|пройти,переходить,заходить|impf_pref|Каждый раз|
+aspect|Он часто ___ к нам по вечерам.|He often drops in on us in the evenings.|заходить|n|2|зайти,входить,подходить|impf_pref|часто|
+aspect|Поезд медленно ___ к станции.|The train is slowly pulling into the station.|подходить|n|2|подойти,приходить,доходить|impf_progress|медленно|
+aspect|Мы ___ улицу только на зелёный свет.|We only ever cross the street on the green light.|переходить|n|3|перейти,проходить,заходить|impf_pref|только|
+aspect|Самолёты ___ из этого аэропорта каждые десять минут.|Planes take off from this airport every ten minutes.|вылетать|n|5|вылететь,улететь,лететь|impf_pref|каждые десять минут|
+aspect|Во сколько вы обычно ___ с работы?|What time do you usually get home from work (by car)?|приезжать|n|4|приехать,уезжать,ездить|impf_pref|обычно|
+aspect|Завтра я ___ за тобой в восемь.|Tomorrow I’ll come by for you (by car) at eight.|заехать|n|0|заезжать,уехать,въехать|dropin|за тобой|One future visit → perfective future.
+aspect|Мама ___ с работы и сразу начала готовить ужин.|Mum came home from work and immediately started making dinner.|прийти|p|1|приходить,уйти,ходить|sequence|начала|
+aspect|Осенью птицы ___ на юг.|In autumn the birds fly away south.|улетать|n|5|улететь,прилетать,летать|impf_pref|Осенью|Every autumn, so a repeated event → imperfective.
+aspect|Не люблю, когда гости ___ без звонка.|I don’t like it when guests turn up without calling.|приходить|n|5|прийти,уходить,входить|impf_pref|без звонка|
+aspect|Сейчас мы ___ к Казани.|We’re now approaching Kazan (by train).|подъезжать|n|3|подъехать,приезжать,доезжать|impf_progress|Сейчас|
+aspect|Кто-то ___ к тебе, пока тебя не было.|Someone came by to see you (and left) while you were out.|приходить|p|0|прийти,уйти,ходить|annul|пока тебя не было|кто-то takes a masculine singular verb.
+aspect|Каждое лето он ___ из Италии вино.|Every summer he brings back wine from Italy.|привозить|n|2|привезти,приносить,приводить|impf_pref|Каждое лето|
+aspect|Почтальон обычно ___ в десять.|The postman usually comes at ten.|приходить|n|2|прийти,уходить,идти|impf_pref|обычно|
+aspect|Каждое утро я ___ из дома в семь.|Every morning I leave the house at seven.|выходить|n|0|выйти,входить,приходить|impf_pref|Каждое утро|
+aspect|Мы всегда ___ в аэропорт за два часа до вылета.|We always get to the airport two hours before the flight.|приезжать|n|3|приехать,уезжать,ездить|impf_pref|всегда|
+aspect|Самолёт уже ___ на посадку.|The plane is already coming in to land.|заходить|n|2|зайти,входить,подходить|impf_progress|на посадку|заходить на посадку = to come in to land.
+aspect|Когда Миша ___ к дому, пошёл дождь.|As Misha was approaching the house, it started raining.|подходить|p|0|подойти,приходить,доходить|impf_progress|Когда|
+aspect|Он ___ и закрыл за собой дверь.|He came in and shut the door behind him.|войти|p|0|входить,выйти,прийти|sequence|и закрыл|
+aspect|Он часто ___ ко мне за советом.|He often comes to me for advice.|приходить|n|2|прийти,уходить,входить|impf_pref|часто|`;
+const Q=DATA.split('\n').map(l=>{const [t,ru,en,v,tn,i,d,rule,cue,note]=l.split('|');return{t,ru,en,v,tn,i:+i,d:d.split(','),rule,cue:cue||'',note:note||''}});
+
+const TOP={smart:'Рекомендуем · Recommended',all:'Все темы · All topics',walk:'идти / ходить · on foot',ride:'ехать / ездить · by transport',move:'бежать, лететь, плыть · run, fly, swim',carry:'нести, везти, вести · carry, lead',pref:'С приставками · With prefixes',aspect:'приходить или прийти? · Prefixed aspect',miss:'Мои ошибки · My mistakes'};
+const TLV={walk:'A2',ride:'A2',move:'B1',carry:'B1',pref:'B1',aspect:'B2'};
+Q.forEach(q=>{q.lv=TLV[q.t]});
+const COACH=window.GRCoach;
+const NAMES={};Object.keys(TLV).forEach(k=>{NAMES[k]=TOP[k]});
+const LVS=(window.CEFR||[]).filter(l=>Q.some(q=>q.lv===l.code));
+const PRON={n:['я','ты','он / она','мы','вы','они'],p:['он','она','оно','они']};
+const PERS={n:['я-form (1st person singular)','ты-form (2nd person singular)','он/она-form (3rd person singular)','мы-form (1st person plural)','вы-form (2nd person plural)','они-form (3rd person plural)'],p:['masculine singular','feminine singular','neuter singular','plural']};
+const PAIRS=[['идти','ходить','go on foot'],['ехать','ездить','go by transport'],['бежать','бегать','run'],['лететь','летать','fly'],['плыть','плавать','swim, sail'],['нести','носить','carry by hand'],['везти','возить','carry by vehicle'],['вести','водить','lead, take on foot']];
+const PREFT=[['по-','пойти, поехать','set off'],['при-','прийти, приехать','arrive'],['у-','уйти, уехать','leave'],['в-','войти, въехать','go in'],['вы-','выйти, выехать','go out'],['пере-','перейти, переехать','cross, move house'],['за-','зайти, заехать','drop in'],['под-','подойти, подъехать','approach'],['до-','дойти, доехать','reach'],['от-','отойти, отъехать','move away'],['про-','пройти, проехать','pass by, go through'],['об-','обойти, объехать','go round']];
+const $=id=>document.getElementById(id);
+$('pairs').innerHTML=PAIRS.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('prefs').innerHTML=PREFT.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+$('sub').textContent=`Verbs of motion: pick the verb, then the form · ${Q.length} sentences`;
+
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>s.toLowerCase().trim().replace(/ё/g,'е').replace(/\s+/g,' ');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let miss=new Set(LS.get('vom-miss',[]));
+let seen=new Set(LS.get('vom-seen',[]));
+let st;
+
+const cur=()=>Q[st.round[st.i]];
+const ident=v=>{const x=info(v);return`${MAN[x.man]} · ${KIND[x.k].l}${x.cp?` · ${x.cp}- “${PRE[x.cp]}”`:''}`};
+
+function whyNot(a,d){
+  const A=info(a),D=info(d),parts=[];
+  if(D.man!==A.man)parts.push(`it means “${MAN[D.man]}”, but here we need “${MAN[A.man]}”`);
+  if(D.cp!==A.cp){
+    if(D.cp&&A.cp)parts.push(`its prefix ${D.cp}- means “${PRE[D.cp]}”, but the sentence needs “${PRE[A.cp]}” (${A.cp}-)`);
+    else if(D.cp)parts.push(`its prefix ${D.cp}- adds “${PRE[D.cp]}”, a direction the sentence doesn’t express`);
+    else parts.push(`it has no prefix, so it can’t express “${PRE[A.cp]}” (${A.cp}-)`);
+  }
+  if(D.k!==A.k)parts.push(`it is ${KIND[D.k].l} (${KIND[D.k].use}), while this sentence needs ${KIND[A.k].l} (${KIND[A.k].use})`);
+  if(!parts.length)parts.push('it does not match the meaning of the sentence');
+  return`<li><b>${d}</b>: ${parts.join('; ')}.</li>`;
+}
+
+const RM=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+let lastScore=[];
+function reveal(el){
+  if(!el)return;
+  const r=el.getBoundingClientRect();
+  if(r.top>innerHeight*0.7)window.scrollBy({top:r.top-110,behavior:RM.matches?'auto':'smooth'});
+}
+function enterQ(){
+  const q=cur();if(!q)return;
+  st.step=1;st.pickV=null;st.pickF=null;
+  st.vo=shuf([q.v,...q.d]);
+  st.fo=shuf(info(q.v)[q.tn]);
+}
+function poolFor(t,lv){lv=lv||st.level||'all';return Q.map((q,k)=>k).filter(k=>(lv==='all'||Q[k].lv===lv)&&(t==='all'||t==='smart'||(t==='miss'?miss.has(Q[k].ru):Q[k].t===t)))}
+function newRound(){
+  let pick;st.frontier=null;
+  if(st.topic==='smart'&&COACH){const r=COACH.smartPick('vom',Q,st.size||20,seen,st.level);pick=r.picks;st.frontier=r.frontier}
+  else{
+  const pool=poolFor(st.topic);
+  const want=st.size?Math.min(st.size,pool.length):pool.length;
+  let fresh=pool.filter(k=>!seen.has(Q[k].ru));
+  if(fresh.length<want){pool.forEach(k=>seen.delete(Q[k].ru));fresh=pool.slice()}
+  pick=shuf(fresh).slice(0,want);}
+  st.round=shuf(pick);st.i=0;st.res=[];
+  if(COACH){const s=COACH.stats('vom');st.before={};[...new Set(st.round.map(k=>Q[k].t))].forEach(t=>{st.before[t]=COACH.state('vom',t,s).pct})}
+  enterQ();st.fx='card';render();
+}
+
+const SIZES=[5,10,20,30,0];
+function renderTopics(){
+  $('lvls').innerHTML=`<button id="l-all" data-l="all" aria-pressed="${st.level==='all'}">All<small>${poolFor('all','all').length}</small></button>`+LVS.map(l=>`<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level===l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all',l.code).length}</small></button>`).join('');
+  $('sizes').innerHTML=SIZES.map(n=>`<button id="n-${n||'all'}" data-n="${n}" aria-pressed="${n===st.size}">${n||'All'}</button>`).join('');
+  const cs=COACH?COACH.stats('vom'):{};
+  $('topics').innerHTML=Object.entries(TOP).map(([k,v])=>{const m=TLV[k]&&COACH?COACH.state('vom',k,cs):null;return`<button id="t-${k}" data-t="${k}" aria-pressed="${k===st.topic}"${m?` data-st="${m.st}" title="${COACH.LABEL[m.st]}"`:''}>${v}<small>${poolFor(k).length}${m&&m.pct!==null?' · '+m.pct+'%':''}</small></button>`}).join('');
+}
+function render(){
+  renderTopics();
+  document.querySelectorAll('#modes button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===st.mode));
+  const n=st.round.length,done=st.res.filter(Boolean);
+  const vOk=done.filter(r=>r.v).length,fd=done.filter(r=>r.f!==undefined),fOk=fd.filter(r=>r.f).length;
+  let streak=0;for(let k=st.res.length-1;k>=0;k--){const r=st.res[k];if(!r||r.f===undefined)continue;if(r.v&&r.f)streak++;else break}
+  const sc=[[`${vOk}/${done.length}`,'Verbs right'],[`${fOk}/${fd.length}`,'Forms right'],[`${streak}`,'Streak']];
+  $('score').innerHTML=sc.map((s,k)=>`<div><b class="${lastScore[k]!==undefined&&lastScore[k]!==s[0]?'bump':''}">${s[0]}</b><span>${s[1]}</span></div>`).join('');
+  lastScore=sc.map(s=>s[0]);
+  const pct=n>1?Math.min(st.i,n-1)/(n-1)*100:0;
+  const tr=$('track');
+  if(n<=15){tr.className='track';tr.innerHTML=`<div class="rail"><i style="width:${pct}%"></i></div><div class="stops">${st.round.map((_,k)=>{const r=st.res[k];const c=k===st.i&&st.i<n?'now':r&&r.f!==undefined?(r.v&&r.f?'ok':'bad'):'';return`<span class="st ${c}"></span>`}).join('')}</div>`}
+  else{tr.className='track long';tr.innerHTML=`<div class="rail"><i style="width:${pct}%"></i></div><span class="cnt">Station ${Math.min(st.i+1,n)} of ${n}</span>`}
+  const card=$('card');
+  card.innerHTML=!n?emptyHTML():st.i>=n?endHTML():qHTML();
+  if(st.fx==='card'){card.classList.remove('enter','leave');void card.offsetWidth;card.classList.add('enter')}
+  else card.classList.remove('leave');
+  st.fx=null;
+}
+
+function emptyHTML(){
+  if(st.topic==='smart')return`<p class="meta"><span>${TOP.smart}</span></p><p class="ru" style="font-size:24px">Nothing to recommend at this level.</p><p class="en">Pick another level, or practise all topics.</p><button class="btn go" data-act="level" data-k="all">Show all levels</button>`;
+  if(st.topic!=='miss')return`<p class="meta"><span>${TOP[st.topic]}</span></p><p class="ru" style="font-size:24px">No sentences at this level here.</p><p class="en">This topic has no ${st.level} sentences. Pick another level or topic.</p><button class="btn go" data-act="level" data-k="all">Show all levels</button>`;
+  return`<p class="meta"><span>My mistakes</span></p><p class="ru" style="font-size:24px">Nothing to review yet.</p><p class="en">Every sentence you get wrong is saved here, and it leaves the list once you answer it fully right.</p><button class="btn go" data-act="topic" data-k="all">Practise all sentences</button>`;
+}
+
+function qHTML(){
+  const q=cur(),vb=info(q.v),r=st.res[st.i]||{},fx=st.fx;
+  const markCue=s=>st.step===3&&q.cue&&s.includes(q.cue)?s.replace(q.cue,`<mark>${q.cue}</mark>`):s;
+  const [a,b]=q.ru.split('___');
+  const ans=vb[q.tn][q.i];
+  let gap='?',gc='';
+  if(st.step===3){gap=ans;gc=(r.f?'ok':'bad')+(fx==='f'?' pop':'')}
+  const fxc=(picked,ok)=>picked?(ok?' pop':' shake'):'';
+  const vBtns=st.vo.map((v,k)=>{let c='';if(st.step>1){if(v===q.v)c='ok';else if(v===st.pickV)c='bad'}c+=fx==='v'&&v===st.pickV?fxc(1,r.v):'';return`<button class="opt ${c}" data-act="v" data-k="${v}" ${st.step>1?'disabled':''}><kbd>${k+1}</kbd>${v}</button>`}).join('');
+  const quick=st.step>1?`<p class="quick ${r.v?'ok':'bad'} ${fx==='v'?'in':''}">${r.v?'Right: '+q.v+'.':`Not quite: it’s ${q.v}.`}${st.step===2?' <span>The full explanation comes after the form.</span>':''}</p>`:'';
+  const tense=q.tn==='p'?'past tense':vb.k==='p'?'future (perfective)':'present';
+  let s2='',exp='';
+  if(st.step>=2){
+    let body;
+    if(st.mode==='pick'){
+      body=`<div class="opts">${st.fo.map((f,k)=>{let c='';if(st.step===3){if(f===ans)c='ok';else if(f===st.pickF)c='bad'}c+=fx==='f'&&f===st.pickF?fxc(1,r.f):'';return`<button class="opt ${c}" data-act="f" data-k="${f}" ${st.step===3?'disabled':''}><kbd>${k+1}</kbd>${f}</button>`}).join('')}</div>`;
+    }else if(st.step===2){
+      body=`<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
+    }else body=`<p class="quick ${r.f?'ok':'bad'}">${r.f?'Right: ':`You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
+    s2=`<div class="step ${fx==='v'?'in':''}" id="s2"><h2><b>2</b> Conjugate <em>${q.v}</em>${st.step===3?`<span class="tag">${tense}</span>`:''}</h2>${body}</div>`;
+  }
+  if(st.step===3){
+    const R=RULES[q.rule],forms=vb[q.tn],pr=PRON[q.tn];
+    const aspectNote=vb.k==='p'&&q.tn==='n'?'<p>A perfective verb has no present tense: the forms that look like present are the future (пойду = I will go).</p>':q.tn==='p'?'<p>In the past tense Russian verbs agree in gender and number, not person: он ходил, она ходила, оно ходило, они ходили. я, ты and вы take the gender or number of the real person.</p>':'';
+    const vy=vb.pre==='вы'&&vb.k==='p'?'<p>Perfective вы- carries the stress, so ё in the stem becomes е.</p>':'';
+    const open=st.open;
+    exp=`<div class="sum ${fx==='f'?'in':''}" id="exp">
+<p class="verdict ${r.v?'ok':'bad'}">${r.v?'✓':'✗'} Verb: ${q.v}${r.v?'':` <span>(you chose ${st.pickV})</span>`}</p>
+<p class="verdict ${r.f?'ok':'bad'}">${r.f?'✓':'✗'} Form: ${ans}${r.f?'':` <span>(you ${st.mode==='type'?'wrote':'chose'} “${esc(st.pickF)}”)</span>`}</p>
+<p class="rt">${R[0]}</p>
+<button class="more" id="more" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open?'Hide the explanation':'Show the full explanation'}</span><i aria-hidden="true"></i></button></div>
+<div class="panel ${open?'open':''}" id="panel" ${open?'':'inert'}><div><div class="exp">
+<section><h3>The verb</h3><p>${q.v}: ${ident(q.v)}</p></section>
+<section><h3>The rule</h3><p class="rt">${R[0]}</p><p>${R[1]}</p><p class="idn">Example: ${R[2]}</p></section>
+<section><h3>In this sentence</h3><p>${q.cue?`Signal: <mark>${q.cue}</mark>. `:''}${q.en}${q.note?` ${q.note}`:''}</p></section>
+<section><h3>Why not the others</h3><ul class="nots">${q.d.map(d=>whyNot(q.v,d)).join('')}</ul></section>
+<section class="formgrid"><div><h3>Which form and why</h3><p>Needed: the ${PERS[q.tn][q.i]} of the ${tense}.</p>${aspectNote}<h3 style="margin-top:12px">How ${q.v} conjugates</h3><p>${FAM[vb.root]}</p>${vy}</div>
+<table class="par" aria-label="Full conjugation">${forms.map((f,k)=>`<tr class="${k===q.i?'hit':f===st.pickF?'miss':''}"><td>${pr[k]}</td><td>${f}</td></tr>`).join('')}</table></section></div></div></div>
+<div class="dock"><span>${r.v&&r.f?'Both right ✓':(st.i+1)+' / '+st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next station →':'See results'}</button></div>`;
+  }
+  const up=st.topic==='smart'&&st.frontier&&st.frontier.up&&st.i===0&&st.step===1?`<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>`:'';
+  return`${up}<div class="meta"><span>${q.lv}${st.step===3?' · '+TOP[q.t]:''}</span><span>Station ${st.i+1} of ${st.round.length}</span></div>
+<p class="ru" lang="ru">${markCue(a)}<span class="gap ${gc}">${gap}</span>${markCue(b)}</p><p class="en">${q.en}</p>
+<div class="step"><h2><b>1</b> Pick the verb</h2><div class="opts">${vBtns}</div>${quick}</div>${s2}${exp}`;
+}
+
+function endHTML(){
+  const n=st.round.length;
+  const tot=st.res.reduce((s,r)=>s+(r.v?1:0)+(r.f?1:0),0);
+  const ms=st.round.map((k,j)=>({q:Q[k],r:st.res[j]})).filter(o=>!(o.r.v&&o.r.f));
+  return`<p class="meta"><span>End of the line</span></p><p class="big">${tot}/${n*2}</p>
+<p>${tot===n*2?'A perfect ride: every verb and every form right.':`You got ${st.res.filter(r=>r.v).length} of ${n} verbs and ${st.res.filter(r=>r.f).length} of ${n} forms right.`}</p>
+${ms.length?`<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o=>`<li><span lang="ru">${o.q.ru.replace('___','<b>'+info(o.q.v)[o.q.tn][o.q.i]+'</b>')}</span><br><span class="note">${o.q.en} Rule: ${RULES[o.q.rule][0]}.</span></li>`).join('')}</ul>`:''}
+${report()}
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px"><button class="btn go" data-act="new" id="again">${st.topic==='smart'?'Next recommended round':'New round'}</button>${nextButtons()}</div>`;
+}
+function report(){
+  if(!COACH)return'';
+  const s=COACH.stats('vom'),tops=[...new Set(st.round.map(k=>Q[k].t))];
+  const rows=tops.map(t=>{const a=COACH.state('vom',t,s),b=st.before?st.before[t]:null;const ch=b==null?'':a.pct>b?' up':a.pct<b?' down':'';
+    return`<li><span>${NAMES[t]}</span><span class="mstate" data-st="${a.st}">${b==null?'':b+'% → '}<b class="${ch}">${a.pct}%</b> · ${COACH.LABEL[a.st]}</span></li>`}).join('');
+  st.next=COACH.nextStep('vom',Q,NAMES,st.level);
+  return`<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul><p class="coachline">${st.next.text}</p>`;
+}
+function nextButtons(){
+  const nx=st.next;if(!nx)return'';
+  if(nx.kind==='up')return`<button class="btn" data-act="up" data-k="${nx.level}">Move up to ${nx.level}</button>`;
+  if(nx.topic&&nx.topic!==st.topic)return`<button class="btn" data-act="topic" data-k="${nx.topic}">Practise ${NAMES[nx.topic].split(' · ')[0]}</button>`;
+  return'';
+}
+
+function track(q,ok){
+  if(COACH)COACH.record('vom',q.t,ok);
+  seen.add(q.ru);LS.set('vom-seen',[...seen]);
+  if(ok)miss.delete(q.ru);else miss.add(q.ru);
+  LS.set('vom-miss',[...miss]);
+}
+function pickV(v){
+  const q=cur();st.pickV=v;st.res[st.i]={v:v===q.v};st.step=2;st.fx='v';render();
+  if(st.mode==='type'){const i=$('ans');if(i)i.focus({preventScroll:true})}
+  reveal($('s2'));
+}
+function pickF(f){
+  const q=cur(),ans=info(q.v)[q.tn][q.i];
+  st.pickF=f;st.res[st.i].f=norm(f)===norm(ans);st.step=3;st.fx='f';
+  track(q,st.res[st.i].v&&st.res[st.i].f);
+  render();
+  const nx=$('next');if(nx)nx.focus({preventScroll:true});
+  reveal($('exp'));
+}
+function next(){
+  if(st.busy)return;st.busy=true;
+  const card=$('card');
+  const go=()=>{
+    st.busy=false;st.i++;enterQ();st.fx='card';render();
+    const top=card.getBoundingClientRect().top;
+    if(top<0||top>innerHeight*0.5)window.scrollBy({top:top-16,behavior:RM.matches?'auto':'smooth'});
+    if(st.i>=st.round.length){const a=$('again');if(a)a.focus({preventScroll:true})}
+  };
+  if(RM.matches)go();else{card.classList.remove('enter');card.classList.add('leave');setTimeout(go,170)}
+}
+function toggleMore(){
+  st.open=!st.open;LS.set('vom-open',st.open);
+  const p=$('panel'),b=$('more');if(!p||!b)return;
+  p.classList.toggle('open',st.open);p.toggleAttribute('inert',!st.open);b.setAttribute('aria-expanded',st.open);b.querySelector('span').textContent=st.open?'Hide the explanation':'Show the full explanation';
+  if(st.open)setTimeout(()=>reveal(p),RM.matches?0:120);
+}
+function setTopic(t){st.topic=t;LS.set('vom-prefs',{topic:st.topic,mode:st.mode});newRound();const b=$('t-'+t);if(b)b.scrollIntoView({block:'nearest',inline:'nearest'})}
+
+$('card').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-act]');if(!b||b.disabled)return;
+  const a=b.dataset.act;
+  if(a==='v'&&st.step===1)pickV(b.dataset.k);
+  else if(a==='f'&&st.step===2)pickF(b.dataset.k);
+  else if(a==='next')next();
+  else if(a==='new')newRound();
+  else if(a==='topic')setTopic(b.dataset.k);
+  else if(a==='level'){st.level=b.dataset.k;LS.set('gr-level',st.level);newRound()}
+  else if(a==='up'){st.topic='smart';st.level=b.dataset.k;LS.set('gr-level',st.level);LS.set('vom-prefs',{topic:st.topic,mode:st.mode});newRound()}
+  else if(a==='more')toggleMore();
+});
+$('card').addEventListener('submit',e=>{e.preventDefault();const v=$('ans').value;if(!v.trim())return;pickF(v)});
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||e.metaKey||e.ctrlKey||e.altKey||!st.round.length)return;
+  const d=parseInt(e.key,10);
+  if(d>=1&&d<=9&&st.i<st.round.length){
+    if(st.step===1&&st.vo[d-1])pickV(st.vo[d-1]);
+    else if(st.step===2&&st.mode==='pick'&&st.fo[d-1])pickF(st.fo[d-1]);
+  }
+});
+$('topics').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setTopic(b.dataset.t)});
+$('lvls').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.level=b.dataset.l;LS.set('gr-level',st.level);newRound()});
+$('sizes').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.size=+b.dataset.n;LS.set('gr-size',st.size);newRound()});
+$('modes').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.mode=b.dataset.m;LS.set('vom-prefs',{topic:st.topic,mode:st.mode});render()});
+
+function start(data){
+  const prefs=LS.get('vom-prefs',{});
+  if(data&&Array.isArray(data.round)&&data.round.length&&data.round.every(k=>Q[k])){st=data;if(st.size===undefined)st.size=10;if(!st.level)st.level='all';render();return}
+  const lvP=LS.get('gr-level','all');
+  st={level:lvP==='all'||LVS.some(l=>l.code===lvP)?lvP:'all',topic:TOP[decodeURIComponent(location.hash.slice(1))]?decodeURIComponent(location.hash.slice(1)):TOP[prefs.topic]?prefs.topic:'smart',mode:prefs.mode==='type'?'type':'pick',round:[],i:0,res:[],step:1,vo:[],fo:[],pickV:null,pickF:null,open:LS.get('vom-open',false)===true,size:[5,10,20,30,0].includes(LS.get('gr-size',10))?LS.get('gr-size',10):10};
+  newRound();
+}
+window.claude?.hot?.snapshot?.(()=>st);
+try{if('serviceWorker' in navigator&&window.top===window&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}catch(e){}
+window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Предлоги</title>
+<meta name="description" content="Practise Russian prepositions and the cases they take.">
+<meta name="theme-color" content="#8d5b2d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
+<style>:root{--red:#8d5b2d}.m{color:#8d5b2d}</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">7</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Предлоги</h1><p class="sub">Prepositions · pick the preposition, then the case form · <span id="count"></span> sentences</p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>
+    </aside>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet</h2>
+<div class="cols"><div><h3>Where, where to, where from</h3><div class="tbl"><table><thead><tr><th>Где? (P)</th><th>Куда? (A)</th><th>Откуда? (G)</th></tr></thead><tbody><tr><td>в школе</td><td>в школу</td><td>из школы</td></tr><tr><td>на работе</td><td>на работу</td><td>с работы</td></tr><tr><td>у врача (G)</td><td>к врачу (D)</td><td>от врача (G)</td></tr></tbody></table></div><p class="note">Places with на: работа, почта, вокзал, улица, дача, концерт, выставка, урок, море, рынок.</p></div><div><h3>Which case after which preposition</h3><div class="tbl"><table><thead><tr><th>Case</th><th>Prepositions</th></tr></thead><tbody><tr><td>Genitive</td><td>из, с (from), от, у, до, после, без, для, около, напротив</td></tr><tr><td>Dative</td><td>к, по</td></tr><tr><td>Accusative</td><td>в / на (where to), через, за (how long), на (for how long), в + day</td></tr><tr><td>Instrumental</td><td>с (with), под, над, за, перед, между</td></tr><tr><td>Prepositional</td><td>в / на (where), о / об, в + month</td></tr></tbody></table></div></div></div>
+  </div>
+</section>
+<script src="../shared/levels.js"></script>
+<script src="data.js"></script>
+<script src="../shared/coach.js"></script>
+<script src="../shared/ui.js"></script>
+<script src="../shared/engine.js"></script>
+</body>
+</html>
