@@ -125,3 +125,22 @@ for k,v in pages.items():
     os.makedirs(k,exist_ok=True)
     open(f'{k}/index.html','w').write(T.format(**v))
 print('ok')
+
+# ---------- combined pages: Daily mix and placement test ----------
+LINES=['cases','aspect','numbers','advanced','prep','compare']
+def multi(slug,builder,color,title,en,sub,desc,about,hide):
+    h=T.format(num='★',color=color,title=title,en=en,sub=sub,desc=desc,cheat=about)
+    h=h.replace(' · <span id="count"></span> sentences','<span id="count" hidden></span>')
+    data=''.join(f'<script src="../{l}/data.js"></script><script>ALL.push(EXERCISE)</script>\n' for l in LINES)
+    h=h.replace('<script src="data.js"></script>\n<script src="../shared/coach.js"></script>',
+      '<script src="../shared/catalog.js"></script>\n<script src="../shared/coach.js"></script>\n<script>window.ALL=[]</script>\n'+data+
+      f'<script src="../shared/multi.js"></script>\n<script>{builder}()</script>')
+    if hide: h=h.replace('</style>','#lvls,#topics,#sizes{display:none}.grp:has(#lvls),.grp:has(#topics),.grp:has(#sizes){display:none}</style>')
+    os.makedirs(slug,exist_ok=True); open(f'{slug}/index.html','w').write(h)
+multi('mix','buildMix','#141414','Ежедневная смесь','Daily mix','about 10 minutes of everything',
+ 'One short daily session: grammar mistakes that are due, then the topics you most need, across every line.',
+ '<h2>How the daily mix works</h2><div class="cols"><div><p>Each round starts with grammar mistakes that are due again (they come back after 1, 3, 7 and 21 days). The rest is one recommended question from each line in turn, starting with the lines that have the most topics left to learn.</p></div><div><p>Your level filter applies here too. Answers count toward each line’s progress, your daily goal and your streak, exactly as if you had practised on that line’s page.</p></div></div>',False)
+multi('placement','buildPlacement','#3d3d3d','Тест на уровень','Placement test','16 questions, A1 to B2',
+ 'Find your Russian grammar level in 16 questions.',
+ '<h2>How the test works</h2><div class="cols"><div><p>Four questions at each level from A1 to B2, easiest first, drawn from all the grammar lines. You pass a level with 3 of 4 right; the test places you at the highest level you pass without a gap.</p></div><div><p>At the end you can accept the result: your level is set to the next one up, and topics at and below your level are marked as known so the coach doesn’t send you back to them. You can retake it any time.</p></div></div>',True)
+print('multi ok')

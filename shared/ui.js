@@ -69,7 +69,7 @@
     const groups = [...panel.querySelectorAll('.grp')];
     chips.innerHTML = groups.map((g, i) => {
       const p = g.querySelector('button[aria-pressed="true"]');
-      if (!p) return '';
+      if (!p || g.hidden || getComputedStyle(g).display === 'none') return '';
       let v = label(p);
       if (/^(all|все)/i.test(v) && g.dataset.all) v = g.dataset.all;
       else v = (g.dataset.fmt || '{v}').replace('{v}', v);

@@ -49,6 +49,10 @@ The flashcards read Anki text files directly, in the same 25-column `Vocab` form
 
 Both files import straight into Anki. Scheduling follows Anki's defaults: learning steps 1 and 10 minutes, graduating interval 1 day, easy 4 days, starting ease 250 %, Again/Hard/Good/Easy. Cards can be studied RU → EN, EN → RU or both, and you can import your own Anki exports on the page.
 
+### Daily mix and placement test
+
+`mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.
+
 ### Account and login
 
 `shared/account.js` adds sign-in with a 6-digit email code (Supabase Auth) and saves all progress to the signed-in account automatically. A code is used instead of a magic link because links open in Safari, not in the home-screen app on iPhone. To switch it on:

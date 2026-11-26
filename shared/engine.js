@@ -17,7 +17,7 @@ const LS = {
 };
 const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
 const SIZES = [5, 10, 20, 30, 0];
-const TOP = Object.assign({ smart: 'Рекомендуем · Recommended', all: 'Все темы · All topics' }, EX.topics, { miss: 'Мои ошибки · My mistakes' });
+const TOP = Object.assign({ smart: EX.smartName || 'Рекомендуем · Recommended', all: 'Все темы · All topics' }, EX.topics, { miss: 'Мои ошибки · My mistakes' });
 const COACH = window.GRCoach;
 const NAMES = Object.assign({}, EX.topics);
 const miss = new Set(LS.get(EX.id + '-miss', []));
@@ -27,7 +27,8 @@ let st, lastScore = [];
 $('count').textContent = Q.length;
 
 const cur = () => Q[st.round[st.i]];
-const ONE = () => !EX.twoStepOnly && st.steps !== 'two';
+const ONE = () => { const q = cur(); return !EX.twoStepOnly && !(q && q.two) && st.steps !== 'two'; };
+const GP = q => q.gp !== undefined ? q.gp : !!EX.gapPrefix;
 const TTS = 'speechSynthesis' in window;
 function say(text, slow) {
   if (!TTS) return;
@@ -39,7 +40,7 @@ function say(text, slow) {
 }
 if (TTS) speechSynthesis.getVoices();
 const spoken = q => q.ru.replace('___', full(q));
-const full = q => (EX.gapPrefix ? optLabel(q.o1[q.a1]) + ' ' : '') + q.forms[q.a2];
+const full = q => (GP(q) ? optLabel(q.o1[q.a1]) + ' ' : '') + q.forms[q.a2];
 const opt = o => EX.opts[o.kind] || { name: o.kind, use: '' };
 const optLabel = o => o.label || opt(o).name;
 const optHTML = o => { const t = optLabel(o); const i = t.indexOf(' · '); return i < 0 ? t : `<span lang="ru">${t.slice(0, i)}</span><small class="en2">${t.slice(i + 3)}</small>`; };
@@ -57,9 +58,9 @@ function enterQ() {
   const q = cur(); if (!q) return;
   st.step = ONE() ? 2 : 1; st.p1 = null; st.pickF = null;
   const idx = q.o1.map((_, k) => k);
-  st.o1 = EX.keepOrder1 ? idx : shuf(idx);
+  st.o1 = (q.ko !== undefined ? q.ko : EX.keepOrder1) ? idx : shuf(idx);
   const ans = q.forms[q.a2];
-  if (ONE() && EX.gapPrefix) {
+  if (ONE() && GP(q)) {
     // one step with prepositions: mix wrong prepositions with wrong case forms
     const p = optLabel(q.o1[q.a1]), right = p + ' ' + ans;
     const wrongP = q.o1.filter((_, k) => k !== q.a1).map(o => optLabel(o) + ' ' + ans);
@@ -74,7 +75,9 @@ function enterQ() {
 function newRound() {
   let pick;
   st.frontier = null;
-  if (st.topic === 'smart' && COACH) {
+  if (st.topic === 'smart' && EX.pick) {
+    const r = EX.pick(st.size || 15, seen, st.level); pick = r.picks || r; st.frontier = r.frontier || null;
+  } else if (st.topic === 'smart' && COACH) {
     const want = st.size || 20;
     const r = COACH.smartPick(EX.id, Q, want, seen, st.level);
     pick = r.picks; st.frontier = r.frontier;
@@ -85,8 +88,8 @@ function newRound() {
     if (fresh.length < want) { pool.forEach(k => seen.delete(Q[k].ru)); fresh = pool.slice(); }
     pick = shuf(fresh).slice(0, want);
   }
-  st.round = shuf(pick); st.i = 0; st.res = [];
-  if (COACH) { const s = COACH.stats(EX.id); st.before = {}; [...new Set(st.round.map(k => Q[k].t))].forEach(t => { st.before[t] = COACH.state(EX.id, t, s).pct; }); }
+  st.round = EX.keepOrder && st.topic === 'smart' ? pick : shuf(pick); st.i = 0; st.res = [];
+  if (COACH) { st.before = {}; st.round.forEach(k => { const q = Q[k], id = q.ex || EX.id, t = q.ot || q.t; st.before[id + ':' + t] = COACH.state(id, t).pct; }); }
   enterQ(); st.fx = 'card'; render();
 }
 
@@ -95,7 +98,7 @@ function renderControls() {
     LEVELS.map(l => `<button id="l-${l.code}" data-l="${l.code}" aria-pressed="${st.level === l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}<small>${poolFor('all', l.code).length}</small></button>`).join('');
   const cs = COACH ? COACH.stats(EX.id) : {};
   $('topics').innerHTML = Object.entries(TOP).map(([k, v]) => {
-    const real = EX.topics[k], m = real && COACH ? COACH.state(EX.id, k, cs) : null;
+    const real = EX.topics[k], m = real && COACH && !EX.multi ? COACH.state(EX.id, k, cs) : null;
     const extra = m && m.pct !== null ? ` · ${m.pct}%` : '';
     return `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}"${m ? ` data-st="${m.st}" title="${COACH.LABEL[m.st]}"` : ''}>${v}<small>${poolFor(k).length}${extra}</small></button>`;
   }).join('');
@@ -164,7 +167,7 @@ function qHTML() {
     const nots = q.o1.map((o, k) => k === q.a1 ? '' : `<li><b>${optLabel(o)}</b>${o.label && opt(o).name !== o.label ? ` (${opt(o).name})` : ''}: ${opt(o).use}</li>`).join('');
     const table = q.labels ? `<table class="par casetbl" aria-label="All forms">${q.labels.map((l, k) => q.forms[k] === undefined ? '' : `<tr class="${k === q.a2 ? 'hit' : q.forms[k] === st.pickF && q.forms[k] !== ans ? 'miss' : ''}"><td>${l}</td><td>${q.forms[k]}</td></tr>`).join('')}</table>` : '';
     exp = `<div class="sum ${fx === 'f' ? 'in' : ''}" id="exp">
-${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ Not quite:'} ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p><p class="idn">${EX.step1Short || 'Choice'}: ${optLabel(right1)}</p>` : `<p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
+${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ Not quite:'} ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p><p class="idn">${q.s1s || EX.step1Short || 'Choice'}: ${optLabel(right1)}</p>` : `<p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${q.s1s || EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
 <p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓' : '✗'} Form: ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p>`}
 <p class="rt">${R[0]}</p>
 <button class="more" id="more" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open ? 'Hide the explanation' : 'Show the full explanation'}</span><i aria-hidden="true"></i></button></div>
@@ -177,12 +180,13 @@ ${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ No
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
   const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
-  return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (NAMES[q.t] || TOP[q.t]) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
+  return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (EX.label ? EX.label(q) : (NAMES[q.t] || TOP[q.t])) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
 ${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">Listen · Слушать</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
-${one ? '' : `<div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
+${one ? '' : `<div class="step"><h2><b>1</b> ${q.s1 || EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
 }
 
 function endHTML() {
+  if (EX.end) return EX.end(st.round.map(k => Q[k]), st.res);
   const n = st.round.length;
   const one = ONE(), right = st.res.filter(r => r.a && r.f).length;
   const tot = one ? right : st.res.reduce((s, r) => s + (r.a ? 1 : 0) + (r.f ? 1 : 0), 0), max = one ? n : n * 2;
@@ -195,15 +199,16 @@ ${report()}
 }
 function report() {
   if (!COACH) return '';
-  const s = COACH.stats(EX.id), tops = [...new Set(st.round.map(k => Q[k].t))];
-  const rows = tops.map(t => {
-    const a = COACH.state(EX.id, t, s), b = st.before ? st.before[t] : null;
+  const keys = [...new Set(st.round.map(k => { const q = Q[k]; return (q.ex || EX.id) + ':' + (q.ot || q.t); }))];
+  const nameOf = key => { const q = Q[st.round.find(k => ((Q[k].ex || EX.id) + ':' + (Q[k].ot || Q[k].t)) === key)]; return EX.label ? EX.label(q) : NAMES[q.t]; };
+  const rows = keys.map(key => {
+    const [id, t] = key.split(':'), a = COACH.state(id, t), b = st.before ? st.before[key] : null;
     const ch = b === null || b === undefined ? '' : a.pct > b ? ' up' : a.pct < b ? ' down' : '';
-    return `<li><span>${NAMES[t]}</span><span class="mstate" data-st="${a.st}">${b === null || b === undefined ? '' : b + '% → '}<b class="${ch}">${a.pct}%</b> · ${COACH.LABEL[a.st]}</span></li>`;
+    return `<li><span>${nameOf(key)}</span><span class="mstate" data-st="${a.st}">${b === null || b === undefined ? '' : b + '% → '}<b class="${ch}">${a.pct}%</b> · ${COACH.LABEL[a.st]}</span></li>`;
   }).join('');
-  const nx = COACH.nextStep(EX.id, Q, NAMES, st.level);
+  const nx = EX.multi ? null : COACH.nextStep(EX.id, Q, NAMES, st.level);
   st.next = nx;
-  return `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul><p class="coachline">${nx.text}</p>`;
+  return `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul>${nx ? `<p class="coachline">${nx.text}</p>` : ''}${EX.after ? EX.after() : ''}`;
 }
 function nextButtons() {
   const nx = st.next; if (!nx) return '';
@@ -226,7 +231,7 @@ function pickA(k) {
 function pickF(f) {
   const q = cur();
   if (ONE()) {
-    const ok = norm(f) === norm(full(q)) || (EX.gapPrefix && st.mode === 'type' && norm(f) === norm(q.forms[q.a2]));
+    const ok = norm(f) === norm(full(q)) || (GP(q) && st.mode === 'type' && norm(f) === norm(q.forms[q.a2]));
     st.p1 = q.a1; st.res[st.i] = { a: ok, f: ok };
   } else st.res[st.i].f = norm(f) === norm(q.forms[q.a2]);
   st.pickF = f; st.step = 3; st.fx = 'f';
@@ -289,7 +294,8 @@ const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
 const lvPref = LS.get('gr-level', 'all');
 const hashT = decodeURIComponent((location.hash || '').slice(1));
-st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: EX.lockTopic ? 'smart' : TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
+window.__gr = { answer: () => full(cur()) };   // used by the automated tests
 }
