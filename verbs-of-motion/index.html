@@ -14,6 +14,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
 <script src="../shared/progress.js"></script>
+<script src="../shared/config.js"></script>
+<script src="../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -711,7 +713,7 @@ function nextButtons(){
 }
 
 function track(q,ok){
-  if(COACH)COACH.record('vom',q.t,ok);
+  if(COACH)COACH.record('vom',q.t,ok,q.ru);
   seen.add(q.ru);LS.set('vom-seen',[...seen]);
   if(ok)miss.delete(q.ru);else miss.add(q.ru);
   LS.set('vom-miss',[...miss]);

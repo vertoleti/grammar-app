@@ -28,6 +28,17 @@ $('count').textContent = Q.length;
 
 const cur = () => Q[st.round[st.i]];
 const ONE = () => !EX.twoStepOnly && st.steps !== 'two';
+const TTS = 'speechSynthesis' in window;
+function say(text, slow) {
+  if (!TTS) return;
+  const u = new SpeechSynthesisUtterance(text.replace(/\u0301/g, ''));
+  u.lang = 'ru-RU'; u.rate = slow ? 0.7 : 0.95;
+  const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().startsWith('ru'));
+  if (v) u.voice = v;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+if (TTS) speechSynthesis.getVoices();
+const spoken = q => q.ru.replace('___', full(q));
 const full = q => (EX.gapPrefix ? optLabel(q.o1[q.a1]) + ' ' : '') + q.forms[q.a2];
 const opt = o => EX.opts[o.kind] || { name: o.kind, use: '' };
 const optLabel = o => o.label || opt(o).name;
@@ -112,7 +123,7 @@ function render() {
   }
   const card = $('card');
   card.innerHTML = !n ? emptyHTML() : st.i >= n ? endHTML() : qHTML();
-  if (st.fx === 'card') { card.classList.remove('enter', 'leave'); void card.offsetWidth; card.classList.add('enter'); }
+  if (st.fx === 'card') { card.classList.remove('enter', 'leave'); void card.offsetWidth; card.classList.add('enter'); if (st.mode === 'listen' && st.i < n && cur()) setTimeout(() => say(spoken(cur())), 350); }
   else card.classList.remove('leave');
   st.fx = null;
 }
@@ -141,7 +152,7 @@ function qHTML() {
   let s2 = '', exp = '';
   if (st.step >= 2) {
     let body;
-    if (st.mode === 'pick') {
+    if (st.mode !== 'type') {
       body = `<div class="opts">${st.fo.map((f, k) => { let c = ''; if (st.step === 3) { if (f === ans) c = 'ok'; else if (f === st.pickF) c = 'bad'; } if (fx === 'f' && f === st.pickF) c += fxc(r.f); return `<button class="opt ${c}" data-act="f" data-k="${esc(f)}" ${st.step === 3 ? 'disabled' : ''}><kbd>${k + 1}</kbd>${f}</button>`; }).join('')}</div>`;
     } else if (st.step === 2) {
       body = `<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
@@ -167,7 +178,7 @@ ${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ No
   const L = (window.CEFR || []).find(l => l.code === q.lv);
   const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
   return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (NAMES[q.t] || TOP[q.t]) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
-<p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>
+${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">Listen · Слушать</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
 ${one ? '' : `<div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
 }
 
@@ -202,7 +213,7 @@ function nextButtons() {
 }
 
 function track(q, ok) {
-  if (COACH) COACH.record(EX.id, q.t, ok);
+  if (COACH) COACH.record(q.ex || EX.id, q.ot || q.t, ok, q.ru);
   seen.add(q.ru); LS.set(EX.id + '-seen', [...seen]);
   if (ok) miss.delete(q.ru); else miss.add(q.ru);
   LS.set(EX.id + '-miss', [...miss]);
@@ -255,6 +266,7 @@ $('card').addEventListener('click', e => {
   else if (a === 'new') newRound();
   else if (a === 'topic') setTopic(b.dataset.k);
   else if (a === 'more') toggleMore();
+  else if (a === 'say' || a === 'slow') { const q = cur(); if (q) say(spoken(q), a === 'slow'); }
   else if (a === 'level') setLevel(b.dataset.k);
   else if (a === 'up') { st.topic = 'smart'; savePrefs(); setLevel(b.dataset.k); }
 });
@@ -264,7 +276,7 @@ document.addEventListener('keydown', e => {
   const d = parseInt(e.key, 10);
   if (d >= 1 && d <= 9 && st.i < st.round.length) {
     if (st.step === 1 && st.o1[d - 1] !== undefined) pickA(st.o1[d - 1]);
-    else if (st.step === 2 && st.mode === 'pick' && st.fo[d - 1]) pickF(st.fo[d - 1]);
+    else if (st.step === 2 && st.mode !== 'type' && st.fo[d - 1]) pickF(st.fo[d - 1]);
   }
 });
 $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTopic(b.dataset.t); });
@@ -277,7 +289,7 @@ const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
 const lvPref = LS.get('gr-level', 'all');
 const hashT = decodeURIComponent((location.hash || '').slice(1));
-st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
 }

@@ -14,6 +14,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <script src="shared/progress.js"></script>
+<script src="shared/config.js"></script>
+<script src="shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -43,6 +45,11 @@ h2 small{font:400 15px "PT Sans",sans-serif;color:var(--mute);letter-spacing:0}
 h1{font-size:clamp(30px,5vw,46px);font-weight:700}
 .sub{margin:4px 0 0;opacity:.92;font-size:16px}
 .picker p{margin:0 0 6px;font-size:14px;opacity:.92}
+.hdr{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.me{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;background:rgba(0,0,0,.16);border-radius:14px;padding:6px 14px 6px 6px;min-height:52px}
+.me svg{flex:none;width:40px;height:40px}
+.me b{display:block;font-size:15px;line-height:1.2}
+.me span{display:block;font-size:13px;opacity:.9;line-height:1.2}
 .lvrow{display:flex;gap:2px;background:rgba(0,0,0,.16);border-radius:12px;padding:3px}
 .lvrow button{font:700 15px "PT Sans",sans-serif;color:#fff;background:transparent;border:0;border-radius:9px;min-height:40px;min-width:44px;padding:4px 10px;cursor:pointer}
 .lvrow button[aria-pressed=true]{background:#fff;color:#d4202c}
@@ -117,7 +124,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
 @media(hover:hover){.chip:hover{border-color:var(--line)}}
 
 /* folded settings */
-details.fold{background:var(--soft);border-radius:16px;padding:0 18px;margin-top:10px}
+details.fold,a.fold{background:var(--soft);border-radius:16px;padding:0 18px;margin-top:10px}
+a.acctlink{display:flex;align-items:center;gap:10px;min-height:54px;font-weight:700;color:var(--ink);text-decoration:none}
+a.acctlink .st{font-weight:400;font-size:15px;color:var(--mute)}
 details.fold summary{cursor:pointer;min-height:54px;display:flex;align-items:center;gap:10px;font-weight:700;list-style:none}
 details.fold summary::-webkit-details-marker{display:none}
 details.fold summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);transition:transform .25s}
@@ -146,7 +155,10 @@ ol.steps{margin:6px 0 10px;padding-left:1.2em;font-size:16px}
 <header class="top band">
   <div class="wrap hd">
     <div class="brand"><div class="m" aria-hidden="true">М</div><div><h1>Грамматика</h1><p class="sub">Russian grammar and vocabulary · Русская грамматика и лексика</p></div></div>
+    <div class="hdr">
+    <a class="me" id="me" href="profile/"></a>
     <div class="picker"><p id="lvl-lbl">My level · Мой уровень</p><div class="lvrow" id="lvrow" role="group" aria-labelledby="lvl-lbl"></div></div>
+    </div>
   </div>
 </header>
 
@@ -179,6 +191,7 @@ ol.steps{margin:6px 0 10px;padding-left:1.2em;font-size:16px}
   <section class="band" style="padding-top:0" id="progress" aria-labelledby="h-set">
     <div class="wrap">
       <h2 id="h-set">Настройки <small>Progress and app</small></h2>
+      <a class="fold acctlink" href="profile/"><span class="dotst ok"></span>Account and profile · Аккаунт <span class="st" id="acct-st">goal, streak, charts, login</span></a>
       <details class="fold" id="fold-progress">
         <summary><span class="dotst" id="sdot"></span>Your progress · Ваш прогресс <span class="st" id="sstate">Checking…</span></summary>
         <div class="foldin cols">
@@ -243,6 +256,9 @@ function suggestions(est){
   const target=lvl!=='all'?lvl:(est.working||'A1');
   const v=vocab();
   if(v.due)out.push({c:VOC.c,n:'6',title:`Review ${v.due} flashcard${v.due>1?'s':''}`,why:'Due today: spaced repetition works best on time',href:VOC.href});
+  const dueL=GRAM.map(L=>({L,n:C.dueReviews(L.id).length})).filter(x=>x.n).sort((a,b)=>b.n-a.n);
+  const dueN=dueL.reduce((a,x)=>a+x.n,0);
+  if(dueN)out.push({c:'#141414',n:dueN,title:`Review ${dueN} grammar mistake${dueN>1?'s':''}`,why:'They come back after 1, 3, 7 and 21 days until they stick',href:window.MIX?'mix/':`${dueL[0].L.href}#smart`});
   const all=[];GRAM.forEach(L=>{const s=C.stats(L.id);L.topics.forEach(t=>all.push(Object.assign({L,t},C.state(L.id,t.k,s))))});
   const weak=all.filter(x=>x.st==='weak').sort((a,b)=>a.pct-b.pct)[0];
   if(weak)out.push({c:weak.L.c,n:weak.L.n,title:`Strengthen: ${short(weak.t.name)}`,why:`${weak.pct}% right lately · ${weak.L.ru}`,href:`${weak.L.href}#${weak.t.k}`,level:weak.t.lv});
@@ -268,6 +284,9 @@ function draw(){
   const lvl=LS.get('gr-level','all');
   $('lvrow').innerHTML=`<button id="p-all" data-l="all" aria-pressed="${lvl==='all'}">All</button>`+window.CEFR.map(l=>`<button id="p-${l.code}" data-l="${l.code}" aria-pressed="${lvl===l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}</button>`).join('');
   const est=C.estimate(GRAM);
+  C.logLevel(est);
+  const pf=C.profile(),td=C.today(),sk=C.streak(),fr=Math.min(1,td.done/td.goal),R=16,LN=2*Math.PI*R;
+  $('me').innerHTML=`<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${R}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5"/><circle cx="20" cy="20" r="${R}" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="${LN}" stroke-dashoffset="${LN*(1-fr)}" transform="rotate(-90 20 20)"/><text x="20" y="25" text-anchor="middle" fill="#fff" style="font:700 13px 'PT Sans',sans-serif">${(pf.name||'Я').slice(0,1).toUpperCase()}</text></svg><span><b>Today ${td.done}/${td.goal}</b><span>${sk.now} day streak · Profile</span></span>`;
   const reachedIdx=est.reached?ORDER.indexOf(est.reached):-1,workIdx=est.working?ORDER.indexOf(est.working):-1;
   const wp=est.working&&est.per[est.working]?est.per[est.working]:null;
   const frac=wp?wp.solid/wp.total:0;

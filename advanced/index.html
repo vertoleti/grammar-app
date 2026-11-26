@@ -14,6 +14,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
 <script src="../shared/progress.js"></script>
+<script src="../shared/config.js"></script>
+<script src="../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -41,7 +43,7 @@
     <aside class="ctrls" data-sheet>
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
       <section class="grp" data-all="All topics"><h3>Topic · Тема</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
-      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Как отвечать</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
       <section class="grp" data-fmt="{v}"><h3>Steps · Шаги</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
       <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
       <p class="note">Progress is saved in this browser. <a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a></p>

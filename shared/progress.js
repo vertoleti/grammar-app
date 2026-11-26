@@ -8,7 +8,7 @@
 (function () {
   const PREFIXES = ['vom-', 'cases-', 'aspect-', 'numbers-', 'advanced-', 'prep-', 'compare-', 'voc-', 'gr-'];
   const META = 'gr-meta', SYNC = 'gr-sync', FILE = 'grammar-app-progress.json';
-  const SKIP = new Set([META, SYNC]);
+  const SKIP = new Set([META, SYNC, 'gr-auth']);
   const tracked = k => typeof k === 'string' && !SKIP.has(k) && PREFIXES.some(p => k.startsWith(p));
   let ls; try { ls = window.localStorage; ls.getItem('x'); } catch (e) { ls = null; }
   const listeners = new Set();
@@ -109,8 +109,23 @@
     if (f.truncated && f.raw_url) text = await (await fetch(f.raw_url)).text();
     return JSON.parse(text);
   }
+  // an account (shared/account.js) can register itself as the place to sync to
+  let remote = null;
+  async function syncRemote() {
+    busy = true; lastError = ''; emit();
+    try {
+      const snap = await remote.read();
+      const changedHere = snap ? merge(snap) : false;
+      await remote.write(snapshot());
+      syncCfg.last = Date.now(); rawSet.call(ls, SYNC, JSON.stringify(syncCfg));
+      if (changedHere) { window.dispatchEvent(new CustomEvent('gr-progress-merged')); toast(); }
+    } catch (e) { lastError = e.message || String(e); }
+    busy = false; emit();
+  }
   async function sync() {
-    if (!syncCfg.token || busy) return;
+    if (busy) return;
+    if (remote) return syncRemote();
+    if (!syncCfg.token) return;
     busy = true; lastError = ''; emit();
     try {
       let id = await findGist(), remote = null;
@@ -135,7 +150,7 @@
     d.querySelector('button').onclick = () => location.reload();
     document.body.appendChild(d);
   }
-  function schedule() { if (!syncCfg.token) { emit(); return; } clearTimeout(timer); timer = setTimeout(sync, 4000); emit(); }
+  function schedule() { if (!syncCfg.token && !remote) { emit(); return; } clearTimeout(timer); timer = setTimeout(sync, 4000); emit(); }
   async function connect(token) {
     syncCfg = { token: token.trim() }; rawSet.call(ls, SYNC, JSON.stringify(syncCfg));
     await sync();
@@ -145,10 +160,11 @@
 
   const api = {
     available: true,
-    exportFile, importFile, connect, disconnect, sync,
+    exportFile, importFile, connect, disconnect, sync, snapshot, merge,
+    setRemote(r) { remote = r; if (r) setTimeout(sync, 200); emit(); },
     on(f) { listeners.add(f); f(api.status()); },
     status() {
-      return { available: true, keys: keys().length, synced: !!syncCfg.token, last: syncCfg.last || 0, busy, error: lastError };
+      return { available: true, keys: keys().length, synced: !!syncCfg.token || !!remote, account: remote ? remote.name : '', last: syncCfg.last || 0, busy, error: lastError };
     }
   };
   window.GRProgress = api;

@@ -704,7 +704,7 @@ function nextButtons(){
 }
 
 function track(q,ok){
-  if(COACH)COACH.record('vom',q.t,ok);
+  if(COACH)COACH.record('vom',q.t,ok,q.ru);
   seen.add(q.ru);LS.set('vom-seen',[...seen]);
   if(ok)miss.delete(q.ru);else miss.add(q.ru);
   LS.set('vom-miss',[...miss]);

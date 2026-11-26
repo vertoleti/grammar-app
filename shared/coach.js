@@ -9,7 +9,42 @@
   const set = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
 
   function stats(id) { return get(id + '-stats', {}); }
-  function record(id, topic, ok) {
+  const DAY = 86400000, REV = [1, 3, 7, 21];
+  const dkey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  // daily activity log: answers, correct answers, flashcards
+  function logDay(field, n, ok) {
+    const L = get('gr-log', {}), k = dkey(), d = L[k] || { a: 0, ok: 0, c: 0 };
+    d[field] = (d[field] || 0) + n; if (ok) d.ok = (d.ok || 0) + 1;
+    L[k] = d;
+    const keys = Object.keys(L).sort(); while (keys.length > 500) delete L[keys.shift()];
+    set('gr-log', L);
+  }
+  function logCard() { logDay('c', 1, false); }
+  function profile() { return Object.assign({ name: '', target: '', by: '', goal: 20 }, get('gr-profile', {})); }
+  function dayDone(d) { return d ? (d.a || 0) + (d.c || 0) : 0; }
+  function today() { const g = profile().goal || 20, d = get('gr-log', {})[dkey()]; return { done: dayDone(d), goal: g, met: dayDone(d) >= g }; }
+  // streak: consecutive days that met the goal, counting today only once it is met
+  function streak() {
+    const L = get('gr-log', {}), g = profile().goal || 20;
+    let n = 0, best = 0, run = 0;
+    const d = new Date(); if (dayDone(L[dkey(d)]) < g) d.setDate(d.getDate() - 1);
+    for (;;) { if (dayDone(L[dkey(d)]) >= g) { n++; d.setDate(d.getDate() - 1); } else break; }
+    Object.keys(L).sort().forEach((k, i, arr) => {
+      if (dayDone(L[k]) >= g) { const prev = i ? new Date(arr[i - 1]) : null; run = prev && (new Date(k) - prev) <= DAY * 1.5 && dayDone(L[arr[i - 1]]) >= g ? run + 1 : 1; best = Math.max(best, run); }
+    });
+    return { now: n, best: Math.max(best, n) };
+  }
+  // grammar mistakes come back after 1, 3, 7 and 21 days
+  function review(id, ru, ok) {
+    if (!ru) return;
+    const R = get(id + '-rev', {}), now = Date.now(), r = R[ru];
+    if (!ok) R[ru] = { due: now + DAY, s: 0 };
+    else if (r && r.due <= now + DAY / 2) { r.s++; if (r.s >= REV.length) delete R[ru]; else r.due = now + REV[r.s] * DAY; }
+    set(id + '-rev', R);
+  }
+  function dueReviews(id) { const R = get(id + '-rev', {}), now = Date.now(); return Object.keys(R).filter(k => R[k].due <= now); }
+  function record(id, topic, ok, ru) {
+    logDay('a', 1, ok); review(id, ru, ok);
     const s = stats(id), t = s[topic] || { n: 0, ok: 0, r: '' };
     t.n++; if (ok) t.ok++;
     t.r = (t.r + (ok ? '1' : '0')).slice(-KEEP);
@@ -47,10 +82,11 @@
   }
   // pick `want` item indices for a recommended round
   function smartPick(id, items, want, seen, level) {
-    const s = stats(id), fr = frontier(id, items, level);
+    const s = stats(id), fr = frontier(id, items, level), due = new Set(dueReviews(id));
     const W = { weak: 4, started: 3, new: 2.5, good: 1.2, mastered: 0.15 };
     const pool = [];
     items.forEach((q, k) => {
+      if (due.has(q.ru)) { pool.push({ k, w: 8 }); return; }   // a mistake that is due comes back first
       if (!fr.allowed.includes(q.lv)) return;
       const st = state(id, q.t, s).st;
       let w = W[st];
@@ -102,5 +138,7 @@
     const working = ORDER.find(l => per[l] && (!reached || ORDER.indexOf(l) > ORDER.indexOf(reached))) || null;
     return { reached, working, per, answers };
   }
-  window.GRCoach = { ORDER, LABEL, stats, record, state, solid, topicsOf, frontier, smartPick, nextStep, estimate };
+  // remember the estimated level once per day, for the progress chart
+  function logLevel(est) { const H = get('gr-levels', {}), k = dkey(); if (est.reached !== undefined && H[k] !== (est.reached || '')) { H[k] = est.reached || ''; set('gr-levels', H); } }
+  window.GRCoach = { ORDER, LABEL, stats, record, state, solid, topicsOf, frontier, smartPick, nextStep, estimate, logCard, profile, today, streak, dueReviews, logLevel, dkey };
 })();

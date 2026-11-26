@@ -203,6 +203,7 @@ function rate(r) {
   srs[cur] = next(srs[cur], r, now);
   LS.set('voc-srs', srs);
   if (wasNew) { const d = dayInfo(); d.n++; LS.set('voc-day', d); }
+  if (window.GRCoach) window.GRCoach.logCard();
   const q = pick(); render(q);
   if ($('browse').open) renderBrowse();
 }

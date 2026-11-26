@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Профиль</title>
+<meta name="theme-color" content="#d4202c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
+<script src="../shared/config.js"></script>
+<script src="../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
+<style>
+/* VOICE personal dashboard; IDEA a travel card: your ride history on the metro
+   PICTURE today's goal ring and the streak calendar; COLOUR metro red, mastery greens
+   TYPE Unbounded + PT Sans; LAYOUT account and goal on top, calendar and charts below */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.box{background:var(--soft);border-radius:20px;padding:clamp(16px,2.5vw,24px)}
+.box h2{font:700 14px "PT Sans",sans-serif;color:var(--mute);margin:0 0 10px;letter-spacing:0}
+.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
+.ring{display:flex;gap:18px;align-items:center}
+.ring svg{flex:none;width:112px;height:112px}
+.ring .v{font:700 34px/1 Unbounded,sans-serif}
+.ring p{margin:4px 0 0;color:var(--mute)}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(7.5em,1fr));gap:10px}
+.nums div{background:var(--bg);border-radius:14px;padding:12px}
+.nums b{display:block;font:700 26px/1.1 Unbounded,sans-serif;font-variant-numeric:tabular-nums}
+.nums span{font-size:14px;color:var(--mute)}
+label.f{display:block;font-size:14px;color:var(--mute);margin:10px 0 4px}
+input.t,select.t{width:100%;font:16px "PT Sans",sans-serif;min-height:46px;padding:6px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.seg2{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:2px;background:var(--bg);border-radius:12px;padding:3px}
+.seg2 button{font:700 15px "PT Sans",sans-serif;min-height:42px;border:0;border-radius:9px;background:transparent;color:var(--ink);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.cal{overflow-x:auto}
+.cal svg{display:block}
+.fig{position:relative;min-height:220px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font:13px "PT Sans",sans-serif;fill:var(--mute)}
+.msg{color:var(--mute);font-size:15px;margin:8px 0 0}
+.msg.err{color:var(--bad)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.acct b{font-size:18px}
+.legend2{display:flex;gap:14px;font-size:14px;color:var(--mute);margin-top:8px;flex-wrap:wrap}
+.legend2 i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+ol.steps{margin:6px 0 0;padding-left:1.2em;font-size:15px}
+code{font-size:14px;background:var(--bg);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+@media(max-width:860px){.s4,.s5,.s6,.s7,.s8{grid-column:span 12}}
+</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="brand"><a class="m" href="../" aria-label="Home" title="Home">М</a><div><p class="home"><a href="../">← Home</a></p><h1>Профиль</h1><p class="sub" id="hello">Profile · goal, streak and progress</p></div></div>
+  </div>
+</header>
+<main class="band">
+  <div class="wrap grid">
+    <section class="box s5" aria-labelledby="h-today"><h2 id="h-today">Today · Сегодня</h2><div class="ring" id="ring"></div></section>
+    <section class="box s7" aria-labelledby="h-tot"><h2 id="h-tot">Totals · Итоги</h2><div class="nums" id="nums"></div></section>
+
+    <section class="box s12" aria-labelledby="h-cal"><h2 id="h-cal">Practice calendar · Календарь</h2><div class="cal" id="cal"></div>
+      <div class="legend2"><span><i style="background:var(--line)"></i>no practice</span><span><i style="background:color-mix(in srgb,var(--red) 40%,var(--bg))"></i>some</span><span><i style="background:var(--red)"></i>goal met</span></div></section>
+
+    <section class="box s8" aria-labelledby="h-act"><h2 id="h-act">Last 30 days · Answers and accuracy</h2><div class="fig" id="act"></div></section>
+    <section class="box s4" aria-labelledby="h-lvl"><h2 id="h-lvl">Level over time · Уровень</h2><div class="fig" id="lvl"></div></section>
+
+    <section class="box s6" aria-labelledby="h-me"><h2 id="h-me">About you · О вас</h2>
+      <label class="f" for="p-name">Name</label><input class="t" id="p-name" autocomplete="given-name" placeholder="Your name">
+      <div class="row2"><div><label class="f" for="p-target">Target level</label><select class="t" id="p-target"></select></div>
+      <div><label class="f" for="p-by">By</label><input class="t" id="p-by" type="month"></div></div>
+      <label class="f" id="goal-l">Daily goal: answers plus flashcards</label><div class="seg2" id="p-goal" role="group" aria-labelledby="goal-l"></div>
+      <p class="msg" id="p-msg">Saved automatically.</p>
+    </section>
+
+    <section class="box s6 acct" aria-labelledby="h-acct"><h2 id="h-acct">Account · Аккаунт</h2><div id="acct"></div></section>
+  </div>
+</main>
+<script src="../shared/levels.js"></script>
+<script src="../shared/catalog.js"></script>
+<script src="../shared/coach.js"></script>
+<script>
+{
+const $=id=>document.getElementById(id);
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const C=window.GRCoach,A=window.GRAccount,P=window.GRProgress;
+const GOALS=[10,20,30,50,80];
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function profile(){return C.profile()}
+function saveProfile(p){LS.set('gr-profile',p);$('p-msg').textContent='Saved.';draw()}
+
+function draw(){
+  const p=profile(),t=C.today(),sk=C.streak();
+  $('hello').textContent=p.name?`Привет, ${p.name}! Profile · goal, streak and progress`:'Profile · goal, streak and progress';
+  const frac=Math.min(1,t.done/t.goal),R=46,L=2*Math.PI*R;
+  $('ring').innerHTML=`<svg viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="${R}" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="56" cy="56" r="${R}" fill="none" stroke="var(--red)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-frac)}" transform="rotate(-90 56 56)"/><text x="56" y="62" text-anchor="middle" style="font:700 20px Unbounded,sans-serif;fill:var(--ink)">${Math.round(frac*100)}%</text></svg>
+<div><span class="v">${t.done}<small style="font-size:16px;color:var(--mute)"> / ${t.goal}</small></span><p>${t.met?'Goal met today. Отлично!':`${t.goal-t.done} more to reach today’s goal.`}</p><p><b style="color:var(--ink)">${sk.now} day${sk.now===1?'':'s'}</b> streak · best ${sk.best}</p></div>`;
+  // totals
+  const log=LS.get('gr-log',{});let ans=0,ok=0,cards=0;Object.values(log).forEach(d=>{ans+=d.a||0;ok+=d.ok||0;cards+=d.c||0});
+  const srs=LS.get('voc-srs',{}),learned=new Set(Object.entries(srs).filter(([,v])=>v.q==='review').map(([k])=>k.split('|')[0])).size;
+  let mastered=0,topics=0,due=0;window.CATALOG.filter(x=>x.topics).forEach(L=>{const s=C.stats(L.id);L.topics.forEach(tp=>{topics++;if(C.state(L.id,tp.k,s).st==='mastered')mastered++});due+=C.dueReviews(L.id).length});
+  const est=C.estimate(window.CATALOG.filter(x=>x.topics));
+  $('nums').innerHTML=[[ans,'answers'],[ans?Math.round(ok/ans*100)+'%':'—','right'],[learned,'words learned'],[`${mastered}/${topics}`,'topics mastered'],[due,'mistakes due'],[est.reached||'—','grammar level']].map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+  calendar(log,t.goal);act(log);lvl();
+  // profile form
+  $('p-name').value=p.name||'';
+  $('p-target').innerHTML='<option value="">No target</option>'+window.CEFR.map(l=>`<option value="${l.code}" ${p.target===l.code?'selected':''}>${l.code} · ${l.en} · ${l.ru}</option>`).join('');
+  $('p-by').value=p.by||'';
+  $('p-goal').innerHTML=GOALS.map(g=>`<button data-g="${g}" aria-pressed="${(p.goal||20)===g}">${g}</button>`).join('');
+}
+function calendar(log,goal){
+  const weeks=20,cell=15,gap=3,days=weeks*7,end=new Date();end.setHours(0,0,0,0);
+  const start=new Date(end);start.setDate(start.getDate()-days+1);start.setDate(start.getDate()-((start.getDay()+6)%7));
+  let x=0,out='',months='';const W=(weeks+1)*(cell+gap)+30;
+  for(let d=new Date(start),i=0;d<=end;d.setDate(d.getDate()+1),i++){
+    const col=Math.floor(i/7),row=i%7,k=C.dkey(d),v=log[k]?(log[k].a||0)+(log[k].c||0):0;
+    const fill=v>=goal?'var(--red)':v>0?'color-mix(in srgb,var(--red) 40%,var(--bg))':'var(--line)';
+    out+=`<rect x="${30+col*(cell+gap)}" y="${18+row*(cell+gap)}" width="${cell}" height="${cell}" rx="3" fill="${fill}"><title>${k}: ${v}</title></rect>`;
+    if(d.getDate()<=7&&row===0)months+=`<text x="${30+col*(cell+gap)}" y="12">${d.toLocaleString('en',{month:'short'})}</text>`;
+  }
+  const lab=['Mon','','Wed','','Fri','',''].map((l,i)=>l?`<text x="0" y="${18+i*(cell+gap)+12}">${l}</text>`:'').join('');
+  $('cal').innerHTML=`<svg width="${W}" height="${18+7*(cell+gap)}" role="img" aria-label="Practice calendar for the last ${weeks} weeks">${months}${lab}${out}</svg>`;
+  $('cal').scrollLeft=$('cal').scrollWidth;
+}
+function act(log){
+  const s=$('act');
+  const draw=()=>{
+    const W=s.clientWidth,H=s.clientHeight,m={l:34,r:34,t:12,b:26},iw=W-m.l-m.r,ih=H-m.t-m.b;
+    const days=[];for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=C.dkey(d),e=log[k]||{};days.push({k,d,a:(e.a||0)+(e.c||0),acc:e.a?(e.ok||0)/e.a:null})}
+    const max=Math.max(10,...days.map(d=>d.a)),bw=iw/30;
+    let g=`<line x1="${m.l}" x2="${W-m.r}" y1="${m.t+ih}" y2="${m.t+ih}" stroke="var(--line)"/>`;
+    [0,.5,1].forEach(f=>{g+=`<text x="${m.l-6}" y="${m.t+ih-f*ih+4}" text-anchor="end">${Math.round(max*f)}</text><text x="${W-m.r+6}" y="${m.t+ih-f*ih+4}">${Math.round(f*100)}%</text>`});
+    days.forEach((d,i)=>{const h=d.a/max*ih;g+=`<rect x="${m.l+i*bw+1}" y="${m.t+ih-h}" width="${Math.max(1,bw-2)}" height="${h}" rx="2" fill="color-mix(in srgb,var(--red) 70%,var(--bg))"><title>${d.k}: ${d.a}</title></rect>`;if(i%(W<520?10:5)===0)g+=`<text x="${m.l+i*bw}" y="${H-6}">${d.d.getDate()}.${d.d.getMonth()+1}</text>`});
+    const pts=days.map((d,i)=>d.acc===null?null:[m.l+i*bw+bw/2,m.t+ih-d.acc*ih]).filter(Boolean);
+    if(pts.length>1)g+=`<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="var(--ok)" stroke-width="2.5"/>`;
+    pts.forEach(p=>{g+=`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="var(--ok)"/>`});
+    s.innerHTML=`<svg role="img" aria-label="Answers per day and accuracy, last 30 days">${g}</svg>`;
+  };
+  if(!s._ro){s._ro=new ResizeObserver(draw);s._ro.observe(s)}draw();
+}
+function lvl(){
+  const s=$('lvl'),H0=LS.get('gr-levels',{}),O=C.ORDER;
+  const draw=()=>{
+    const W=s.clientWidth,H=s.clientHeight,m={l:34,r:12,t:12,b:26},iw=W-m.l-m.r,ih=H-m.t-m.b;
+    const ks=Object.keys(H0).sort();let g='';
+    O.forEach((c,i)=>{const y=m.t+ih-(i+1)/O.length*ih;g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${m.l-8}" y="${y+4}" text-anchor="end">${c}</text>`});
+    if(ks.length){
+      const t0=new Date(ks[0]).getTime(),t1=Math.max(t0+86400000,Date.now()),X=t=>m.l+(t-t0)/(t1-t0)*iw,Y=c=>m.t+ih-(c?O.indexOf(c)+1:0)/O.length*ih;
+      let d=`M${X(t0)},${Y(H0[ks[0]])}`;ks.forEach((k,i)=>{if(i){d+=` H${X(new Date(k).getTime())} V${Y(H0[k])}`}});d+=` H${X(t1)}`;
+      g+=`<path d="${d}" fill="none" stroke="var(--red)" stroke-width="3"/><text x="${m.l}" y="${H-6}">${ks[0]}</text><text x="${W-m.r}" y="${H-6}" text-anchor="end">today</text>`;
+    }else g+=`<text x="${m.l+8}" y="${m.t+ih/2}">Your level estimate will be drawn here.</text>`;
+    s.innerHTML=`<svg role="img" aria-label="Estimated grammar level over time">${g}</svg>`;
+  };
+  if(!s._ro){s._ro=new ResizeObserver(draw);s._ro.observe(s)}draw();
+}
+// account
+function acct(){
+  const box=$('acct');
+  if(!A||!A.enabled){box.innerHTML=`<p>Login isn’t switched on yet. Until then your progress is saved in this browser; you can back it up or sync it with GitHub on the <a href="../#progress">home page</a>.</p><p class="msg">To switch it on: create a free Supabase project, run <code>tools/supabase.sql</code> in its SQL editor, and put the project URL and anon key into <code>shared/config.js</code>. The README has the details.</p>`;return}
+  const st=A.status();
+  if(st.signedIn){
+    const ps=P&&P.status?P.status():{};
+    box.innerHTML=`<p>Signed in as <b>${esc(st.email)}</b>.</p><p class="msg" id="a-sync">${ps.error?'Sync problem: '+esc(ps.error):ps.busy?'Saving…':ps.last?'Progress saved to your account.':'Saving your progress…'}</p><div class="btns"><button class="btn go" id="a-now">Sync now</button><button class="btn" id="a-out">Sign out</button></div><p class="msg">Your progress is saved automatically a few seconds after every answer and loaded whenever you open the app, on any device where you sign in.</p>`;
+    $('a-now').onclick=()=>P.sync();$('a-out').onclick=()=>{A.signOut();acct()};
+    return;
+  }
+  box.innerHTML=`<p>Sign in to save your progress to your account and use it on every device. No password: we email you a 6-digit code.</p>
+<label class="f" for="a-email">Email</label><input class="t" id="a-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+<div class="btns"><button class="btn go" id="a-send">Send code</button></div>
+<div id="a-step2" hidden><label class="f" for="a-code">6-digit code from the email</label><input class="t" id="a-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"><div class="btns"><button class="btn go" id="a-verify">Sign in</button></div></div>
+<p class="msg" id="a-msg"></p>`;
+  const msg=(t,e)=>{$('a-msg').textContent=t;$('a-msg').className='msg'+(e?' err':'')};
+  $('a-send').onclick=async()=>{const e=$('a-email').value.trim();if(!/\S+@\S+\.\S+/.test(e)){msg('Enter your email address.',1);return}$('a-send').disabled=true;msg('Sending…');try{await A.sendCode(e);$('a-step2').hidden=false;$('a-code').focus();msg('Code sent. Check your inbox (and spam).')}catch(err){msg(err.message,1)}$('a-send').disabled=false};
+  $('a-verify').onclick=async()=>{const e=$('a-email').value.trim(),c=$('a-code').value.trim();if(!c){msg('Enter the code.',1);return}$('a-verify').disabled=true;msg('Signing in…');try{await A.verify(e,c);acct();draw()}catch(err){msg(err.message,1);$('a-verify').disabled=false}};
+}
+$('p-name').addEventListener('change',()=>{const p=profile();p.name=$('p-name').value.trim();saveProfile(p)});
+$('p-target').addEventListener('change',()=>{const p=profile();p.target=$('p-target').value;saveProfile(p)});
+$('p-by').addEventListener('change',()=>{const p=profile();p.by=$('p-by').value;saveProfile(p)});
+$('p-goal').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const p=profile();p.goal=+b.dataset.g;saveProfile(p)});
+draw();acct();
+if(A)A.on(()=>acct());
+if(P&&P.on)P.on(()=>{const el=$('a-sync');if(el){const s=P.status();el.textContent=s.error?'Sync problem: '+s.error:s.busy?'Saving…':'Progress saved to your account.'}});
+window.addEventListener('gr-progress-merged',draw);
+try{if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(()=>{}))}catch(e){}
+}
+</script>
+</body>
+</html>

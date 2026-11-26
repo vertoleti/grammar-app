@@ -49,6 +49,17 @@ The flashcards read Anki text files directly, in the same 25-column `Vocab` form
 
 Both files import straight into Anki. Scheduling follows Anki's defaults: learning steps 1 and 10 minutes, graduating interval 1 day, easy 4 days, starting ease 250 %, Again/Hard/Good/Easy. Cards can be studied RU → EN, EN → RU or both, and you can import your own Anki exports on the page.
 
+### Account and login
+
+`shared/account.js` adds sign-in with a 6-digit email code (Supabase Auth) and saves all progress to the signed-in account automatically. A code is used instead of a magic link because links open in Safari, not in the home-screen app on iPhone. To switch it on:
+
+1. Create a free project at supabase.com.
+2. In the SQL editor, run `tools/supabase.sql` (creates the `progress` table with row-level security).
+3. Authentication → Email Templates → Magic Link: make the email show the code, for example `Your code: {{ .Token }}`.
+4. Project Settings → API: copy the Project URL and the anon public key into `shared/config.js`.
+
+The profile page (`profile/`) has the login, your name, target level, daily goal, streak, a practice calendar and charts of answers, accuracy and level over time.
+
 ### Progress
 
 Everything is stored in the browser (localStorage), and `shared/progress.js` adds:
