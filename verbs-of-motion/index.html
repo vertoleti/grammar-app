@@ -185,7 +185,7 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
   <div class="wrap layout">
     <div class="maincol">
       <section class="card" id="card" aria-live="polite"></section>
-      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station. Tap any Russian word to look it up.</p>
     </div>
     <aside class="ctrls" data-sheet>
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
@@ -790,5 +790,6 @@ try{if('serviceWorker' in navigator&&window.top===window&&location.protocol==='h
 window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
 }
 </script>
+<script src="../shared/lookup.js"></script>
 </body>
 </html>

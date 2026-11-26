@@ -39,7 +39,7 @@ T='''<!DOCTYPE html>
   <div class="wrap layout">
     <div class="maincol">
       <section class="card" id="card" aria-live="polite"></section>
-      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station</p>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station. Tap any Russian word to look it up.</p>
     </div>
     <aside class="ctrls" data-sheet>
       <section class="grp" data-all="All levels" data-fmt="Level {{v}}"><h3>Level · Уровень</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
@@ -63,6 +63,7 @@ T='''<!DOCTYPE html>
 <script src="../shared/coach.js"></script>
 <script src="../shared/ui.js"></script>
 <script src="../shared/engine.js"></script>
+<script src="../shared/lookup.js"></script>
 </body>
 </html>
 '''
@@ -121,13 +122,23 @@ pages['compare']=dict(num='8',color='#c2185b',title='Сравнение и кр�
  cheat='<div class="cols"><div><h3>Comparatives and superlatives</h3>'+tbl(['Adjective','Comparative','Superlative'],[
  ['хороший','лучше','лучший, самый лучший'],['плохой','хуже','худший'],['большой','больше','самый большой'],['маленький','меньше','самый маленький'],['дешёвый','дешевле','самый дешёвый'],['высокий','выше','самый высокий'],['тёплый','теплее','самый тёплый']])+'</div><div><h3>Which form when</h3>'+tbl(['Form','Use','Example'],[
  ['short comparative','after the noun, with чем or genitive','Он выше меня'],['более + adjective','before a noun','более тёплая куртка'],['short adjective','temporary state; рад, должен, прав','Я занят'],['full adjective','describes a noun','холодная погода'],['adverb in -о','describes a verb, or a state','говорит хорошо, холодно']])+'</div></div>')
+pages['gov']=dict(num='11',color='#9a7b00',title='Управление',en='Government',sub='which case after verbs and formal prepositions',desc='C1–C2 Russian: the cases governed by verbs and by formal and bookish prepositions.',
+ cheat='<div class="cols"><div><h3>Verbs and their cases</h3>'+tbl(['Case','Verbs'],[
+ ['Genitive','бояться, избегать, достигать, добиваться, требовать, касаться, лишать (кого чего)'],
+ ['Dative','завидовать, сочувствовать, удивляться, мешать, способствовать, соответствовать, учить (кого чему)'],
+ ['Instrumental','руководить, управлять, владеть, пользоваться, злоупотреблять, гордиться, восхищаться, рисковать'],
+ ['With a preposition','зависеть от + G, влиять на + A, участвовать в + P, настаивать на + P, обращаться к + D']])+'</div><div><h3>Formal and bookish prepositions</h3>'+tbl(['Case','Prepositions'],[
+ ['Genitive','в течение, в отличие от, вследствие, в результате, во избежание, по истечении, по окончании, в силу, в преддверии'],
+ ['Dative','благодаря, согласно, вопреки, в ущерб, в угоду'],
+ ['Accusative','несмотря на, невзирая на'],
+ ['Instrumental','в связи с, по сравнению с, наряду с, в соответствии с']])+'<p class="note">Согласно takes the dative: согласно договору. Согласно договора is a frequent mistake, even in official texts.</p></div></div>')
 for k,v in pages.items():
     os.makedirs(k,exist_ok=True)
     open(f'{k}/index.html','w').write(T.format(**v))
 print('ok')
 
 # ---------- combined pages: Daily mix and placement test ----------
-LINES=['cases','aspect','numbers','advanced','prep','compare']
+LINES=['cases','aspect','numbers','advanced','prep','compare','gov']
 def multi(slug,builder,color,title,en,sub,desc,about,hide):
     h=T.format(num='★',color=color,title=title,en=en,sub=sub,desc=desc,cheat=about)
     h=h.replace(' · <span id="count"></span> sentences','<span id="count" hidden></span>')
@@ -158,7 +169,7 @@ NOTE='<p class="note">Progress is saved in this browser. <a href="../profile/">S
 practice('sentences',dict(num='9',color='#3949ab',title='Предложения',en='Sentences',sub='translate, order, dictation, mistakes',desc='Whole-sentence Russian practice: translate, put words in order, write what you hear, find the mistake.',
  cheat='<div class="cols"><div><h3>How answers are checked</h3><p>Translations are checked word by word. Russian word order is flexible, so the same words in another order count as right. A one-letter slip in a long word counts as right and is shown. If your translation is right but different from ours, tap <b>My answer was right too</b>.</p></div><div><h3>Finding mistakes</h3><p>Every sentence has exactly one wrong word: usually an ending (case, agreement, person), sometimes aspect or a missing не. Check what the verb or preposition needs, then whether the endings agree.</p></div></div>'),
  LV+'<section class="grp" data-all="Recommended"><h3>Exercise · Упражнение</h3><div class="seg list" id="topics" role="group" aria-label="Exercise"></div></section><section class="grp" data-fmt="{v} per round"><h3>Questions per round · Вопросов в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>'+NOTE,
- 'Keyboard: <kbd>Enter</kbd> to check and for the next station')
+ 'Keyboard: <kbd>Enter</kbd> to check and for the next station. Tap any Russian word to look it up.')
 practice('tables',dict(num='10',color='#5d7a00',title='Таблицы',en='Tables',sub='conjugation and declension',desc='Fill in Russian conjugation and declension tables: irregular verbs, nouns and pronouns.',
  cheat='<div class="cols"><div><h3>Verb patterns to watch</h3><p>Consonant changes in the я-form only: видеть → вижу, сидеть → сижу, платить → плачу, готовить → готовлю, любить → люблю. In some verbs the change runs through every form: писать → пишу, пишешь; плакать → плачу, плачешь; искать → ищу, ищешь. Perfective verbs have no present: their person forms are the future.</p></div><div><h3>Noun patterns to watch</h3><p>Fleeting vowels: день → дня, ребёнок → ребёнка. Plurals with -ья: брат → братья, друг → друзья, стул → стулья. Different stems: человек → люди, ребёнок → дети, мать → матери, имя → имени. Animate plurals use the genitive in the accusative.</p></div></div>'),
  LV+'<section class="grp" data-all="Recommended"><h3>Table · Таблица</h3><div class="seg list" id="topics" role="group" aria-label="Table"></div></section><section class="grp" data-fmt="{v}"><h3>Gaps · Пропуски</h3><div class="seg segctl" id="gaps" role="group" aria-label="Gaps"></div></section><section class="grp" data-fmt="{v} per round"><h3>Tables per round · Таблиц в раунде</h3><div class="seg segctl" id="sizes" role="group" aria-label="Tables per round"></div></section>'+NOTE,

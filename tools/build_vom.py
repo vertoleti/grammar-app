@@ -7,6 +7,8 @@ s=s.replace('<div class="brand"><div class="m" aria-hidden="true">М</div>','<di
 s=s.replace('.m{flex:none;','.m{text-decoration:none;flex:none;')
 s=s.replace('<div><h1>Глаголы движения</h1>','<div><p class="home"><a href="../">← All exercises</a></p><h1>Глаголы движения</h1>')
 s=s.replace('h1{font-size:clamp(28px,5vw,44px)','.home{margin:0 0 4px;font-size:15px}\n.home a{color:#fff;opacity:.9}\nh1{font-size:clamp(28px,5vw,44px)')
+s=s.replace('</body>','<script src="../shared/lookup.js"></script>\n</body>',1)
+s=s.replace('<kbd>Enter</kbd> for the next station</p>','<kbd>Enter</kbd> for the next station. Tap any Russian word to look it up.</p>',1)
 s=s.replace('<script src="levels.js"></script>','<script src="../shared/levels.js"></script>\n<script src="../shared/coach.js"></script>\n<script src="../shared/ui.js"></script>')
 s=s.replace("$('sub').textContent=`Verbs of motion: pick the verb, then the form · ${Q.length} sentences`;","$('sub').textContent=`Verbs of motion · pick the verb, then the form · ${Q.length} sentences`;")
 s=s.replace('</style>\n</head>','</style>\n<link rel="stylesheet" href="../shared/ui.css">\n</head>',1)

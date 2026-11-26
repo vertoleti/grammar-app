@@ -1,5 +1,5 @@
 const fs=require('fs');let total=0,bad=0;
-for(const ex of ['cases','numbers','aspect','advanced','prep','compare']){
+for(const ex of ['cases','numbers','aspect','advanced','prep','compare','gov']){
   const window={};new Function('window',fs.readFileSync(`${ex}/data.js`,'utf8'))(window);
   const E=window.EXERCISE,seen=new Set();const cnt={};
   for(const q of E.items){cnt[q.t]=(cnt[q.t]||0)+1;

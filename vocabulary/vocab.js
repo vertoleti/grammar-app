@@ -55,7 +55,7 @@ function parseTSV(text, fallbackLevel, src) {
     const id = c.id || 'imp-' + hash(c.term + '|' + c.meaning_en);
     out.push({ id, term: c.term, kind: c.kind || 'word', cat: c.category || '', gender: c.gender || '', forms: c.forms || '', grammar: c.grammar || '',
       meaning: c.meaning_en, ex: c.example_target || '', exEn: c.example_en || '', mistake: c.common_mistake || '', notes: c.notes || '', ipa: c.ipa || '',
-      level, theme, src });
+      level, theme, src, raw: cols ? c : null });
   });
   return out;
 }
@@ -103,7 +103,8 @@ function fmt(ms) {
 
 /* ---------- queue ---------- */
 const dirs = () => cfg.dir === 'both' ? ['r', 'p'] : [cfg.dir];
-function active() { return cards.filter(c => cfg.levels.includes(c.level) && (cfg.theme === 'all' || c.theme === cfg.theme)); }
+const pinned = c => ['r', 'p'].some(d => srs[c.id + '|' + d] && srs[c.id + '|' + d].pin);   // added from a word lookup: shown whatever the filters
+function active() { return cards.filter(c => (cfg.levels.includes(c.level) && (cfg.theme === 'all' || c.theme === cfg.theme)) || pinned(c)); }
 function queue(now) {
   const end = endOfDay(), day = dayInfo(), newLeft = Math.max(0, cfg.perDay + (day.extra || 0) - day.n);
   const learn = [], review = [], fresh = [], ahead = [];
@@ -173,7 +174,7 @@ function render(q) {
   const back = !shown ? '' : `<div class="back in">
 ${d === 'r' ? `<p class="mean" style="font-size:clamp(24px,4.5vw,34px)">${esc(c.meaning)}</p>` : `<p class="term" lang="ru" style="font-size:clamp(30px,6vw,46px)">${esc(c.term)}</p>${tts}`}
 ${row('Forms', esc(c.forms))}${row('Grammar', esc(c.grammar))}
-${c.ex ? row('Example', `<span class="ex" lang="ru">${esc(c.ex)}<small>${esc(c.exEn)}</small></span>`) : ''}
+${c.ex ? row('Example', `<span class="ex" lang="ru">${esc(c.ex)}<small>${esc(c.exEn)}</small></span>${'speechSynthesis' in window ? '<button class="say sm" data-act="sayex">Listen to the example</button>' : ''}`) : ''}
 ${row('Note', esc(c.notes))}${row('Watch out', esc(c.mistake))}${row('IPA', c.ipa ? '/' + esc(c.ipa) + '/' : '')}</div>`;
   const now = Date.now();
   const btn = (r, cls, label) => `<button class="${cls}" data-act="rate" data-r="${r}">${label}<small>${fmt(next(s, r, now).due - now)}</small></button>`;
@@ -208,9 +209,9 @@ function rate(r) {
   if ($('browse').open) renderBrowse();
 }
 function show() { if (!cur) return; shown = true; render(); const r = document.querySelector('.rate button.good'); if (r) r.focus({ preventScroll: true }); }
-function say() {
+function say(text) {
   if (!cur) return;
-  const u = new SpeechSynthesisUtterance(bare(byId[cur.split('|')[0]].term));
+  const u = new SpeechSynthesisUtterance(text || bare(byId[cur.split('|')[0]].term));
   u.lang = 'ru-RU';
   const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().startsWith('ru'));
   if (v) u.voice = v;
@@ -222,6 +223,7 @@ $('card').addEventListener('click', e => {
   if (a === 'show') show();
   else if (a === 'rate') rate(+b.dataset.r);
   else if (a === 'say') say();
+  else if (a === 'sayex') say(byId[cur.split('|')[0]].ex);
   else if (a === 'more') { const d = dayInfo(); d.extra = (d.extra || 0) + 10; LS.set('voc-day', d); render(pick()); }
 });
 document.addEventListener('keydown', e => {
@@ -264,6 +266,31 @@ $('iclear').addEventListener('click', () => {
   setCards(cards.filter(c => c.src !== 'import')); $('imsg').textContent = 'Imported cards removed. Your built-in decks and their progress are unchanged.';
   render(pick());
 });
+
+/* ---------- export to Anki ---------- */
+const XCOLS = ['term', 'language', 'kind', 'category', 'article', 'gender', 'forms', 'grammar', 'meaning_en', 'example_target', 'example_en', 'common_mistake', 'register', 'cefr', 'frequency', 'notes', 'ipa', 'image', 'audio', 'audio_sentence', 'voice', 'headword', 'partner_word', 'id', 'tags'];
+function exportAnki(which) {
+  const rows = [];
+  cards.forEach(c => {
+    const ss = ['r', 'p'].map(d => srs[c.id + '|' + d]).filter(Boolean);
+    if (!ss.length && !(which === 'mine' && c.src === 'import')) return;
+    const hard = ss.some(s => s.lap > 0 || s.ease < 2.3), learned = ss.length && ss.every(s => s.q === 'review');
+    if (which === 'hard' && !hard) return;
+    if (which === 'mine' && c.src !== 'import') return;
+    const r = Object.assign({ term: c.term, language: 'ru', kind: c.kind, category: c.cat, gender: c.gender, forms: c.forms, grammar: c.grammar, meaning_en: c.meaning, example_target: c.ex, example_en: c.exEn, common_mistake: c.mistake, register: '', cefr: c.level, notes: c.notes, ipa: c.ipa, voice: 'ru_RU', id: c.id }, c.raw || {});
+    r.tags = [...new Set(String(r.tags || '').split(/\s+/).filter(Boolean).concat(['grammar-app', learned ? 'learned' : ss.length ? 'learning' : 'new'], hard ? ['hard'] : []))].join(' ');
+    rows.push(XCOLS.map(k => String(r[k] == null ? '' : r[k]).replace(/[\t\n\r]+/g, ' ')).join('\t'));
+  });
+  if (!rows.length) { $('xmsg').textContent = which === 'hard' ? 'No hard words yet: a word counts as hard once you have pressed Again on it after learning it.' : which === 'mine' ? 'You have not added any words of your own yet. Tap a word in any exercise to add it.' : 'Practise some flashcards first: only words you have seen are exported.'; return; }
+  const head = ['#separator:tab', '#html:true', '#notetype:Vocab', '#deck:Languages::Russian', '#guid column:24', '#tags column:25', '#columns:' + XCOLS.join('\t')];
+  const blob = new Blob([head.concat(rows).join('\n') + '\n'], { type: 'text/tab-separated-values' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); { const t = new Date(); a.download = `russian-${which}-${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}.tsv`; }
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  $('xmsg').textContent = `Exported ${rows.length} card${rows.length > 1 ? 's' : ''}. Cards with the same id update the ones already in Anki instead of making copies.`;
+}
+$('xall').addEventListener('click', () => exportAnki('all'));
+$('xhard').addEventListener('click', () => exportAnki('hard'));
+$('xmine').addEventListener('click', () => exportAnki('mine'));
 
 /* ---------- start ---------- */
 render();

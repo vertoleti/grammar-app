@@ -60,6 +60,7 @@
 .ex small{display:block;color:var(--mute);font-size:16px}
 .chip{display:inline-block;font-size:13px;padding:2px 10px;border-radius:999px;background:var(--bg);color:var(--mute);margin-right:6px}
 .say{font:inherit;font-size:15px;min-height:40px;padding:4px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;margin-top:10px;align-self:center}
+.say.sm{display:block;margin:8px 0 0;font-size:14px;min-height:36px}
 .actions{margin-top:18px}
 .show{width:100%;min-height:56px;font:700 18px "PT Sans",sans-serif;border:0;border-radius:14px;background:var(--red);color:#fff;cursor:pointer}
 .rate{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -115,6 +116,14 @@ select{font:16px "PT Sans",sans-serif;min-height:44px;padding:4px 10px;border:2p
         </div>
       </details>
 
+      <details class="box" id="exportbox">
+        <summary>Export to Anki · Экспорт</summary>
+        <div>
+          <p>Download the words you have practised here as an Anki file (same columns as your anki-decks repo, note type Vocab). Each card gets the tag <code>grammar-app</code> plus <code>learned</code>, <code>learning</code> or <code>hard</code>. In Anki: File → Import, and choose the file.</p>
+          <div class="settings"><button class="btn go" id="xall">All practised words</button><button class="btn" id="xhard">Only hard words</button><button class="btn" id="xmine">Only words I added</button></div>
+          <p class="msg" id="xmsg"></p>
+        </div>
+      </details>
       <details class="box" id="importbox">
         <summary>Import Anki cards · Импорт</summary>
         <div>
@@ -128,7 +137,7 @@ select{font:16px "PT Sans",sans-serif;min-height:44px;padding:4px 10px;border:2p
             <button class="btn" id="iclear">Remove imported cards</button>
           </div>
           <p class="msg" id="imsg"></p>
-          <p class="msg">The built-in decks can go straight into Anki: <a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (148 cards for A1, A2, B2, C1, C2).</p>
+          <p class="msg">The built-in decks can go straight into Anki: <a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (new cards for every level, A1 to C2).</p>
         </div>
       </details>
     </div>

@@ -25,7 +25,7 @@ async def main():
             ctx=await b.new_context(viewport=vp,device_scale_factor=2 if phone else 1,has_touch=phone,is_mobile=phone)
             for h in ["https://fonts.googleapis.com/**","https://fonts.gstatic.com/**"]: await ctx.route(h,lambda r:r.fulfill(status=200,body=""))
             pg=await ctx.new_page(); pg.on("pageerror",lambda e:errs.append(str(e)))
-            for ex in ['cases','aspect','numbers','advanced','verbs-of-motion','prep','compare']:
+            for ex in ['cases','aspect','numbers','advanced','verbs-of-motion','prep','compare','gov']:
                 await pg.goto(B+ex+"/"); await pg.wait_for_timeout(400)
                 await setting(pg,'#n-5',phone); n5=await run_round(pg)
                 await setting(pg,'#m-type',phone); await pg.click('#again'); await pg.wait_for_timeout(250); nt=await run_round(pg)

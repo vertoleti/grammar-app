@@ -9,6 +9,7 @@ const LINES = [
   { id: 'numbers', href: 'numbers/', n: 4, c: '#c25e00', ru: 'Числа', en: 'Numbers', d: '1, 2–4, 5+: age, time, money, quantity', group: 'nouns', src: 'numbers' },
   { id: 'compare', href: 'compare/', n: 8, c: '#c2185b', ru: 'Сравнение и краткие формы', en: 'Comparison and short forms', d: 'Comparatives, superlatives, short adjectives, adverbs', group: 'adj', src: 'compare' },
   { id: 'advanced', href: 'advanced/', n: 5, c: '#7a2a8c', ru: 'Продвинутый уровень', en: 'Advanced grammar', d: 'Participles, verbal adverbs, -ся verbs, бы and чтобы', group: 'adv', src: 'advanced' },
+  { id: 'gov', href: 'gov/', n: 11, c: '#9a7b00', ru: 'Управление', en: 'Government', d: 'Cases after verbs and formal prepositions (B2–C2)', group: 'adv', src: 'gov' },
   { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
   { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
   { id: 'voc', href: 'vocabulary/', n: 6, c: '#00897b', ru: 'Словарь', en: 'Vocabulary', d: 'Anki-style flashcards with spaced repetition', group: 'vocab', vocab: true }

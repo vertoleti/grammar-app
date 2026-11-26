@@ -314,6 +314,55 @@ window.CATALOG = [
   "total": 75
  },
  {
+  "id": "gov",
+  "href": "gov/",
+  "n": 11,
+  "c": "#9a7b00",
+  "ru": "Управление",
+  "en": "Government",
+  "d": "Cases after verbs and formal prepositions (B2–C2)",
+  "group": "adv",
+  "topics": [
+   {
+    "k": "gen",
+    "name": "Глаголы + Р. п. · Verbs with the genitive",
+    "lv": "B2",
+    "count": 7
+   },
+   {
+    "k": "dat",
+    "name": "Глаголы + Д. п. · Verbs with the dative",
+    "lv": "B2",
+    "count": 7
+   },
+   {
+    "k": "ins",
+    "name": "Глаголы + Т. п. · Verbs with the instrumental",
+    "lv": "B2",
+    "count": 7
+   },
+   {
+    "k": "prepv",
+    "name": "Глаголы с предлогами · Verbs with prepositions",
+    "lv": "C1",
+    "count": 8
+   },
+   {
+    "k": "formal",
+    "name": "Отымённые предлоги · Formal prepositions",
+    "lv": "C1",
+    "count": 9
+   },
+   {
+    "k": "book",
+    "name": "Книжные предлоги · Bookish prepositions",
+    "lv": "C2",
+    "count": 8
+   }
+  ],
+  "total": 46
+ },
+ {
   "id": "sent",
   "href": "sentences/",
   "n": 9,
@@ -403,9 +452,9 @@ window.CATALOG = [
    "B1": 83,
    "B2": 58,
    "A1": 88,
-   "C1": 26,
-   "C2": 12
+   "C1": 48,
+   "C2": 28
   },
-  "total": 448
+  "total": 486
  }
 ];

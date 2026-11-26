@@ -49,6 +49,14 @@ The flashcards read Anki text files directly, in the same 25-column `Vocab` form
 
 Both files import straight into Anki. Scheduling follows Anki's defaults: learning steps 1 and 10 minutes, graduating interval 1 day, easy 4 days, starting ease 250 %, Again/Hard/Good/Easy. Cards can be studied RU → EN, EN → RU or both, and you can import your own Anki exports on the page.
 
+### Government (C1–C2)
+
+`gov/` (line 11) practises the cases governed by verbs (бояться + genitive, завидовать + dative, руководить + instrumental, зависеть от, участвовать в…) and by formal and bookish prepositions (благодаря, согласно, в течение, в связи с, во избежание, по истечении, в ущерб…), B2 to C2. Same two-step format as Cases.
+
+### Word lookup
+
+`shared/lookup.js` runs on every exercise page: tap a Russian word to see it in the flashcard decks and add it to your flashcards with one tap. Inflected forms are matched to the closest dictionary form, so those results are suggestions. A word that isn't in the decks can be added as your own card with an English meaning; the sentence becomes its example. Added cards show up in the flashcards whatever the level filter.
+
 ### Sentences and Tables
 
 `sentences/` practises whole sentences in four ways: translate from English (checked word by word; another word order counts as right; a one-letter slip in a long word is accepted and shown; “My answer was right too” overrides the check), put the words in order, dictation (needs a Russian voice in the browser), and find the mistake (exactly one wrong word per sentence). Data: `sentences/data.js`.
@@ -71,6 +79,10 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 4. Project Settings → API: copy the Project URL and the anon public key into `shared/config.js`.
 
 The profile page (`profile/`) has the login, your name, target level, daily goal, streak, a practice calendar and charts of answers, accuracy and level over time.
+
+### Export to Anki
+
+Словарь → Export to Anki downloads the words you have practised (all, only hard ones, or only the ones you added) as a TSV in the same `Vocab` note type and columns as the anki-decks repo, tagged `grammar-app` plus `learned`, `learning` or `hard`. The id column is the Anki GUID, so re-importing updates cards instead of duplicating them. Example sentences on the flashcards have their own Listen button.
 
 ### Progress
 
