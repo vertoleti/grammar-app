@@ -27,6 +27,8 @@ let st, lastScore = [];
 $('count').textContent = Q.length;
 
 const cur = () => Q[st.round[st.i]];
+const ONE = () => !EX.twoStepOnly && st.steps !== 'two';
+const full = q => (EX.gapPrefix ? optLabel(q.o1[q.a1]) + ' ' : '') + q.forms[q.a2];
 const opt = o => EX.opts[o.kind] || { name: o.kind, use: '' };
 const optLabel = o => o.label || opt(o).name;
 const optHTML = o => { const t = optLabel(o); const i = t.indexOf(' · '); return i < 0 ? t : `<span lang="ru">${t.slice(0, i)}</span><small class="en2">${t.slice(i + 3)}</small>`; };
@@ -42,12 +44,21 @@ function poolFor(t, lv) {
 }
 function enterQ() {
   const q = cur(); if (!q) return;
-  st.step = 1; st.p1 = null; st.pickF = null;
+  st.step = ONE() ? 2 : 1; st.p1 = null; st.pickF = null;
   const idx = q.o1.map((_, k) => k);
   st.o1 = EX.keepOrder1 ? idx : shuf(idx);
   const ans = q.forms[q.a2];
-  const others = shuf([...new Set(q.forms)].filter(f => f !== ans)).slice(0, 5);
-  st.fo = shuf([ans, ...others]);
+  if (ONE() && EX.gapPrefix) {
+    // one step with prepositions: mix wrong prepositions with wrong case forms
+    const p = optLabel(q.o1[q.a1]), right = p + ' ' + ans;
+    const wrongP = q.o1.filter((_, k) => k !== q.a1).map(o => optLabel(o) + ' ' + ans);
+    const wrongF = shuf([...new Set(q.forms)].filter(f => f !== ans)).slice(0, 3).map(f => p + ' ' + f);
+    st.fo = shuf([right, ...[...new Set([...wrongP, ...wrongF])].filter(x => x !== right).slice(0, 5)]);
+  } else {
+    const alt = ONE() && q.alt ? q.alt.filter(f => f !== ans) : [];
+    const others = [...alt, ...shuf([...new Set(q.forms)].filter(f => f !== ans && !alt.includes(f)))].slice(0, 5);
+    st.fo = shuf([ans, ...others]);
+  }
 }
 function newRound() {
   let pick;
@@ -78,6 +89,8 @@ function renderControls() {
     return `<button id="t-${k}" data-t="${k}" aria-pressed="${k === st.topic}"${m ? ` data-st="${m.st}" title="${COACH.LABEL[m.st]}"` : ''}>${v}<small>${poolFor(k).length}${extra}</small></button>`;
   }).join('');
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === st.mode));
+  const stp = $('steps');
+  if (stp) { stp.closest('.grp').hidden = !!EX.twoStepOnly; stp.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === (st.steps === 'two' ? 'two' : 'one'))); }
   $('sizes').innerHTML = SIZES.map(n => `<button id="n-${n || 'all'}" data-n="${n}" aria-pressed="${n === st.size}">${n || 'All'}</button>`).join('');
 }
 function render() {
@@ -85,7 +98,7 @@ function render() {
   const n = st.round.length, done = st.res.filter(Boolean);
   const okA = done.filter(r => r.a).length, fd = done.filter(r => r.f !== undefined), okF = fd.filter(r => r.f).length;
   let streak = 0; for (let k = st.res.length - 1; k >= 0; k--) { const r = st.res[k]; if (!r || r.f === undefined) continue; if (r.a && r.f) streak++; else break; }
-  const sc = [[`${okA}/${done.length}`, EX.scoreLabel || 'Choices right'], [`${okF}/${fd.length}`, 'Forms right'], [`${streak}`, 'Streak']];
+  const sc = ONE() ? [[`${okF}/${fd.length}`, 'Right'], [`${streak}`, 'Streak']] : [[`${okA}/${done.length}`, EX.scoreLabel || 'Choices right'], [`${okF}/${fd.length}`, 'Forms right'], [`${streak}`, 'Streak']];
   $('score').innerHTML = sc.map((s, k) => `<div><b class="${lastScore[k] !== undefined && lastScore[k] !== s[0] ? 'bump' : ''}">${s[0]}</b><span>${s[1]}</span></div>`).join('');
   lastScore = sc.map(s => s[0]);
   const pct = n > 1 ? Math.min(st.i, n - 1) / (n - 1) * 100 : 0;
@@ -114,9 +127,9 @@ function qHTML() {
   const q = cur(), r = st.res[st.i] || {}, fx = st.fx;
   const mark = s => st.step === 3 && q.cue && s.includes(q.cue) ? s.replace(q.cue, `<mark>${q.cue}</mark>`) : s;
   const [a, b] = q.ru.split('___');
-  const ans = q.forms[q.a2], right1 = q.o1[q.a1];
+  const one = ONE(), ans = one ? full(q) : q.forms[q.a2], right1 = q.o1[q.a1];
   let gap = q.hint ? `<span class="hint">${q.hint}</span>` : '?', gc = '';
-  if (st.step === 3) { gap = EX.gapPrefix ? optLabel(right1) + ' ' + ans : ans; gc = (r.f ? 'ok' : 'bad') + (fx === 'f' ? ' pop' : ''); }
+  if (st.step === 3) { gap = full(q); gc = (r.f ? 'ok' : 'bad') + (fx === 'f' ? ' pop' : ''); }
   const fxc = ok => ok ? ' pop' : ' shake';
   const b1 = st.o1.map((k, n) => {
     const o = q.o1[k]; let c = '';
@@ -133,15 +146,15 @@ function qHTML() {
     } else if (st.step === 2) {
       body = `<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
     } else body = `<p class="quick ${r.f ? 'ok' : 'bad'}">${r.f ? 'Right: ' : `You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
-    s2 = `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
+    s2 = one ? `<div class="step one" id="s2"><h2>Fill the gap${q.hint ? ` · <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>` : `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
   }
   if (st.step === 3) {
     const R = EX.rules[q.rule], open = st.open;
     const nots = q.o1.map((o, k) => k === q.a1 ? '' : `<li><b>${optLabel(o)}</b>${o.label && opt(o).name !== o.label ? ` (${opt(o).name})` : ''}: ${opt(o).use}</li>`).join('');
     const table = q.labels ? `<table class="par casetbl" aria-label="All forms">${q.labels.map((l, k) => q.forms[k] === undefined ? '' : `<tr class="${k === q.a2 ? 'hit' : q.forms[k] === st.pickF && q.forms[k] !== ans ? 'miss' : ''}"><td>${l}</td><td>${q.forms[k]}</td></tr>`).join('')}</table>` : '';
     exp = `<div class="sum ${fx === 'f' ? 'in' : ''}" id="exp">
-<p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
-<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓' : '✗'} Form: ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p>
+${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ Not quite:'} ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p><p class="idn">${EX.step1Short || 'Choice'}: ${optLabel(right1)}</p>` : `<p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
+<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓' : '✗'} Form: ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p>`}
 <p class="rt">${R[0]}</p>
 <button class="more" id="more" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open ? 'Hide the explanation' : 'Show the full explanation'}</span><i aria-hidden="true"></i></button></div>
 <div class="panel ${open ? 'open' : ''}" id="panel" ${open ? '' : 'inert'}><div><div class="exp">
@@ -149,22 +162,23 @@ function qHTML() {
 <section><h3>In this sentence</h3><p>${q.cue ? `Signal: <mark>${q.cue}</mark>. ` : ''}${q.en}${q.note ? ` ${q.note}` : ''}</p></section>
 <section><h3>Why ${optLabel(right1)}</h3><p>${right1.label && opt(right1).name !== right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
 <section class="formgrid"><div><h3>The form</h3><p>${q.fnote || ''}</p></div>${table}</section></div></div></div>
-<div class="dock"><span>${r.a && r.f ? 'Both right ✓' : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
+<div class="dock"><span>${r.a && r.f ? (one ? 'Right ✓' : 'Both right ✓') : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
-  const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === 1 ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
+  const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
   return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (NAMES[q.t] || TOP[q.t]) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
 <p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>
-<div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>${s2}${exp}`;
+${one ? '' : `<div class="step"><h2><b>1</b> ${EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
 }
 
 function endHTML() {
   const n = st.round.length;
-  const tot = st.res.reduce((s, r) => s + (r.a ? 1 : 0) + (r.f ? 1 : 0), 0);
+  const one = ONE(), right = st.res.filter(r => r.a && r.f).length;
+  const tot = one ? right : st.res.reduce((s, r) => s + (r.a ? 1 : 0) + (r.f ? 1 : 0), 0), max = one ? n : n * 2;
   const ms = st.round.map((k, j) => ({ q: Q[k], r: st.res[j] })).filter(o => !(o.r.a && o.r.f));
-  return `<p class="meta"><span>End of the line</span></p><p class="big">${tot}/${n * 2}</p>
-<p>${tot === n * 2 ? 'A perfect ride: every choice and every form right.' : `You got ${st.res.filter(r => r.a).length} of ${n} choices and ${st.res.filter(r => r.f).length} of ${n} forms right.`}</p>
-${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="ru">${o.q.ru.replace('___', '<b>' + (EX.gapPrefix ? optLabel(o.q.o1[o.q.a1]) + ' ' : '') + o.q.forms[o.q.a2] + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
+  return `<p class="meta"><span>End of the line</span></p><p class="big">${tot}/${max}</p>
+<p>${tot === max ? 'A perfect ride: every answer right.' : one ? `You got ${right} of ${n} right.` : `You got ${st.res.filter(r => r.a).length} of ${n} choices and ${st.res.filter(r => r.f).length} of ${n} forms right.`}</p>
+${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="ru">${o.q.ru.replace('___', '<b>' + full(o.q) + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
 ${report()}
 <div class="btns" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px"><button class="btn go" data-act="new" id="again">${st.topic === 'smart' ? 'Next recommended round' : 'New round'}</button>${nextButtons()}</div>`;
 }
@@ -200,7 +214,11 @@ function pickA(k) {
 }
 function pickF(f) {
   const q = cur();
-  st.pickF = f; st.res[st.i].f = norm(f) === norm(q.forms[q.a2]); st.step = 3; st.fx = 'f';
+  if (ONE()) {
+    const ok = norm(f) === norm(full(q)) || (EX.gapPrefix && st.mode === 'type' && norm(f) === norm(q.forms[q.a2]));
+    st.p1 = q.a1; st.res[st.i] = { a: ok, f: ok };
+  } else st.res[st.i].f = norm(f) === norm(q.forms[q.a2]);
+  st.pickF = f; st.step = 3; st.fx = 'f';
   track(q, st.res[st.i].a && st.res[st.i].f);
   render();
   const nx = $('next'); if (nx) nx.focus({ preventScroll: true });
@@ -251,6 +269,7 @@ document.addEventListener('keydown', e => {
 });
 $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTopic(b.dataset.t); });
 $('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setLevel(b.dataset.l); });
+if ($('steps')) $('steps').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.steps = b.dataset.s; LS.set('gr-steps', st.steps); newRound(); });
 $('modes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.mode = b.dataset.m; savePrefs(); render(); });
 $('sizes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.size = +b.dataset.n; LS.set('gr-size', st.size); newRound(); });
 
@@ -258,7 +277,7 @@ const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
 const lvPref = LS.get('gr-level', 'all');
 const hashT = decodeURIComponent((location.hash || '').slice(1));
-st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true };
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: prefs.mode === 'type' ? 'type' : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
 }

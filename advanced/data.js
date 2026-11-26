@@ -114,7 +114,11 @@ window.EXERCISE = {
     const [t, ru, en, hint, opts, a1, forms, a2, rule, cue, note, lab, lv] = l.split('|');
     const o1 = opts.split(';').map(s => { const [x, y] = s.split(':'); return y ? { label: x, kind: y } : { kind: x }; });
     const right = o1[+a1];
-    return { t, ru, en, hint, o1, a1: +a1, forms: forms.split(';'), a2: +a2, labels: lab ? LAB[lab] : null, tag: '', rule, cue, note, lv: lv || undefined,
+    // for -ся items, the counterpart with / without -ся is a natural wrong answer in one-step mode
+    const fs = forms.split(';'), f = fs[+a2];
+    const flip = w => /ся$/.test(w) ? w.slice(0, -2) : /сь$/.test(w) ? w.slice(0, -2) : /[аеёиоуыэюя]$/.test(w) ? w + 'сь' : w + 'ся';
+    const alt = t === 'sya' ? [flip(f)] : undefined;
+    return { t, ru, en, hint, o1, a1: +a1, forms: fs, a2: +a2, alt, labels: lab ? LAB[lab] : null, tag: '', rule, cue, note, lv: lv || undefined,
       fnote: `Needed: ${right.label ? right.label + ', ' : ''}${OPTS[right.kind].name.split(' · ').pop().toLowerCase()} (${OPTS[right.kind].name.split(' · ')[0]}): ${OPTS[right.kind].use}.` };
   })
 };

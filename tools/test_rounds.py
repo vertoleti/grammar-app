@@ -10,7 +10,8 @@ async def setting(pg, sel, phone):
 async def run_round(pg):
     n=0
     while not await pg.locator("#again").count():
-        await pg.locator('#card button[data-act="a"], #card button[data-act="v"]').first.click(); await pg.wait_for_timeout(50)
+        first=pg.locator('#card button[data-act="a"]:not([disabled]), #card button[data-act="v"]:not([disabled])')
+        if await first.count(): await first.first.click(); await pg.wait_for_timeout(50)
         if await pg.locator('#ans').count(): await pg.fill('#ans','тест'); await pg.press('#ans','Enter')
         else: await pg.locator('#card button[data-act="f"]').first.click()
         await pg.wait_for_timeout(50); await pg.click('#next'); await pg.wait_for_timeout(220); n+=1
@@ -32,7 +33,12 @@ async def main():
                 await setting(pg,'#n-all',phone); total=(await pg.locator('.track .cnt').text_content()) if await pg.locator('.track .cnt').count() else f"{await pg.locator('.track .st').count()} stations"
                 await setting(pg,'#n-10',phone)
                 chips=(await pg.locator('.sumchips').inner_text()).replace('\n',' | ') if phone else '(sidebar)'
-                print('phone' if phone else 'desktop',ex,'5-round',n5,'typed',nt,total,'|',chips)
+                if ex=='aspect': two=one=await pg.locator('#card button[data-act="a"]').count()
+                else:
+                    await setting(pg,'#s-two',phone); two=await pg.locator('#card button[data-act="a"], #card button[data-act="v"]').count()
+                    await setting(pg,'#s-one',phone); one=await pg.locator('#card button[data-act="a"], #card button[data-act="v"]').count()
+                opts=await pg.locator('#card button[data-act="f"]').all_inner_texts()
+                print('phone' if phone else 'desktop',ex,'5-round',n5,'typed',nt,total,'| step-1 buttons two/one:',two,one,'| one-step options:',[o.split(chr(10))[-1] for o in opts],'|',chips)
             await ctx.close()
         print('errors',errs); await b.close()
 asyncio.run(main())

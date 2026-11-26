@@ -25,6 +25,10 @@ Every task and every word has a level. Grammar topics are levelled in each `data
 |---|---|---|
 | A1 | see the home page | 88 |
 
+### One step or two
+
+By default every question is answered in one step: you pick or type the finished form, and the options mix the typical mistakes (wrong case, wrong preposition, wrong verb, missing -ся). The Steps setting switches to two steps (first the rule, then the form). Verb aspect always uses two steps, because choosing the aspect is the point of that exercise.
+
 ### The coach
 
 `shared/coach.js` keeps the last 12 answers for every topic (`<exercise>-stats` in localStorage). A topic is *mastered* at 85 % or better over at least 8 answers, *good* at 65 %, otherwise *needs work*.

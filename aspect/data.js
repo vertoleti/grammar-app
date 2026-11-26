@@ -103,7 +103,7 @@ irr|Мы ___ тебе, когда всё узнаем.|We’ll write to you when
 const LAB = { n: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], f: ['я', 'ты', 'он / она', 'мы', 'вы', 'они'], p: ['он', 'она', 'оно', 'они'], imp: ['ты', 'вы'] };
 const PERS = { n: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], f: ['я-form', 'ты-form', 'он/она-form', 'мы-form', 'вы-form', 'они-form'], p: ['masculine', 'feminine', 'neuter', 'plural'], imp: ['ты-form', 'вы-form'] };
 window.EXERCISE = {
-  id: 'aspect', step1: 'Which verb?', step1Short: 'Verb', scoreLabel: 'Aspects right',
+  id: 'aspect', twoStepOnly: true, step1: 'Which verb?', step1Short: 'Verb', scoreLabel: 'Aspects right',
   topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,
   items: DATA.split('\n').map(l => {
     const [t, ru, en, pair, a, tn, forms, idx, rule, cue, note] = l.split('|');
