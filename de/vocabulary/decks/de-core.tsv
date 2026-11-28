@@ -132,3 +132,300 @@ etwas auf die lange Bank schieben	de	phrase	phrase					to put something off	Schi
 den Nagel auf den Kopf treffen	de	phrase	phrase					to hit the nail on the head	Damit hast du den Nagel auf den Kopf getroffen.	You've hit the nail on the head there.			C2							de_DE			de-phr-0015	de phrase communication c2
 ins Fettnäpfchen treten	de	phrase	phrase					to put one's foot in it	Mit der Frage ist er voll ins Fettnäpfchen getreten.	He really put his foot in it with that question.			C2							de_DE			de-phr-0016	de phrase communication c2
 jemandem reinen Wein einschenken	de	phrase	phrase					to tell someone the plain truth	Ich muss dir reinen Wein einschenken.	I have to tell you the plain truth.			C2							de_DE			de-phr-0017	de phrase communication c2
+die Mutter	de	word	noun	die	f	die Mütter		mother	Meine Mutter kocht gern.	My mother likes cooking.			A1							de_DE			de-wrd-0111	de word people a1
+der Vater	de	word	noun	der	m	die Väter		father	Mein Vater arbeitet in Berlin.	My father works in Berlin.			A1							de_DE			de-wrd-0112	de word people a1
+das Kind	de	word	noun	das	n	die Kinder		child	Das Kind spielt im Garten.	The child is playing in the garden.			A1							de_DE			de-wrd-0113	de word people a1
+der Bruder	de	word	noun	der	m	die Brüder		brother	Mein Bruder ist älter als ich.	My brother is older than me.			A1							de_DE			de-wrd-0114	de word people a1
+die Schwester	de	word	noun	die	f	die Schwestern		sister	Meine Schwester studiert Medizin.	My sister studies medicine.			A1							de_DE			de-wrd-0115	de word people a1
+der Mann	de	word	noun	der	m	die Männer		man; husband	Der Mann dort ist mein Lehrer.	The man over there is my teacher.			A1							de_DE			de-wrd-0116	de word people a1
+die Frau	de	word	noun	die	f	die Frauen		woman; wife; Mrs	Die Frau wartet auf den Bus.	The woman is waiting for the bus.			A1							de_DE			de-wrd-0117	de word people a1
+der Name	de	word	noun	der	m	die Namen		name	Wie ist Ihr Name?	What is your name?			A1							de_DE			de-wrd-0118	de word people a1
+das Zimmer	de	word	noun	das	n	die Zimmer		room	Das Zimmer ist hell und groß.	The room is bright and big.			A1							de_DE			de-wrd-0119	de word home a1
+die Küche	de	word	noun	die	f	die Küchen		kitchen	Wir essen in der Küche.	We eat in the kitchen.			A1							de_DE			de-wrd-0120	de word home a1
+das Bett	de	word	noun	das	n	die Betten		bed	Das Bett ist zu kurz.	The bed is too short.			A1							de_DE			de-wrd-0121	de word home a1
+der Stuhl	de	word	noun	der	m	die Stühle		chair	Nimm dir einen Stuhl!	Take a chair!			A1							de_DE			de-wrd-0122	de word home a1
+die Tür	de	word	noun	die	f	die Türen		door	Mach bitte die Tür zu.	Please close the door.			A1							de_DE			de-wrd-0123	de word home a1
+das Fenster	de	word	noun	das	n	die Fenster		window	Das Fenster ist offen.	The window is open.			A1							de_DE			de-wrd-0124	de word home a1
+der Kaffee	de	word	noun	der	m	die Kaffees		coffee	Ich trinke morgens Kaffee.	I drink coffee in the morning.			A1							de_DE			de-wrd-0125	de word food a1
+der Tee	de	word	noun	der	m	die Tees		tea	Möchtest du einen Tee?	Would you like a tea?			A1							de_DE			de-wrd-0126	de word food a1
+die Milch	de	word	noun	die	f			milk	Die Milch ist im Kühlschrank.	The milk is in the fridge.			A1							de_DE			de-wrd-0127	de word food a1
+der Apfel	de	word	noun	der	m	die Äpfel		apple	Ich esse jeden Tag einen Apfel.	I eat an apple every day.			A1							de_DE			de-wrd-0128	de word food a1
+das Fleisch	de	word	noun	das	n			meat	Sie isst kein Fleisch.	She doesn't eat meat.			A1							de_DE			de-wrd-0129	de word food a1
+der Käse	de	word	noun	der	m			cheese	Der Käse kommt aus der Schweiz.	The cheese comes from Switzerland.			A1							de_DE			de-wrd-0130	de word food a1
+das Ei	de	word	noun	das	n	die Eier		egg	Zum Frühstück esse ich ein Ei.	I have an egg for breakfast.			A1							de_DE			de-wrd-0131	de word food a1
+das Frühstück	de	word	noun	das	n	die Frühstücke		breakfast	Das Frühstück ist um acht Uhr.	Breakfast is at eight o'clock.			A1							de_DE			de-wrd-0132	de word food a1
+die Stadt	de	word	noun	die	f	die Städte		town, city	Hamburg ist eine große Stadt.	Hamburg is a big city.			A1							de_DE			de-wrd-0133	de word city a1
+der Supermarkt	de	word	noun	der	m	die Supermärkte		supermarket	Der Supermarkt ist bis 22 Uhr offen.	The supermarket is open until 10 pm.			A1							de_DE			de-wrd-0134	de word city a1
+die Schule	de	word	noun	die	f	die Schulen		school	Die Kinder gehen zur Schule.	The children go to school.			A1							de_DE			de-wrd-0135	de word city a1
+das Geld	de	word	noun	das	n			money	Ich habe kein Geld dabei.	I don't have any money on me.			A1							de_DE			de-wrd-0136	de word city a1
+der Zug	de	word	noun	der	m	die Züge		train	Der Zug fährt um neun Uhr.	The train leaves at nine.			A1							de_DE			de-wrd-0137	de word transport a1
+das Auto	de	word	noun	das	n	die Autos		car	Wir fahren mit dem Auto.	We're going by car.			A1							de_DE			de-wrd-0138	de word transport a1
+der Bus	de	word	noun	der	m	die Busse		bus	Der Bus kommt gleich.	The bus is coming in a moment.			A1							de_DE			de-wrd-0139	de word transport a1
+das Fahrrad	de	word	noun	das	n	die Fahrräder		bicycle	Ich fahre mit dem Fahrrad zur Arbeit.	I cycle to work.			A1							de_DE			de-wrd-0140	de word transport a1
+die Woche	de	word	noun	die	f	die Wochen		week	Die Woche war sehr lang.	The week was very long.			A1							de_DE			de-wrd-0141	de word time a1
+der Monat	de	word	noun	der	m	die Monate		month	Im nächsten Monat habe ich Urlaub.	I'm on holiday next month.			A1							de_DE			de-wrd-0142	de word time a1
+das Jahr	de	word	noun	das	n	die Jahre		year	Ich wohne seit einem Jahr hier.	I've lived here for a year.			A1							de_DE			de-wrd-0143	de word time a1
+die Uhr	de	word	noun	die	f	die Uhren		clock; o'clock	Es ist drei Uhr.	It's three o'clock.			A1							de_DE			de-wrd-0144	de word time a1
+der Morgen	de	word	noun	der	m	die Morgen		morning	Am Morgen trinke ich Tee.	In the morning I drink tea.			A1							de_DE			de-wrd-0145	de word time a1
+der Abend	de	word	noun	der	m	die Abende		evening	Guten Abend!	Good evening!			A1							de_DE			de-wrd-0146	de word time a1
+machen	de	word	verb			macht, machte, hat gemacht		to do, to make	Was machst du heute?	What are you doing today?			A1							de_DE			de-wrd-0147	de word basic a1
+gehen	de	word	verb			geht, ging, ist gegangen		to go, to walk	Wir gehen ins Kino.	We're going to the cinema.			A1							de_DE			de-wrd-0148	de word basic a1
+kommen	de	word	verb			kommt, kam, ist gekommen		to come	Woher kommst du?	Where are you from?			A1							de_DE			de-wrd-0149	de word basic a1
+haben	de	word	verb			hat, hatte, hat gehabt		to have	Ich habe zwei Kinder.	I have two children.			A1							de_DE			de-wrd-0150	de word basic a1
+sein	de	word	verb			ist, war, ist gewesen		to be	Das ist mein Freund.	This is my friend.			A1							de_DE			de-wrd-0151	de word basic a1
+lernen	de	word	verb			lernt, lernte, hat gelernt		to learn, to study	Ich lerne Deutsch.	I'm learning German.			A1							de_DE			de-wrd-0152	de word basic a1
+lesen	de	word	verb			liest, las, hat gelesen		to read	Sie liest gern Krimis.	She likes reading crime novels.			A1							de_DE			de-wrd-0153	de word basic a1
+schreiben	de	word	verb			schreibt, schrieb, hat geschrieben		to write	Schreib mir eine Nachricht!	Send me a message!			A1							de_DE			de-wrd-0154	de word basic a1
+spielen	de	word	verb			spielt, spielte, hat gespielt		to play	Die Kinder spielen Fußball.	The children are playing football.			A1							de_DE			de-wrd-0155	de word basic a1
+schlafen	de	word	verb			schläft, schlief, hat geschlafen		to sleep	Ich schlafe acht Stunden.	I sleep eight hours.			A1							de_DE			de-wrd-0156	de word basic a1
+sehen	de	word	verb			sieht, sah, hat gesehen		to see	Siehst du das Haus dort?	Can you see the house over there?			A1							de_DE			de-wrd-0157	de word basic a1
+möchten	de	word	verb			möchte, mochte, –		would like	Ich möchte ein Wasser.	I'd like a water.			A1							de_DE			de-wrd-0158	de word basic a1
+verstehen	de	word	verb			versteht, verstand, hat verstanden		to understand	Ich verstehe das nicht.	I don't understand that.			A1							de_DE			de-wrd-0159	de word basic a1
+brauchen	de	word	verb			braucht, brauchte, hat gebraucht		to need	Wir brauchen mehr Zeit.	We need more time.			A1							de_DE			de-wrd-0160	de word basic a1
+neu	de	word	adjective			neuer, am neuesten		new	Das Handy ist ganz neu.	The phone is brand new.			A1							de_DE			de-wrd-0161	de word basic a1
+alt	de	word	adjective			älter, am ältesten		old	Wie alt bist du?	How old are you?			A1							de_DE			de-wrd-0162	de word basic a1
+schön	de	word	adjective			schöner, am schönsten		beautiful, nice	Was für ein schöner Tag!	What a lovely day!			A1							de_DE			de-wrd-0163	de word basic a1
+teuer	de	word	adjective			teurer, am teuersten		expensive	Das Hotel ist zu teuer.	The hotel is too expensive.			A1							de_DE			de-wrd-0164	de word basic a1
+billig	de	word	adjective			billiger, am billigsten		cheap	Die Schuhe waren sehr billig.	The shoes were very cheap.			A1							de_DE			de-wrd-0165	de word basic a1
+warm	de	word	adjective			wärmer, am wärmsten		warm	Heute ist es warm.	It's warm today.			A1							de_DE			de-wrd-0166	de word basic a1
+kalt	de	word	adjective			kälter, am kältesten		cold	Im Winter ist es kalt.	It's cold in winter.			A1							de_DE			de-wrd-0167	de word basic a1
+hier	de	word	adverb					here	Ich wohne hier.	I live here.			A1							de_DE			de-wrd-0168	de word basic a1
+morgen	de	word	adverb					tomorrow	Morgen habe ich frei.	I'm off tomorrow.			A1							de_DE			de-wrd-0169	de word basic a1
+oft	de	word	adverb					often	Wir gehen oft spazieren.	We often go for walks.			A1							de_DE			de-wrd-0170	de word basic a1
+immer	de	word	adverb					always	Er kommt immer zu spät.	He's always late.			A1							de_DE			de-wrd-0171	de word basic a1
+aber	de	word	conjunction					but	Das Essen ist gut, aber teuer.	The food is good but expensive.			A1							de_DE			de-wrd-0172	de word basic a1
+Wie bitte?	de	phrase	phrase					Pardon? Sorry, what did you say?	Wie bitte? Können Sie das wiederholen?	Pardon? Could you repeat that?			A1							de_DE			de-phr-0018	de phrase communication a1
+Ich hätte gern …	de	phrase	phrase					I'd like … (ordering)	Ich hätte gern ein Brötchen.	I'd like a bread roll.			A1							de_DE			de-phr-0019	de phrase communication a1
+Bis später!	de	phrase	phrase					See you later!	Tschüss, bis später!	Bye, see you later!			A1							de_DE			de-phr-0020	de phrase communication a1
+Vielen Dank!	de	phrase	phrase					Thank you very much!	Vielen Dank für Ihre Hilfe!	Thank you very much for your help!			A1							de_DE			de-phr-0021	de phrase communication a1
+Wie viel kostet das?	de	phrase	phrase					How much is it?	Entschuldigung, wie viel kostet das?	Excuse me, how much is this?			A1							de_DE			de-phr-0022	de phrase communication a1
+der Kopf	de	word	noun	der	m	die Köpfe		head	Mir tut der Kopf weh.	My head hurts.			A2							de_DE			de-wrd-0173	de word health a2
+der Bauch	de	word	noun	der	m	die Bäuche		stomach, belly	Ich habe Bauchschmerzen.	I have a stomach ache.			A2							de_DE			de-wrd-0174	de word health a2
+die Erkältung	de	word	noun	die	f	die Erkältungen		cold (illness)	Ich habe eine Erkältung.	I have a cold.			A2							de_DE			de-wrd-0175	de word health a2
+das Medikament	de	word	noun	das	n	die Medikamente		medicine, drug	Nehmen Sie das Medikament nach dem Essen.	Take the medicine after meals.			A2							de_DE			de-wrd-0176	de word health a2
+die Apotheke	de	word	noun	die	f	die Apotheken		pharmacy	Die Apotheke hat heute Notdienst.	The pharmacy is on emergency duty today.			A2							de_DE			de-wrd-0177	de word health a2
+der Beruf	de	word	noun	der	m	die Berufe		job, profession	Was sind Sie von Beruf?	What do you do for a living?			A2							de_DE			de-wrd-0178	de word work a2
+der Kollege	de	word	noun	der	m	die Kollegen		colleague (m)	Mein Kollege hilft mir oft.	My colleague often helps me.			A2							de_DE			de-wrd-0179	de word work a2
+die Firma	de	word	noun	die	f	die Firmen		company, firm	Die Firma hat 200 Mitarbeiter.	The company has 200 employees.			A2							de_DE			de-wrd-0180	de word work a2
+das Gehalt	de	word	noun	das	n	die Gehälter		salary	Das Gehalt kommt am Monatsende.	The salary comes at the end of the month.			A2							de_DE			de-wrd-0181	de word work a2
+die Besprechung	de	word	noun	die	f	die Besprechungen		meeting	Die Besprechung dauert eine Stunde.	The meeting lasts an hour.			A2							de_DE			de-wrd-0182	de word work a2
+die Reise	de	word	noun	die	f	die Reisen		journey, trip	Gute Reise!	Have a good trip!			A2							de_DE			de-wrd-0183	de word travel a2
+der Flughafen	de	word	noun	der	m	die Flughäfen		airport	Wir fahren mit dem Taxi zum Flughafen.	We're taking a taxi to the airport.			A2							de_DE			de-wrd-0184	de word travel a2
+die Fahrkarte	de	word	noun	die	f	die Fahrkarten		ticket (transport)	Ich kaufe die Fahrkarte am Automaten.	I'll buy the ticket at the machine.			A2							de_DE			de-wrd-0185	de word travel a2
+das Gleis	de	word	noun	das	n	die Gleise		platform, track	Der Zug fährt von Gleis 4.	The train leaves from platform 4.			A2							de_DE			de-wrd-0186	de word travel a2
+die Verspätung	de	word	noun	die	f	die Verspätungen		delay	Der Zug hat zehn Minuten Verspätung.	The train is ten minutes late.			A2							de_DE			de-wrd-0187	de word travel a2
+der Koffer	de	word	noun	der	m	die Koffer		suitcase	Mein Koffer ist zu schwer.	My suitcase is too heavy.			A2							de_DE			de-wrd-0188	de word travel a2
+der Kühlschrank	de	word	noun	der	m	die Kühlschränke		fridge	Der Kühlschrank ist leer.	The fridge is empty.			A2							de_DE			de-wrd-0189	de word home a2
+die Miete	de	word	noun	die	f	die Mieten		rent	Die Miete ist im Januar gestiegen.	The rent went up in January.			A2							de_DE			de-wrd-0190	de word home a2
+der Vermieter	de	word	noun	der	m	die Vermieter		landlord	Der Vermieter repariert die Heizung.	The landlord is repairing the heating.			A2							de_DE			de-wrd-0191	de word home a2
+die Heizung	de	word	noun	die	f	die Heizungen		heating	Die Heizung funktioniert nicht.	The heating isn't working.			A2							de_DE			de-wrd-0192	de word home a2
+das Wetter	de	word	noun	das	n			weather	Wie ist das Wetter bei euch?	What's the weather like where you are?			A2							de_DE			de-wrd-0193	de word weather a2
+der Regen	de	word	noun	der	m			rain	Bei Regen bleiben wir zu Hause.	When it rains we stay at home.			A2							de_DE			de-wrd-0194	de word weather a2
+der Schnee	de	word	noun	der	m			snow	Im Januar lag viel Schnee.	There was a lot of snow in January.			A2							de_DE			de-wrd-0195	de word weather a2
+das Hobby	de	word	noun	das	n	die Hobbys		hobby	Mein Hobby ist Fotografieren.	My hobby is photography.			A2							de_DE			de-wrd-0196	de word leisure a2
+der Ausflug	de	word	noun	der	m	die Ausflüge		outing, day trip	Am Sonntag machen wir einen Ausflug.	On Sunday we're going on a day trip.			A2							de_DE			de-wrd-0197	de word leisure a2
+die Veranstaltung	de	word	noun	die	f	die Veranstaltungen		event	Die Veranstaltung beginnt um 19 Uhr.	The event begins at 7 pm.			A2							de_DE			de-wrd-0198	de word leisure a2
+aufstehen	de	word	verb			steht auf, stand auf, ist aufgestanden		to get up	Ich stehe um sechs Uhr auf.	I get up at six.			A2							de_DE			de-wrd-0199	de word basic a2
+anfangen	de	word	verb			fängt an, fing an, hat angefangen		to begin, to start	Der Kurs fängt morgen an.	The course starts tomorrow.			A2							de_DE			de-wrd-0200	de word basic a2
+aufhören	de	word	verb			hört auf, hörte auf, hat aufgehört		to stop	Hör auf zu rauchen!	Stop smoking!			A2							de_DE			de-wrd-0201	de word basic a2
+mitbringen	de	word	verb			bringt mit, brachte mit, hat mitgebracht		to bring along	Kannst du Brot mitbringen?	Can you bring some bread?			A2							de_DE			de-wrd-0202	de word basic a2
+bezahlen	de	word	verb			bezahlt, bezahlte, hat bezahlt		to pay	Kann ich mit Karte bezahlen?	Can I pay by card?			A2							de_DE			de-wrd-0203	de word basic a2
+suchen	de	word	verb			sucht, suchte, hat gesucht		to look for	Ich suche eine Wohnung.	I'm looking for a flat.			A2							de_DE			de-wrd-0204	de word basic a2
+finden	de	word	verb			findet, fand, hat gefunden		to find; to think (opinion)	Wie findest du den Film?	What do you think of the film?			A2							de_DE			de-wrd-0205	de word basic a2
+warten	de	word	verb			wartet, wartete, hat gewartet		to wait	Ich warte auf dich.	I'm waiting for you.			A2							de_DE			de-wrd-0206	de word basic a2
+erzählen	de	word	verb			erzählt, erzählte, hat erzählt		to tell (a story)	Erzähl mal von deinem Urlaub!	Tell me about your holiday!			A2							de_DE			de-wrd-0207	de word basic a2
+besuchen	de	word	verb			besucht, besuchte, hat besucht		to visit	Wir besuchen am Wochenende meine Eltern.	We're visiting my parents at the weekend.			A2							de_DE			de-wrd-0208	de word basic a2
+reparieren	de	word	verb			repariert, reparierte, hat repariert		to repair	Kannst du mein Fahrrad reparieren?	Can you repair my bike?			A2							de_DE			de-wrd-0209	de word basic a2
+sich ausruhen	de	word	verb			ruht sich aus, ruhte sich aus, hat sich ausgeruht		to rest	Am Sonntag ruhe ich mich aus.	On Sunday I rest.			A2							de_DE			de-wrd-0210	de word basic a2
+sich vorstellen	de	word	verb			stellt sich vor, stellte sich vor, hat sich vorgestellt		to introduce oneself; (+Dat) to imagine	Darf ich mich vorstellen?	May I introduce myself?			A2							de_DE			de-wrd-0211	de word basic a2
+gehören	de	word	verb			gehört, gehörte, hat gehört		to belong to (+Dat)	Wem gehört die Tasche?	Whose bag is this?			A2							de_DE			de-wrd-0212	de word basic a2
+schmecken	de	word	verb			schmeckt, schmeckte, hat geschmeckt		to taste	Die Suppe schmeckt sehr gut.	The soup tastes very good.			A2							de_DE			de-wrd-0213	de word basic a2
+vergleichen	de	word	verb			vergleicht, verglich, hat verglichen		to compare	Wir vergleichen die Preise.	We're comparing the prices.			A2							de_DE			de-wrd-0214	de word basic a2
+krank	de	word	adjective			kränker, am kränksten		ill, sick	Ich bin seit gestern krank.	I've been ill since yesterday.			A2							de_DE			de-wrd-0215	de word basic a2
+gesund	de	word	adjective			gesünder, am gesündesten		healthy	Obst ist gesund.	Fruit is healthy.			A2							de_DE			de-wrd-0216	de word basic a2
+ruhig	de	word	adjective			ruhiger, am ruhigsten		quiet, calm	Die Straße ist sehr ruhig.	The street is very quiet.			A2							de_DE			de-wrd-0217	de word basic a2
+laut	de	word	adjective			lauter, am lautesten		loud, noisy	Die Musik ist zu laut.	The music is too loud.			A2							de_DE			de-wrd-0218	de word basic a2
+langweilig	de	word	adjective			langweiliger, am langweiligsten		boring	Der Film war langweilig.	The film was boring.			A2							de_DE			de-wrd-0219	de word basic a2
+lecker	de	word	adjective			leckerer, am leckersten		tasty, delicious	Der Kuchen ist lecker!	The cake is delicious!			A2							de_DE			de-wrd-0220	de word basic a2
+fertig	de	word	adjective					ready, finished	Bist du fertig?	Are you ready?			A2							de_DE			de-wrd-0221	de word basic a2
+kaputt	de	word	adjective					broken	Mein Handy ist kaputt.	My phone is broken.			A2							de_DE			de-wrd-0222	de word basic a2
+bald	de	word	adverb					soon	Bis bald!	See you soon!			A2							de_DE			de-wrd-0223	de word basic a2
+danach	de	word	adverb					afterwards	Danach gehen wir essen.	Afterwards we'll go and eat.			A2							de_DE			de-wrd-0224	de word basic a2
+zuerst	de	word	adverb					first (of all)	Zuerst lernen wir die Wörter.	First we learn the words.			A2							de_DE			de-wrd-0225	de word basic a2
+ziemlich	de	word	adverb					quite, fairly	Das ist ziemlich teuer.	That's quite expensive.			A2							de_DE			de-wrd-0226	de word basic a2
+unterwegs	de	word	adverb					on the way, out and about	Ich bin gerade unterwegs.	I'm out and about right now.			A2							de_DE			de-wrd-0227	de word basic a2
+dass	de	word	conjunction					that (conjunction)	Ich glaube, dass er recht hat.	I think that he's right.			A2							de_DE			de-wrd-0228	de word basic a2
+wenn	de	word	conjunction					if; whenever	Wenn es regnet, bleibe ich zu Hause.	If it rains, I'll stay at home.			A2							de_DE			de-wrd-0229	de word basic a2
+als	de	word	conjunction					when (single past event); than	Als ich klein war, wohnten wir in Bonn.	When I was little, we lived in Bonn.			A2							de_DE			de-wrd-0230	de word basic a2
+während	de	word	preposition				+ Gen	during	Während des Essens spricht er nicht.	He doesn't talk during meals.			A2							de_DE			de-wrd-0231	de word basic a2
+Gute Besserung!	de	phrase	phrase					Get well soon!	Du bist krank? Gute Besserung!	You're ill? Get well soon!			A2							de_DE			de-phr-0023	de phrase communication a2
+Das ist mir egal.	de	phrase	phrase					I don't mind. / I don't care.	Pizza oder Pasta? Das ist mir egal.	Pizza or pasta? I don't mind.			A2							de_DE			de-phr-0024	de phrase communication a2
+Ich habe keine Zeit.	de	phrase	phrase					I don't have time.	Heute habe ich leider keine Zeit.	Unfortunately I don't have time today.			A2							de_DE			de-phr-0025	de phrase communication a2
+Viel Spaß!	de	phrase	phrase					Have fun!	Viel Spaß im Urlaub!	Have fun on holiday!			A2							de_DE			de-phr-0026	de phrase communication a2
+Wie war's?	de	phrase	phrase					How was it?	Du warst im Konzert? Wie war's?	You went to the concert? How was it?			A2							de_DE			de-phr-0027	de phrase communication a2
+die Stelle	de	word	noun	die	f	die Stellen		position, job; place	Ich habe eine neue Stelle gefunden.	I've found a new job.			B1							de_DE			de-wrd-0232	de word work b1
+der Lebenslauf	de	word	noun	der	m	die Lebensläufe		CV, résumé	Schicken Sie uns bitte Ihren Lebenslauf.	Please send us your CV.			B1							de_DE			de-wrd-0233	de word work b1
+das Vorstellungsgespräch	de	word	noun	das	n	die Vorstellungsgespräche		job interview	Morgen habe ich ein Vorstellungsgespräch.	I have a job interview tomorrow.			B1							de_DE			de-wrd-0234	de word work b1
+die Kenntnisse	de	word	noun	die	pl		plural only	knowledge, skills	Sie hat gute Deutschkenntnisse.	She has good German skills.			B1							de_DE			de-wrd-0235	de word work b1
+der Vertrag	de	word	noun	der	m	die Verträge		contract	Der Vertrag ist auf ein Jahr befristet.	The contract is limited to one year.			B1							de_DE			de-wrd-0236	de word work b1
+die Überstunde	de	word	noun	die	f	die Überstunden		overtime hour	Diese Woche habe ich zehn Überstunden gemacht.	This week I did ten hours of overtime.			B1							de_DE			de-wrd-0237	de word work b1
+der Chef	de	word	noun	der	m	die Chefs		boss	Der Chef ist heute nicht im Büro.	The boss isn't in the office today.			B1							de_DE			de-wrd-0238	de word work b1
+die Regierung	de	word	noun	die	f	die Regierungen		government	Die Regierung plant neue Gesetze.	The government is planning new laws.			B1							de_DE			de-wrd-0239	de word society b1
+das Gesetz	de	word	noun	das	n	die Gesetze		law	Das Gesetz gilt ab Januar.	The law applies from January.			B1							de_DE			de-wrd-0240	de word society b1
+die Wahl	de	word	noun	die	f	die Wahlen		election; choice	Die Wahl findet im September statt.	The election takes place in September.			B1							de_DE			de-wrd-0241	de word society b1
+die Behörde	de	word	noun	die	f	die Behörden		authority, public office	Sie müssen das bei der Behörde beantragen.	You have to apply for it at the authority.			B1							de_DE			de-wrd-0242	de word society b1
+der Ausweis	de	word	noun	der	m	die Ausweise		ID card	Zeigen Sie bitte Ihren Ausweis.	Please show your ID.			B1							de_DE			de-wrd-0243	de word society b1
+der Müll	de	word	noun	der	m			rubbish, waste	Bring bitte den Müll raus.	Please take the rubbish out.			B1							de_DE			de-wrd-0244	de word environment b1
+das Klima	de	word	noun	das	n	die Klimata		climate	Das Klima ändert sich.	The climate is changing.			B1							de_DE			de-wrd-0245	de word environment b1
+die Energie	de	word	noun	die	f	die Energien		energy	Wir müssen Energie sparen.	We need to save energy.			B1							de_DE			de-wrd-0246	de word environment b1
+die Nachricht	de	word	noun	die	f	die Nachrichten		message; (pl.) the news	Hast du die Nachrichten gesehen?	Have you seen the news?			B1							de_DE			de-wrd-0247	de word media b1
+die Zeitung	de	word	noun	die	f	die Zeitungen		newspaper	Ich lese die Zeitung online.	I read the newspaper online.			B1							de_DE			de-wrd-0248	de word media b1
+die Werbung	de	word	noun	die	f	die Werbungen		advertising, advert	Im Fernsehen gibt es zu viel Werbung.	There's too much advertising on TV.			B1							de_DE			de-wrd-0249	de word media b1
+die Angst	de	word	noun	die	f	die Ängste		fear	Ich habe Angst vor Hunden.	I'm afraid of dogs.			B1							de_DE			de-wrd-0250	de word feelings b1
+die Sorge	de	word	noun	die	f	die Sorgen		worry	Mach dir keine Sorgen!	Don't worry!			B1							de_DE			de-wrd-0251	de word feelings b1
+die Geduld	de	word	noun	die	f			patience	Du brauchst viel Geduld.	You need a lot of patience.			B1							de_DE			de-wrd-0252	de word feelings b1
+das Gefühl	de	word	noun	das	n	die Gefühle		feeling	Ich habe ein gutes Gefühl.	I have a good feeling.			B1							de_DE			de-wrd-0253	de word feelings b1
+der Grund	de	word	noun	der	m	die Gründe		reason; ground	Aus welchem Grund?	For what reason?			B1							de_DE			de-wrd-0254	de word abstract b1
+die Möglichkeit	de	word	noun	die	f	die Möglichkeiten		possibility, opportunity	Es gibt viele Möglichkeiten.	There are many possibilities.			B1							de_DE			de-wrd-0255	de word abstract b1
+das Ziel	de	word	noun	das	n	die Ziele		goal, aim; destination	Mein Ziel ist das B2-Zertifikat.	My goal is the B2 certificate.			B1							de_DE			de-wrd-0256	de word abstract b1
+die Entscheidung	de	word	noun	die	f	die Entscheidungen		decision	Das war eine schwierige Entscheidung.	That was a difficult decision.			B1							de_DE			de-wrd-0257	de word abstract b1
+der Unterschied	de	word	noun	der	m	die Unterschiede		difference	Was ist der Unterschied?	What's the difference?			B1							de_DE			de-wrd-0258	de word abstract b1
+sich interessieren für	de	word	verb			interessiert sich, interessierte sich, hat sich interessiert		to be interested in	Ich interessiere mich für Politik.	I'm interested in politics.			B1							de_DE			de-wrd-0259	de word basic b1
+sich ärgern über	de	word	verb			ärgert sich, ärgerte sich, hat sich geärgert		to be annoyed about	Er ärgert sich über den Lärm.	He's annoyed about the noise.			B1							de_DE			de-wrd-0260	de word basic b1
+sich erinnern an	de	word	verb			erinnert sich, erinnerte sich, hat sich erinnert		to remember	Erinnerst du dich an unseren Urlaub?	Do you remember our holiday?			B1							de_DE			de-wrd-0261	de word basic b1
+sich entschuldigen	de	word	verb			entschuldigt sich, entschuldigte sich, hat sich entschuldigt		to apologise	Ich möchte mich entschuldigen.	I'd like to apologise.			B1							de_DE			de-wrd-0262	de word basic b1
+teilnehmen an	de	word	verb			nimmt teil, nahm teil, hat teilgenommen		to take part in	Ich nehme an einem Kurs teil.	I'm taking part in a course.			B1							de_DE			de-wrd-0263	de word basic b1
+sich verabreden	de	word	verb			verabredet sich, verabredete sich, hat sich verabredet		to arrange to meet	Wir haben uns fürs Kino verabredet.	We've arranged to go to the cinema.			B1							de_DE			de-wrd-0264	de word basic b1
+ausfüllen	de	word	verb			füllt aus, füllte aus, hat ausgefüllt		to fill in (a form)	Bitte füllen Sie das Formular aus.	Please fill in the form.			B1							de_DE			de-wrd-0265	de word basic b1
+beantragen	de	word	verb			beantragt, beantragte, hat beantragt		to apply for (officially)	Ich muss ein Visum beantragen.	I have to apply for a visa.			B1							de_DE			de-wrd-0266	de word basic b1
+kündigen	de	word	verb			kündigt, kündigte, hat gekündigt		to resign; to give notice	Sie hat ihre Stelle gekündigt.	She has resigned from her job.			B1							de_DE			de-wrd-0267	de word basic b1
+verdienen	de	word	verb			verdient, verdiente, hat verdient		to earn; to deserve	Er verdient gut.	He earns well.			B1							de_DE			de-wrd-0268	de word basic b1
+sparen	de	word	verb			spart, sparte, hat gespart		to save (money, energy)	Wir sparen für ein Auto.	We're saving for a car.			B1							de_DE			de-wrd-0269	de word basic b1
+sich beeilen	de	word	verb			beeilt sich, beeilte sich, hat sich beeilt		to hurry	Beeil dich, der Zug fährt gleich!	Hurry up, the train's about to leave!			B1							de_DE			de-wrd-0270	de word basic b1
+erlauben	de	word	verb			erlaubt, erlaubte, hat erlaubt		to allow	Rauchen ist hier nicht erlaubt.	Smoking isn't allowed here.			B1							de_DE			de-wrd-0271	de word basic b1
+verbieten	de	word	verb			verbietet, verbot, hat verboten		to forbid, to ban	Parken ist hier verboten.	Parking is prohibited here.			B1							de_DE			de-wrd-0272	de word basic b1
+empfehlen	de	word	verb			empfiehlt, empfahl, hat empfohlen		to recommend	Können Sie mir ein Restaurant empfehlen?	Can you recommend a restaurant?			B1							de_DE			de-wrd-0273	de word basic b1
+sich lohnen	de	word	verb			lohnt sich, lohnte sich, hat sich gelohnt		to be worth it	Der Ausflug hat sich gelohnt.	The trip was worth it.			B1							de_DE			de-wrd-0274	de word basic b1
+vermissen	de	word	verb			vermisst, vermisste, hat vermisst		to miss (someone)	Ich vermisse meine Familie.	I miss my family.			B1							de_DE			de-wrd-0275	de word basic b1
+sich unterhalten	de	word	verb			unterhält sich, unterhielt sich, hat sich unterhalten		to talk, to chat	Wir haben uns lange unterhalten.	We talked for a long time.			B1							de_DE			de-wrd-0276	de word basic b1
+ehrlich	de	word	adjective			ehrlicher, am ehrlichsten		honest	Sei ehrlich: Gefällt es dir?	Be honest: do you like it?			B1							de_DE			de-wrd-0277	de word basic b1
+höflich	de	word	adjective			höflicher, am höflichsten		polite	Das war nicht sehr höflich.	That wasn't very polite.			B1							de_DE			de-wrd-0278	de word basic b1
+neugierig	de	word	adjective			neugieriger, am neugierigsten		curious, nosy	Ich bin neugierig, wie es weitergeht.	I'm curious how it continues.			B1							de_DE			de-wrd-0279	de word basic b1
+wahrscheinlich	de	word	adjective					probable; probably	Er kommt wahrscheinlich später.	He's probably coming later.			B1							de_DE			de-wrd-0280	de word basic b1
+notwendig	de	word	adjective					necessary	Ist das wirklich notwendig?	Is that really necessary?			B1							de_DE			de-wrd-0281	de word basic b1
+ähnlich	de	word	adjective			ähnlicher, am ähnlichsten		similar	Die beiden Wörter sind ähnlich.	The two words are similar.			B1							de_DE			de-wrd-0282	de word basic b1
+bekannt	de	word	adjective			bekannter, am bekanntesten		well-known, familiar	Die Stadt ist für ihr Bier bekannt.	The city is known for its beer.			B1							de_DE			de-wrd-0283	de word basic b1
+schwierig	de	word	adjective			schwieriger, am schwierigsten		difficult	Die Prüfung war schwierig.	The exam was difficult.			B1							de_DE			de-wrd-0284	de word basic b1
+eigentlich	de	word	adverb					actually, really	Was willst du eigentlich?	What do you actually want?			B1							de_DE			de-wrd-0285	de word basic b1
+sofort	de	word	adverb					immediately	Kommen Sie bitte sofort!	Please come immediately!			B1							de_DE			de-wrd-0286	de word basic b1
+inzwischen	de	word	adverb					meanwhile; by now	Inzwischen wohne ich in Wien.	By now I live in Vienna.			B1							de_DE			de-wrd-0287	de word basic b1
+ungefähr	de	word	adverb					about, approximately	Das kostet ungefähr 50 Euro.	That costs about 50 euros.			B1							de_DE			de-wrd-0288	de word basic b1
+sonst	de	word	adverb					otherwise; else	Beeil dich, sonst verpassen wir den Zug.	Hurry, otherwise we'll miss the train.			B1							de_DE			de-wrd-0289	de word basic b1
+damit	de	word	conjunction					so that	Ich spreche langsam, damit alle mich verstehen.	I speak slowly so that everyone understands me.			B1							de_DE			de-wrd-0290	de word linking b1
+bevor	de	word	conjunction					before	Bevor ich gehe, rufe ich dich an.	Before I leave I'll call you.			B1							de_DE			de-wrd-0291	de word linking b1
+nachdem	de	word	conjunction					after	Nachdem er gegessen hatte, schlief er ein.	After he had eaten, he fell asleep.			B1							de_DE			de-wrd-0292	de word linking b1
+ob	de	word	conjunction					whether, if	Weißt du, ob er kommt?	Do you know whether he's coming?			B1							de_DE			de-wrd-0293	de word linking b1
+wegen	de	word	preposition				+ Gen (colloquially + Dat)	because of	Wegen des Regens bleiben wir hier.	Because of the rain we're staying here.			B1							de_DE			de-wrd-0294	de word linking b1
+trotz	de	word	preposition				+ Gen	despite	Trotz der Kälte gingen wir spazieren.	Despite the cold we went for a walk.			B1							de_DE			de-wrd-0295	de word linking b1
+Meiner Meinung nach …	de	phrase	phrase					In my opinion …	Meiner Meinung nach ist das zu teuer.	In my opinion that's too expensive.			B1							de_DE			de-phr-0028	de phrase communication b1
+Da hast du recht.	de	phrase	phrase					You're right there.	Da hast du recht, das war ein Fehler.	You're right, that was a mistake.			B1							de_DE			de-phr-0029	de phrase communication b1
+Ich bin damit einverstanden.	de	phrase	phrase					I agree with that.	Mit dem Vorschlag bin ich einverstanden.	I agree with the suggestion.			B1							de_DE			de-phr-0030	de phrase communication b1
+Es kommt darauf an, ob …	de	phrase	phrase					It depends whether …	Es kommt darauf an, ob das Wetter gut ist.	It depends whether the weather's good.			B1							de_DE			de-phr-0031	de phrase communication b1
+Ich drücke dir die Daumen!	de	phrase	phrase					Fingers crossed for you!	Morgen ist deine Prüfung? Ich drücke dir die Daumen!	Your exam is tomorrow? Fingers crossed!			B1							de_DE			de-phr-0032	de phrase communication b1
+die Bevölkerung	de	word	noun	die	f	die Bevölkerungen		population	Die Bevölkerung wird immer älter.	The population is getting older and older.			B2							de_DE			de-wrd-0296	de word society b2
+die Gleichberechtigung	de	word	noun	die	f			equal rights, equality	Die Gleichberechtigung ist im Grundgesetz verankert.	Equal rights are enshrined in the Basic Law.			B2							de_DE			de-wrd-0297	de word society b2
+die Bildung	de	word	noun	die	f			education	Bildung ist der Schlüssel zum Erfolg.	Education is the key to success.			B2							de_DE			de-wrd-0298	de word society b2
+die Einwanderung	de	word	noun	die	f	die Einwanderungen		immigration	Die Einwanderung ist ein wichtiges Thema.	Immigration is an important topic.			B2							de_DE			de-wrd-0299	de word society b2
+die Armut	de	word	noun	die	f			poverty	Die Armut hat zugenommen.	Poverty has increased.			B2							de_DE			de-wrd-0300	de word society b2
+der Umsatz	de	word	noun	der	m	die Umsätze		turnover, sales	Der Umsatz ist um fünf Prozent gestiegen.	Sales rose by five per cent.			B2							de_DE			de-wrd-0301	de word economy b2
+die Steuer	de	word	noun	die	f	die Steuern		tax	Die Steuern wurden erhöht.	Taxes were raised.			B2							de_DE			de-wrd-0302	de word economy b2
+der Verbraucher	de	word	noun	der	m	die Verbraucher		consumer	Die Verbraucher kaufen weniger.	Consumers are buying less.			B2							de_DE			de-wrd-0303	de word economy b2
+die Arbeitslosigkeit	de	word	noun	die	f			unemployment	Die Arbeitslosigkeit ist gesunken.	Unemployment has fallen.			B2							de_DE			de-wrd-0304	de word economy b2
+die Forschung	de	word	noun	die	f	die Forschungen		research	Die Forschung braucht mehr Geld.	Research needs more money.			B2							de_DE			de-wrd-0305	de word science b2
+die Untersuchung	de	word	noun	die	f	die Untersuchungen		study, investigation; examination	Die Untersuchung zeigt deutliche Ergebnisse.	The study shows clear results.			B2							de_DE			de-wrd-0306	de word science b2
+das Ergebnis	de	word	noun	das	n	die Ergebnisse		result	Das Ergebnis hat uns überrascht.	The result surprised us.			B2							de_DE			de-wrd-0307	de word science b2
+die Ursache	de	word	noun	die	f	die Ursachen		cause	Die Ursache des Unfalls ist unklar.	The cause of the accident is unclear.			B2							de_DE			de-wrd-0308	de word abstract b2
+die Folge	de	word	noun	die	f	die Folgen		consequence	Das hat ernste Folgen.	That has serious consequences.			B2							de_DE			de-wrd-0309	de word abstract b2
+die Entwicklung	de	word	noun	die	f	die Entwicklungen		development	Die Entwicklung ist positiv.	The development is positive.			B2							de_DE			de-wrd-0310	de word abstract b2
+der Eindruck	de	word	noun	der	m	die Eindrücke		impression	Ich habe den Eindruck, dass er lügt.	I have the impression he's lying.			B2							de_DE			de-wrd-0311	de word abstract b2
+die Absicht	de	word	noun	die	f	die Absichten		intention	Das war keine Absicht.	That wasn't intentional.			B2							de_DE			de-wrd-0312	de word abstract b2
+das Vorurteil	de	word	noun	das	n	die Vorurteile		prejudice	Wir müssen Vorurteile abbauen.	We have to break down prejudices.			B2							de_DE			de-wrd-0313	de word abstract b2
+sich beziehen auf	de	word	verb			bezieht sich, bezog sich, hat sich bezogen		to refer to	Ich beziehe mich auf Ihre E-Mail.	I'm referring to your email.			B2							de_DE			de-wrd-0314	de word basic b2
+sich einsetzen für	de	word	verb			setzt sich ein, setzte sich ein, hat sich eingesetzt		to campaign for, to stand up for	Sie setzt sich für den Umweltschutz ein.	She campaigns for environmental protection.			B2							de_DE			de-wrd-0315	de word basic b2
+zunehmen	de	word	verb			nimmt zu, nahm zu, hat zugenommen		to increase; to gain weight	Der Verkehr nimmt ständig zu.	Traffic keeps increasing.			B2							de_DE			de-wrd-0316	de word basic b2
+abnehmen	de	word	verb			nimmt ab, nahm ab, hat abgenommen		to decrease; to lose weight	Die Zahl der Unfälle hat abgenommen.	The number of accidents has decreased.			B2							de_DE			de-wrd-0317	de word basic b2
+feststellen	de	word	verb			stellt fest, stellte fest, hat festgestellt		to find, to establish, to notice	Die Forscher stellten fest, dass …	The researchers found that …			B2							de_DE			de-wrd-0318	de word basic b2
+behaupten	de	word	verb			behauptet, behauptete, hat behauptet		to claim	Er behauptet, nichts gewusst zu haben.	He claims not to have known anything.			B2							de_DE			de-wrd-0319	de word basic b2
+bezweifeln	de	word	verb			bezweifelt, bezweifelte, hat bezweifelt		to doubt	Ich bezweifle, dass das stimmt.	I doubt that's true.			B2							de_DE			de-wrd-0320	de word basic b2
+vermeiden	de	word	verb			vermeidet, vermied, hat vermieden		to avoid	Wir sollten Fehler vermeiden.	We should avoid mistakes.			B2							de_DE			de-wrd-0321	de word basic b2
+unterstützen	de	word	verb			unterstützt, unterstützte, hat unterstützt		to support	Die Stadt unterstützt junge Familien.	The city supports young families.			B2							de_DE			de-wrd-0322	de word basic b2
+verbessern	de	word	verb			verbessert, verbesserte, hat verbessert		to improve	Ich möchte mein Deutsch verbessern.	I'd like to improve my German.			B2							de_DE			de-wrd-0323	de word basic b2
+sich verlassen auf	de	word	verb			verlässt sich, verließ sich, hat sich verlassen		to rely on	Auf ihn kann man sich verlassen.	You can rely on him.			B2							de_DE			de-wrd-0324	de word basic b2
+darstellen	de	word	verb			stellt dar, stellte dar, hat dargestellt		to represent, to depict; to constitute	Das stellt ein großes Problem dar.	That represents a big problem.			B2							de_DE			de-wrd-0325	de word basic b2
+ermöglichen	de	word	verb			ermöglicht, ermöglichte, hat ermöglicht		to make possible	Das Stipendium ermöglicht ihr das Studium.	The scholarship makes her studies possible.			B2							de_DE			de-wrd-0326	de word basic b2
+überflüssig	de	word	adjective					superfluous, unnecessary	Diese Diskussion ist überflüssig.	This discussion is unnecessary.			B2							de_DE			de-wrd-0327	de word basic b2
+wesentlich	de	word	adjective					essential, significant; considerably	Das ist wesentlich besser.	That's considerably better.			B2							de_DE			de-wrd-0328	de word basic b2
+vielfältig	de	word	adjective					diverse, varied	Das Angebot ist sehr vielfältig.	The range on offer is very varied.			B2							de_DE			de-wrd-0329	de word basic b2
+verantwortlich	de	word	adjective					responsible	Wer ist dafür verantwortlich?	Who is responsible for that?			B2							de_DE			de-wrd-0330	de word basic b2
+umstritten	de	word	adjective					controversial, disputed	Das Projekt ist politisch umstritten.	The project is politically controversial.			B2							de_DE			de-wrd-0331	de word basic b2
+nachhaltig	de	word	adjective					sustainable, lasting	Wir brauchen eine nachhaltige Lösung.	We need a sustainable solution.			B2							de_DE			de-wrd-0332	de word basic b2
+ausschließlich	de	word	adverb					exclusively	Der Parkplatz ist ausschließlich für Kunden.	The car park is exclusively for customers.			B2							de_DE			de-wrd-0333	de word basic b2
+keineswegs	de	word	adverb					by no means	Das ist keineswegs sicher.	That's by no means certain.			B2							de_DE			de-wrd-0334	de word basic b2
+sobald	de	word	conjunction					as soon as	Sobald ich Zeit habe, rufe ich dich an.	As soon as I have time I'll call you.			B2							de_DE			de-wrd-0335	de word linking b2
+indem	de	word	conjunction					by (doing)	Man lernt, indem man übt.	You learn by practising.			B2							de_DE			de-wrd-0336	de word linking b2
+je … desto	de	word	conjunction					the … the	Je mehr ich lerne, desto mehr verstehe ich.	The more I learn, the more I understand.			B2							de_DE			de-wrd-0337	de word linking b2
+anstatt	de	word	preposition				+ Gen	instead of	Anstatt des Autos nehmen wir die Bahn.	Instead of the car we'll take the train.			B2							de_DE			de-wrd-0338	de word linking b2
+innerhalb	de	word	preposition				+ Gen	within	Innerhalb einer Woche bekommen Sie eine Antwort.	You'll get an answer within a week.			B2							de_DE			de-wrd-0339	de word linking b2
+Ich bin der Ansicht, dass …	de	phrase	phrase					I'm of the opinion that …	Ich bin der Ansicht, dass wir handeln müssen.	I'm of the opinion that we must act.			B2							de_DE			de-phr-0033	de phrase communication b2
+Einerseits …, andererseits …	de	phrase	phrase					On the one hand …, on the other …	Einerseits ist es praktisch, andererseits teuer.	On the one hand it's practical, on the other expensive.			B2							de_DE			de-phr-0034	de phrase communication b2
+Das liegt daran, dass …	de	phrase	phrase					That's because …	Das liegt daran, dass es zu wenig Personal gibt.	That's because there are too few staff.			B2							de_DE			de-phr-0035	de phrase communication b2
+Im Großen und Ganzen	de	phrase	phrase					on the whole	Im Großen und Ganzen bin ich zufrieden.	On the whole I'm satisfied.			B2							de_DE			de-phr-0036	de phrase communication b2
+Es ist nicht zu übersehen, dass …	de	phrase	phrase					It can't be overlooked that …	Es ist nicht zu übersehen, dass die Mieten steigen.	It's impossible to overlook that rents are rising.			B2							de_DE			de-phr-0037	de phrase communication b2
+die Tragweite	de	word	noun	die	f			scope, implications	Die Tragweite der Entscheidung ist noch unklar.	The implications of the decision are still unclear.			C1							de_DE			de-wrd-0340	de word abstract c1
+der Sachverhalt	de	word	noun	der	m	die Sachverhalte		facts of the matter	Bitte schildern Sie den Sachverhalt.	Please describe the facts of the matter.			C1							de_DE			de-wrd-0341	de word abstract c1
+die Annahme	de	word	noun	die	f	die Annahmen		assumption; acceptance	Diese Annahme ist falsch.	This assumption is wrong.			C1							de_DE			de-wrd-0342	de word abstract c1
+der Ansatz	de	word	noun	der	m	die Ansätze		approach	Das ist ein vielversprechender Ansatz.	That's a promising approach.			C1							de_DE			de-wrd-0343	de word abstract c1
+die Vorgehensweise	de	word	noun	die	f	die Vorgehensweisen		procedure, approach	Wir müssen unsere Vorgehensweise ändern.	We need to change our procedure.			C1							de_DE			de-wrd-0344	de word abstract c1
+der Stellenwert	de	word	noun	der	m			significance, status	Bildung hat einen hohen Stellenwert.	Education has a high status.			C1							de_DE			de-wrd-0345	de word abstract c1
+die Wechselwirkung	de	word	noun	die	f	die Wechselwirkungen		interaction	Es gibt Wechselwirkungen zwischen den Medikamenten.	There are interactions between the drugs.			C1							de_DE			de-wrd-0346	de word abstract c1
+der Einwand	de	word	noun	der	m	die Einwände		objection	Haben Sie Einwände?	Do you have any objections?			C1							de_DE			de-wrd-0347	de word abstract c1
+die Ausnahme	de	word	noun	die	f	die Ausnahmen		exception	Keine Regel ohne Ausnahme.	No rule without exception.			C1							de_DE			de-wrd-0348	de word abstract c1
+das Gemeinwohl	de	word	noun	das	n			common good	Das Gesetz dient dem Gemeinwohl.	The law serves the common good.			C1							de_DE			de-wrd-0349	de word society c1
+der Wohlstand	de	word	noun	der	m			prosperity	Der Wohlstand ist ungleich verteilt.	Prosperity is unevenly distributed.			C1							de_DE			de-wrd-0350	de word society c1
+beanspruchen	de	word	verb			beansprucht, beanspruchte, hat beansprucht		to claim; to take up (time)	Das Projekt beansprucht viel Zeit.	The project takes up a lot of time.			C1							de_DE			de-wrd-0351	de word basic c1
+einräumen	de	word	verb			räumt ein, räumte ein, hat eingeräumt		to concede, to admit	Er räumte ein, einen Fehler gemacht zu haben.	He admitted having made a mistake.			C1							de_DE			de-wrd-0352	de word basic c1
+veranlassen	de	word	verb			veranlasst, veranlasste, hat veranlasst		to cause, to arrange for	Was hat Sie dazu veranlasst?	What prompted you to do that?			C1							de_DE			de-wrd-0353	de word basic c1
+beurteilen	de	word	verb			beurteilt, beurteilte, hat beurteilt		to judge, to assess	Das kann ich nicht beurteilen.	I can't judge that.			C1							de_DE			de-wrd-0354	de word basic c1
+sich niederschlagen in	de	word	verb			schlägt sich nieder, schlug sich nieder, hat sich niedergeschlagen		to be reflected in	Die Krise schlägt sich in den Zahlen nieder.	The crisis is reflected in the figures.			C1							de_DE			de-wrd-0355	de word basic c1
+anstreben	de	word	verb			strebt an, strebte an, hat angestrebt		to aim for	Wir streben eine Einigung an.	We're aiming for an agreement.			C1							de_DE			de-wrd-0356	de word basic c1
+einschränken	de	word	verb			schränkt ein, schränkte ein, hat eingeschränkt		to restrict, to limit	Die Freiheit wurde stark eingeschränkt.	Freedom was severely restricted.			C1							de_DE			de-wrd-0357	de word basic c1
+bewirken	de	word	verb			bewirkt, bewirkte, hat bewirkt		to bring about	Die Reform hat wenig bewirkt.	The reform achieved little.			C1							de_DE			de-wrd-0358	de word basic c1
+ausschlaggebend	de	word	adjective					decisive	Der Preis war ausschlaggebend.	The price was decisive.			C1							de_DE			de-wrd-0359	de word basic c1
+zwangsläufig	de	word	adjective					inevitable; inevitably	Das führt zwangsläufig zu Problemen.	That inevitably leads to problems.			C1							de_DE			de-wrd-0360	de word basic c1
+weitgehend	de	word	adjective					extensive; largely	Die Arbeiten sind weitgehend abgeschlossen.	The work is largely completed.			C1							de_DE			de-wrd-0361	de word basic c1
+fragwürdig	de	word	adjective					questionable, dubious	Die Methode ist fragwürdig.	The method is questionable.			C1							de_DE			de-wrd-0362	de word basic c1
+sachlich	de	word	adjective					objective, factual	Bleiben wir bitte sachlich.	Let's please stay objective.			C1							de_DE			de-wrd-0363	de word basic c1
+zeitgemäß	de	word	adjective					up to date, modern	Das Gesetz ist nicht mehr zeitgemäß.	The law is no longer up to date.			C1							de_DE			de-wrd-0364	de word basic c1
+demnach	de	word	adverb					accordingly, according to that	Demnach hätte er recht.	According to that, he would be right.			C1							de_DE			de-wrd-0365	de word linking c1
+folglich	de	word	adverb					consequently	Folglich müssen wir sparen.	Consequently we have to save.			C1							de_DE			de-wrd-0366	de word linking c1
+angesichts	de	word	preposition				+ Gen	in view of	Angesichts der Lage sagen wir ab.	In view of the situation we're cancelling.			C1							de_DE			de-wrd-0367	de word linking c1
+zugunsten	de	word	preposition				+ Gen	in favour of	Die Entscheidung fiel zugunsten des Klägers.	The decision went in favour of the plaintiff.			C1							de_DE			de-wrd-0368	de word linking c1
+Es sei dahingestellt, ob …	de	phrase	phrase					It remains to be seen whether …	Es sei dahingestellt, ob das funktioniert.	Whether that works remains to be seen.			C1							de_DE			de-phr-0038	de phrase communication c1
+zum Ausdruck bringen	de	phrase	phrase					to express	Er brachte seine Enttäuschung zum Ausdruck.	He expressed his disappointment.			C1							de_DE			de-phr-0039	de phrase communication c1
+in Kauf nehmen	de	phrase	phrase					to accept (a downside)	Dafür nehme ich lange Wege in Kauf.	I accept long journeys for that.			C1							de_DE			de-phr-0040	de phrase communication c1
+zur Sprache bringen	de	phrase	phrase					to raise (a topic)	Ich möchte noch ein Problem zur Sprache bringen.	I'd like to raise one more problem.			C1							de_DE			de-phr-0041	de phrase communication c1
+die Zwickmühle	de	word	noun	die	f	die Zwickmühlen		dilemma, catch-22	Ich stecke in einer Zwickmühle.	I'm in a dilemma.			C2							de_DE			de-wrd-0369	de word abstract c2
+die Gepflogenheit	de	word	noun	die	f	die Gepflogenheiten		custom, practice	Er kennt die örtlichen Gepflogenheiten nicht.	He doesn't know the local customs.			C2							de_DE			de-wrd-0370	de word abstract c2
+der Hintergedanke	de	word	noun	der	m	die Hintergedanken		ulterior motive	Er half ohne Hintergedanken.	He helped without any ulterior motive.			C2							de_DE			de-wrd-0371	de word abstract c2
+sich erübrigen	de	word	verb			erübrigt sich, erübrigte sich, hat sich erübrigt		to be unnecessary	Damit erübrigt sich jede weitere Frage.	That makes any further question unnecessary.			C2							de_DE			de-wrd-0372	de word basic c2
+beipflichten	de	word	verb			pflichtet bei, pflichtete bei, hat beigepflichtet		to agree with (+Dat)	Ich kann Ihnen nur beipflichten.	I can only agree with you.			C2							de_DE			de-wrd-0373	de word basic c2
+bemängeln	de	word	verb			bemängelt, bemängelte, hat bemängelt		to criticise, to find fault with	Die Prüfer bemängelten die Sicherheit.	The inspectors criticised the safety.			C2							de_DE			de-wrd-0374	de word basic c2
+unumgänglich	de	word	adjective					unavoidable	Eine Reform ist unumgänglich.	A reform is unavoidable.			C2							de_DE			de-wrd-0375	de word basic c2
+weitschweifig	de	word	adjective					long-winded	Seine Rede war weitschweifig.	His speech was long-winded.			C2							de_DE			de-wrd-0376	de word basic c2
+stichhaltig	de	word	adjective					sound, valid (argument)	Das Argument ist nicht stichhaltig.	The argument doesn't hold water.			C2							de_DE			de-wrd-0377	de word basic c2
+gleichwohl	de	word	adverb					nevertheless	Gleichwohl bleibt ein Risiko.	Nevertheless a risk remains.			C2							de_DE			de-wrd-0378	de word basic c2
+Das schlägt dem Fass den Boden aus.	de	phrase	phrase					That's the last straw.	Jetzt kommt er schon wieder zu spät – das schlägt dem Fass den Boden aus!	He's late again – that's the last straw!			C2							de_DE			de-phr-0042	de phrase communication c2
+um den heißen Brei herumreden	de	phrase	phrase					to beat about the bush	Red nicht um den heißen Brei herum!	Stop beating about the bush!			C2							de_DE			de-phr-0043	de phrase communication c2
+jemandem einen Bärendienst erweisen	de	phrase	phrase					to do someone a disservice	Damit hast du ihm einen Bärendienst erwiesen.	You've done him a disservice there.			C2							de_DE			de-phr-0044	de phrase communication c2
+Hinz und Kunz	de	phrase	phrase					every Tom, Dick and Harry	Das weiß doch Hinz und Kunz.	Every Tom, Dick and Harry knows that.			C2							de_DE			de-phr-0045	de phrase communication c2
+aus dem Stegreif	de	phrase	phrase					off the cuff, impromptu	Sie hielt die Rede aus dem Stegreif.	She gave the speech off the cuff.			C2							de_DE			de-phr-0046	de phrase communication c2

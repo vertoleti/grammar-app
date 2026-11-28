@@ -148,7 +148,8 @@ R = [('"../shared/', '"../../shared/'), ('"../icons/', '"../../icons/'), ('"../m
   basic: 'Grundlagen · Basics', people: 'Menschen · People', feelings: 'Gefühle · Feelings', health: 'Gesundheit · Health', society: 'Gesellschaft · Society',
   communication: 'Kommunikation · Communication', abstract: 'Begriffe · Ideas', home: 'Wohnen · Home', city: 'Stadt · City', travel: 'Reisen · Travel',
   shopping: 'Einkaufen · Shopping', food: 'Essen · Food', work: 'Arbeit · Work', study: 'Lernen · Study', time: 'Zeit · Time', qualities: 'Eigenschaften · Qualities',
-  linking: 'Verbindungswörter · Linking words', nature: 'Natur · Nature', economy: 'Wirtschaft · Economy', general: 'Allgemein · General', imported: 'Import · Imported' } };</script>
+  linking: 'Verbindungswörter · Linking words', nature: 'Natur · Nature', economy: 'Wirtschaft · Economy', transport: 'Verkehr · Transport', weather: 'Wetter · Weather', leisure: 'Freizeit · Leisure',
+  environment: 'Umwelt · Environment', media: 'Medien · Media', science: 'Wissenschaft · Science', general: 'Allgemein · General', imported: 'Import · Imported' } };</script>
 <script src="../../vocabulary/vocab.js"></script>''')]
 for a, b in R:
     if a not in h: raise SystemExit('vocab: not found: ' + a[:70])

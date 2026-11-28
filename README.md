@@ -69,6 +69,17 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.
 
+## Reading, phrasebooks, exam, review (both languages)
+
+- **Reading** (`reading/`, `de/reading/`): 10 graded texts per language (A1–C1, `texts.js`) with translations and questions. **Import a text** (paste or a .txt file) to read your own; saved in the browser and synced. Tap any word to look it up and add it to that language's flashcards (with der/die/das for German nouns). ▶ Listen reads sentence by sentence; 🎤 Speaking practice checks each sentence with speech recognition (iPhone: Safari with Siri & Dictation on).
+- **Phrasebooks** (`phrases/`, `de/phrases/`): 8 situations (doctor, renting, phone, work emails, restaurant, shopping and returns, public office, transport). Each has 10 phrases (listen, say, save as a flashcard), a dialogue with role-play (your lines hidden, the dialogue pauses for you), and an 8-question drill.
+- **Mock exam** (`exam/`, `de/exam/`): ТРКИ / Goethe-Zertifikat style, A1–C1, timed. Grammar (15 gap items from the lines), vocabulary (10 from the decks), reading (2 texts), listening (8 recordings, two plays each). Marked when handed in; passing needs 66 % (ТРКИ) or 60 % (Goethe) in every part. History in `gr-exams` / `de-exams`.
+- **der · die · das** (`de/genus/`): 275 nouns with ending-rule hints and a Leitner box.
+- **Weekly review** (`review/`, `de/review/`): this week against last, what improved, what is due, a plan.
+- **Dark mode**: Settings → Appearance (Auto, Light, Dark), on the home page and the profile.
+
+Pages built by `python3 tools/build_extra.py`. Tests: `tools/test_reading.py`, `tools/test_phrases.py`, `tools/test_exam.py`, `tools/test_extra.py`.
+
 ## Grammar guides
 
 `grammar/` (Russian) and `de/grammar/` (German) are full reference guides: about 11,600 and 9,400 words, 14 chapters each, with endings tables, examples and a search box. They are written as plain-text chapters in `guide/ru/*.txt` and `guide/de/*.txt` and built by `python3 tools/build_guide.py`, which also writes `shared/guide-map.js`. Each section can claim exercise topics with a line like `@for cases:gen`; after a wrong answer, **Rule** opens that section.
@@ -77,7 +88,7 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `shared/theme.css` (loaded last on every page) gives the app its calm style: one typeface (Inter), white cards, the line colour only as a small accent, a thin progress bar. Task screens show only the sentence and the choices; the translation appears after answering (or on tap, or always: Settings → Translation). A wrong answer shows the right answer and one specific reason, with links to the guide section and to the full details.
 
-Build everything: `python3 tools/build_guide.py && python3 tools/build_pages.py && python3 tools/build_vom.py && python3 tools/build_de.py && node tools/build_catalog.js`.
+Build everything: `python3 tools/build_guide.py && python3 tools/build_pages.py && python3 tools/build_vom.py && python3 tools/build_de.py && python3 tools/build_extra.py && node tools/build_catalog.js`.
 
 ## Deutsch · German
 
@@ -95,7 +106,7 @@ Grammar lines (`de/*/data.js`, compact text tables read by `shared/lines.js`):
 | Konjunktiv II & Passiv | B1–C1 | würde, hätte, wäre, könnte; passive tenses, Zustandspassiv, modal passive |
 | Fortgeschritten | B2–C2 | verbs with prepositions, n-declension, formal prepositions, Konjunktiv I, participle attributes |
 
-Plus Sätze (translate, word order, dictation, find the mistake; German word order must be correct), Tabellen (present, past, articles, adjective endings, pronouns), and Wortschatz (127 cards A1–C2 in `de/vocabulary/decks/de-core.tsv`, same Anki columns). Typing accepts ss for ß and ae, oe, ue for umlauts.
+Plus Sätze (translate, word order, dictation, find the mistake; German word order must be correct), Tabellen (present, past, articles, adjective endings, pronouns), and Wortschatz (424 cards A1–C2 in `de/vocabulary/decks/de-core.tsv`, same Anki columns). Typing accepts ss for ß and ae, oe, ue for umlauts.
 
 Progress for German uses keys starting with `de-` and is saved and synced with everything else. The daily goal and streak count both languages.
 
