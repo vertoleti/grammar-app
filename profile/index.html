@@ -174,7 +174,7 @@ function acct(){
   const st=A.status();
   if(st.signedIn){
     const ps=P&&P.status?P.status():{};
-    box.innerHTML=`<p>Signed in as <b>${esc(st.email)}</b>.</p><p class="msg" id="a-sync">${ps.error?'Sync problem: '+esc(ps.error):ps.busy?'Saving…':ps.last?'Progress saved to your account.':'Saving your progress…'}</p><div class="btns"><button class="btn go" id="a-now">Sync now</button><button class="btn" id="a-out">Sign out</button></div><p class="msg">Your progress is saved automatically a few seconds after every answer and loaded whenever you open the app, on any device where you sign in.</p>`;
+    box.innerHTML=`<p>Signed in as <b>${esc(st.email)}</b>.</p><p class="msg" id="a-sync">${ps.error?'Sync problem: '+esc(ps.error):ps.busy?'Saving…':ps.last?`Synced ${Math.round((Date.now()-ps.last)/60000)<1?'just now':Math.round((Date.now()-ps.last)/60000)+' min ago'}. Both devices must be signed in with this email.`:'Saving your progress…'}</p><div class="btns"><button class="btn go" id="a-now">Sync now</button><button class="btn" id="a-out">Sign out</button></div><p class="msg">Progress is sent a few seconds after every answer and when you leave the app, and fetched whenever you open the app or come back to it. Safari and the Home Screen app count as two devices: sign in on both.</p>`;
     $('a-now').onclick=()=>P.sync();$('a-out').onclick=()=>{A.signOut();acct()};
     return;
   }

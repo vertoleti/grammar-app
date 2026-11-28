@@ -125,8 +125,9 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     } catch (e) { lastError = e.message || String(e); }
     busy = false; emit();
   }
+  let again = false;
   async function sync() {
-    if (busy) return;
+    if (busy) { again = true; return; }
     if (remote) return syncRemote();
     if (!syncCfg.token) return;
     busy = true; lastError = ''; emit();
@@ -153,7 +154,7 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     d.querySelector('button').onclick = () => location.reload();
     document.body.appendChild(d);
   }
-  function schedule() { if (!syncCfg.token && !remote) { emit(); return; } clearTimeout(timer); timer = setTimeout(sync, 4000); emit(); }
+  function schedule() { if (!syncCfg.token && !remote) { emit(); return; } clearTimeout(timer); timer = setTimeout(() => { timer = null; sync(); }, 3000); emit(); }
   async function connect(token) {
     syncCfg = { token: token.trim() }; rawSet.call(ls, SYNC, JSON.stringify(syncCfg));
     await sync();
@@ -171,11 +172,21 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     }
   };
   window.GRProgress = api;
-  // Pull from GitHub when a page opens, and once more when the tab comes back into view.
-  if (syncCfg.token) {
-    window.addEventListener('load', () => setTimeout(sync, 300));
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && Date.now() - (syncCfg.last || 0) > 60000) sync(); });
-  }
+  // Keep devices in step (account or GitHub): pull when a page opens and whenever the app comes back to the
+  // front (the iPhone home-screen app stays open in the background for days); push straight away when it
+  // goes to the background, so the other device sees the latest answers; and every two minutes while open.
+  const on = () => !!(syncCfg.token || remote);
+  window.addEventListener('load', () => { if (syncCfg.token) setTimeout(sync, 300); });
+  const pull = () => { if (on() && document.visibilityState === 'visible' && Date.now() - (syncCfg.last || 0) > 10000) sync(); };
+  document.addEventListener('visibilitychange', () => {
+    if (!on()) return;
+    if (document.visibilityState === 'hidden') { if (timer) { clearTimeout(timer); timer = null; sync(); } }
+    else pull();
+  });
+  window.addEventListener('pageshow', e => { if (e.persisted) pull(); });
+  window.addEventListener('focus', pull);
+  window.addEventListener('online', pull);
+  setInterval(pull, 120000);
 })();
 
 /* Where you left off: the last exercise page you opened, for "Continue" on the home page.

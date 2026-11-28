@@ -189,7 +189,20 @@ ${wp ? `<p class="note">Working on <b>${est.working}</b>: ${wp.solid} of ${wp.to
   // settings: appearance, backup, sync, install
   const box = document.querySelector('.themepick');
   if (box) { const cur = () => document.documentElement.dataset.theme || 'auto'; const mark = () => box.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.th === cur())); mark(); box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; window.GRSetTheme(b.dataset.th); mark(); }); }
+  // sync status: a dot on the profile button, and a line on Today when something needs doing
+  function syncUI() {
+    const P2 = window.GRProgress, A = window.GRAccount, s = P2 && P2.status ? P2.status() : {}, a = A ? A.status() : { enabled: false };
+    const st = !a.enabled ? '' : !a.signedIn ? 'off' : s.error ? 'err' : s.busy ? 'busy' : 'ok';
+    $('me').dataset.sync = st;
+    const bar = $('syncbar'), ago = s.last ? Math.round((Date.now() - s.last) / 60000) : null;
+    if (st === 'err') { bar.hidden = false; bar.className = 'syncbar err'; bar.innerHTML = `<b>Progress isn’t syncing.</b> ${esc(s.error)} <a href="${H.profile}">Fix it</a>`; }
+    else if (st === 'off') { bar.hidden = false; bar.className = 'syncbar'; bar.innerHTML = `Signed out on this ${matchMedia('(display-mode: standalone)').matches ? 'app' : 'browser'}: progress stays here only. <a href="${H.profile}">Sign in to sync</a>`; }
+    else bar.hidden = true;
+    $('me').title = st === 'ok' ? `Synced${ago !== null ? ago < 1 ? ' just now' : ` ${ago} min ago` : ''}` : st === 'off' ? 'Not signed in' : st === 'err' ? 'Sync problem' : 'Profile';
+  }
+  if (window.GRAccount) window.GRAccount.on(syncUI);
   const P = window.GRProgress;
+  if (P && P.on) P.on(syncUI);
   if (P && P.available) {
     P.on(s => { $('sstate').textContent = s.error ? `sync problem: ${s.error}` : s.busy ? 'syncing…' : s.synced ? 'saved and synced' : 'saved on this device'; $('sync-off').hidden = s.synced; $('sync-on').hidden = !s.synced; });
     $('bexp').onclick = () => { P.exportFile(); $('bmsg').textContent = 'Backup downloaded.'; };

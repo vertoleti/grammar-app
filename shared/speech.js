@@ -83,7 +83,46 @@ window.GRSpeech = (function () {
   // ---------- speaking practice for one sentence ----------
   // With speech recognition (Safari, Chrome): the words that were recognised turn green, the rest red.
   // Without it (e.g. the iPhone home-screen app): record yourself, then compare with the model voice.
-  const CAN_RECORD = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+  // microphone access: the modern API, or the older prefixed one; recording: MediaRecorder, or raw audio via Web Audio
+  const GUM = !!((navigator.mediaDevices && navigator.mediaDevices.getUserMedia) || navigator.getUserMedia || navigator.webkitGetUserMedia);
+  const AC0 = window.AudioContext || window.webkitAudioContext;
+  const CAN_RECORD = GUM && !!(window.MediaRecorder || AC0);
+  function getMic() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) return navigator.mediaDevices.getUserMedia({ audio: true });
+    const old = navigator.getUserMedia || navigator.webkitGetUserMedia;
+    return new Promise((res, rej) => old.call(navigator, { audio: true }, res, rej));
+  }
+  // a recorder with start() and stop() → Promise<Blob>
+  function makeRecorder(stream) {
+    if (window.MediaRecorder) {
+      const mime = ['audio/mp4', 'audio/webm', 'audio/ogg'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || '';
+      let rec; try { rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined); } catch (e) { rec = null; }
+      if (rec) {
+        const chunks = [];
+        rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+        return { start: () => rec.start(), recording: () => rec.state === 'recording', stop: () => new Promise(res => { rec.onstop = () => res(chunks.length ? new Blob(chunks, { type: rec.mimeType || mime || 'audio/mp4' }) : null); rec.stop(); }) };
+      }
+    }
+    // Web Audio fallback: collect samples and write a WAV file
+    const ctx = new AC0(), src = ctx.createMediaStreamSource(stream), proc = ctx.createScriptProcessor(4096, 1, 1), bufs = [];
+    let on = false;
+    proc.onaudioprocess = e => { if (on) bufs.push(new Float32Array(e.inputBuffer.getChannelData(0))); };
+    return {
+      start: () => { on = true; src.connect(proc); proc.connect(ctx.destination); if (ctx.resume) ctx.resume(); },
+      recording: () => on,
+      stop: () => new Promise(res => {
+        on = false; try { src.disconnect(); proc.disconnect(); } catch (e) {}
+        const n = bufs.reduce((a, b) => a + b.length, 0); if (!n) { res(null); return; }
+        const rate = ctx.sampleRate, dv = new DataView(new ArrayBuffer(44 + n * 2)), w = (o, t) => [...t].forEach((c, i) => dv.setUint8(o + i, c.charCodeAt(0)));
+        w(0, 'RIFF'); dv.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+        dv.setUint32(24, rate, true); dv.setUint32(28, rate * 2, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); w(36, 'data'); dv.setUint32(40, n * 2, true);
+        let o = 44; bufs.forEach(b => b.forEach(x => { dv.setInt16(o, Math.max(-1, Math.min(1, x)) * 0x7fff, true); o += 2; }));
+        try { ctx.close(); } catch (e) {}
+        res(new Blob([dv], { type: 'audio/wav' }));
+      })
+    };
+  }
+  const diag = () => `(details: secure page ${window.isSecureContext ? 'yes' : 'no'}, microphone API ${GUM ? 'yes' : 'no'}, recorder ${window.MediaRecorder ? 'yes' : AC0 ? 'web audio' : 'no'}, speech recognition ${REC ? 'yes' : 'no'})`;
   let useRecord = !REC, active = null;
   const esc = x => String(x).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const anc = btn => btn._anchor || btn;
@@ -124,22 +163,21 @@ window.GRSpeech = (function () {
   async function record(btn, target, lang, onScore, host) {
     if (active) { active.stop(); return; }
     let stream;
-    try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
-    catch (e) { note(btn, 'The microphone is blocked. Allow it in Settings → Safari → Microphone (or for this app).'); return; }
-    const mime = ['audio/mp4', 'audio/webm', 'audio/ogg'].find(m => window.MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || '';
-    const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined), chunks = [];
-    rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
-    rec.onstop = () => {
-      stream.getTracks().forEach(t => t.stop()); clearTimeout(timer); active = null;
+    try { stream = await getMic(); }
+    catch (e) { note(btn, /NotAllowed|Permission|denied/i.test(e.name + e.message) ? 'The microphone is blocked. iPhone: Settings → Apps → Safari → Microphone → Ask or Allow, then reload.' : 'The microphone couldn’t be opened: ' + (e.message || e.name)); return; }
+    let rec; try { rec = makeRecorder(stream); } catch (e) { stream.getTracks().forEach(t => t.stop()); note(btn, 'Recording isn’t possible in this browser ' + diag()); return; }
+    const finish = async () => {
+      clearTimeout(timer); active = null;
+      const blob = await rec.stop(); stream.getTracks().forEach(t => t.stop());
       btn.textContent = '🎤'; btn.classList.remove('sp-on');
       { const m = anc(btn).nextElementSibling; if (m && m.classList.contains('sp-msg')) m.remove(); }
-      if (!chunks.length) { note(btn, 'Nothing was recorded. Tap 🎤, read the sentence, then tap ■.'); return; }
-      const blob = new Blob(chunks, { type: rec.mimeType || mime || 'audio/mp4' }), url = URL.createObjectURL(blob);
+      if (!blob) { note(btn, 'Nothing was recorded. Tap 🎤, read the sentence, then tap ■.'); return; }
+      const url = URL.createObjectURL(blob);
       if (window.GRASR.supported && window.GRASR.on()) check(btn, blob, url, target, lang, onScore, host);
       else panel(btn, url, target, lang, onScore, { blob, host });
     };
-    const timer = setTimeout(() => { if (rec.state === 'recording') rec.stop(); }, 20000);
-    active = { stop: () => { if (rec.state === 'recording') rec.stop(); } };
+    const timer = setTimeout(() => { if (rec.recording()) finish(); }, 20000);
+    active = { stop: () => { if (rec.recording()) finish(); } };
     stop(); rec.start(); btn.textContent = '■'; btn.classList.add('sp-on');
     note(btn, 'Recording… read the sentence, then tap ■');
   }
@@ -147,7 +185,7 @@ window.GRSpeech = (function () {
   async function practice(btn, target, lang, host, onScore, anchor) {
     if (anchor) btn._anchor = anchor;
     if (useRecord || !REC) {
-      if (!CAN_RECORD) { note(btn, 'Speaking practice needs a microphone. On iPhone open the app in Safari.'); return; }
+      if (!CAN_RECORD) { note(btn, 'This browser doesn’t let the page use the microphone. iPhone: Settings → Apps → Safari → Microphone → Ask, and Screen Time must allow the microphone. ' + diag()); return; }
       return record(btn, target, lang, onScore, host);
     }
     btn.textContent = '…'; btn.disabled = true;
@@ -166,5 +204,5 @@ window.GRSpeech = (function () {
   }
   const mode = () => (REC && !useRecord) ? 'check' : CAN_RECORD ? (window.GRASR.supported && window.GRASR.on() ? 'whisper' : 'record') : 'none';
 
-  return { tts: TTS, rec: !!REC, say, stop, listen, score, practice, mode };
+  return { tts: TTS, rec: !!REC, say, stop, listen, score, practice, mode, diag };
 })();
