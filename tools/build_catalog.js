@@ -53,7 +53,7 @@ for (const L of LINES) {
     line.modes = [{ k: 'phrases', name: 'Phrases' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.PHRASES.length; line.unit = 'situations';
     line.levels = {}; W.PHRASES.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'reading') {
-    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W);
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W); if (fs.existsSync(`${L.dir}/series.js`)) new Function('window', fs.readFileSync(`${L.dir}/series.js`, 'utf8'))(W);
     line.modes = [{ k: 'reading', name: 'Reading' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.TEXTS.length; line.unit = 'texts';
     line.levels = {}; W.TEXTS.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'sentences') {
@@ -129,7 +129,7 @@ for (const L of DE) {
     line.modes = [{ k: 'phrases', name: 'Phrases' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.PHRASES.length; line.unit = 'situations';
     line.levels = {}; W.PHRASES.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'reading') {
-    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W);
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W); if (fs.existsSync(`${L.dir}/series.js`)) new Function('window', fs.readFileSync(`${L.dir}/series.js`, 'utf8'))(W);
     line.modes = [{ k: 'reading', name: 'Reading' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.TEXTS.length; line.unit = 'texts';
     line.levels = {}; W.TEXTS.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'sentences') {

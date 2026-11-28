@@ -25,7 +25,9 @@
   const readDone = () => LS.get(H.read + 'read-done', {});
   function nextText() {
     const lv = level(), d = readDone(), want = lv === 'all' ? null : lv;
-    const pool = TEXTS.filter(t => d[t.id] === undefined);
+    const ser = TEXTS.filter(t => t.series).sort((a, b) => a.ep - b.ep), nextEp = ser.find(t => d[t.id] === undefined);
+    if (nextEp && ser.some(t => d[t.id] !== undefined)) return nextEp;
+    const pool = TEXTS.filter(t => d[t.id] === undefined && (!t.series || t.ep === 1));
     return pool.find(t => t.lv === want) || pool.find(t => !want || ORDER.indexOf(t.lv) >= ORDER.indexOf(want)) || pool[0] || null;
   }
   function lineState(L) {

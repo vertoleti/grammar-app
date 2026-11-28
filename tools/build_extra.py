@@ -89,7 +89,7 @@ if __name__ == '__main__':
     for p in built: print('built', p)
 
 # ---------- reading ----------
-READ_JS = '<script src="{R}shared/levels.js"></script>\n<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n<script src="texts.js"></script>\n<script src="{R}shared/reading.js"></script>\n<script src="{R}shared/lookup.js"></script>'
+READ_JS = '<script src="{R}shared/levels.js"></script>\n<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n<script src="texts.js"></script>\n<script src="series.js"></script>\n<script src="{R}shared/reading.js"></script>\n<script src="{R}shared/lookup.js"></script>'
 built.append(shell('reading/index.html', 'ru', 'Чтение', 'Reading', '¶', '#00796b', '<div id="main"></div>', READ_JS, sub='graded texts and your own', score=False))
 built.append(shell('de/reading/index.html', 'de', 'Lesen', 'Reading', '¶', '#00796b', '<div id="main"></div>', READ_JS, sub='graded texts and your own', score=False))
 if __name__ == '__main__':
@@ -109,7 +109,7 @@ def exam_js(lang):
     data = ''.join(m + '\n' for m in _re.findall(r'<script src="\.\./[a-z]+/data\.js"></script><script>ALL\.push\(EXERCISE\)</script>', place))
     lines = '<script src="{R}shared/lines.js"></script>\n' if lang == 'de' else ''
     return ('<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n' + lines + '<script>window.ALL=[]</script>\n' + data +
-            '<script src="../reading/texts.js"></script>\n<script src="../phrases/data.js"></script>\n<script src="{R}shared/lookup.js"></script>\n<script src="{R}shared/exam.js"></script>')
+            '<script src="../reading/texts.js"></script>\n<script src="../reading/series.js"></script>\n<script src="../phrases/data.js"></script>\n<script src="{R}shared/lookup.js"></script>\n<script src="{R}shared/exam.js"></script>')
 built.append(shell('exam/index.html', 'ru', 'Экзамен', 'Mock exam', '✓', '#37474f', '<div id="main"></div>', exam_js('ru'), sub='timed, in the style of ТРКИ', score=False))
 built.append(shell('de/exam/index.html', 'de', 'Prüfung', 'Mock exam', '✓', '#37474f', '<div id="main"></div>', exam_js('de'), sub='timed, in the style of the Goethe-Zertifikat', score=False))
 if __name__ == '__main__':

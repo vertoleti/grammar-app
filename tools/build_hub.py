@@ -130,6 +130,7 @@ def page(L):
 <script src="{R}shared/{L['catalog']}"></script>
 <script src="{R}shared/coach.js"></script>
 <script src="{L['texts']}"></script>
+<script src="reading/series.js"></script>
 <script src="{R}shared/hub.js"></script>
 </body>
 </html>

@@ -77,5 +77,5 @@ def build(lang, decks, forms_path, text_paths, out_path):
 
 
 if __name__ == '__main__':
-    build('ru', ['vocabulary/decks/ru-core.tsv', 'vocabulary/decks/ru-levels.tsv'], 'vocabulary/decks/ru-forms.json', ['reading/texts.js'], 'vocabulary/decks/ru-cloze.json')
-    build('de', ['de/vocabulary/decks/de-core.tsv'], 'de/vocabulary/decks/de-forms.json', ['de/reading/texts.js'], 'de/vocabulary/decks/de-cloze.json')
+    build('ru', ['vocabulary/decks/ru-core.tsv', 'vocabulary/decks/ru-levels.tsv'], 'vocabulary/decks/ru-forms.json', ['reading/texts.js', 'reading/series.js'], 'vocabulary/decks/ru-cloze.json')
+    build('de', ['de/vocabulary/decks/de-core.tsv'], 'de/vocabulary/decks/de-forms.json', ['de/reading/texts.js', 'de/reading/series.js'], 'de/vocabulary/decks/de-cloze.json')

@@ -334,13 +334,13 @@ window.CATALOG = [
     "name": "Speaking"
    }
   ],
-  "total": 10,
+  "total": 18,
   "unit": "texts",
   "levels": {
-   "A1": 2,
-   "A2": 2,
-   "B1": 2,
-   "B2": 2,
+   "A1": 4,
+   "A2": 4,
+   "B1": 4,
+   "B2": 4,
    "C1": 2
   }
  },

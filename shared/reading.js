@@ -17,6 +17,17 @@
   const done = () => LS.get(P + 'read-done', {});
   const byId = id => T.find(t => t.id === id) || mine().find(t => t.id === id);
 
+  // ---------- story series ----------
+  function series() {
+    const names = [...new Set(T.filter(t => t.series).map(t => t.series))], d = done();
+    return names.map(n => {
+      const eps = T.filter(t => t.series === n).sort((a, b) => a.ep - b.ep), nx = eps.find(t => d[t.id] === undefined), nDone = eps.filter(t => d[t.id] !== undefined).length;
+      return `<section class="xcard series"><h2><span lang="${L}">${esc(n)}</span> <small>a story in ${eps.length} episodes, ${eps[0].lv} to ${eps[eps.length - 1].lv}</small></h2>
+${nx ? `<a class="btn go snext" href="#t=${encodeURIComponent(nx.id)}">${nDone ? `Continue with episode ${nx.ep}` : 'Start with episode 1'}</a>` : '<p class="note">You’ve read the whole story.</p>'}
+<ol class="eps">${eps.map(t => `<li class="${d[t.id] !== undefined ? 'done' : t === nx ? 'now' : ''}"><a href="#t=${encodeURIComponent(t.id)}"><span class="epn">${d[t.id] !== undefined ? '✓' : t.ep}</span><span><b lang="${L}">${esc(t.title)}</b><small>${t.lv} · ${esc(t.en)}</small></span></a></li>`).join('')}</ol></section>`;
+    }).join('');
+  }
+
   // ---------- library ----------
   function library() {
     const d = done(), my = mine();
@@ -29,9 +40,9 @@ ${my.length ? `<ul class="tl">${my.map(item).join('')}</ul>` : '<p class="note">
 <select id="il" aria-label="Level"><option value="">Level (optional)</option>${ORDER.map(l => `<option>${l}</option>`).join('')}</select>
 <textarea id="ix" rows="8" required placeholder="${DE ? 'Text auf Deutsch einfügen…' : 'Вставьте текст на русском…'}" aria-label="Text" lang="${L}"></textarea>
 <div class="row"><button class="btn go">Save text</button><label class="btn" for="if">Open a .txt file</label><input type="file" id="if" accept=".txt,text/plain" hidden></div></form></div></details></section>
-<section class="xcard"><h2>${TX.lib} <small>graded A1 to C1, with questions</small></h2>
+${series()}<section class="xcard"><h2>${TX.lib} <small>graded A1 to C1, with questions</small></h2>
 <div class="seg segctl" id="rl" role="group" aria-label="Level">${lv.map(l => `<button data-l="${l}" aria-pressed="${st.level === l}">${l === 'all' ? 'All' : l}</button>`).join('')}</div>
-<ul class="tl" style="margin-top:12px">${T.filter(t => st.level === 'all' || t.lv === st.level).map(item).join('')}</ul></section>`;
+<ul class="tl" style="margin-top:12px">${T.filter(t => !t.series && (st.level === 'all' || t.lv === st.level)).map(item).join('')}</ul></section>`;
     $('rl').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.level = b.dataset.l; LS.set(P + 'read-level', st.level); library(); });
     $('impf').addEventListener('submit', e => {
       e.preventDefault();
