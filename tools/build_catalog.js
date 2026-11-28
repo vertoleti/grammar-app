@@ -17,7 +17,7 @@ const LINES = [
   { id: 'gov', href: 'gov/', n: 11, c: '#9a7b00', ru: 'Управление', en: 'Government', d: 'Cases after verbs and formal prepositions (B2–C2)', group: 'adv', src: 'gov' },
   { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
   { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
-  { id: 'voc', href: 'vocabulary/', n: 6, c: '#00897b', ru: 'Словарь', en: 'Vocabulary', d: 'Anki-style flashcards with spaced repetition', group: 'vocab', vocab: true }
+  { id: 'voc', href: 'vocabulary/', n: 6, c: '#00897b', ru: 'Карточки', en: 'Flashcards', d: 'Anki-style flashcards with spaced repetition', group: 'vocab', vocab: true }
 ];
 const out = [];
 for (const L of LINES) {
@@ -97,7 +97,7 @@ const DE = [
   { id: 'de-cloze', href: 'cloze/', n: 15, c: '#b04a8a', ru: 'Wörter im Kontext', en: 'Words in context', d: 'Choose the word that fits the sentence', group: 'practice', practice: 'cloze', dir: 'de/vocabulary/decks/de-cloze.json' },
   { id: 'de-writing', href: 'writing/', n: 16, c: '#8d6e63', ru: 'Schreiben', en: 'Writing', d: 'Messages, emails and essays with a model answer', group: 'practice', practice: 'writing', dir: 'de/writing' },
   { id: 'de-genus', href: 'genus/', n: 11, c: '#1f8a3b', ru: 'der · die · das', en: 'Noun genders', d: 'A fast drill for the article of 275 common nouns', group: 'practice', practice: 'genus', dir: 'de/genus' },
-  { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Wortschatz', en: 'Vocabulary', d: 'Flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
+  { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Karteikarten', en: 'Flashcards', d: 'Anki-style flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
 ];
 const LINESJS = fs.readFileSync('shared/lines.js', 'utf8');
 const de = [];

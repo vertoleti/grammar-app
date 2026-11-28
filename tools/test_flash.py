@@ -1,0 +1,40 @@
+import asyncio
+from playwright.async_api import async_playwright
+B="http://localhost:8765/"
+async def main():
+    async with async_playwright() as p:
+        b=await p.chromium.launch(executable_path="/usr/bin/google-chrome",args=["--no-sandbox"])
+        c=await b.new_context(viewport={"width":393,"height":852},device_scale_factor=2,is_mobile=True,has_touch=True)
+        for h in ["https://fonts.googleapis.com/**","https://fonts.gstatic.com/**"]: await c.route(h,lambda r:r.fulfill(status=200,body=""))
+        pg=await c.new_page(); e=[]; pg.on("pageerror",lambda x:e.append(str(x))); pg.on("dialog",lambda d:asyncio.ensure_future(d.accept()))
+        for lang,u in [("de","de/vocabulary/"),("ru","vocabulary/")]:
+            await pg.goto(B+u); await pg.wait_for_timeout(1200)
+            print(lang,"home:", (await pg.locator(".fc-hero").inner_text()).replace("\n"," "), "| decks:", await pg.locator(".fc-deck").count())
+            if lang=="de": await pg.screenshot(path="/tmp/fc-home.png")
+            await pg.click(".fc-go"); await pg.wait_for_timeout(500)
+            if lang=="de": await pg.screenshot(path="/tmp/fc-front.png")
+            await pg.locator("#fcard").click(); await pg.wait_for_timeout(500)
+            print(lang,"turned:", await pg.locator(".fc-rates").count()>0)
+            await pg.wait_for_timeout(600)
+            if lang=="de": await pg.screenshot(path="/tmp/fc-back.png")
+            await pg.click('.fc-rate.good'); await pg.wait_for_timeout(300)
+            await pg.locator("#fcard").dblclick(position={"x":60,"y":120}); await pg.wait_for_timeout(700)
+            print(lang,"rated:", len(await pg.evaluate("Object.keys(window.__fc.srs())")), "| left:", (await pg.locator(".fc-left").inner_text()).replace("\n"," "))
+            await pg.click('[data-act="undo"]'); await pg.wait_for_timeout(300)
+            print(lang,"after undo:", len(await pg.evaluate("Object.keys(window.__fc.srs())")), "| showing answer:", await pg.locator(".fc-rates").count()>0)
+            await pg.click(".fc-x"); await pg.wait_for_timeout(300)
+            for v in ["browse","stats","settings"]:
+                await pg.click(f'.fc-nav a[href="#{v}"]'); await pg.wait_for_timeout(400)
+                if lang=="de": await pg.screenshot(path=f"/tmp/fc-{v}.png", full_page=True)
+            await pg.click('.fc-nav a[href="#browse"]'); await pg.wait_for_timeout(300)
+            await pg.fill("#bq","Haus" if lang=="de" else "дом"); await pg.wait_for_timeout(300)
+            print(lang,"browse 'Haus':", await pg.locator(".fc-list a").count())
+            await pg.locator(".fc-list a").first.click(); await pg.wait_for_timeout(800)
+            print(lang,"card detail tables:", await pg.locator(".fc-forms").count())
+            await pg.click('.fc-nav a[href="#settings"]'); await pg.wait_for_timeout(300)
+            await pg.fill("#at","Testwort" if lang=="de" else "тест"); await pg.fill("#am","test"); await pg.click("#addf button"); await pg.wait_for_timeout(200)
+            print(lang,"add:", await pg.locator("#amsg").inner_text())
+            await pg.click('.fc-nav a[href="#decks"]'); await pg.wait_for_timeout(300)
+            print(lang,"my deck row:", await pg.locator('.fc-deck[href="#study=mine"]').count())
+        print("errors",e); await b.close()
+asyncio.run(main())

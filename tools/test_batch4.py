@@ -36,20 +36,20 @@ async def main():
         # tap outside closes
         await pg.mouse.click(5,400); await pg.wait_for_timeout(100); print("closed:", await pg.locator(".lk").is_hidden())
         # vocabulary: pinned + custom cards appear although level filter is A1
-        await pg.goto(B+"vocabulary/"); await pg.wait_for_timeout(1200)
+        await pg.goto(B+"vocabulary/#study"); await pg.wait_for_timeout(1200)
         seen=set()
         for i in range(6):
-            t=await pg.locator(".face .term, .face .mean").first.inner_text(); seen.add(t)
-            if await pg.locator("#showbtn").count(): await pg.click("#showbtn"); await pg.wait_for_timeout(80)
+            t=await pg.locator(".fc-front .fc-term, .fc-front .fc-mean").first.inner_text(); seen.add(t)
+            if await pg.locator(".fc-show").count(): await pg.click(".fc-show"); await pg.wait_for_timeout(80)
             if i==0: print("example listen button:", await pg.locator('[data-act="sayex"]').count())
-            await pg.locator(".rate button.good").click(); await pg.wait_for_timeout(80)
+            await pg.locator(".fc-rate.good").click(); await pg.wait_for_timeout(80)
         print("cards seen:", seen)
         # export
-        await pg.click("#exportbox summary")
-        async with pg.expect_download() as d: await pg.click("#xall")
+        await pg.goto(B+"vocabulary/#settings"); await pg.wait_for_timeout(500)
+        async with pg.expect_download() as d: await pg.click('[data-x="all"]')
         dl=await d.value; path=await dl.path(); body=open(path,encoding='utf8').read().split('\n')
         print("export file:", dl.suggested_filename, "| lines:", len([l for l in body if l and not l.startswith('#')]), "| cols ok:", all(len(l.split('\t'))==25 for l in body if l and not l.startswith('#')))
         print("sample:", [l.split('\t')[0]+' / '+l.split('\t')[24] for l in body if l and not l.startswith('#')][:3])
-        await pg.click("#xhard"); await pg.wait_for_timeout(100); print("hard msg:", await pg.locator("#xmsg").inner_text()[:60] if False else (await pg.locator("#xmsg").inner_text())[:70])
+        await pg.click('[data-x="hard"]'); await pg.wait_for_timeout(100); print("hard msg:", await pg.locator("#xmsg").inner_text()[:60] if False else (await pg.locator("#xmsg").inner_text())[:70])
         print("errors",errs); await b.close()
 asyncio.run(main())

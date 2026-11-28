@@ -81,6 +81,10 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 **Dictionary** (`dictionary/`, `de/dictionary/`, `shared/dictionary.js`): every word in the decks plus your own, searchable in either language (accents, ё and umlauts ignored), filtered by status (learning, known, not started, mine) and level. Tap a word for forms, an example and audio; *Learn this word* adds it to the flashcards. You can add your own words here too.
 
+## Flashcards (Карточки / Karteikarten)
+
+`vocabulary/` and `de/vocabulary/` are a small Anki-style app, built by `python3 tools/build_flash.py` (behaviour in `shared/flash.js`, styles in `shared/flash.css`). Tabs: **Decks** (today's new / learning / review counts, Study now, one deck per level plus My cards), **Browse** (search, filter by state, card detail with full word table and your history, reset or delete), **Stats** (today, streak, retention over 30 days, cards by state, reviews per day, forecast, progress by level) and **Settings** (direction, new cards per day, levels, theme, read aloud, add a card, import from and export to Anki). Studying: tap the card to turn it, double-tap or swipe right for Good, swipe left for Again, ↶ to undo; keys Space, 1–4 and U. Progress keys are unchanged (`voc-srs`, `de-voc-srs`, …), plus a review log (`voc-log`, `de-voc-log`) for the statistics.
+
 ## Learning tools added in v30
 
 - **Word tables**: `python3 tools/build_forms.py` (needs `pip install pymorphy3 pymorphy3-dicts-ru`) writes full tables for the dictionary: Russian cases, adjective forms, conjugation, past and imperative from the OpenCorpora dictionary; German noun cases (with n-declension), Präsens/Präteritum/Perfekt (separable and reflexive verbs) and comparison, generated from the deck's principal parts.

@@ -76,8 +76,8 @@
     const done = k => LS.get(H.read + 'done-' + k, '') === today;
     const dueN = GRAM.reduce((a, L) => a + C.dueReviews(L.id).length, 0);
     const steps = [];
-    if (v.started) steps.push({ title: v.due ? `Review ${v.due} flashcard${v.due > 1 ? 's' : ''}` : 'Flashcards', why: v.due ? 'Due today' : 'Nothing due right now', href: VOC.href, done: v.due === 0 });
-    else steps.push({ title: 'Learn your first words', why: 'A few new flashcards', href: VOC.href, done: (log.c || 0) > 0 });
+    if (v.started) steps.push({ title: v.due ? `Review ${v.due} flashcard${v.due > 1 ? 's' : ''}` : 'Flashcards', why: v.due ? 'Due today' : 'Nothing due right now', href: VOC.href + '#study', done: v.due === 0 });
+    else steps.push({ title: 'Learn your first words', why: 'A few new flashcards', href: VOC.href + '#study', done: (log.c || 0) > 0 });
     steps.push({ title: 'Daily mix', why: dueN ? `${dueN} mistake${dueN > 1 ? 's' : ''} to review, then weak topics` : 'Your weakest grammar, about 10 minutes', href: 'mix/', done: done(H.code === 'de' ? 'de-mix' : 'mix') });
     if (CLOZE) steps.push({ title: 'Words in context', why: '10 sentences with your words', href: CLOZE.href, done: done(CLOZE.id) });
     const nt = nextText();

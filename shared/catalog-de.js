@@ -440,14 +440,14 @@ window.CATALOG = [
     "name": "Words in context"
    }
   ],
-  "total": 500,
+  "total": 628,
   "unit": "sentences",
   "levels": {
-   "A1": 174,
-   "A2": 105,
-   "B1": 90,
-   "B2": 69,
-   "C1": 42,
+   "A1": 246,
+   "A2": 133,
+   "B1": 106,
+   "B2": 77,
+   "C1": 46,
    "C2": 20
   }
  },
@@ -505,9 +505,9 @@ window.CATALOG = [
   "href": "vocabulary/",
   "n": 10,
   "c": "#00897b",
-  "ru": "Wortschatz",
-  "en": "Vocabulary",
-  "d": "Flashcards with spaced repetition",
+  "ru": "Karteikarten",
+  "en": "Flashcards",
+  "d": "Anki-style flashcards with spaced repetition",
   "group": "vocab",
   "vocab": true,
   "levels": {

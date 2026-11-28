@@ -94,30 +94,4 @@ print('German pages ok')
 
 # The German home page is built by tools/build_hub.py.
 
-# ---------- German flashcards page, from the Russian one ----------
-h = open('vocabulary/index.html').read()
-R = [('"../shared/', '"../../shared/'), ('"../icons/', '"../../icons/'), ('"../manifest.webmanifest"', '"../../manifest.webmanifest"'),
-   ('<script src="../../shared/progress.js"></script>\n', '<script src="../../shared/progress.js"></script>\n<script>window.GR_LANG=\'de\'</script>\n<script src="../../shared/lang.js"></script>\n'),
-   ('<title>Словарь</title>', '<title>Wortschatz</title>'), ('title="All exercises">6</a>', 'title="All exercises">10</a>'),
-   ('<h1>Словарь</h1>', '<h1>Wortschatz</h1>'), ('<p class="home"><a href="../">← All exercises</a></p>', '<p class="home"><a href="../">← Alle Übungen · All exercises</a></p>'),
-   ('<summary>All cards · Все карточки</summary>', '<summary>All cards · Alle Karten</summary>'),
-   ('<summary>Export to Anki · Экспорт</summary>', '<summary>Export to Anki · Export</summary>'),
-   ('<summary>Import Anki cards · Импорт</summary>', '<summary>Import Anki cards · Import</summary>'),
-   ('placeholder="дом&#9;house&#10;кот&#9;cat"', 'placeholder="das Haus&#9;house&#10;die Katze&#9;cat"'),
-   ('<a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (new cards for every level, A1 to C2)', '<a href="decks/de-core.tsv" download>de-core.tsv</a> (German cards for every level, A1 to C2)'),
-   ('<h3>Card direction · Направление</h3>', '<h3>Card direction · Richtung</h3>'),
-   ('data-d="r">RU → EN</button><button id="d-p" data-d="p">EN → RU</button>', 'data-d="r">DE → EN</button><button id="d-p" data-d="p">EN → DE</button>'),
-   ('<h3>New cards per day · Новых в день</h3>', '<h3>New cards per day · Neue pro Tag</h3>'), ('<h3>Theme · Тема</h3>', '<h3>Theme · Thema</h3>'),
-   ('<a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a>', '<a href="../../profile/">Sign in to keep it on every device · Profil</a>'),
-   ('<script src="vocab.js"></script>', '''<script>window.VOC_CFG = { decks: ['decks/de-core.tsv'], prefix: 'de-voc-', lang: 'de', tts: 'de-DE', all: 'Alle Themen · All', done: 'Fertig!', listen: '▶ Listen', themes: {
-  basic: 'Grundlagen · Basics', people: 'Menschen · People', feelings: 'Gefühle · Feelings', health: 'Gesundheit · Health', society: 'Gesellschaft · Society',
-  communication: 'Kommunikation · Communication', abstract: 'Begriffe · Ideas', home: 'Wohnen · Home', city: 'Stadt · City', travel: 'Reisen · Travel',
-  shopping: 'Einkaufen · Shopping', food: 'Essen · Food', work: 'Arbeit · Work', study: 'Lernen · Study', time: 'Zeit · Time', qualities: 'Eigenschaften · Qualities',
-  linking: 'Verbindungswörter · Linking words', nature: 'Natur · Nature', economy: 'Wirtschaft · Economy', transport: 'Verkehr · Transport', weather: 'Wetter · Weather', leisure: 'Freizeit · Leisure',
-  environment: 'Umwelt · Environment', media: 'Medien · Media', science: 'Wissenschaft · Science', general: 'Allgemein · General', imported: 'Import · Imported' } };</script>
-<script src="../../vocabulary/vocab.js"></script>''')]
-for a, b in R:
-    if a not in h: raise SystemExit('vocab: not found: ' + a[:70])
-    h = h.replace(a, b)
-open('de/vocabulary/index.html', 'w').write(h)
-print('German flashcards ok')
+# The German flashcards page is built by tools/build_flash.py.

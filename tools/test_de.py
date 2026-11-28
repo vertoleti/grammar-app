@@ -102,9 +102,9 @@ async def main():
             print(tag,"table",t["title"],":",await pg.locator(".verdict").inner_text())
             if mob: await pg.screenshot(path="/tmp/de-table.png")
             # Wortschatz
-            await pg.goto(B+"de/vocabulary/"); await pg.wait_for_timeout(1200)
-            print(tag,"flashcards:",await pg.locator("#total").inner_text(),"cards | chip:",(await pg.locator(".vtop").inner_text()).replace("\n"," ")[:90])
-            if await pg.locator("#showbtn").count(): await pg.click("#showbtn"); await pg.wait_for_timeout(80); await pg.locator(".rate button.good").click(); await pg.wait_for_timeout(80)
+            await pg.goto(B+"de/vocabulary/#study"); await pg.wait_for_timeout(1200)
+            print(tag,"flashcards:",await pg.evaluate("window.__fc.cards().length"),"cards | meta:",(await pg.locator(".fc-meta").inner_text()).replace("\n"," ")[:90])
+            if await pg.locator(".fc-show").count(): await pg.click(".fc-show"); await pg.wait_for_timeout(80); await pg.locator(".fc-rate.good").click(); await pg.wait_for_timeout(80)
             print(tag,"de-voc-srs keys:",await pg.evaluate("Object.keys(JSON.parse(localStorage.getItem('de-voc-srs')||'{}')).length"),"| ru voc-srs:",await pg.evaluate("Object.keys(JSON.parse(localStorage.getItem('voc-srs')||'{}')).length"))
             # hubs and language switch
             await pg.goto(B+"de/"); await pg.wait_for_timeout(500)

@@ -12,7 +12,7 @@ async def main():
         await pg.screenshot(path="/tmp/sess.png", full_page=True)
         # do the mix via the session link
         await pg.click("#sess .hbtn"); await pg.wait_for_timeout(700)
-        print("opened:", pg.url.replace(B,'/'), "| home link:", await pg.locator(".home a").first.inner_text())
+        print("opened:", pg.url.replace(B,'/'), "| study screen:", await pg.locator("#fcard").count()>0)
         await pg.goto(B+"de/mix/?s=1"); await pg.wait_for_timeout(700)
         for i in range(30):
             if await pg.locator("#again").count(): break
