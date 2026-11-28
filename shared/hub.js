@@ -8,7 +8,7 @@
   const C = window.GRCoach, CAT = window.CATALOG, ORDER = C.ORDER, TEXTS = window.TEXTS || [];
   const GRAM = CAT.filter(x => x.topics), VOC = CAT.find(x => x.vocab), PRAC = CAT.filter(x => x.practice);
   const by = p => CAT.find(x => x.practice === p);
-  const READ = by('reading'), PB = by('phrases'), EXAM = by('exam'), GENUS = by('genus'), CLOZE = by('cloze');
+  const READ = by('reading'), PB = by('phrases'), EXAM = by('exam'), GENUS = by('genus'), CLOZE = by('cloze'), WRITE = by('writing');
   const SKILLS = PRAC.filter(x => x.practice === 'sentences' || x.practice === 'tables');
   const short = n => String(n).split(' · ')[0];
   const ago = t => { const s = Math.round((Date.now() - t) / 1000); return s < 90 ? 'just now' : s < 3600 ? Math.round(s / 60) + ' min ago' : s < 86400 ? Math.round(s / 3600) + ' h ago' : s < 172800 ? 'yesterday' : Math.round(s / 86400) + ' days ago'; };
@@ -129,7 +129,7 @@
     // Reading
     const nt = nextText(), d = readDone(), my = LS.get(H.read + 'texts', []).length;
     $('rnext').innerHTML = nt ? `<a class="hero slim" href="${READ.href}#t=${nt.id}" style="--c:${READ.c}"><span class="eyebrow">Next text for you · ${nt.lv}</span><span class="ht"><b lang="${H.code}">${esc(nt.title)}</b><small>${esc(nt.en)} · questions, audio, tap words to save them</small></span><span class="hbtn">Read</span></a>` : '';
-    $('reading').innerHTML = pracCard(READ, `${Object.keys(d).filter(k => TEXTS.some(t => t.id === k)).length} of ${TEXTS.length} texts done${my ? ` · ${my} of your own` : ''} · import your own`) + (PB ? pracCard(PB, `${PB.total} situations · phrases, dialogues, speaking`) : '');
+    $('reading').innerHTML = pracCard(READ, `${Object.keys(d).filter(k => TEXTS.some(t => t.id === k)).length} of ${TEXTS.length} texts done${my ? ` · ${my} of your own` : ''} · import your own`) + (WRITE ? pracCard(WRITE, `${Object.values(LS.get(H.read + 'writing', {})).filter(x => x.done).length} of ${WRITE.total} tasks done · model answers`) : '') + (PB ? pracCard(PB, `${PB.total} situations · phrases, dialogues, speaking`) : '');
 
     // Progress
     const rI = est.reached ? ORDER.indexOf(est.reached) : -1, wI = est.working ? ORDER.indexOf(est.working) : -1, wp = est.working && est.per[est.working];

@@ -128,3 +128,10 @@ built.append(shell('cloze/index.html', 'ru', 'Слова в контексте',
 built.append(shell('de/cloze/index.html', 'de', 'Wörter im Kontext', 'Words in context', '_', '#b04a8a', '<div id="main"></div>', CZ_JS, sub='choose the word that fits the sentence', score=False))
 if __name__ == '__main__':
     for p in built[-2:]: print('built', p)
+
+# ---------- writing ----------
+WR_JS = '<script src="{R}shared/coach.js"></script>\n<script src="tasks.js"></script>\n<script src="{R}shared/writing.js"></script>\n<script src="{R}shared/lookup.js"></script>'
+built.append(shell('writing/index.html', 'ru', 'Письмо', 'Writing', '✎', '#8d6e63', '<div id="main"></div>', WR_JS, sub='messages, emails and essays, A2 to C1', score=False))
+built.append(shell('de/writing/index.html', 'de', 'Schreiben', 'Writing', '✎', '#8d6e63', '<div id="main"></div>', WR_JS, sub='messages, emails and essays, A2 to C1', score=False))
+if __name__ == '__main__':
+    for p in built[-2:]: print('built', p)

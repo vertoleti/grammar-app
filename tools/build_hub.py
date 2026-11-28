@@ -96,9 +96,9 @@ def page(L):
 </section>
 
 <section class="tab" id="t-reading" aria-label="Reading" hidden>
-  <h2>Reading and speaking <small lang="{L['cfg']['code']}">{h['reading']}</small></h2>
+  <h2>Reading, writing, speaking <small lang="{L['cfg']['code']}">{h['reading']}</small></h2>
   <div id="rnext"></div>
-  <h3 class="sh">All texts and dialogues</h3>
+  <h3 class="sh">Read, write, speak</h3>
   <div id="reading"></div>
 </section>
 

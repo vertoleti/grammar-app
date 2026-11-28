@@ -13,6 +13,7 @@ const LINES = [
   { id: 'phrases', href: 'phrases/', n: 13, c: '#5c6bc0', ru: 'Разговорник', en: 'Phrasebook', d: 'Everyday situations: key phrases, a dialogue to role-play, a drill', group: 'practice', practice: 'phrases', dir: 'phrases' },
   { id: 'exam', href: 'exam/', n: 14, c: '#37474f', ru: 'Экзамен', en: 'Mock exam', d: 'Timed practice exam in the style of ТРКИ, A1 to C1', group: 'practice', practice: 'exam', dir: 'exam' },
   { id: 'cloze', href: 'cloze/', n: 15, c: '#b04a8a', ru: 'Слова в контексте', en: 'Words in context', d: 'Choose the word that fits the sentence', group: 'practice', practice: 'cloze', dir: 'vocabulary/decks/ru-cloze.json' },
+  { id: 'writing', href: 'writing/', n: 16, c: '#8d6e63', ru: 'Письмо', en: 'Writing', d: 'Messages, emails and essays with a model answer', group: 'practice', practice: 'writing', dir: 'writing' },
   { id: 'gov', href: 'gov/', n: 11, c: '#9a7b00', ru: 'Управление', en: 'Government', d: 'Cases after verbs and formal prepositions (B2–C2)', group: 'adv', src: 'gov' },
   { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
   { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
@@ -41,6 +42,10 @@ for (const L of LINES) {
     const J = JSON.parse(fs.readFileSync(L.dir, 'utf8'));
     line.modes = [{ k: 'cloze', name: 'Words in context' }]; line.total = J.length; line.unit = 'sentences'; line.levels = {};
     J.forEach(x => { line.levels[x.lv] = (line.levels[x.lv] || 0) + 1; });
+  } else if (L.practice === 'writing') {
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/tasks.js`, 'utf8'))(W);
+    line.modes = [{ k: 'writing', name: 'Writing' }]; line.total = W.WRITING.length; line.unit = 'tasks'; line.levels = {};
+    W.WRITING.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'exam') {
     line.modes = [{ k: 'exam', name: 'Mock exam' }]; line.levels = { A1: 1, A2: 1, B1: 1, B2: 1, C1: 1 }; line.total = 5; line.unit = 'levels';
   } else if (L.practice === 'phrases') {
@@ -90,6 +95,7 @@ const DE = [
   { id: 'de-phrases', href: 'phrases/', n: 13, c: '#5c6bc0', ru: 'Redemittel', en: 'Phrasebook', d: 'Everyday situations: key phrases, a dialogue to role-play, a drill', group: 'practice', practice: 'phrases', dir: 'de/phrases' },
   { id: 'de-exam', href: 'exam/', n: 14, c: '#37474f', ru: 'Prüfung', en: 'Mock exam', d: 'Timed practice exam in the style of the Goethe-Zertifikat, A1 to C1', group: 'practice', practice: 'exam', dir: 'de/exam' },
   { id: 'de-cloze', href: 'cloze/', n: 15, c: '#b04a8a', ru: 'Wörter im Kontext', en: 'Words in context', d: 'Choose the word that fits the sentence', group: 'practice', practice: 'cloze', dir: 'de/vocabulary/decks/de-cloze.json' },
+  { id: 'de-writing', href: 'writing/', n: 16, c: '#8d6e63', ru: 'Schreiben', en: 'Writing', d: 'Messages, emails and essays with a model answer', group: 'practice', practice: 'writing', dir: 'de/writing' },
   { id: 'de-genus', href: 'genus/', n: 11, c: '#1f8a3b', ru: 'der · die · das', en: 'Noun genders', d: 'A fast drill for the article of 275 common nouns', group: 'practice', practice: 'genus', dir: 'de/genus' },
   { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Wortschatz', en: 'Vocabulary', d: 'Flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
 ];
@@ -112,6 +118,10 @@ for (const L of DE) {
     const J = JSON.parse(fs.readFileSync(L.dir, 'utf8'));
     line.modes = [{ k: 'cloze', name: 'Words in context' }]; line.total = J.length; line.unit = 'sentences'; line.levels = {};
     J.forEach(x => { line.levels[x.lv] = (line.levels[x.lv] || 0) + 1; });
+  } else if (L.practice === 'writing') {
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/tasks.js`, 'utf8'))(W);
+    line.modes = [{ k: 'writing', name: 'Writing' }]; line.total = W.WRITING.length; line.unit = 'tasks'; line.levels = {};
+    W.WRITING.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'exam') {
     line.modes = [{ k: 'exam', name: 'Mock exam' }]; line.levels = { A1: 1, A2: 1, B1: 1, B2: 1, C1: 1 }; line.total = 5; line.unit = 'levels';
   } else if (L.practice === 'phrases') {

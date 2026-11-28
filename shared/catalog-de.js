@@ -452,6 +452,31 @@ window.CATALOG = [
   }
  },
  {
+  "id": "de-writing",
+  "href": "writing/",
+  "n": 16,
+  "c": "#8d6e63",
+  "ru": "Schreiben",
+  "en": "Writing",
+  "d": "Messages, emails and essays with a model answer",
+  "group": "practice",
+  "practice": "writing",
+  "modes": [
+   {
+    "k": "writing",
+    "name": "Writing"
+   }
+  ],
+  "total": 6,
+  "unit": "tasks",
+  "levels": {
+   "A2": 2,
+   "B1": 2,
+   "B2": 1,
+   "C1": 1
+  }
+ },
+ {
   "id": "de-genus",
   "href": "genus/",
   "n": 11,

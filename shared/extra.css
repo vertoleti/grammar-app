@@ -142,3 +142,23 @@ li.open .dm{white-space:normal}
 .cz .opts{grid-template-columns:1fr 1fr;gap:8px}
 .cz .opt{font-size:17px;min-height:50px}
 .linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-right:14px}
+
+/* dictation */
+.dict-box{display:grid;gap:10px;margin-top:6px}
+.dict-box textarea{width:100%;font:18px/1.5 Inter,sans-serif;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical}
+.dict-box .row{display:flex;gap:8px;flex-wrap:wrap}
+.dres{font-size:18px;line-height:1.6;margin:0}
+.dict-box .big{font-size:40px;font-weight:700;margin:0}
+
+/* writing */
+.wtask{font-size:16px;margin:4px 0 12px}
+.wh{font-size:13px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;margin:12px 0 6px}
+.wpts{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:4px}
+.wpts label{display:flex;gap:10px;align-items:center;font-size:15px;min-height:34px}
+.wpts input{width:18px;height:18px;accent-color:var(--ok)}
+.wpts li.hit span{color:var(--ok)}.wpts li.miss span{color:var(--bad)}
+.wph{list-style:none;margin:0;padding:0;display:grid;gap:8px}.wph li span{display:block;font-size:16px}.wph li small{color:var(--mute);font-size:13px}
+.wr textarea{width:100%;margin-top:12px;font:17px/1.6 Inter,sans-serif;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);resize:vertical;min-height:200px}
+.wc{font-size:13px;color:var(--mute);margin:4px 0 10px}.wc.ok{color:var(--ok)}
+.wr .row{display:flex;gap:8px;flex-wrap:wrap}
+.wres{margin-top:14px}.wmodel{font-size:17px;line-height:1.7;margin:0 0 8px}

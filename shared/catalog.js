@@ -429,6 +429,32 @@ window.CATALOG = [
   }
  },
  {
+  "id": "writing",
+  "href": "writing/",
+  "n": 16,
+  "c": "#8d6e63",
+  "ru": "Письмо",
+  "en": "Writing",
+  "d": "Messages, emails and essays with a model answer",
+  "group": "practice",
+  "practice": "writing",
+  "dir": "writing",
+  "modes": [
+   {
+    "k": "writing",
+    "name": "Writing"
+   }
+  ],
+  "total": 6,
+  "unit": "tasks",
+  "levels": {
+   "A2": 2,
+   "B1": 2,
+   "B2": 1,
+   "C1": 1
+  }
+ },
+ {
   "id": "gov",
   "href": "gov/",
   "n": 11,

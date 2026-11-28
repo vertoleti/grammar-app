@@ -54,11 +54,11 @@ ${my.length ? `<ul class="tl">${my.map(item).join('')}</ul>` : '<p class="note">
     $('main').innerHTML = `<p class="back"><a href="#">← ${DE ? 'Alle Texte · All texts' : 'Все тексты · All texts'}</a></p>
 <article class="xcard reader" lang="${L}"><p class="meta"><span>${t.lv || ''}${t.mine ? (t.lv ? ' · ' : '') + 'my text' : ''}</span><span>${WORDS(paras.map(x => x[0]).join(' '))} words</span></p>
 <h2 class="rtitle">${esc(t.title)}</h2>${t.en ? `<p class="note" lang="en">${esc(t.en)}</p>` : ''}
-<div class="rtools" lang="en">${S.tts ? `<button class="btn" data-act="play">${st.playing ? 'Stop' : '▶ Listen'}</button>` : ''}${hasTr ? `<button class="btn" data-act="tr" aria-pressed="${st.tr}">${st.tr ? 'Hide translation' : 'Translation'}</button>` : ''}<button class="btn" data-act="speak" aria-pressed="${st.speak}">${st.speak ? 'Stop speaking practice' : '🎤 Speaking practice'}</button>${t.mine ? '<button class="btn" data-act="del">Delete</button>' : ''}</div>
+<div class="rtools" lang="en">${S.tts ? `<button class="btn" data-act="play">${st.playing ? 'Stop' : '▶ Listen'}</button>` : ''}${hasTr ? `<button class="btn" data-act="tr" aria-pressed="${st.tr}">${st.tr ? 'Hide translation' : 'Translation'}</button>` : ''}${S.tts ? `<button class="btn" data-act="dict" aria-pressed="${!!st.dict}">${st.dict ? 'Stop dictation' : '✎ Dictation'}</button>` : ''}<button class="btn" data-act="speak" aria-pressed="${st.speak}">${st.speak ? 'Stop speaking practice' : '🎤 Speaking practice'}</button>${t.mine ? '<button class="btn" data-act="del">Delete</button>' : ''}</div>
 ${st.speak ? `<p class="note" lang="en">${S.rec ? 'Tap 🎤 after a sentence, then read it aloud. Words the phone didn’t recognise turn red.' : 'Speech recognition isn’t available in this browser. On iPhone use Safari with Siri & Dictation switched on; on a computer use Chrome or Edge.'}</p>` : ''}
-<div class="rtext">${body}</div>
+${st.dict ? dictView(paras) : `<div class="rtext">${body}</div>`}
 <p class="note" lang="en">Tap any word to look it up or add it to your flashcards.</p></article>
-${q.length ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' : 'Вопросы · Questions'}${d[t.id] !== undefined ? ` <small>last time ${d[t.id]}%</small>` : ''}</h2><ol class="qs">${q.map((x, i) => `<li><p lang="${L}">${esc(x.q)}</p><div class="opts">${x.o.map((o, k) => `<button class="opt" data-act="ans" data-q="${i}" data-k="${k}" lang="${L}">${esc(o)}</button>`).join('')}</div></li>`).join('')}</ol><p id="qres" class="note"></p></section>` : ''}`;
+${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' : 'Вопросы · Questions'}${d[t.id] !== undefined ? ` <small>last time ${d[t.id]}%</small>` : ''}</h2><ol class="qs">${q.map((x, i) => `<li><p lang="${L}">${esc(x.q)}</p><div class="opts">${x.o.map((o, k) => `<button class="opt" data-act="ans" data-q="${i}" data-k="${k}" lang="${L}">${esc(o)}</button>`).join('')}</div></li>`).join('')}</ol><p id="qres" class="note"></p></section>` : ''}`;
     st.answers = {};
   }
   function answer(t, i, k) {
@@ -69,7 +69,7 @@ ${q.length ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' 
     const n = Object.keys(st.answers).length;
     if (n === t.q.length) {
       const pct = Math.round(Object.values(st.answers).filter(Boolean).length / n * 100);
-      const d = done(); d[t.id] = pct; LS.set(P + 'read-done', d);
+      const d = done(); d[t.id] = pct; LS.set(P + 'read-done', d); if (C) LS.set(P + 'done-read', C.dkey());
       $('qres').innerHTML = `<b>${pct}%</b> right. ${pct === 100 ? 'Well understood.' : 'Re-read the paragraph with the answer, or turn on the translation.'}`;
     }
   }
@@ -97,8 +97,44 @@ ${q.length ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' 
     btn.disabled = false;
   }
 
+  // ---------- dictation: listen to each sentence and type it ----------
+  const allSents = paras => paras.flatMap(([txt]) => split(txt));
+  const nrm = w => (LG.norm ? LG.norm(w) : w.toLowerCase()).replace(/ё/g, 'е').replace(/[^\p{L}\p{N}-]/gu, '');
+  function compare(target, typed) {
+    const T = target.split(/\s+/).filter(Boolean), A = typed.split(/\s+/).filter(Boolean).map(nrm);
+    const t = T.map(nrm), n = t.length, m = A.length, D = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) D[i][j] = t[i] && t[i] === A[j] ? D[i + 1][j + 1] + 1 : Math.max(D[i + 1][j], D[i][j + 1]);
+    const ok = new Array(n).fill(false); let i = 0, j = 0;
+    while (i < n && j < m) { if (t[i] && t[i] === A[j]) { ok[i] = true; i++; j++; } else if (D[i + 1][j] >= D[i][j + 1]) i++; else j++; }
+    const counted = t.filter(Boolean).length || 1, right = ok.filter((x, k) => x && t[k]).length;
+    return { marks: T.map((w, k) => ({ w, ok: ok[k] || !t[k] })), pct: Math.round(right / counted * 100) };
+  }
+  function dictView(paras) {
+    const ss = allSents(paras), d = st.dict;
+    if (d.i >= ss.length) {
+      const pct = Math.round(d.res.reduce((a, b) => a + b, 0) / (d.res.length || 1));
+      return `<div class="dict-box" lang="en"><p class="big">${pct}%</p><p class="note">of the words right across ${d.res.length} sentences.</p><div class="row"><button class="btn go" data-act="dagain">Again</button><button class="btn" data-act="dict">Back to the text</button></div></div>`;
+    }
+    const s = ss[d.i], r = d.check;
+    return `<div class="dict-box"><p class="meta" lang="en"><span>Sentence ${d.i + 1} of ${ss.length}</span><span>${d.res.length ? Math.round(d.res.reduce((a, b) => a + b, 0) / d.res.length) + '% so far' : ''}</span></p>
+<div class="row" lang="en"><button class="btn" data-act="dplay">▶ Play</button><button class="btn" data-act="dslow">Slowly</button></div>
+<textarea id="dtype" rows="3" lang="${L}" placeholder="${DE ? 'Schreib, was du hörst…' : 'Напишите, что слышите…'}" autocomplete="off" autocapitalize="sentences" spellcheck="false" ${r ? 'readonly' : ''}>${esc(d.typed || '')}</textarea>
+${r ? `<p class="dres">${r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}">${esc(m.w)}</span>`).join(' ')}</p><p class="note" lang="en">${r.pct}% of the words right${r.pct < 100 ? '. Red words were missing or misspelt.' : '.'}</p>` : ''}
+<div class="row" lang="en">${r ? `<button class="btn go" data-act="dnext">${d.i + 1 < ss.length ? 'Next sentence' : 'Finish'}</button>` : '<button class="btn go" data-act="dcheck">Check</button><button class="btn" data-act="dskip">Skip</button>'}</div></div>`;
+  }
+  function dictAct(t, a) {
+    const paras = (t.p || []).map(x => Array.isArray(x) ? x : [x, '']), ss = allSents(paras), d = st.dict;
+    if (a === 'dplay' || a === 'dslow') { S.say(ss[d.i], L, a === 'dslow'); return; }
+    if (a === 'dcheck') { d.typed = $('dtype').value; d.check = compare(ss[d.i], d.typed); d.res.push(d.check.pct); if (C) C.record(ID, 'dictation', d.check.pct >= 80, 'dict:' + ss[d.i].slice(0, 60)); }
+    else if (a === 'dskip' || a === 'dnext') { if (a === 'dskip') d.res.push(0); d.i++; d.check = null; d.typed = ''; if (d.i >= ss.length && C) LS.set(P + 'done-dict', C.dkey()); }
+    else if (a === 'dagain') st.dict = { i: 0, res: [] };
+    reader(t);
+    const ta = $('dtype'); if (ta && !st.dict.check) { ta.focus({ preventScroll: true }); if (a === 'dnext' || a === 'dagain' || a === 'dskip') S.say(ss[st.dict.i], L); }
+  }
+
   function render() {
     const m = location.hash.match(/^#t=(.+)$/), t = m && byId(decodeURIComponent(m[1]));
+    st.dict = null;
     if (t) reader(t); else { S.stop(); st.playing = false; document.body.dataset.where = ''; library(); }
     window.scrollTo(0, 0);
   }
@@ -110,6 +146,8 @@ ${q.length ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' 
     else if (a === 'play') play(t);
     else if (a === 'tr') { st.tr = !st.tr; reader(t); }
     else if (a === 'speak') { st.speak = !st.speak; reader(t); }
+    else if (a === 'dict') { st.dict = st.dict ? null : { i: 0, res: [] }; st.speak = false; reader(t); if (st.dict) { const ss = allSents((t.p || []).map(x => Array.isArray(x) ? x : [x, ''])); S.say(ss[0], L); } }
+    else if (/^d(play|slow|check|skip|next|again)$/.test(a)) dictAct(t, a);
     else if (a === 'mic') mic(b);
     else if (a === 'del' && confirm('Delete this text?')) { LS.set(P + 'texts', mine().filter(x => x.id !== t.id)); location.hash = ''; }
   });
