@@ -13,6 +13,14 @@
   const fold = s => strip(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ё/g, 'е').replace(/ß/g, 'ss');
   const ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const PAGE = 60;
+  const FORMS = DE ? 'de/vocabulary/decks/de-forms.json' : 'vocabulary/decks/ru-forms.json';
+  let forms = null, formsP = null;
+  const loadForms = () => formsP || (formsP = fetch(new URL(FORMS, new URL(ROOT, location.href))).then(r => r.ok ? r.json() : {}).catch(() => ({})).then(j => (forms = j)));
+  function table(f) {
+    if (!f) return '';
+    const lab = f.r.some(r => r[0]);
+    return `${f.r.length ? `<div class="ftw"><table class="ft" lang="${L}">${f.h.some(Boolean) ? `<thead><tr>${lab ? '<th></th>' : ''}${f.h.map(h => `<th lang="en">${esc(h)}</th>`).join('')}</tr></thead>` : ''}<tbody>${f.r.map(r => `<tr>${lab ? `<th lang="en">${esc(r[0])}</th>` : ''}${r.slice(1).map(x => `<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : ''}${(f.x || []).map(x => `<p class="fx">${esc(x)}</p>`).join('')}`;
+  }
   let cards = [], st = { q: '', status: LS.get(VP + 'dict-status', 'all'), lv: LS.get(VP + 'dict-lv', 'all'), open: null, shown: PAGE };
 
   function parse(t) {
@@ -55,7 +63,8 @@
       const open = st.open === c.id;
       const head = `<button class="dw" data-id="${esc(c.id)}" aria-expanded="${open}"><span class="dt" lang="${L}">${esc(c.term)}</span><span class="dm">${esc(c.meaning)}</span><span class="dl">${c.lv || ''}</span><i class="ds ${c.st}" title="${NAMES[c.st]}"></i></button>`;
       if (!open) return `<li>${head}</li>`;
-      const bits = [c.forms && `<p><span class="k">Forms</span> <span lang="${L}">${esc(c.forms)}</span></p>`, c.grammar && `<p><span class="k">Grammar</span> ${esc(c.grammar)}</p>`,
+      const tb = forms && forms[c.id];
+      const bits = [tb ? table(tb) : (c.forms && `<p><span class="k">Forms</span> <span lang="${L}">${esc(c.forms)}</span></p>`), c.grammar && `<p><span class="k">Grammar</span> ${esc(c.grammar)}</p>`,
         c.ex && `<p class="dex"><span lang="${L}">${esc(strip(c.ex))}</span>${c.exEn ? `<br><span class="mute">${esc(strip(c.exEn))}</span>` : ''}</p>`,
         c.mistake && `<p><span class="k">Watch out</span> ${esc(strip(c.mistake))}</p>`, c.notes && `<p class="mute">${esc(strip(c.notes))}</p>`].filter(Boolean).join('');
       return `<li class="open">${head}<div class="dd">${bits}<div class="row">${S && S.tts ? `<button class="btn" data-act="say" data-t="${esc(c.term)}">▶ Listen</button>` : ''}${c.pin ? `<span class="okline">${c.st === 'known' ? '✓ Known' : '✓ In your flashcards'}</span>` : `<button class="btn go" data-act="learn" data-id="${esc(c.id)}">Learn this word</button>`}${c.mine ? `<button class="btn" data-act="del" data-id="${esc(c.id)}">Remove</button>` : ''}</div></div></li>`;
@@ -95,6 +104,7 @@
       }
       const w = e.target.closest('.dw'); if (!w) return;
       st.open = st.open === w.dataset.id ? null : w.dataset.id; view();
+      if (st.open && !forms) loadForms().then(view);
     });
     $('daf').addEventListener('submit', e => {
       e.preventDefault(); const w = $('dat').value.trim(), m = $('dam').value.trim(); if (!w || !m || !window.GRLookup) return;

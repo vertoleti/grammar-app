@@ -121,3 +121,10 @@ built.append(shell('dictionary/index.html', 'ru', 'Словарь', 'Dictionary'
 built.append(shell('de/dictionary/index.html', 'de', 'Wörterbuch', 'Dictionary', 'Aa', '#7b5ea7', '<div id="main"></div>', DICT_JS, sub='every word in the app, with your progress', score=False))
 if __name__ == '__main__':
     for p in built[-2:]: print('built', p)
+
+# ---------- words in context ----------
+CZ_JS = '<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n<script src="{R}shared/cloze.js"></script>'
+built.append(shell('cloze/index.html', 'ru', 'Слова в контексте', 'Words in context', '_', '#b04a8a', '<div id="main"></div>', CZ_JS, sub='choose the word that fits the sentence', score=False))
+built.append(shell('de/cloze/index.html', 'de', 'Wörter im Kontext', 'Words in context', '_', '#b04a8a', '<div id="main"></div>', CZ_JS, sub='choose the word that fits the sentence', score=False))
+if __name__ == '__main__':
+    for p in built[-2:]: print('built', p)

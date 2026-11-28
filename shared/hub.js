@@ -8,7 +8,7 @@
   const C = window.GRCoach, CAT = window.CATALOG, ORDER = C.ORDER, TEXTS = window.TEXTS || [];
   const GRAM = CAT.filter(x => x.topics), VOC = CAT.find(x => x.vocab), PRAC = CAT.filter(x => x.practice);
   const by = p => CAT.find(x => x.practice === p);
-  const READ = by('reading'), PB = by('phrases'), EXAM = by('exam'), GENUS = by('genus');
+  const READ = by('reading'), PB = by('phrases'), EXAM = by('exam'), GENUS = by('genus'), CLOZE = by('cloze');
   const SKILLS = PRAC.filter(x => x.practice === 'sentences' || x.practice === 'tables');
   const short = n => String(n).split(' · ')[0];
   const ago = t => { const s = Math.round((Date.now() - t) / 1000); return s < 90 ? 'just now' : s < 3600 ? Math.round(s / 60) + ' min ago' : s < 86400 ? Math.round(s / 3600) + ' h ago' : s < 172800 ? 'yesterday' : Math.round(s / 86400) + ' days ago'; };
@@ -123,6 +123,7 @@
     $('words').innerHTML = `<a class="lc wide" href="${VOC.href}" style="--c:${VOC.c}"><span class="nd">${VOC.n}</span><span class="lt"><b lang="${H.code}">${esc(VOC.ru)}</b><small>Flashcards · spaced repetition</small></span>
 <span class="bar" aria-hidden="true"><i class="mastered" style="flex:${v.learned}"></i><i class="started" style="flex:${Math.max(0, v.started - v.learned)}"></i><i style="flex:${Math.max(1, VOC.total - v.started)}"></i></span><span class="lf">${v.due ? `<b class="due">${v.due} due today</b> · ` : ''}${v.learned} learned · ${v.started} started · ${VOC.total} in the decks</span></a>` +
       simpleCard('dictionary/', '#7b5ea7', 'Aa', H.dict, 'Dictionary · every word, searchable', `${VOC.total + dictN} words${dictN ? ` · ${dictN} of your own` : ''}`) +
+      (CLOZE ? pracCard(CLOZE, `${CLOZE.total} sentences · learning words first`) : '') +
       (GENUS ? pracCard(GENUS, `${GENUS.total} nouns · ending rules`) : '');
 
     // Reading

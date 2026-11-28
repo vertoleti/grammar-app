@@ -127,3 +127,18 @@ li.open .dm{white-space:normal}
 .dd .btn{font-size:14px;min-height:38px;padding:4px 14px}
 .okline{color:var(--ok);font-size:14px;font-weight:600}
 #dmore{margin-top:12px;width:100%}
+.ftw{overflow-x:auto;margin:4px 0 8px}
+.ft{border-collapse:collapse;font-size:14px;min-width:100%}
+.ft th,.ft td{text-align:left;padding:5px 10px 5px 0;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:top}
+.ft thead th{font-size:12px;color:var(--mute);font-weight:600}
+.ft tbody th{font-size:12px;color:var(--mute);font-weight:500}
+.fx{font-size:13px;color:var(--mute);margin:0 0 4px!important}
+
+/* words in context */
+.czs{font-size:clamp(20px,4.6vw,24px);line-height:1.5;font-weight:500;margin:10px 0 6px}
+.czs .gap{display:inline-block;min-width:90px;border-bottom:2px solid var(--ink);line-height:1.1}
+.czs .gok{color:var(--ok);border-bottom:2px solid var(--ok)}.czs .gno{color:var(--bad);border-bottom:2px solid var(--bad)}
+.czen{color:var(--mute);font-size:15px;margin:0 0 14px}
+.cz .opts{grid-template-columns:1fr 1fr;gap:8px}
+.cz .opt{font-size:17px;min-height:50px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin-right:14px}

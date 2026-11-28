@@ -401,6 +401,34 @@ window.CATALOG = [
   "unit": "levels"
  },
  {
+  "id": "cloze",
+  "href": "cloze/",
+  "n": 15,
+  "c": "#b04a8a",
+  "ru": "Слова в контексте",
+  "en": "Words in context",
+  "d": "Choose the word that fits the sentence",
+  "group": "practice",
+  "practice": "cloze",
+  "dir": "vocabulary/decks/ru-cloze.json",
+  "modes": [
+   {
+    "k": "cloze",
+    "name": "Words in context"
+   }
+  ],
+  "total": 557,
+  "unit": "sentences",
+  "levels": {
+   "A2": 187,
+   "B1": 84,
+   "A1": 170,
+   "B2": 55,
+   "C1": 38,
+   "C2": 23
+  }
+ },
+ {
   "id": "gov",
   "href": "gov/",
   "n": 11,

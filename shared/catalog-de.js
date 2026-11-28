@@ -425,6 +425,33 @@ window.CATALOG = [
   "unit": "levels"
  },
  {
+  "id": "de-cloze",
+  "href": "cloze/",
+  "n": 15,
+  "c": "#b04a8a",
+  "ru": "Wörter im Kontext",
+  "en": "Words in context",
+  "d": "Choose the word that fits the sentence",
+  "group": "practice",
+  "practice": "cloze",
+  "modes": [
+   {
+    "k": "cloze",
+    "name": "Words in context"
+   }
+  ],
+  "total": 500,
+  "unit": "sentences",
+  "levels": {
+   "A1": 174,
+   "A2": 105,
+   "B1": 90,
+   "B2": 69,
+   "C1": 42,
+   "C2": 20
+  }
+ },
+ {
   "id": "de-genus",
   "href": "genus/",
   "n": 11,
