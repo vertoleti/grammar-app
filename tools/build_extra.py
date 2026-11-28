@@ -101,3 +101,16 @@ built.append(shell('phrases/index.html', 'ru', 'Разговорник', 'Phrase
 built.append(shell('de/phrases/index.html', 'de', 'Redemittel', 'Phrasebook', '“', '#5c6bc0', '<div id="main"></div>', PB_JS, sub='situations: phrases, dialogues, drills', score=False))
 if __name__ == '__main__':
     for p in built[-2:]: print('built', p)
+
+# ---------- exam ----------
+import re as _re
+def exam_js(lang):
+    place = open(('de/' if lang == 'de' else '') + 'placement/index.html', encoding='utf-8').read()
+    data = ''.join(m + '\n' for m in _re.findall(r'<script src="\.\./[a-z]+/data\.js"></script><script>ALL\.push\(EXERCISE\)</script>', place))
+    lines = '<script src="{R}shared/lines.js"></script>\n' if lang == 'de' else ''
+    return ('<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n' + lines + '<script>window.ALL=[]</script>\n' + data +
+            '<script src="../reading/texts.js"></script>\n<script src="../phrases/data.js"></script>\n<script src="{R}shared/lookup.js"></script>\n<script src="{R}shared/exam.js"></script>')
+built.append(shell('exam/index.html', 'ru', 'Экзамен', 'Mock exam', '✓', '#37474f', '<div id="main"></div>', exam_js('ru'), sub='timed, in the style of ТРКИ', score=False))
+built.append(shell('de/exam/index.html', 'de', 'Prüfung', 'Mock exam', '✓', '#37474f', '<div id="main"></div>', exam_js('de'), sub='timed, in the style of the Goethe-Zertifikat', score=False))
+if __name__ == '__main__':
+    for p in built[-2:]: print('built', p)

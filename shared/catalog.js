@@ -374,6 +374,33 @@ window.CATALOG = [
   }
  },
  {
+  "id": "exam",
+  "href": "exam/",
+  "n": 14,
+  "c": "#37474f",
+  "ru": "Экзамен",
+  "en": "Mock exam",
+  "d": "Timed practice exam in the style of ТРКИ, A1 to C1",
+  "group": "practice",
+  "practice": "exam",
+  "dir": "exam",
+  "modes": [
+   {
+    "k": "exam",
+    "name": "Mock exam"
+   }
+  ],
+  "levels": {
+   "A1": 1,
+   "A2": 1,
+   "B1": 1,
+   "B2": 1,
+   "C1": 1
+  },
+  "total": 5,
+  "unit": "levels"
+ },
+ {
   "id": "gov",
   "href": "gov/",
   "n": 11,

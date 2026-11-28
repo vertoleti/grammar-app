@@ -399,6 +399,32 @@ window.CATALOG = [
   }
  },
  {
+  "id": "de-exam",
+  "href": "exam/",
+  "n": 14,
+  "c": "#37474f",
+  "ru": "Prüfung",
+  "en": "Mock exam",
+  "d": "Timed practice exam in the style of the Goethe-Zertifikat, A1 to C1",
+  "group": "practice",
+  "practice": "exam",
+  "modes": [
+   {
+    "k": "exam",
+    "name": "Mock exam"
+   }
+  ],
+  "levels": {
+   "A1": 1,
+   "A2": 1,
+   "B1": 1,
+   "B2": 1,
+   "C1": 1
+  },
+  "total": 5,
+  "unit": "levels"
+ },
+ {
   "id": "de-genus",
   "href": "genus/",
   "n": 11,

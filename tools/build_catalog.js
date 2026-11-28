@@ -11,6 +11,7 @@ const LINES = [
   { id: 'advanced', href: 'advanced/', n: 5, c: '#7a2a8c', ru: 'Продвинутый уровень', en: 'Advanced grammar', d: 'Participles, verbal adverbs, -ся verbs, бы and чтобы', group: 'adv', src: 'advanced' },
   { id: 'read', href: 'reading/', n: 12, c: '#00796b', ru: 'Чтение', en: 'Reading', d: 'Graded texts with questions, your own texts, speaking', group: 'practice', practice: 'reading', dir: 'reading' },
   { id: 'phrases', href: 'phrases/', n: 13, c: '#5c6bc0', ru: 'Разговорник', en: 'Phrasebook', d: 'Everyday situations: key phrases, a dialogue to role-play, a drill', group: 'practice', practice: 'phrases', dir: 'phrases' },
+  { id: 'exam', href: 'exam/', n: 14, c: '#37474f', ru: 'Экзамен', en: 'Mock exam', d: 'Timed practice exam in the style of ТРКИ, A1 to C1', group: 'practice', practice: 'exam', dir: 'exam' },
   { id: 'gov', href: 'gov/', n: 11, c: '#9a7b00', ru: 'Управление', en: 'Government', d: 'Cases after verbs and formal prepositions (B2–C2)', group: 'adv', src: 'gov' },
   { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
   { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
@@ -35,6 +36,8 @@ for (const L of LINES) {
     rows.forEach(r => { const t = r.split('|')[0]; cnt[t] = (cnt[t] || 0) + 1; });
     line.topics = Object.keys(tlv).map(k => ({ k, name: top[k], lv: tlv[k], count: cnt[k] || 0 }));
     line.total = rows.length;
+  } else if (L.practice === 'exam') {
+    line.modes = [{ k: 'exam', name: 'Mock exam' }]; line.levels = { A1: 1, A2: 1, B1: 1, B2: 1, C1: 1 }; line.total = 5; line.unit = 'levels';
   } else if (L.practice === 'phrases') {
     const W = {}; new Function('window', fs.readFileSync(`${L.dir}/data.js`, 'utf8'))(W);
     line.modes = [{ k: 'phrases', name: 'Phrases' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.PHRASES.length; line.unit = 'situations';
@@ -80,6 +83,7 @@ const DE = [
   { id: 'de-tables', href: 'tabellen/', n: 9, c: '#5d7a00', ru: 'Tabellen', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables', dir: 'de/tabellen' },
   { id: 'de-read', href: 'reading/', n: 12, c: '#00796b', ru: 'Lesen', en: 'Reading', d: 'Graded texts with questions, your own texts, speaking', group: 'practice', practice: 'reading', dir: 'de/reading' },
   { id: 'de-phrases', href: 'phrases/', n: 13, c: '#5c6bc0', ru: 'Redemittel', en: 'Phrasebook', d: 'Everyday situations: key phrases, a dialogue to role-play, a drill', group: 'practice', practice: 'phrases', dir: 'de/phrases' },
+  { id: 'de-exam', href: 'exam/', n: 14, c: '#37474f', ru: 'Prüfung', en: 'Mock exam', d: 'Timed practice exam in the style of the Goethe-Zertifikat, A1 to C1', group: 'practice', practice: 'exam', dir: 'de/exam' },
   { id: 'de-genus', href: 'genus/', n: 11, c: '#1f8a3b', ru: 'der · die · das', en: 'Noun genders', d: 'A fast drill for the article of 275 common nouns', group: 'practice', practice: 'genus', dir: 'de/genus' },
   { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Wortschatz', en: 'Vocabulary', d: 'Flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
 ];
@@ -98,6 +102,8 @@ for (const L of DE) {
     const W = {}; new Function('window', fs.readFileSync(`${L.dir}/data.js`, 'utf8'))(W);
     line.modes = [{ k: 'genus', name: 'der · die · das' }]; line.levels = {}; line.total = 0; line.unit = 'nouns';
     Object.values(W.GENUS).forEach(g => Object.entries(g).forEach(([l, t]) => { const n = t.trim().split('\n').length; line.levels[l] = (line.levels[l] || 0) + n; line.total += n; }));
+  } else if (L.practice === 'exam') {
+    line.modes = [{ k: 'exam', name: 'Mock exam' }]; line.levels = { A1: 1, A2: 1, B1: 1, B2: 1, C1: 1 }; line.total = 5; line.unit = 'levels';
   } else if (L.practice === 'phrases') {
     const W = {}; new Function('window', fs.readFileSync(`${L.dir}/data.js`, 'utf8'))(W);
     line.modes = [{ k: 'phrases', name: 'Phrases' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.PHRASES.length; line.unit = 'situations';

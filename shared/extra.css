@@ -85,3 +85,20 @@ ol.qs .opt{font-size:15px;min-height:42px;text-align:left;padding:8px 14px}
 .pb .opt{font-size:16px;min-height:46px;text-align:left;padding:8px 14px}
 .xdone{text-align:center;padding:20px 0}.xdone .big{font-size:44px;font-weight:700;margin:0}
 @media(max-width:420px){.dlg li{flex-wrap:wrap}.dlg li>b{width:100%;padding:0}}
+
+/* exam */
+.exname{font-weight:600;margin:12px 0 6px}
+.xbar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:14px}
+.xbar b{font-variant-numeric:tabular-nums;font-size:17px}.xbar b.low{color:var(--bad)}
+.exam .xtabs{margin-bottom:14px;flex-wrap:wrap}
+.exam .xtabs button{font-size:13px}
+.exam .opts{grid-template-columns:1fr;gap:6px}
+.exam .opt,.pb .opt,ol.qs .opt{justify-content:flex-start;text-align:left}
+.exam .opt{font-size:16px;min-height:44px;text-align:left;padding:8px 14px}
+.exam .opt.sel{border-color:var(--ink);background:var(--sunk);font-weight:600}
+.exam .xq>p{font-size:17px;font-weight:500;margin:0 0 8px}
+.exam .xen{margin:-8px 0 14px 0}
+.xtext{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0 0 14px;font-size:17px;line-height:1.65;background:var(--bg)}
+.xtext h3{margin:0 0 6px;font-size:18px}
+.xres .big{font-size:30px;font-weight:700;margin:0}
+.xres.pass .big{color:var(--ok)}.xres.fail .big{color:var(--bad)}
