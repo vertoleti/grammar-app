@@ -62,6 +62,7 @@ ${done ? `<div class="fb"><p class="verdict ${st.ans === q.a ? 'ok' : 'bad'}">${
     $('main').innerHTML = `<section class="xcard cz"><div class="xdone"><p class="big">${pct}%</p><p>${st.right} of ${st.round.length} right.</p>
 <div class="seg segctl" id="sz" role="group" aria-label="Round size" style="justify-content:center;margin:12px 0">${[10, 20].map(n => `<button data-n="${n}" aria-pressed="${st.size === n}">${n} sentences</button>`).join('')}</div>
 <div class="row" style="justify-content:center"><button class="btn go" data-act="again">New round</button><a class="btn" href="../vocabulary/">Flashcards</a></div></div></section>`;
+    if (window.GRSession) GRSession.offer(document.querySelector('.cz'));
   }
   $('main').addEventListener('click', e => {
     const b = e.target.closest('[data-act],[data-n]'); if (!b) return;

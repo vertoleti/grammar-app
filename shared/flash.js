@@ -176,9 +176,11 @@ ${opts.bare ? '' : `<nav class="fc-nav" aria-label="Flashcards">${NAV.map(([k, n
   function viewStudy() {
     if (!S.cur) {
       const q = queue(S.scope);
+      if (!S.scope && C) LS.set((DE ? 'de-' : 'gr-') + 'done-cards', C.dkey());
       frame('study', '', `<div class="fc-studytop"><a class="fc-x" href="#decks" aria-label="Close">✕</a><span></span></div>
 <div class="fc-empty"><p class="fc-big">${S.done ? 'Well done!' : 'Nothing due'}</p><p class="fc-sub">${S.done ? `You studied ${S.done} card${S.done > 1 ? 's' : ''}.` : ''} ${isFinite(q.nextDue) ? `The next card is due in ${fmt(q.nextDue - Date.now())}.` : ''}</p>
-<div class="fc-row">${inSession() ? `<a class="fc-go" href="${homeHref()}">Back to today’s session</a>` : '<a class="fc-go" href="#decks">Back to decks</a>'}<button class="fc-btn" data-act="more">Learn 10 more</button></div></div>`, { bare: true });
+<div class="fc-row"><a class="fc-btn" href="#decks">Back to decks</a><button class="fc-btn" data-act="more">Learn 10 more</button></div></div>`, { bare: true });
+      if (window.GRSession) GRSession.offer(document.querySelector('.fc-empty'));
       return;
     }
     const [id, d] = S.cur.split('|'), c = byId[id], s = srs[S.cur], now = Date.now(), q = S.q;

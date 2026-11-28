@@ -88,16 +88,10 @@ ${dr.ans !== null ? `<p class="note" lang="${L}">${esc(t)} — <span lang="en">$
     if (st.resume) { const r = st.resume; st.resume = null; st.playing = true; r(); return; }
     step();
   }
-  async function mic(btn, s) {
+  function mic(btn, s) {
     const target = btn.dataset.t, row = btn.closest('li'), span = row && row.querySelector('.sent');
-    btn.textContent = '…'; btn.disabled = true;
-    try {
-      const heard = await S.listen(L), r = S.score(target, heard);
-      if (span) { span.classList.remove('hid'); span.removeAttribute('data-act'); span.innerHTML = r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}">${esc(m.w)}</span>`).join(' '); }
-      btn.textContent = r.pct >= 80 ? '✓' : '🎤'; btn.title = `${r.pct}% recognised. Heard: ${r.heard}`;
-      if (C) C.record(ID, 'speaking', r.pct >= 80, 'say:' + target.slice(0, 60));
-    } catch (e) { btn.textContent = '🎤'; alert(e.message); }
-    btn.disabled = false;
+    if (span) { span.classList.remove('hid'); span.removeAttribute('data-act'); if (span.textContent.includes('·')) span.textContent = target; }
+    S.practice(btn, target, L, span, ok => { if (C) C.record(ID, 'speaking', ok, 'say:' + target.slice(0, 60)); }, row && row.querySelector('div'));
   }
 
   function cur() { const m = location.hash.match(/^#s=(.+)$/); return m && D.find(s => s.id === m[1]); }

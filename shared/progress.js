@@ -205,3 +205,32 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     });
   } catch (e) {}
 })();
+
+/* Today's session, step to step: the home page stores the plan; a page that finishes a step calls
+   GRSession.offer(element) to show "Next: …" right there. Only active when you came from the session. */
+window.GRSession = (function () {
+  const get = (k, d) => { try { const v = sessionStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+  const lget = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+  const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  const active = () => { try { return sessionStorage.getItem('gr-session') === '1'; } catch (e) { return false; } };
+  const isDone = s => (s.k || []).some(k => lget(k) === today());
+  const here = h => { try { return new URL(h, location.href).pathname === location.pathname; } catch (e) { return false; } };
+  function next() {
+    const p = get('gr-session-plan', null); if (!p) return null;
+    const i = p.steps.findIndex(s => here(s.h)), order = p.steps.slice(i + 1).concat(p.steps.slice(0, Math.max(0, i)));   // go forward, then wrap round
+    const left = order.filter(s => !isDone(s) && !here(s.h));
+    return { step: left[0] || null, home: p.home, left: left.length, total: p.steps.length };
+  }
+  function offer(el) {
+    if (!el || !active()) return;
+    const n = next(); if (!n) return;
+    const old = el.querySelector('.sessnext'); if (old) old.remove();
+    const d = document.createElement('div'); d.className = 'sessnext';
+    const esc = x => String(x).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    d.innerHTML = n.step
+      ? `<p><b>Step done ✓</b> ${n.total - n.left} of ${n.total} in today’s session</p><a class="sessgo" href="${esc(n.step.h)}">Next: ${esc(n.step.t)} →</a><a class="sesshome" href="${esc(n.home)}">Back to Today</a>`
+      : `<p><b>Today’s session is complete ✓</b> Well done!</p><a class="sessgo" href="${esc(n.home)}">Back to Today</a>`;
+    el.insertBefore(d, el.firstChild);
+  }
+  return { active, offer, next };
+})();

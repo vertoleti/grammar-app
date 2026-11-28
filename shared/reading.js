@@ -66,7 +66,7 @@ ${series()}<section class="xcard"><h2>${TX.lib} <small>graded A1 to C1, with que
 <article class="xcard reader" lang="${L}"><p class="meta"><span>${t.lv || ''}${t.mine ? (t.lv ? ' · ' : '') + 'my text' : ''}</span><span>${WORDS(paras.map(x => x[0]).join(' '))} words</span></p>
 <h2 class="rtitle">${esc(t.title)}</h2>${t.en ? `<p class="note" lang="en">${esc(t.en)}</p>` : ''}
 <div class="rtools" lang="en">${S.tts ? `<button class="btn" data-act="play">${st.playing ? 'Stop' : '▶ Listen'}</button>` : ''}${hasTr ? `<button class="btn" data-act="tr" aria-pressed="${st.tr}">${st.tr ? 'Hide translation' : 'Translation'}</button>` : ''}${S.tts ? `<button class="btn" data-act="dict" aria-pressed="${!!st.dict}">${st.dict ? 'Stop dictation' : '✎ Dictation'}</button>` : ''}<button class="btn" data-act="speak" aria-pressed="${st.speak}">${st.speak ? 'Stop speaking practice' : '🎤 Speaking practice'}</button>${t.mine ? '<button class="btn" data-act="del">Delete</button>' : ''}</div>
-${st.speak ? `<p class="note" lang="en">${S.rec ? 'Tap 🎤 after a sentence, then read it aloud. Words the phone didn’t recognise turn red.' : 'Speech recognition isn’t available in this browser. On iPhone use Safari with Siri & Dictation switched on; on a computer use Chrome or Edge.'}</p>` : ''}
+${st.speak ? `<p class="note" lang="en">${S.mode() === 'check' ? 'Tap 🎤 after a sentence, then read it aloud. Words that weren’t recognised turn red.' : S.mode() === 'record' ? 'Tap 🎤, read the sentence aloud, then tap ■. Listen to yourself and to the model, and decide if it sounded right.' : 'Speaking practice needs a microphone.'}</p>` : ''}
 ${st.dict ? dictView(paras) : `<div class="rtext">${body}</div>`}
 <p class="note" lang="en">Tap any word to look it up or add it to your flashcards.</p></article>
 ${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' : 'Вопросы · Questions'}${d[t.id] !== undefined ? ` <small>last time ${d[t.id]}%</small>` : ''}</h2><ol class="qs">${q.map((x, i) => `<li><p lang="${L}">${esc(x.q)}</p><div class="opts">${x.o.map((o, k) => `<button class="opt" data-act="ans" data-q="${i}" data-k="${k}" lang="${L}">${esc(o)}</button>`).join('')}</div></li>`).join('')}</ol><p id="qres" class="note"></p></section>` : ''}`;
@@ -81,6 +81,7 @@ ${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen ·
     if (n === t.q.length) {
       const pct = Math.round(Object.values(st.answers).filter(Boolean).length / n * 100);
       const d = done(); d[t.id] = pct; LS.set(P + 'read-done', d); if (C) LS.set(P + 'done-read', C.dkey());
+      setTimeout(() => window.GRSession && GRSession.offer($('qres').parentNode), 0);
       $('qres').innerHTML = `<b>${pct}%</b> right. ${pct === 100 ? 'Well understood.' : 'Re-read the paragraph with the answer, or turn on the translation.'}`;
     }
   }
@@ -95,17 +96,10 @@ ${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen ·
     };
     step();
   }
-  async function mic(btn) {
+  function mic(btn) {
     const s = document.querySelector(`.sent[data-s="${btn.dataset.s}"]`); if (!s) return;
     const target = s.dataset.t || s.textContent; s.dataset.t = target;
-    btn.textContent = '…'; btn.disabled = true;
-    try {
-      const heard = await S.listen(L), r = S.score(target, heard);
-      s.innerHTML = r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}">${esc(m.w)}</span>`).join(' ');
-      btn.textContent = r.pct >= 80 ? '✓' : '🎤'; btn.title = `${r.pct}% recognised. Heard: ${r.heard}`;
-      if (C) C.record(ID, 'speaking', r.pct >= 80, 'say:' + target.slice(0, 60));
-    } catch (e) { btn.textContent = '🎤'; alert(e.message); }
-    btn.disabled = false;
+    S.practice(btn, target, L, s, ok => { if (C) C.record(ID, 'speaking', ok, 'say:' + target.slice(0, 60)); });
   }
 
   // ---------- dictation: listen to each sentence and type it ----------
@@ -140,6 +134,7 @@ ${r ? `<p class="dres">${r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}"
     else if (a === 'dskip' || a === 'dnext') { if (a === 'dskip') d.res.push(0); d.i++; d.check = null; d.typed = ''; if (d.i >= ss.length && C) LS.set(P + 'done-dict', C.dkey()); }
     else if (a === 'dagain') st.dict = { i: 0, res: [] };
     reader(t);
+    if (st.dict && st.dict.i >= ss.length && window.GRSession) GRSession.offer(document.querySelector('.dict-box'));
     const ta = $('dtype'); if (ta && !st.dict.check) { ta.focus({ preventScroll: true }); if (a === 'dnext' || a === 'dagain' || a === 'dskip') S.say(ss[st.dict.i], L); }
   }
 

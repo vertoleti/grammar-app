@@ -76,12 +76,12 @@
     const done = k => LS.get(H.read + 'done-' + k, '') === today;
     const dueN = GRAM.reduce((a, L) => a + C.dueReviews(L.id).length, 0);
     const steps = [];
-    if (v.started) steps.push({ title: v.due ? `Review ${v.due} flashcard${v.due > 1 ? 's' : ''}` : 'Flashcards', why: v.due ? 'Due today' : 'Nothing due right now', href: VOC.href + '#study', done: v.due === 0 });
-    else steps.push({ title: 'Learn your first words', why: 'A few new flashcards', href: VOC.href + '#study', done: (log.c || 0) > 0 });
-    steps.push({ title: 'Daily mix', why: dueN ? `${dueN} mistake${dueN > 1 ? 's' : ''} to review, then weak topics` : 'Your weakest grammar, about 10 minutes', href: 'mix/', done: done(H.code === 'de' ? 'de-mix' : 'mix') });
-    if (CLOZE) steps.push({ title: 'Words in context', why: '10 sentences with your words', href: CLOZE.href, done: done(CLOZE.id) });
+    if (v.started) steps.push({ title: v.due ? `Review ${v.due} flashcard${v.due > 1 ? 's' : ''}` : 'Flashcards', why: v.due ? 'Due today' : 'Nothing due right now', href: VOC.href + '#study', done: v.due === 0 || done('cards'), keys: [H.read + 'done-cards'] });
+    else steps.push({ title: 'Learn your first words', why: 'A few new flashcards', href: VOC.href + '#study', done: (log.c || 0) > 0 || done('cards'), keys: [H.read + 'done-cards'] });
+    steps.push({ title: 'Daily mix', why: dueN ? `${dueN} mistake${dueN > 1 ? 's' : ''} to review, then weak topics` : 'Your weakest grammar, about 10 minutes', href: 'mix/', done: done(H.code === 'de' ? 'de-mix' : 'mix'), keys: [H.read + 'done-' + (H.code === 'de' ? 'de-mix' : 'mix')] });
+    if (CLOZE) steps.push({ title: 'Words in context', why: '10 sentences with your words', href: CLOZE.href, done: done(CLOZE.id), keys: [H.read + 'done-' + CLOZE.id] });
     const nt = nextText();
-    if (READ) steps.push({ title: nt ? `Read: ${nt.title}` : 'Read a text', why: nt ? `${nt.lv} · questions, or try the dictation` : 'Any text you like', href: nt ? `${READ.href}#t=${nt.id}` : READ.href, done: done('read') || done('dict'), lang: nt ? H.code : '' });
+    if (READ) steps.push({ title: nt ? `Read: ${nt.title}` : 'Read a text', why: nt ? `${nt.lv} · questions, or try the dictation` : 'Any text you like', href: nt ? `${READ.href}#t=${nt.id}` : READ.href, done: done('read') || done('dict'), keys: [H.read + 'done-read', H.read + 'done-dict'], lang: nt ? H.code : '' });
     return steps;
   }
   const sugItem = x => `<li><a class="nx" href="${x.href}" style="--c:${x.c}" ${x.level ? `data-level="${x.level}"` : ''} ${x.setLevel ? `data-set="${x.setLevel}"` : ''}><span class="nd">${esc(x.n)}</span><span class="nt"><b ${x.lang ? `lang="${x.lang}"` : ''}>${esc(x.title)}</b><small>${esc(x.why)}</small></span><span class="chev" aria-hidden="true"></span></a></li>`;
@@ -125,6 +125,7 @@
     const lastHref = last && last.href.split('#')[0];
     const rest = sg.filter(x => !lastHref || x.href.split('#')[0] !== lastHref).slice(0, 3);
     const ss = session(v), nDone = ss.filter(x => x.done).length, nxt = ss.find(x => !x.done);
+    try { sessionStorage.setItem('gr-session-plan', JSON.stringify({ home: new URL('#today', location.href).href, steps: ss.map(x => ({ t: x.title, h: new URL(withS(x.href), location.href).href, k: x.keys })) })); } catch (e) {}
     if (!nxt) try { sessionStorage.removeItem('gr-session'); } catch (e) {}
     if (window.GR_BADGE) window.GR_BADGE(ss.length - nDone);
     $('sess').innerHTML = `<div class="shead"><b>Today’s session</b><span>${nDone} of ${ss.length} done</span></div>

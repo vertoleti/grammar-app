@@ -140,7 +140,7 @@ ${h.length ? `<section class="xcard"><h2>History</h2><ul class="tl">${h.slice(0,
     const el = $('clock'); if (!el || !ex || ex.done) return;
     const left = Math.max(0, ex.end - Date.now()), m = Math.floor(left / 60000), s = Math.floor(left / 1000) % 60;
     el.textContent = `${m}:${String(s).padStart(2, '0')}`; el.classList.toggle('low', left < 5 * 60000);
-    if (!left) { alert('Time is up. Your answers are handed in.'); submit(true); }
+    if (!left) { submit(true); const r = document.querySelector('.xres .note'); if (r) r.insertAdjacentHTML('beforebegin', '<p class="note"><b>Time is up.</b> Your answers were handed in.</p>'); }
   }
 
   document.addEventListener('click', e => {
