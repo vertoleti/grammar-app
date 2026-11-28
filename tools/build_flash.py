@@ -49,6 +49,7 @@ for P in PAGES:
 <script>window.VOC_CFG={json.dumps(P['cfg'], ensure_ascii=False)}</script>
 <script src="{R}shared/levels.js"></script>
 <script src="{R}shared/coach.js"></script>
+<script src="{R}shared/lookup.js"></script>
 <script src="{R}shared/flash.js"></script>
 <script>try{{if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('{R}sw.js',{{scope:'{R}'}}).catch(()=>{{}}))}}catch(e){{}}</script>
 </body>

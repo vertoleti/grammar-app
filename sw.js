@@ -1,5 +1,5 @@
 // Offline support for Грамматика. Bump VERSION whenever files change.
-const VERSION = 'grammar-v33';
+const VERSION = 'grammar-v34';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'verbs-of-motion/', 'verbs-of-motion/index.html',
@@ -18,7 +18,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k))))
+    caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('grammar-') && k !== VERSION).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

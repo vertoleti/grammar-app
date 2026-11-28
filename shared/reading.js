@@ -32,7 +32,7 @@ ${nx ? `<a class="btn go snext" href="#t=${encodeURIComponent(nx.id)}">${nDone ?
   function library() {
     const d = done(), my = mine();
     const lv = ['all', ...ORDER.filter(l => T.some(t => t.lv === l))];
-    const item = t => `<li><a href="#t=${encodeURIComponent(t.id)}"><b lang="${L}">${esc(t.title)}</b><span>${t.lv ? t.lv + ' · ' : ''}${WORDS((t.p || []).map(x => Array.isArray(x) ? x[0] : x).join(' '))} words${t.en ? ' · ' + esc(t.en) : ''}</span></a>${d[t.id] !== undefined ? `<span class="up">✓ ${d[t.id]}%</span>` : ''}</li>`;
+    const item = t => `<li><a href="#t=${encodeURIComponent(t.id)}"><b lang="${L}">${esc(t.title)}</b><span>${t.lv ? t.lv + ' · ' : ''}${WORDS((t.p || []).map(x => Array.isArray(x) ? x[0] : x).join(' '))} words${t.en ? ' · ' + esc(t.en) : ''}</span></a>${d[t.id] !== undefined ? `<span class="up">${typeof d[t.id] === 'number' ? '✓ ' + d[t.id] + '%' : '✓ read'}</span>` : ''}</li>`;
     $('main').innerHTML = `<section class="xcard"><h2>${TX.mine}</h2>
 ${my.length ? `<ul class="tl">${my.map(item).join('')}</ul>` : '<p class="note">Paste an article, a chapter or a song text. Tap any word in it to look it up and add it to your flashcards.</p>'}
 <details class="refbox" id="imp" style="margin-top:12px"><summary>Import a text</summary><div class="refin">
@@ -66,10 +66,11 @@ ${series()}<section class="xcard"><h2>${TX.lib} <small>graded A1 to C1, with que
 <article class="xcard reader" lang="${L}"><p class="meta"><span>${t.lv || ''}${t.mine ? (t.lv ? ' · ' : '') + 'my text' : ''}</span><span>${WORDS(paras.map(x => x[0]).join(' '))} words</span></p>
 <h2 class="rtitle">${esc(t.title)}</h2>${t.en ? `<p class="note" lang="en">${esc(t.en)}</p>` : ''}
 <div class="rtools" lang="en">${S.tts ? `<button class="btn" data-act="play">${st.playing ? 'Stop' : '▶ Listen'}</button>` : ''}${hasTr ? `<button class="btn" data-act="tr" aria-pressed="${st.tr}">${st.tr ? 'Hide translation' : 'Translation'}</button>` : ''}${S.tts ? `<button class="btn" data-act="dict" aria-pressed="${!!st.dict}">${st.dict ? 'Stop dictation' : '✎ Dictation'}</button>` : ''}<button class="btn" data-act="speak" aria-pressed="${st.speak}">${st.speak ? 'Stop speaking practice' : '🎤 Speaking practice'}</button>${t.mine ? '<button class="btn" data-act="del">Delete</button>' : ''}</div>
-${st.speak ? `<p class="note" lang="en">${S.mode() === 'check' ? 'Tap 🎤 after a sentence, then read it aloud. Words that weren’t recognised turn red.' : S.mode() === 'record' ? 'Tap 🎤, read the sentence aloud, then tap ■. Listen to yourself and to the model, and decide if it sounded right.' : 'Speaking practice needs a microphone.'}</p>` : ''}
+${st.speak ? `<p class="note" lang="en">${S.mode() === 'check' ? 'Tap 🎤 after a sentence, then read it aloud. Words that weren’t recognised turn red.' : S.mode() === 'whisper' ? 'Tap 🎤, read the sentence aloud, then tap ■. The app checks your words on the phone; words it didn’t recognise turn red.' : S.mode() === 'record' ? 'Tap 🎤, read the sentence aloud, then tap ■. Compare yourself with the model, or let the app check your words.' : 'Speaking practice needs a microphone.'}</p>` : ''}
 ${st.dict ? dictView(paras) : `<div class="rtext">${body}</div>`}
-<p class="note" lang="en">Tap any word to look it up or add it to your flashcards.</p></article>
-${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' : 'Вопросы · Questions'}${d[t.id] !== undefined ? ` <small>last time ${d[t.id]}%</small>` : ''}</h2><ol class="qs">${q.map((x, i) => `<li><p lang="${L}">${esc(x.q)}</p><div class="opts">${x.o.map((o, k) => `<button class="opt" data-act="ans" data-q="${i}" data-k="${k}" lang="${L}">${esc(o)}</button>`).join('')}</div></li>`).join('')}</ol><p id="qres" class="note"></p></section>` : ''}`;
+<p class="note" lang="en">Tap a word to look it up, or select several words to save a phrase.</p>
+<div class="rdone" lang="en">${d[t.id] !== undefined ? `<p><b>✓ Completed</b>${typeof d[t.id] === 'number' ? ` · ${d[t.id]}% of the questions right` : ''}</p><button class="btn" data-act="unread">Mark as not read</button>` : `<button class="btn go" data-act="markread">✓ Mark as read</button>`}${nextIn(t) ? `<a class="btn" href="#t=${encodeURIComponent(nextIn(t).id)}">Next: ${esc(nextIn(t).title)} →</a>` : ''}</div></article>
+${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' : 'Вопросы · Questions'}${typeof d[t.id] === 'number' ? ` <small>last time ${d[t.id]}%</small>` : ''}</h2><ol class="qs">${q.map((x, i) => `<li><p lang="${L}">${esc(x.q)}</p><div class="opts">${x.o.map((o, k) => `<button class="opt" data-act="ans" data-q="${i}" data-k="${k}" lang="${L}">${esc(o)}</button>`).join('')}</div></li>`).join('')}</ol><p id="qres" class="note"></p></section>` : ''}`;
     st.answers = {};
   }
   function answer(t, i, k) {
@@ -84,6 +85,19 @@ ${q.length && !st.dict ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen ·
       setTimeout(() => window.GRSession && GRSession.offer($('qres').parentNode), 0);
       $('qres').innerHTML = `<b>${pct}%</b> right. ${pct === 100 ? 'Well understood.' : 'Re-read the paragraph with the answer, or turn on the translation.'}`;
     }
+  }
+  // the next text: the next episode of a story, otherwise the next unread text at the same level
+  function nextIn(t) {
+    const d = done();
+    if (t.series) return T.find(x => x.series === t.series && x.ep === t.ep + 1) || null;
+    return T.find(x => !x.series && x.id !== t.id && x.lv === t.lv && d[x.id] === undefined) || null;
+  }
+  function markRead(t, on) {
+    const d = done();
+    if (on) { if (d[t.id] === undefined) d[t.id] = 'read'; if (C) LS.set(P + 'done-read', C.dkey()); }
+    else delete d[t.id];
+    LS.set(P + 'read-done', d); reader(t);
+    if (on && window.GRSession) GRSession.offer(document.querySelector('.rdone'));
   }
   function play(t) {
     if (st.playing) { S.stop(); st.playing = false; document.querySelectorAll('.sent.now').forEach(x => x.classList.remove('now')); render(); return; }
@@ -152,6 +166,8 @@ ${r ? `<p class="dres">${r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}"
     else if (a === 'play') play(t);
     else if (a === 'tr') { st.tr = !st.tr; reader(t); }
     else if (a === 'speak') { st.speak = !st.speak; reader(t); }
+    else if (a === 'markread') markRead(t, true);
+    else if (a === 'unread') markRead(t, false);
     else if (a === 'dict') { st.dict = st.dict ? null : { i: 0, res: [] }; st.speak = false; reader(t); if (st.dict) { const ss = allSents((t.p || []).map(x => Array.isArray(x) ? x : [x, ''])); S.say(ss[0], L); } }
     else if (/^d(play|slow|check|skip|next|again)$/.test(a)) dictAct(t, a);
     else if (a === 'mic') mic(b);

@@ -82,7 +82,7 @@
 <ul class="dlist" id="dlist"><li class="empty">Loading…</li></ul>
 <button class="btn" id="dmore" hidden></button></section>
 <section class="xcard"><details class="refbox" id="dadd"><summary>Add your own word</summary><div class="refin"><form id="daf" class="impf">
-<input id="dat" required placeholder="${DE ? 'Wort, e.g. die Stadtbibliothek' : 'Слово, e.g. библиотека'}" lang="${L}" aria-label="Word"><input id="dam" required placeholder="Meaning in English" aria-label="Meaning">
+<input id="dat" required placeholder="${DE ? 'Wort, e.g. die Stadtbibliothek' : 'Слово, e.g. библиотека'}" lang="${L}" aria-label="Word"><input id="dam" required placeholder="Meaning in English" aria-label="Meaning"><div class="lk-sugs" id="dsug"></div>
 <div class="row"><button class="btn go">Add to dictionary and flashcards</button></div></form></div></details>
 <p class="note">Learning happens in the <a href="${FLASH}">flashcards</a>. Words you add while reading also appear here.</p></section>`;
     let t = null;
@@ -106,6 +106,8 @@
       st.open = st.open === w.dataset.id ? null : w.dataset.id; view();
       if (st.open && !forms) loadForms().then(view);
     });
+    let st2 = null;
+    $('dat').addEventListener('input', () => { clearTimeout(st2); const w = $('dat').value.trim(); if (w.length < 2 || !window.GRMeanings) { $('dsug').innerHTML = ''; return; } st2 = setTimeout(() => { if (!$('dsug')) return; $('dsug').innerHTML = '<span class="lk-wait">Finding meanings…</span>'; GRMeanings.suggest(L, w, []).then(r => { if ($('dat') && $('dsug') && $('dat').value.trim() === w) GRMeanings.chips($('dsug'), r, m => { $('dam').value = m; }, lemma => { $('dat').value = lemma; $('dat').dispatchEvent(new Event('input')); }); }); }, 600); });
     $('daf').addEventListener('submit', e => {
       e.preventDefault(); const w = $('dat').value.trim(), m = $('dam').value.trim(); if (!w || !m || !window.GRLookup) return;
       window.GRLookup.addCustom(L, w, m, '');

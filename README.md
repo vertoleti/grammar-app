@@ -85,6 +85,13 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `vocabulary/` and `de/vocabulary/` are a small Anki-style app, built by `python3 tools/build_flash.py` (behaviour in `shared/flash.js`, styles in `shared/flash.css`). Tabs: **Decks** (today's new / learning / review counts, Study now, one deck per level plus My cards), **Browse** (search, filter by state, card detail with full word table and your history, reset or delete), **Stats** (today, streak, retention over 30 days, cards by state, reviews per day, forecast, progress by level) and **Settings** (direction, new cards per day, levels, theme, read aloud, add a card, import from and export to Anki). Studying: tap the card to turn it, double-tap or swipe right for Good, swipe left for Again, ↶ to undo; keys Space, 1–4 and U. Progress keys are unchanged (`voc-srs`, `de-voc-srs`, …), plus a review log (`voc-log`, `de-voc-log`) for the statistics.
 
+## Words, phrases and speaking (v34)
+
+- **Tap a word** in any text or exercise: deck matches, then **suggested meanings** (your decks, Wiktionary definitions, a translation service; tap one to use it). For an inflected form Wiktionary offers the base form (“dative plural of Haus · Add “Haus” instead”). The same suggestions appear when you add a word in the dictionary or the flashcards. Results are cached in `gr-meaning-cache`.
+- **Phrases**: select several words (long-press and drag), or tap a word and use *Next word ›* / *‹ Word before* / *Make a phrase* (then tap the last word). *Add phrase to my flashcards* makes a full card (kind phrase, the sentence as example, the page as source) in *My cards*, exportable to Anki.
+- **Speech recognition everywhere**: where the browser has none (the iPhone home-screen app), speaking practice records you; tap *Let the app check my words* once to download a Whisper model (about 40 MB, `onnx-community/whisper-tiny`, run on the phone with transformers.js loaded from jsDelivr). After that every recording is checked word by word, offline too. Without it you can still compare yourself with the model voice.
+- **Mark a text as read** at the end of any text; it counts for Today's session and leads on to the next text or episode.
+
 ## Learning tools added in v30
 
 - **Word tables**: `python3 tools/build_forms.py` (needs `pip install pymorphy3 pymorphy3-dicts-ru`) writes full tables for the dictionary: Russian cases, adjective forms, conjugation, past and imperative from the OpenCorpora dictionary; German noun cases (with n-declension), Präsens/Präteritum/Perfekt (separable and reflexive verbs) and comparison, generated from the deck's principal parts.

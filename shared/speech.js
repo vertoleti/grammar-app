@@ -1,5 +1,44 @@
 /* Speech for reading and phrasebook pages: read aloud (speechSynthesis) and a speaking check (speech recognition).
    Recognition exists in Chrome, Edge and Safari (iPhone: needs Siri & Dictation switched on). */
+/* On-device speech recognition with Whisper (transformers.js from jsDelivr), for browsers without built-in
+   recognition such as the iPhone home-screen app. The model (about 40 MB) downloads once and is then cached. */
+window.GRASR = (function () {
+  const LIB = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/transformers.min.js';   // loaded only when you turn word checking on
+  const MODELS = () => (localStorage.getItem('gr-asr-model') === '"base"' ? ['onnx-community/whisper-base', 'Xenova/whisper-base'] : ['onnx-community/whisper-tiny', 'Xenova/whisper-tiny']);
+  const supported = typeof WebAssembly === 'object' && !!(window.OfflineAudioContext || window.webkitOfflineAudioContext) && !!(window.AudioContext || window.webkitAudioContext);
+  let pipeP = null;
+  const state = () => { try { return JSON.parse(localStorage.getItem('gr-asr') || 'null'); } catch (e) { return null; } };
+  function load(onProgress) {
+    if (pipeP) return pipeP;
+    pipeP = (async () => {
+      const T = await import(LIB);
+      T.env.allowLocalModels = false;
+      const files = {};
+      const progress_callback = x => { if (x.status === 'progress' && x.total) { files[x.file] = [x.loaded, x.total]; const v = Object.values(files), a = v.reduce((s, f) => s + f[0], 0), t = v.reduce((s, f) => s + f[1], 0); if (onProgress) onProgress(Math.round(a / t * 100)); } };
+      let last;
+      for (const m of MODELS()) { try { const p = await T.pipeline('automatic-speech-recognition', m, { progress_callback }); localStorage.setItem('gr-asr', '"on"'); return p; } catch (e) { last = e; } }
+      throw last || new Error('The speech model could not be loaded.');
+    })();
+    pipeP.catch(() => { pipeP = null; });
+    return pipeP;
+  }
+  async function pcm(blob) {
+    const AC = window.AudioContext || window.webkitAudioContext, OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    const ctx = new AC(), data = await blob.arrayBuffer();
+    const buf = await new Promise((res, rej) => ctx.decodeAudioData(data, res, rej));
+    try { ctx.close(); } catch (e) {}
+    const off = new OAC(1, Math.max(1, Math.ceil(buf.duration * 16000)), 16000), src = off.createBufferSource();
+    src.buffer = buf; src.connect(off.destination); src.start();
+    return (await off.startRendering()).getChannelData(0);
+  }
+  async function transcribe(blob, lang, onProgress) {
+    const p = await load(onProgress), audio = await pcm(blob);
+    const out = await p(audio, { language: lang === 'de' ? 'german' : 'russian', task: 'transcribe' });
+    return String((out && out.text) || '').trim();
+  }
+  return { supported, state, load, transcribe, on: () => state() === 'on' };
+})();
+
 window.GRSpeech = (function () {
   const LANG = { ru: 'ru-RU', de: 'de-DE' };
   const TTS = 'speechSynthesis' in window;
@@ -50,12 +89,12 @@ window.GRSpeech = (function () {
   const anc = btn => btn._anchor || btn;
   function note(btn, text) {
     const a = anc(btn); let n = a.nextElementSibling; if (!n || !n.classList.contains('sp-msg')) { n = document.createElement('span'); n.className = 'sp-msg'; a.after(n); }
-    n.textContent = text; clearTimeout(n._t); n._t = setTimeout(() => n.remove(), 6000);
+    n.textContent = text; clearTimeout(n._t); if (!/…|\d%$/.test(text)) n._t = setTimeout(() => n.remove(), 8000);
   }
-  function panel(btn, url, target, lang, onScore) {
+  function panel(btn, url, target, lang, onScore, o = {}) {
     const a = anc(btn); let p = a.nextElementSibling; while (p && p.classList.contains('sp-msg')) p = p.nextElementSibling;
     if (!p || !p.classList.contains('sp-rec')) { p = document.createElement('span'); p.className = 'sp-rec'; a.after(p); }
-    p.innerHTML = `<button type="button" data-sp="me">▶ You</button>${TTS ? '<button type="button" data-sp="model">▶ Model</button>' : ''}<button type="button" data-sp="ok">✓ Sounded right</button><button type="button" data-sp="again">↺ Again</button>`;
+    p.innerHTML = `<button type="button" data-sp="me">▶ You</button>${TTS ? '<button type="button" data-sp="model">▶ Model</button>' : ''}${o.auto ? '' : '<button type="button" data-sp="ok">✓ Sounded right</button>'}<button type="button" data-sp="again">↺ Again</button>${!o.auto && window.GRASR.supported && !window.GRASR.on() ? '<button type="button" data-sp="dl" class="sp-dl">Let the app check my words · one-time download, about 40 MB</button>' : ''}`;
     const audio = new Audio(url);
     p.onclick = e => {
       const b = e.target.closest('[data-sp]'); if (!b) return; e.stopPropagation();
@@ -63,10 +102,26 @@ window.GRSpeech = (function () {
       if (k === 'me') { stop(); audio.currentTime = 0; audio.play().catch(() => {}); }
       else if (k === 'model') { audio.pause(); say(target, lang, false); }
       else if (k === 'ok') { onScore(true, 100); p.innerHTML = '<span class="sp-ok">✓</span>'; btn.textContent = '✓'; }
-      else if (k === 'again') { onScore(false, 0); p.remove(); practice(btn, target, lang, null, onScore); }
+      else if (k === 'again') { if (!o.auto) onScore(false, 0); p.remove(); practice(btn, target, lang, o.host || null, onScore); }
+      else if (k === 'dl') { p.remove(); check(btn, o.blob, url, target, lang, onScore, o.host); }
     };
   }
-  async function record(btn, target, lang, onScore) {
+  async function check(btn, blob, url, target, lang, onScore, host) {
+    note(btn, window.GRASR.on() ? 'Checking…' : 'Downloading the speech model…');
+    try {
+      const heard = await window.GRASR.transcribe(blob, lang, pct => note(btn, `Downloading the speech model… ${pct}%`));
+      const r = score(target, [heard]);
+      if (host) host.innerHTML = r.marks.map(m => `<span class="${m.ok ? 'wok' : 'wno'}">${esc(m.w)}</span>`).join(' ');
+      btn.textContent = r.pct >= 80 ? '✓' : '🎤';
+      note(btn, `${r.pct}% recognised${heard ? ` · heard: “${heard}”` : ''}`);
+      onScore(r.pct >= 80, r.pct);
+      panel(btn, url, target, lang, onScore, { auto: true, host });
+    } catch (e) {
+      note(btn, 'Couldn’t check it right now (are you offline?). Compare it yourself.');
+      panel(btn, url, target, lang, onScore, { blob, host });
+    }
+  }
+  async function record(btn, target, lang, onScore, host) {
     if (active) { active.stop(); return; }
     let stream;
     try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
@@ -79,7 +134,9 @@ window.GRSpeech = (function () {
       btn.textContent = '🎤'; btn.classList.remove('sp-on');
       { const m = anc(btn).nextElementSibling; if (m && m.classList.contains('sp-msg')) m.remove(); }
       if (!chunks.length) { note(btn, 'Nothing was recorded. Tap 🎤, read the sentence, then tap ■.'); return; }
-      panel(btn, URL.createObjectURL(new Blob(chunks, { type: rec.mimeType || mime || 'audio/mp4' })), target, lang, onScore);
+      const blob = new Blob(chunks, { type: rec.mimeType || mime || 'audio/mp4' }), url = URL.createObjectURL(blob);
+      if (window.GRASR.supported && window.GRASR.on()) check(btn, blob, url, target, lang, onScore, host);
+      else panel(btn, url, target, lang, onScore, { blob, host });
     };
     const timer = setTimeout(() => { if (rec.state === 'recording') rec.stop(); }, 20000);
     active = { stop: () => { if (rec.state === 'recording') rec.stop(); } };
@@ -91,7 +148,7 @@ window.GRSpeech = (function () {
     if (anchor) btn._anchor = anchor;
     if (useRecord || !REC) {
       if (!CAN_RECORD) { note(btn, 'Speaking practice needs a microphone. On iPhone open the app in Safari.'); return; }
-      return record(btn, target, lang, onScore);
+      return record(btn, target, lang, onScore, host);
     }
     btn.textContent = '…'; btn.disabled = true;
     try {
@@ -107,7 +164,7 @@ window.GRSpeech = (function () {
     }
     btn.disabled = false;
   }
-  const mode = () => (REC && !useRecord) ? 'check' : CAN_RECORD ? 'record' : 'none';
+  const mode = () => (REC && !useRecord) ? 'check' : CAN_RECORD ? (window.GRASR.supported && window.GRASR.on() ? 'whisper' : 'record') : 'none';
 
   return { tts: TTS, rec: !!REC, say, stop, listen, score, practice, mode };
 })();

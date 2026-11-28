@@ -180,3 +180,12 @@ li.open .dm{white-space:normal}
 .sp-ok{color:var(--ok);font-weight:700}
 .mic.sp-on{background:var(--bad);color:#fff;border-color:var(--bad)}
 .rtext .sp-rec{font-family:Inter,sans-serif}
+
+/* meaning suggestions outside the popover */
+.lk-sugs{display:flex;flex-wrap:wrap;gap:6px}
+.lk-chip{display:inline-flex;flex-direction:column;align-items:flex-start;text-align:left;font:500 14px Inter,sans-serif;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;max-width:100%}
+.lk-chip small{font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.lk-none,.lk-wait{font-size:13px;color:var(--mute)}.lk-lemma{margin:0 0 6px;font-size:13px;color:var(--mute);width:100%}.lk-lemma button{font:600 13px Inter,sans-serif;border:0;background:none;color:var(--blue);padding:0;cursor:pointer;text-decoration:underline}
+.rdone{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.rdone p{margin:0;flex-basis:100%;font-size:14px;color:var(--mute)}.rdone p b{color:var(--ok)}
+.rdone .sessnext{flex-basis:100%}

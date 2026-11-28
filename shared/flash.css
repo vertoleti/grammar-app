@@ -151,3 +151,7 @@ p.fc-x{font-size:13px;color:var(--mute);margin:6px 0 0;width:auto;height:auto;ba
 .fc-form{display:grid;gap:8px}
 .fc-check{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:15px}.fc-check input{width:20px;height:20px;accent-color:var(--ink)}
 code{font-size:13px;background:var(--sunk);padding:1px 5px;border-radius:5px}
+.lk-sugs{display:flex;flex-wrap:wrap;gap:6px}
+.lk-chip{display:inline-flex;flex-direction:column;align-items:flex-start;text-align:left;font:500 14px Inter,sans-serif;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;max-width:100%}
+.lk-chip small{font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.lk-none,.lk-wait{font-size:13px;color:var(--mute)}.lk-lemma{margin:0 0 6px;font-size:13px;color:var(--mute);width:100%}.lk-lemma button{font:600 13px Inter,sans-serif;border:0;background:none;color:var(--blue);padding:0;cursor:pointer;text-decoration:underline}
