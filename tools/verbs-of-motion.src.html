@@ -73,7 +73,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-o
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:10px}
 .opt{border-radius:14px;font-size:20px;min-height:54px;text-align:center;position:relative}
 .opt kbd{position:absolute;left:10px;top:6px;font:12px "PT Sans",sans-serif;color:var(--mute)}
-.opt:disabled{cursor:default;opacity:.55}
+.opt:disabled,.opt[aria-disabled=true]{cursor:default;opacity:.55}.opt[aria-disabled=true]{cursor:pointer}
 .opt.ok{opacity:1;border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:700}
 .opt.bad{opacity:1;border-color:var(--bad);background:var(--badbg);color:var(--bad);text-decoration:line-through}
 .exp{margin-top:16px;background:var(--bg);border-radius:14px;padding:4px 18px 14px}
@@ -124,8 +124,8 @@ html{-webkit-tap-highlight-color:transparent;scroll-behavior:smooth}
 .track .cnt{position:absolute;left:12px;top:28px;font-size:14px;opacity:.92;font-variant-numeric:tabular-nums}
 button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
 .seg button,.btn,.opt{transition:background-color .2s,border-color .2s,color .2s,transform .12s,opacity .2s}
-.opt:active:not(:disabled),.btn:active,.seg button:active{transform:scale(.97)}
-@media(hover:hover){.seg button:hover,.opt:hover:not(:disabled){border-color:var(--blue)}}
+.opt:active:not(:disabled):not([aria-disabled=true]),.btn:active,.seg button:active{transform:scale(.97)}
+@media(hover:hover){.seg button:hover,.opt:hover:not(:disabled):not([aria-disabled=true]){border-color:var(--blue)}}
 #modes{display:inline-flex;flex-wrap:nowrap;gap:0;align-self:flex-start;background:var(--soft);border-radius:999px;padding:4px}
 #modes button{border:0;background:transparent;min-height:40px}
 #modes button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
@@ -641,14 +641,14 @@ function qHTML(){
   let gap='?',gc='';
   if(st.step===3){gap=ans;gc=(r.f?'ok':'bad')+(fx==='f'?' pop':'')}
   const fxc=(picked,ok)=>picked?(ok?' pop':' shake'):'';
-  const vBtns=st.vo.map((v,k)=>{let c='';if(st.step>1){if(v===q.v)c='ok';else if(v===st.pickV)c='bad'}c+=fx==='v'&&v===st.pickV?fxc(1,r.v):'';return`<button class="opt ${c}" data-act="v" data-k="${v}" ${st.step>1?'disabled':''}><kbd>${k+1}</kbd>${v}</button>`}).join('');
+  const vBtns=st.vo.map((v,k)=>{let c='';if(st.step>1){if(v===q.v)c='ok';else if(v===st.pickV)c='bad'}c+=fx==='v'&&v===st.pickV?fxc(1,r.v):'';return`<button class="opt ${c}" data-act="v" data-k="${v}" ${st.step>1?'aria-disabled="true"':''}><kbd>${k+1}</kbd>${v}</button>`}).join('');
   const quick=st.step>1?`<p class="quick ${r.v?'ok':'bad'} ${fx==='v'?'in':''}">${r.v?'Right: '+q.v+'.':`Not quite: it’s ${q.v}.`}</p>`:'';
   const tense=q.tn==='p'?'past tense':vb.k==='p'?'future (perfective)':'present';
   let s2='',exp='';
   if(st.step>=2){
     let body;
     if(st.mode==='pick'){
-      body=`<div class="opts">${st.fo.map((f,k)=>{let c='';if(st.step===3){if(f===ans)c='ok';else if(f===st.pickF)c='bad'}c+=fx==='f'&&f===st.pickF?fxc(1,r.f):'';return`<button class="opt ${c}" data-act="f" data-k="${f}" ${st.step===3?'disabled':''}><kbd>${k+1}</kbd>${f}</button>`}).join('')}</div>`;
+      body=`<div class="opts">${st.fo.map((f,k)=>{let c='';if(st.step===3){if(f===ans)c='ok';else if(f===st.pickF)c='bad'}c+=fx==='f'&&f===st.pickF?fxc(1,r.f):'';return`<button class="opt ${c}" data-act="f" data-k="${f}" ${st.step===3?'aria-disabled="true"':''}><kbd>${k+1}</kbd>${f}</button>`}).join('')}</div>`;
     }else if(st.step===2){
       body=`<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
     }else body=`<p class="quick ${r.f?'ok':'bad'}">${r.f?'Right: ':`You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
@@ -673,7 +673,7 @@ function qHTML(){
 <section><h3>Why not the others</h3><ul class="nots">${q.d.map(d=>whyNot(q.v,d)).join('')}</ul></section>
 <section class="formgrid"><div><h3>Which form and why</h3><p>Needed: the ${PERS[q.tn][q.i]} of the ${tense}.</p>${aspectNote}<h3 style="margin-top:12px">How ${q.v} conjugates</h3><p>${FAM[vb.root]}</p>${vy}</div>
 <table class="par" aria-label="Full conjugation">${forms.map((f,k)=>`<tr class="${k===q.i?'hit':f===st.pickF?'miss':''}"><td>${pr[k]}</td><td>${f}</td></tr>`).join('')}</table></section></div></div></div>
-<div class="dock"><span>${st.i+1} / ${st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next':'See results'}</button></div>`;
+<div class="dock">${(+localStorage.getItem('gr-taphint')||0)<=5?'<span class="taphint">Or tap your answer again</span>':`<span>${st.i+1} / ${st.round.length}</span>`}<button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next':'See results'}</button></div>`;
   }
   const up=st.topic==='smart'&&st.frontier&&st.frontier.up&&st.i===0&&st.step===(ONE()?2:1)?`<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>`:'';
   const enLine=st.step===3||LS.get('gr-en','after')==='always'||st.enFor===st.i?`<p class="en">${q.en}</p>`:`<button class="entog" type="button" data-act="en">Show translation</button>`;
@@ -722,7 +722,7 @@ function pickV(v){
 function pickF(f){
   const q=cur(),ans=info(q.v)[q.tn][q.i];
   if(ONE()){const ok=norm(f)===norm(ans);st.res[st.i]={v:ok,f:ok};st.pickV=q.v}else st.res[st.i].f=norm(f)===norm(ans);
-  st.pickF=f;st.step=3;st.fx='f';
+  st.pickF=f;st.step=3;st.fx='f';st.doneAt=Date.now();try{localStorage.setItem('gr-taphint',(+localStorage.getItem('gr-taphint')||0)+1)}catch(e){}
   track(q,st.res[st.i].v&&st.res[st.i].f);
   render();
   const nx=$('next');if(nx)nx.focus({preventScroll:true});
@@ -749,6 +749,7 @@ function setTopic(t){st.topic=t;LS.set('vom-prefs',{topic:st.topic,mode:st.mode}
 
 $('card').addEventListener('click',e=>{
   const b=e.target.closest('button[data-act]');if(!b||b.disabled)return;
+  if(b.getAttribute('aria-disabled')==='true'){if(st.step===3&&Date.now()-(st.doneAt||0)>400)next();return}
   const a=b.dataset.act;
   if(a==='v'&&st.step===1)pickV(b.dataset.k);
   else if(a==='f'&&st.step===2)pickF(b.dataset.k);

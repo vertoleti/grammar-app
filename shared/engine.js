@@ -158,14 +158,14 @@ function qHTML() {
     const o = q.o1[k]; let c = '';
     if (st.step > 1) { if (k === q.a1) c = 'ok'; else if (k === st.p1) c = 'bad'; }
     if (fx === 'a' && k === st.p1) c += fxc(r.a);
-    return `<button class="opt ${c}" data-act="a" data-k="${k}" ${st.step > 1 ? 'disabled' : ''}><kbd>${n + 1}</kbd>${optHTML(o)}</button>`;
+    return `<button class="opt ${c}" data-act="a" data-k="${k}" ${st.step > 1 ? 'aria-disabled="true"' : ''}><kbd>${n + 1}</kbd>${optHTML(o)}</button>`;
   }).join('');
   const quick = st.step > 1 ? `<p class="quick ${r.a ? 'ok' : 'bad'} ${fx === 'a' ? 'in' : ''}">${r.a ? 'Right: ' + optLabel(right1) + '.' : `Not quite: it’s ${optLabel(right1)}.`}</p>` : '';
   let s2 = '', exp = '';
   if (st.step >= 2) {
     let body;
     if (st.mode !== 'type') {
-      body = `<div class="opts">${st.fo.map((f, k) => { let c = ''; if (st.step === 3) { if (f === ans) c = 'ok'; else if (f === st.pickF) c = 'bad'; } if (fx === 'f' && f === st.pickF) c += fxc(r.f); return `<button class="opt ${c}" data-act="f" data-k="${esc(f)}" ${st.step === 3 ? 'disabled' : ''}><kbd>${k + 1}</kbd>${f}</button>`; }).join('')}</div>`;
+      body = `<div class="opts">${st.fo.map((f, k) => { let c = ''; if (st.step === 3) { if (f === ans) c = 'ok'; else if (f === st.pickF) c = 'bad'; } if (fx === 'f' && f === st.pickF) c += fxc(r.f); return `<button class="opt ${c}" data-act="f" data-k="${esc(f)}" ${st.step === 3 ? 'aria-disabled="true"' : ''}><kbd>${k + 1}</kbd>${f}</button>`; }).join('')}</div>`;
     } else if (st.step === 2) {
       body = `<form class="type" id="tf"><input id="ans" lang="${LG.code}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${LG.typeHint}" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">${LG.typeNote}</p>`;
     } else body = `<p class="quick ${r.f ? 'ok' : 'bad'}">${r.f ? 'Right: ' : `You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
@@ -189,7 +189,7 @@ function qHTML() {
 <section><h3>In this sentence</h3><p>${q.cue ? `Signal: <mark>${q.cue}</mark>. ` : ''}${q.en}${q.note ? ` ${q.note}` : ''}</p></section>
 <section><h3>Why ${optLabel(right1)}</h3><p>${right1.label && opt(right1).name !== right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
 <section class="formgrid"><div><h3>The form</h3><p>${q.fnote || ''}</p></div>${table}</section></div></div></div>
-<div class="dock"><span>${st.i + 1} / ${st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next' : 'See results'}</button></div>`;
+<div class="dock">${(+localStorage.getItem('gr-taphint')||0) <= 5 ? '<span class="taphint">Or tap your answer again</span>' : `<span>${st.i + 1} / ${st.round.length}</span>`}<button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next' : 'See results'}</button></div>`;
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
   const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
@@ -248,7 +248,7 @@ function pickF(f) {
     const ok = norm(f) === norm(full(q)) || (GP(q) && st.mode === 'type' && norm(f) === norm(q.forms[q.a2]));
     st.p1 = q.a1; st.res[st.i] = { a: ok, f: ok };
   } else st.res[st.i].f = norm(f) === norm(q.forms[q.a2]);
-  st.pickF = f; st.step = 3; st.fx = 'f';
+  st.pickF = f; st.step = 3; st.fx = 'f'; st.doneAt = Date.now(); try { localStorage.setItem('gr-taphint', (+localStorage.getItem('gr-taphint') || 0) + 1); } catch (e) {}
   track(q, st.res[st.i].a && st.res[st.i].f);
   render();
   const nx = $('next'); if (nx) nx.focus({ preventScroll: true });
@@ -278,6 +278,8 @@ function setTopic(t) { st.topic = t; savePrefs(); newRound(); const b = $('t-' +
 
 $('card').addEventListener('click', e => {
   const b = e.target.closest('button[data-act]'); if (!b || b.disabled) return;
+  // tapping an answer again once it is marked moves on (instead of the Next button)
+  if (b.getAttribute('aria-disabled') === 'true') { if (st.step === 3 && Date.now() - (st.doneAt || 0) > 400) next(); return; }
   const a = b.dataset.act;
   if (a === 'a' && st.step === 1) pickA(+b.dataset.k);
   else if (a === 'f' && st.step === 2) pickF(b.dataset.k);

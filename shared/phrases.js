@@ -61,13 +61,13 @@ ${st.role ? `<p class="note" lang="en">Your lines (${ME}) are hidden. Play the d
     const pick = q.kind === 'pick';
     const prompt = pick ? `<p class="dq" lang="en">${esc(e)}</p><p class="note" lang="en">Which phrase says this?</p>`
       : `<p class="dq"><button class="btn" data-act="say" data-t="${esc(t)}">▶ Listen</button> <button class="btn" data-act="slow" data-t="${esc(t)}">Slowly</button></p><p class="note" lang="en">What does it mean?</p>`;
-    const opt = i => { const [ot, oe] = s.phrases[i], cls = dr.ans === null ? '' : i === q.i ? ' ok' : i === dr.ans ? ' bad' : ''; return `<button class="opt${cls}" data-act="opt" data-k="${i}" ${dr.ans !== null ? 'disabled' : ''} lang="${pick ? L : 'en'}">${esc(pick ? ot : oe)}</button>`; };
+    const opt = i => { const [ot, oe] = s.phrases[i], cls = dr.ans === null ? '' : i === q.i ? ' ok' : i === dr.ans ? ' bad' : ''; return `<button class="opt${cls}" data-act="opt" data-k="${i}" ${dr.ans !== null ? 'aria-disabled="true"' : ''} lang="${pick ? L : 'en'}">${esc(pick ? ot : oe)}</button>`; };
     return `<p class="meta" lang="en"><span>${dr.n + 1} / ${dr.qs.length}</span><span>${dr.right} right</span></p>${prompt}<div class="opts">${dr.opts.map(opt).join('')}</div>
 ${dr.ans !== null ? `<p class="note" lang="${L}">${esc(t)} — <span lang="en">${esc(e)}</span></p><div class="row"><button class="btn go" data-act="next">Next</button></div>` : ''}`;
   }
   function choose(s, k) {
     const dr = st.drill; if (dr.ans !== null) return;
-    const q = dr.qs[dr.n], ok = k === q.i; dr.ans = k; if (ok) dr.right++;
+    const q = dr.qs[dr.n], ok = k === q.i; dr.ans = k; dr.at = Date.now(); if (ok) dr.right++;
     if (C) C.record(ID, 'phrases', ok, s.id + ':' + s.phrases[q.i][0].slice(0, 50));
     if (q.kind === 'pick' && S.tts) S.say(s.phrases[q.i][0], L);
     situation(s);
@@ -115,7 +115,7 @@ ${dr.ans !== null ? `<p class="note" lang="${L}">${esc(t)} — <span lang="en">$
     else if (a === 'play') playDialog(s);
     else if (a === 'reveal') { e.stopImmediatePropagation(); const [, t] = s.dialog[+b.dataset.i]; b.textContent = t; b.classList.remove('hid'); b.removeAttribute('data-act'); }
     else if (a === 'card') { const [t, en] = s.phrases[+b.dataset.i]; if (window.GRLookup) { window.GRLookup.addCustom(L, t, en, s.title); b.textContent = '✓'; } }
-    else if (a === 'opt') choose(s, +b.dataset.k);
+    else if (a === 'opt') { if (st.drill.ans === null) choose(s, +b.dataset.k); else if (Date.now() - st.drill.at > 400) { st.drill.n++; st.drill.ans = null; st.drill.opts = null; situation(s); } }
     else if (a === 'next') { st.drill.n++; st.drill.ans = null; st.drill.opts = null; situation(s); }
     else if (a === 'again') { st.drill = null; situation(s); }
   });

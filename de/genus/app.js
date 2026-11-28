@@ -31,7 +31,7 @@
   }
   function answer(g) {
     const x = st.set[st.i]; if (!x || st.picked) return;
-    const ok = g === x.g; st.picked = g; st.res[st.i] = ok;
+    const ok = g === x.g; st.picked = g; st.at = Date.now(); st.res[st.i] = ok;
     box[x.w] = ok ? Math.min(5, (box[x.w] || 0) + 1) : 0; LS.set('de-genus-box', box);
     if (C) C.record(ID, 'genus', ok, x.w);
     render();
@@ -51,7 +51,7 @@
       return;
     }
     const x = st.set[st.i], r = st.res[st.i], rule = ruleFor(x);
-    const btn = g => { let c = ''; if (st.picked) { if (g === x.g) c = 'ok'; else if (g === st.picked) c = 'bad'; } return `<button class="art ${c}" data-g="${g}" ${st.picked ? 'disabled' : ''}>${ART[g]}</button>`; };
+    const btn = g => { let c = ''; if (st.picked) { if (g === x.g) c = 'ok'; else if (g === st.picked) c = 'bad'; } return `<button class="art ${c}" data-g="${g}" ${st.picked ? 'aria-disabled="true"' : ''}>${ART[g]}</button>`; };
     card.innerHTML = `<div class="meta"><span>${st.picked ? x.lv : ''}</span><span>${st.i + 1} / ${n}</span></div>
 <p class="gnoun" lang="de">${x.w}</p><p class="en">${x.en}</p>
 <div class="arts">${btn('m')}${btn('f')}${btn('n')}</div>
@@ -59,7 +59,7 @@ ${st.picked ? `<div class="fb"><p class="verdict ${r ? 'ok' : 'bad'}">${r ? '✓
     if (!r && st.picked && matchMedia('(hover:hover)').matches) { const b = $('next'); if (b) b.focus(); }
   }
   document.addEventListener('click', e => {
-    const a = e.target.closest('.art'); if (a && $('card').contains(a)) return answer(a.dataset.g);
+    const a = e.target.closest('.art'); if (a && $('card').contains(a)) return st.picked ? (Date.now() - st.at > 400 && next()) : answer(a.dataset.g);
     const b = e.target.closest('[data-act]'); if (!b) return;
     if (b.dataset.act === 'next') next(); else if (b.dataset.act === 'new') newRound();
   });

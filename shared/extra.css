@@ -35,7 +35,7 @@ ol.plan li::before{content:counter(p);flex:none;width:24px;height:24px;border-ra
 #card .gnoun+.en{margin-bottom:22px}
 .arts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:480px;margin:0 auto}
 .art{font:600 20px Inter,sans-serif;min-height:60px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-@media(hover:hover){.art:not(:disabled):hover{border-color:var(--ink)}}
+@media(hover:hover){.art:not(:disabled):not([aria-disabled=true]):hover{border-color:var(--ink)}}
 .art.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok)}
 .art.bad{border-color:var(--bad);background:var(--badbg);color:var(--bad);text-decoration:line-through}
 .art:disabled{cursor:default}
