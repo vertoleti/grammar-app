@@ -262,7 +262,7 @@ function next() {
     st.busy = false; st.i++; enterQ(); st.fx = 'card'; render();
     const top = card.getBoundingClientRect().top;
     if (top < 0 || top > innerHeight * 0.5) window.scrollBy({ top: top - 16, behavior: RM.matches ? 'auto' : 'smooth' });
-    if (st.i >= st.round.length) { const a = $('again'); if (a) a.focus({ preventScroll: true }); }
+    if (st.i >= st.round.length) { const a = $('again'); if (a) a.focus({ preventScroll: true }); if (COACH) LS.set((LG.code === 'de' ? 'de-' : 'gr-') + 'done-' + EX.id, COACH.dkey()); }
   };
   if (RM.matches) go(); else { card.classList.remove('enter'); card.classList.add('leave'); setTimeout(go, 170); }
 }

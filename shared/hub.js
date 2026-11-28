@@ -67,6 +67,21 @@
     if (!v.started) out.push({ c: VOC.c, n: VOC.n, title: 'Start the flashcards', why: `${VOC.total} words, spaced repetition`, href: VOC.href });
     return out;
   }
+  // ---------- today's session: a short fixed plan, ticked off from what you did today ----------
+  const withS = h => h.includes('#') ? h.replace('#', '?s=1#') : h + '?s=1';
+  function session(v) {
+    const today = C.dkey(), log = LS.get('gr-log', {})[today] || {};
+    const done = k => LS.get(H.read + 'done-' + k, '') === today;
+    const dueN = GRAM.reduce((a, L) => a + C.dueReviews(L.id).length, 0);
+    const steps = [];
+    if (v.started) steps.push({ title: v.due ? `Review ${v.due} flashcard${v.due > 1 ? 's' : ''}` : 'Flashcards', why: v.due ? 'Due today' : 'Nothing due right now', href: VOC.href, done: v.due === 0 });
+    else steps.push({ title: 'Learn your first words', why: 'A few new flashcards', href: VOC.href, done: (log.c || 0) > 0 });
+    steps.push({ title: 'Daily mix', why: dueN ? `${dueN} mistake${dueN > 1 ? 's' : ''} to review, then weak topics` : 'Your weakest grammar, about 10 minutes', href: 'mix/', done: done(H.code === 'de' ? 'de-mix' : 'mix') });
+    if (CLOZE) steps.push({ title: 'Words in context', why: '10 sentences with your words', href: CLOZE.href, done: done(CLOZE.id) });
+    const nt = nextText();
+    if (READ) steps.push({ title: nt ? `Read: ${nt.title}` : 'Read a text', why: nt ? `${nt.lv} · questions, or try the dictation` : 'Any text you like', href: nt ? `${READ.href}#t=${nt.id}` : READ.href, done: done('read') || done('dict'), lang: nt ? H.code : '' });
+    return steps;
+  }
   const sugItem = x => `<li><a class="nx" href="${x.href}" style="--c:${x.c}" ${x.level ? `data-level="${x.level}"` : ''} ${x.setLevel ? `data-set="${x.setLevel}"` : ''}><span class="nd">${esc(x.n)}</span><span class="nt"><b ${x.lang ? `lang="${x.lang}"` : ''}>${esc(x.title)}</b><small>${esc(x.why)}</small></span><span class="chev" aria-hidden="true"></span></a></li>`;
 
   // ---------- cards ----------
@@ -103,12 +118,19 @@
     const last = lastPlace(), sg = suggestions(est);
     let hero;
     if (last) hero = `<a class="hero" href="${last.href}" style="--c:${last.c}"><span class="eyebrow">Continue where you left off · ${ago(last.at)}</span><span class="hrow"><span class="nd big">${esc(last.n)}</span><span class="ht"><b lang="${H.code}">${esc(last.title)}</b><small>${esc(last.en)}${last.detail ? ` · <span lang="${H.code}">${esc(last.detail)}</span>` : ''}</small></span></span>${last.note ? `<span class="hnote">${esc(last.note)}</span>` : ''}<span class="hbtn">Continue</span></a>`;
-    else { const f = sg.shift(); hero = `<a class="hero" href="${f.href}" style="--c:${f.c}"><span class="eyebrow">${est.answers ? 'Suggested next' : 'Start here'}</span><span class="hrow"><span class="nd big">${esc(f.n)}</span><span class="ht"><b>${esc(f.title)}</b><small>${esc(f.why)}</small></span></span><span class="hbtn">Start</span></a>`; }
-    $('hero').innerHTML = hero;
+    else hero = '';   // nothing to continue yet: today's session comes first
+    $('hero').innerHTML = hero; $('hero').hidden = !hero;
     const lastHref = last && last.href.split('#')[0];
     const rest = sg.filter(x => !lastHref || x.href.split('#')[0] !== lastHref).slice(0, 3);
+    const ss = session(v), nDone = ss.filter(x => x.done).length, nxt = ss.find(x => !x.done);
+    if (!nxt) try { sessionStorage.removeItem('gr-session'); } catch (e) {}
+    $('sess').innerHTML = `<div class="shead"><b>Today’s session</b><span>${nDone} of ${ss.length} done</span></div>
+<ol class="steps">${ss.map((x, i) => `<li><a class="step${x.done ? ' done' : ''}${x === nxt ? ' now' : ''}" href="${withS(x.href)}"><span class="ck">${x.done ? '✓' : i + 1}</span><span class="nt"><b ${x.lang ? `lang="${x.lang}"` : ''}>${esc(x.title)}</b><small>${esc(x.why)}</small></span><span class="chev" aria-hidden="true"></span></a></li>`).join('')}</ol>
+${nxt ? `<a class="hbtn" href="${withS(nxt.href)}">${nDone ? 'Next step' : 'Start the session'}</a>` : '<p class="sdone">All done for today. Well done!</p>'}`;
     $('goal').innerHTML = `<div class="gtxt"><b>${td.met ? 'Daily goal reached' : `${td.done} of ${td.goal}`}</b><span>${td.met ? `${td.done} answers today` : 'answers today'}</span></div><div class="gbar"><i style="width:${Math.round(fr * 100)}%"></i></div><div class="gstreak"><b>${sk.now}</b><span>day streak</span></div>`;
-    $('sugs').innerHTML = rest.map(sugItem).join('');
+    const inSession = h => ['mix/', VOC.href, READ && READ.href, CLOZE && CLOZE.href].includes(h.split('#')[0]);
+    const extra = rest.filter(x => !inSession(x.href)).slice(0, 2);
+    $('sugs').innerHTML = extra.map(sugItem).join(''); $('sugh').hidden = !extra.length;
 
     // Grammar
     const lvl = level();

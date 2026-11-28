@@ -193,3 +193,15 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') save(); });
   } catch (e) {}
 })();
+
+/* Today's session: pages opened from the session list (?s=1) point their "All exercises" link back to it. */
+(function () {
+  try {
+    if (/[?&]s=1\b/.test(location.search)) sessionStorage.setItem('gr-session', '1');
+    if (sessionStorage.getItem('gr-session') !== '1') return;
+    addEventListener('DOMContentLoaded', () => {
+      const a = document.querySelector('.home a'); if (!a) return;
+      a.textContent = '← Today’s session'; a.href = a.getAttribute('href').split('#')[0] + '#today';
+    });
+  } catch (e) {}
+})();

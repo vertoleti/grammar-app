@@ -76,8 +76,9 @@ def page(L):
 <main class="hw">
 <section class="tab" id="t-today" aria-label="Today">
   <div id="hero"></div>
+  <div class="sess" id="sess"></div>
   <div class="goal" id="goal"></div>
-  <h3 class="sh">Up next</h3>
+  <h3 class="sh" id="sugh">Also suggested</h3>
   <ul class="nxl" id="sugs"></ul>
 </section>
 

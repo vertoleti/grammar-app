@@ -46,7 +46,7 @@ main.hw{padding-top:18px}
 .ht b{display:block;font-size:21px;font-weight:650;line-height:1.2}
 .ht small{display:block;font-size:14px;color:var(--mute);margin-top:2px}
 .hnote{font-size:14px;color:var(--mute)}
-.hbtn{justify-self:start;background:var(--ink);color:var(--surface);font-weight:600;font-size:16px;border-radius:12px;padding:12px 22px;min-height:46px;display:flex;align-items:center;gap:8px}
+.hbtn{text-decoration:none;justify-self:start;background:var(--ink);color:var(--surface);font-weight:600;font-size:16px;border-radius:12px;padding:12px 22px;min-height:46px;display:flex;align-items:center;gap:8px}
 .hbtn::after{content:"→"}
 .hero.slim .ht b{font-size:18px}
 @media(hover:hover){.hero:hover{border-color:var(--ink)}}
@@ -123,3 +123,21 @@ a.fold{display:flex;align-items:center;min-height:52px;text-decoration:none;colo
 a.fold small{font-weight:400;color:var(--mute);font-size:13px}
 a.fold::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--mute);border-top:2px solid var(--mute);transform:rotate(45deg)}
 @media(prefers-reduced-motion:reduce){.gbar i{transition:none}}
+
+/* today's session */
+.hero+.sess,#hero:not([hidden])+.sess{margin-top:12px}
+.sess{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:12px}
+.shead{display:flex;justify-content:space-between;align-items:baseline}.shead b{font-size:17px}.shead span{font-size:13px;color:var(--mute)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.step{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;padding:8px 6px;border-radius:10px;min-height:52px}
+.step .ck{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--mute)}
+.step.done .ck{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.done .nt b{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--line)}
+.step.now .ck{border-color:var(--ink);color:var(--ink)}
+@media(hover:hover){.step:hover{background:var(--sunk)}}
+.sess .hbtn{justify-self:stretch;justify-content:center}
+.sdone{margin:0;font-weight:600;color:var(--ok)}
+.goal{margin-top:10px}
+
+.steps li{border:0!important;padding:0!important;margin:0!important}
+#hero[hidden]{display:none}
