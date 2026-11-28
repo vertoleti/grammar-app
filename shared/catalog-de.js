@@ -14,34 +14,34 @@ window.CATALOG = [
     "k": "praes",
     "name": "Präsens · Present tense",
     "lv": "A1",
-    "count": 12
+    "count": 22
    },
    {
     "k": "modal",
     "name": "Modalverben · Modal verbs",
     "lv": "A2",
-    "count": 10
+    "count": 19
    },
    {
     "k": "perf",
     "name": "Perfekt: haben oder sein · Perfect: haben or sein",
     "lv": "A2",
-    "count": 11
+    "count": 20
    },
    {
     "k": "part",
     "name": "Partizip II · Past participle",
     "lv": "A2",
-    "count": 12
+    "count": 20
    },
    {
     "k": "praet",
     "name": "Präteritum · Simple past",
     "lv": "B1",
-    "count": 13
+    "count": 21
    }
   ],
-  "total": 58
+  "total": 102
  },
  {
   "id": "de-cases",
@@ -57,28 +57,28 @@ window.CATALOG = [
     "k": "akk",
     "name": "Nominativ oder Akkusativ · Subject or object",
     "lv": "A1",
-    "count": 13
+    "count": 19
    },
    {
     "k": "dat",
     "name": "Dativ · Dative",
     "lv": "A2",
-    "count": 12
+    "count": 17
    },
    {
     "k": "pron",
     "name": "Pronomen · Pronouns",
     "lv": "A2",
-    "count": 11
+    "count": 18
    },
    {
     "k": "gen",
     "name": "Genitiv · Genitive",
     "lv": "B1",
-    "count": 10
+    "count": 21
    }
   ],
-  "total": 46
+  "total": 75
  },
  {
   "id": "de-prep",
@@ -94,28 +94,28 @@ window.CATALOG = [
     "k": "akkp",
     "name": "Mit Akkusativ · durch, für, gegen, ohne, um",
     "lv": "A2",
-    "count": 7
+    "count": 17
    },
    {
     "k": "datp",
     "name": "Mit Dativ · aus, bei, mit, nach, seit, von, zu",
     "lv": "A2",
-    "count": 9
+    "count": 17
    },
    {
     "k": "wech",
     "name": "Wechselpräpositionen · Two-way prepositions",
     "lv": "B1",
-    "count": 15
+    "count": 21
    },
    {
     "k": "genp",
     "name": "Mit Genitiv · wegen, trotz, während, statt",
     "lv": "B2",
-    "count": 7
+    "count": 20
    }
   ],
-  "total": 38
+  "total": 75
  },
  {
   "id": "de-adj",
@@ -131,28 +131,28 @@ window.CATALOG = [
     "k": "weak",
     "name": "Nach der, die, das · After the definite article",
     "lv": "A2",
-    "count": 11
+    "count": 19
    },
    {
     "k": "mixed",
     "name": "Nach ein, kein, mein · After ein-words",
     "lv": "B1",
-    "count": 10
+    "count": 19
    },
    {
     "k": "strong",
     "name": "Ohne Artikel · No article",
     "lv": "B1",
-    "count": 11
+    "count": 19
    },
    {
     "k": "quant",
     "name": "Nach viele, alle, etwas · After quantifiers",
     "lv": "B2",
-    "count": 8
+    "count": 20
    }
   ],
-  "total": 40
+  "total": 77
  },
  {
   "id": "de-conn",
@@ -168,28 +168,28 @@ window.CATALOG = [
     "k": "cause",
     "name": "Grund und Folge · Cause and result",
     "lv": "A2",
-    "count": 6
+    "count": 20
    },
    {
     "k": "contrast",
     "name": "Gegensatz · Contrast",
     "lv": "B1",
-    "count": 6
+    "count": 20
    },
    {
     "k": "time",
     "name": "Zeit · Time",
     "lv": "B1",
-    "count": 8
+    "count": 19
    },
    {
     "k": "purpose",
     "name": "Zweck, dass, ob · Purpose and reported questions",
     "lv": "B1",
-    "count": 11
+    "count": 22
    }
   ],
-  "total": 31
+  "total": 81
  },
  {
   "id": "de-konj",
@@ -205,22 +205,22 @@ window.CATALOG = [
     "k": "k2",
     "name": "Konjunktiv II · Would, could, if",
     "lv": "B1",
-    "count": 14
+    "count": 22
    },
    {
     "k": "pas",
     "name": "Passiv · Passive",
     "lv": "B1",
-    "count": 12
+    "count": 23
    },
    {
     "k": "k2p",
     "name": "Konjunktiv II der Vergangenheit · Would have",
     "lv": "B2",
-    "count": 7
+    "count": 22
    }
   ],
-  "total": 33
+  "total": 67
  },
  {
   "id": "de-adv",
@@ -236,34 +236,34 @@ window.CATALOG = [
     "k": "vp",
     "name": "Verben mit Präposition · Verbs with prepositions",
     "lv": "B2",
-    "count": 13
+    "count": 25
    },
    {
     "k": "nd",
     "name": "n-Deklination · Weak masculine nouns",
     "lv": "B2",
-    "count": 10
+    "count": 24
    },
    {
     "k": "gf",
     "name": "Formelle Präpositionen · Formal prepositions",
     "lv": "C1",
-    "count": 8
+    "count": 24
    },
    {
     "k": "k1",
     "name": "Konjunktiv I · Reported speech",
     "lv": "C1",
-    "count": 10
+    "count": 24
    },
    {
     "k": "pa",
     "name": "Partizipialattribute · Participles as adjectives",
     "lv": "C1",
-    "count": 9
+    "count": 23
    }
   ],
-  "total": 50
+  "total": 120
  },
  {
   "id": "de-sent",

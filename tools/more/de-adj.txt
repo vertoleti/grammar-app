@@ -1,0 +1,45 @@
+# weak (forms: -e;-en;-er;-es;-em; answer = the right form)
+weak|Die ___ Frau wohnt neben uns.|The young woman lives next to us.|jung||weak|junge;jungen;junger;junges;jungem|junge|adj_weak|Die|Feminine nominative after die: -e.
+weak|Ich wohne in dem ___ Haus.|I live in the white house.|weiß||weak|weiße;weißen;weißer;weißes;weißem|weißen|adj_weak|dem|After dem (dative): -en.
+weak|Das ___ Auto gehört meinem Bruder.|The red car belongs to my brother.|rot||weak|rote;roten;roter;rotes;rotem|rote|adj_weak|Das|Neuter nominative after das: -e.
+weak|Wir sprechen mit den ___ Leuten.|We're talking to the new people.|neu||weak|neue;neuen;neuer;neues;neuem|neuen|adj_weak|den|Plural after the article: always -en.
+weak|Kennst du die ___ Kinder?|Do you know the little children?|klein||weak|kleine;kleinen;kleiner;kleines;kleinem|kleinen|adj_weak|die|Plural after die: -en.
+weak|Der Preis des ___ Hotels ist hoch.|The price of the big hotel is high.|groß||weak|große;großen;großer;großes;großem|großen|adj_weak|des|Genitive after des: -en.
+weak|Ich nehme die ___ Jacke.|I'll take the blue jacket.|blau||weak|blaue;blauen;blauer;blaues;blauem|blaue|adj_weak|die|Feminine accusative after die: -e.
+weak|Dieser ___ Wein ist aus Österreich.|This dry wine is from Austria.|trocken||weak|trockene;trockenen;trockener;trockenes;trockenem|trockene|adj_weak|Dieser|Dieser, jeder, welcher work like der.
+weak|Mit welchem ___ Zug fährst du?|Which early train are you taking?|früh||weak|frühe;frühen;früher;frühes;frühem|frühen|adj_weak|welchem|
+# mixed
+mixed|Ich habe einen ___ Hund.|I have a small dog.|klein||mixed|kleine;kleinen;kleiner;kleines;kleinem|kleinen|adj_mixed|einen|Einen already shows the case, so the adjective takes -en.
+mixed|Sie wohnt in einer ___ Wohnung.|She lives in a modern flat.|modern||mixed|moderne;modernen;moderner;modernes;modernem|modernen|adj_mixed|einer|
+mixed|Das ist kein ___ Problem.|That's not a big problem.|groß||mixed|große;großen;großer;großes;großem|großes|adj_mixed|kein|Kein works like ein: neuter nominative -es.
+mixed|Mein ___ Bruder studiert in Wien.|My older brother studies in Vienna.|älter||mixed|ältere;älteren;älterer;älteres;älterem|älterer|adj_mixed|Mein|Mein shows no gender in the masculine nominative: the adjective does: -er.
+mixed|Wir haben ein ___ Wochenende verbracht.|We spent a lovely weekend.|schön||mixed|schöne;schönen;schöner;schönes;schönem|schönes|adj_mixed|ein|
+mixed|Er fährt mit seinem ___ Fahrrad zur Uni.|He cycles to uni on his new bike.|neu||mixed|neue;neuen;neuer;neues;neuem|neuen|adj_mixed|seinem|After seinem (dative): -en.
+mixed|Das ist eine ___ Idee!|That's a great idea!|toll||mixed|tolle;tollen;toller;tolles;tollem|tolle|adj_mixed|eine|Feminine after eine: -e.
+mixed|Ich suche meine ___ Schuhe.|I'm looking for my black shoes.|schwarz||mixed|schwarze;schwarzen;schwarzer;schwarzes;schwarzem|schwarzen|adj_mixed|meine|Plural after meine, keine: -en.
+mixed|Unser ___ Lehrer ist sehr streng.|Our new teacher is very strict.|neu||mixed|neue;neuen;neuer;neues;neuem|neuer|adj_mixed|Unser|
+mixed|Sie hat keine ___ Zeit.|She has no free time.|frei||mixed|freie;freien;freier;freies;freiem|freie|adj_mixed|keine|
+# strong
+strong|Ich esse gern ___ Brot.|I like eating fresh bread.|frisch||strong|frische;frischen;frischer;frisches;frischem|frisches|adj_strong|esse|No article: the adjective takes the ending of das: -es.
+strong|___ Milch ist gesund.|Cold milk is healthy.|kalt||strong|Kalte;Kalten;Kalter;Kaltes;Kaltem|Kalte|adj_strong|ist|Feminine without article, nominative: -e.
+strong|Wir trinken Tee mit ___ Zucker.|We drink tea with brown sugar.|braun||strong|braune;braunen;brauner;braunes;braunem|braunem|adj_strong|mit|Without an article after mit (dative masculine): -em, like dem.
+strong|Es gibt hier ___ Wasser.|There's clear water here.|klar||strong|klare;klaren;klarer;klares;klarem|klares|adj_strong|gibt|
+strong|Liebe Grüße und ___ Dank!|Best wishes and many thanks!|herzlich||strong|herzliche;herzlichen;herzlicher;herzliches;herzlichem|herzlichen|adj_strong|Dank|Herzlichen Dank: masculine accusative without article: -en.
+strong|Er trinkt nur ___ Wein.|He only drinks red wine.|rot||strong|rote;roten;roter;rotes;rotem|roten|adj_strong|trinkt|Masculine accusative without article: -en.
+strong|Wir suchen ___ Mitarbeiter.|We're looking for experienced staff.|erfahren||strong|erfahrene;erfahrenen;erfahrener;erfahrenes;erfahrenem|erfahrene|adj_strong|suchen|Plural without article, accusative: -e.
+strong|Bei ___ Wetter bleiben wir drinnen.|In bad weather we stay inside.|schlecht||strong|schlechte;schlechten;schlechter;schlechtes;schlechtem|schlechtem|adj_strong|Bei|
+# quant
+quant|Einige ___ Kollegen kommen später.|Some new colleagues are coming later.|neu||strong|neue;neuen;neuer;neues;neuem|neue|adj_quant|Einige|After einige, mehrere, viele, wenige the adjective takes strong endings: -e.
+quant|Mit vielen ___ Freunden haben wir gefeiert.|We celebrated with many good friends.|gut||strong|gute;guten;guter;gutes;gutem|guten|adj_quant|vielen|Dative plural: -en after vielen too.
+quant|Beide ___ Brüder sind Ärzte.|Both older brothers are doctors.|älter||weak|ältere;älteren;älterer;älteres;älterem|älteren|adj_quant|Beide|Beide works like the article die: weak ending -en.
+quant|Mehrere ___ Gäste haben abgesagt.|Several invited guests cancelled.|eingeladen||strong|eingeladene;eingeladenen;eingeladener;eingeladenes;eingeladenem|eingeladene|adj_quant|Mehrere|
+quant|Ich habe wenige ___ Bücher gelesen.|I've read few German books.|deutsch||strong|deutsche;deutschen;deutscher;deutsches;deutschem|deutsche|adj_quant|wenige|
+quant|Wir sprachen über alle ___ Fragen.|We talked about all the open questions.|offen||weak|offene;offenen;offener;offenes;offenem|offenen|adj_quant|alle|After alle, the adjective is weak: -en.
+quant|Sie hat etwas ___ gekocht.|She cooked something delicious.|lecker||strong|Leckere;Leckeren;Leckeres;Leckerem;lecker|Leckeres|adj_nom|etwas|After etwas, nichts, viel the adjective becomes a noun: etwas Leckeres.
+quant|Es gibt nichts ___.|There's nothing new.|neu||strong|Neue;Neuen;Neues;neues;Neuem|Neues|adj_nom|nichts|
+quant|Ich wünsche dir alles ___!|I wish you all the best!|gut||weak|Gute;Guten;Gutes;gute;Gutem|Gute|adj_nom|alles|After alles the noun-adjective is weak: alles Gute.
+quant|Wir haben viel ___ erlebt.|We experienced a lot of interesting things.|interessant||strong|Interessante;Interessanten;Interessantes;interessantes;Interessantem|Interessantes|adj_nom|viel|
+quant|Manche ___ Leute verstehen das nicht.|Some older people don't understand that.|alt||weak|alte;alten;alter;altes;altem|alten|adj_quant|Manche|Manche, alle, beide, solche: weak ending -en.
+quant|Das sind zwei ___ Beispiele.|These are two good examples.|gut||strong|gute;guten;guter;gutes;gutem|gute|adj_quant|zwei|Numbers have no ending, so the adjective is strong: -e.
+quant|Die Wohnung hat drei ___ Zimmer.|The flat has three bright rooms.|hell||strong|helle;hellen;heller;helles;hellem|helle|adj_quant|drei|
+quant|Mit wenigen ___ Worten erklärte er alles.|He explained everything in a few simple words.|einfach||strong|einfache;einfachen;einfacher;einfaches;einfachem|einfachen|adj_quant|wenigen|

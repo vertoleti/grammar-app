@@ -1,0 +1,51 @@
+# praes
+praes|Sie ___ Deutsch und Englisch.|She speaks German and English.|sprechen|reg;stem;irr|stem|sprecht;spricht;sprechen;sprichst|spricht|praes_stem|Sie|
+praes|Was ___ du heute Abend?|What are you eating tonight?|essen|reg;stem;irr|stem|esst;isst;essen;ist|isst|praes_stem|du|
+praes|Ihr ___ morgen nach Wien.|You're going to Vienna tomorrow.|fahren|reg;stem;irr|reg|fahrt;fährt;fahren;fährst|fahrt|praes_reg|Ihr|With ihr there is no vowel change: ihr fahrt.
+praes|Er ___ jeden Tag bis acht Uhr.|He sleeps until eight every day.|schlafen|reg;stem;irr|stem|schlaft;schläft;schlafen;schläfst|schläft|praes_stem|Er|
+praes|Wir ___ in einer kleinen Wohnung.|We live in a small flat.|wohnen|reg;stem;irr|reg|wohnen;wohnt;wohnst;wohne|wohnen|praes_reg|Wir|
+praes|___ du mir bitte das Salz?|Will you pass me the salt, please?|geben|reg;stem;irr|stem|Gibst;Gebst;Gibt;Geben|Gibst|praes_stem|du|
+praes|Mein Bruder ___ in Hamburg.|My brother works in Hamburg.|arbeiten|reg;stem;irr|reg|arbeitet;arbeit;arbeitest;arbeiten|arbeitet|praes_reg|Mein Bruder|Stems ending in -t add an -e-: er arbeitet.
+praes|Das Kind ___ schon sehr gut.|The child already knows a lot.|wissen|reg;stem;irr|irr|weiß;wisst;wissen;weißt|weiß|praes_irr|Das Kind|
+praes|Du ___ wirklich müde aus.|You really look tired.|aussehen|reg;stem;irr|stem|siehst;sehst;sieht;seht|siehst|praes_stem|Du|The prefix aus goes to the end: du siehst … aus.
+praes|___ ihr am Wochenende Zeit?|Do you have time at the weekend?|haben|reg;stem;irr|irr|Habt;Hat;Habst;Haben|Habt|praes_irr|ihr|
+# modal
+modal|Ich ___ morgen früh aufstehen, mein Zug fährt um sechs.|I have to get up early tomorrow; my train leaves at six.||koennen;muessen;duerfen;wollen;sollen|muessen|kann;muss;darf;will;soll|muss|modal|mein Zug fährt um sechs|
+modal|Der Arzt sagt, ich ___ mehr Wasser trinken.|The doctor says I should drink more water.||koennen;muessen;duerfen;wollen;sollen|sollen|kann;muss;darf;will;soll|soll|modal|Der Arzt sagt|Sollen: someone else advises or expects it.
+modal|Wir ___ nächstes Jahr nach Japan reisen.|We want to travel to Japan next year.||koennen;muessen;duerfen;wollen;sollen|wollen|können;müssen;dürfen;wollen;sollen|wollen|modal|nächstes Jahr|
+modal|___ ich das Fenster öffnen?|May I open the window?||koennen;muessen;duerfen;wollen;sollen|duerfen|Kann;Muss;Darf;Will;Soll|Darf|modal_polite|ich|Asking permission: darf ich …?
+modal|Du ___ keine Angst haben, der Hund ist lieb.|You don't need to be afraid; the dog is friendly.||koennen;muessen;duerfen;wollen;sollen|muessen|kannst;musst;darfst;willst;sollst|musst|modal_neg|keine Angst|Nicht/kein + müssen = don't need to, not "mustn't".
+modal|Meine Tochter ___ schon schwimmen.|My daughter can already swim.||koennen;muessen;duerfen;wollen;sollen|koennen|kann;muss;darf;will;soll|kann|modal|schon schwimmen|
+modal|Ihr ___ hier nicht parken, das ist ein Feuerwehrweg.|You're not allowed to park here; it's a fire lane.||koennen;muessen;duerfen;wollen;sollen|duerfen|könnt;müsst;dürft;wollt;sollt|dürft|modal_neg|nicht parken|Nicht dürfen = mustn't.
+modal|Ich ___ gern einen Kaffee, bitte.|I'd like a coffee, please.||koennen;moechten;duerfen;wollen;sollen|moechten|kann;möchte;darf;will;soll|möchte|modal_polite|gern|Möchte is the polite way to say what you want.
+modal|___ du mir kurz helfen?|Can you help me for a moment?||koennen;muessen;duerfen;wollen;sollen|koennen|Kannst;Musst;Darfst;Willst;Sollst|Kannst|modal_polite|helfen|
+modal|Was ___ ich jetzt machen?|What am I supposed to do now?||koennen;muessen;duerfen;wollen;sollen|sollen|kann;muss;darf;will;soll|soll|modal|Was|Sollen in a question: asking for advice or instructions.
+# perf
+perf|Sie ___ gestern spät nach Hause gekommen.|She came home late yesterday.||haben;sein|sein|ist;hat;war;hatte|ist|perf_sein|gekommen|Movement from A to B: sein.
+perf|Wir ___ den ganzen Abend Karten gespielt.|We played cards all evening.||haben;sein|haben|haben;sind;hatten;waren|haben|perf_haben|gespielt|
+perf|Das Kind ___ schnell eingeschlafen.|The child fell asleep quickly.||haben;sein|sein|ist;hat;war;hatte|ist|perf_sein|eingeschlafen|A change of state (falling asleep): sein.
+perf|___ du schon gefrühstückt?|Have you had breakfast yet?||haben;sein|haben|Hast;Bist;Hattest;Warst|Hast|perf_haben|gefrühstückt|
+perf|Der Preis ___ stark gestiegen.|The price has risen sharply.||haben;sein|sein|ist;hat;war;hatte|ist|perf_sein|gestiegen|Steigen is a change of state: sein.
+perf|Ich ___ letzte Woche in Rom gewesen.|I was in Rome last week.||haben;sein|sein|bin;habe;war;hatte|bin|perf_sein|gewesen|Sein, bleiben and werden take sein too.
+perf|Er ___ sein Fahrrad in die Garage gefahren.|He rode his bike into the garage.||haben;sein|haben|hat;ist;hatte;war|hat|perf_object|sein Fahrrad|With an object (moving something), fahren takes haben.
+perf|Wie lange ___ ihr in Berlin geblieben?|How long did you stay in Berlin?||haben;sein|sein|seid;habt;wart;hattet|seid|perf_sein|geblieben|
+perf|Die Kinder ___ im Garten Fußball gespielt.|The children played football in the garden.||haben;sein|haben|haben;sind;hatten;waren|haben|perf_haben|gespielt|
+# part
+part|Wir haben den Film schon ___.|We've already seen the film.|sehen|weak;strong;mixed;noge;sep|strong|gesehen;gesieht;gesehnt;sahen|gesehen|part_strong|haben|
+part|Hast du die Rechnung schon ___?|Have you paid the bill yet?|bezahlen|weak;strong;mixed;noge;sep|noge|bezahlt;gebezahlt;bezahlen;gezahlt|bezahlt|part_noge|Hast|Verbs starting with be-, ver-, er-, ent-, zer-, ge- take no ge-: bezahlt.
+part|Ich habe dich gestern ___.|I called you yesterday.|anrufen|weak;strong;mixed;noge;sep|sep|angerufen;geanrufen;anrufen;angeruft|angerufen|part_sep|habe|Separable verbs: the ge- goes between the prefix and the verb: an-ge-rufen.
+part|Er hat mir nichts davon ___.|He didn't tell me anything about it.|erzählen|weak;strong;mixed;noge;sep|noge|erzählt;geerzählt;erzählen;gezählt|erzählt|part_noge|hat|
+part|Ich habe nicht an dich ___.|I didn't think of you.|denken|weak;strong;mixed;noge;sep|mixed|gedacht;gedenkt;gedanken;denkt|gedacht|part_mixed|habe|Mixed verbs change the vowel but end in -t: denken – gedacht.
+part|Das Konzert hat schon ___.|The concert has already started.|anfangen|weak;strong;mixed;noge;sep|sep|angefangen;geanfangen;angefangt;anfangen|angefangen|part_sep|hat|
+part|Wir haben im Urlaub viel ___.|We travelled a lot on holiday.|reisen|weak;strong;mixed;noge;sep|weak|gereist;gereisen;reist;gerisen|gereist|part_weak|haben|
+part|Wer hat das Fenster ___?|Who broke the window?|zerbrechen|weak;strong;mixed;noge;sep|noge|zerbrochen;gezerbrochen;zerbricht;zerbrecht|zerbrochen|part_noge|hat|Zer- takes no ge-, and brechen is strong: zerbrochen.
+# praet
+praet|Gestern ___ es den ganzen Tag.|It rained all day yesterday.|regnen|weak;strong;mixed;aux|weak|regnete;regnet;regnte;rann|regnete|praet_weak|Gestern|Stems ending in -n after a consonant add -e-: regnete.
+praet|Als ich klein war, ___ ich jeden Tag Milch.|When I was little, I drank milk every day.|trinken|weak;strong;mixed;aux|strong|trank;trinkte;trunk;tranken|trank|praet_strong|Als|
+praet|Der Zug ___ pünktlich um neun.|The train left punctually at nine.|abfahren|weak;strong;mixed;aux|strong|fuhr ab;fahrte ab;abfuhr;fuhren ab|fuhr ab|praet_strong|Der Zug|In a main clause the prefix goes to the end: fuhr … ab.
+praet|Wir ___ nicht, wo der Bahnhof war.|We didn't know where the station was.|wissen|weak;strong;mixed;aux|mixed|wussten;wissten;wusstet;wissen|wussten|praet_mixed|Wir|
+praet|Früher ___ hier eine Bäckerei.|There used to be a bakery here.|sein|weak;strong;mixed;aux|aux|war;ist;wäre;wurde|war|praet_aux|Früher|
+praet|Sie ___ lange auf ihre Freundin.|She waited a long time for her friend.|warten|weak;strong;mixed;aux|weak|wartete;wartet;wartte;wort|wartete|praet_weak|Sie|
+praet|Plötzlich ___ das Telefon.|Suddenly the phone rang.|klingeln|weak;strong;mixed;aux|weak|klingelte;klang;klingelt;klingeln|klingelte|praet_weak|Plötzlich|
+praet|Der Junge ___ schnell nach Hause.|The boy ran home quickly.|laufen|weak;strong;mixed;aux|strong|lief;laufte;läuft;liefen|lief|praet_strong|Der Junge|
+praet|Ich ___ an ihn, aber ich rief ihn nicht an.|I thought of him, but I didn't call him.|denken|weak;strong;mixed;aux|mixed|dachte;denkte;dacht;dächte|dachte|praet_mixed|Ich|

@@ -76,5 +76,34 @@ gen|Wegen ___ bleiben wir zu Hause.|Because of the rain we're staying at home.|d
 gen|Während ___ darf man nicht sprechen.|You mustn't talk during the exam.|die Prüfung||gen|die Prüfung;die Prüfung;der Prüfung;der Prüfung||gen_prep|Während|
 gen|Trotz ___ sind wir gewandert.|We went hiking despite the bad weather.|das schlechte Wetter||gen|das schlechte Wetter;das schlechte Wetter;dem schlechten Wetter;des schlechten Wetters||gen_prep|Trotz|
 gen|Der Titel ___ ist lang.|The title of the book is long.|das Buch||gen|das Buch;das Buch;dem Buch;des Buches||gen_poss|Der Titel|
+akk|Wir besuchen morgen ___.|We're visiting our grandfather tomorrow.|unser Opa||akk|unser Opa;unseren Opa;unserem Opa;unseres Opas||akk_obj|besuchen|
+akk|Hast du ___ gesehen?|Have you seen the new teacher?|der neue Lehrer||akk|der neue Lehrer;den neuen Lehrer;dem neuen Lehrer;des neuen Lehrers||akk_obj|gesehen|
+akk|In der Stadt gibt es ___.|There's a big park in the town.|ein großer Park||akk|ein großer Park;einen großen Park;einem großen Park;eines großen Parks||akk_es_gibt|gibt es|Es gibt always takes the accusative.
+akk|Ich brauche ___ für die Reise.|I need a new suitcase for the trip.|ein neuer Koffer||akk|ein neuer Koffer;einen neuen Koffer;einem neuen Koffer;eines neuen Koffers||akk_obj|brauche|
+akk|___ ist sehr nett.|The neighbour is very nice.|der Nachbar||nom|Der Nachbar;Den Nachbarn;Dem Nachbarn;Des Nachbarn||nom_subj|ist|
+akk|Er trinkt jeden Morgen ___.|He drinks a coffee every morning.|ein Kaffee||akk|ein Kaffee;einen Kaffee;einem Kaffee;eines Kaffees||akk_obj|trinkt|
+dat|Das Kleid gefällt ___ sehr.|My sister likes the dress a lot.|meine Schwester||dat|meine Schwester;meine Schwester;meiner Schwester;meiner Schwester||dat_verb|gefällt|Gefallen takes the dative: the person who likes it.
+dat|Ich schenke ___ ein Buch.|I'm giving my father a book.|mein Vater||dat|mein Vater;meinen Vater;meinem Vater;meines Vaters||dat_io|schenke|The person who receives: dative.
+dat|Die Jacke gehört ___.|The jacket belongs to the man over there.|der Mann dort||dat|der Mann dort;den Mann dort;dem Mann dort;des Mannes dort||dat_verb|gehört|
+dat|Ich antworte ___ morgen.|I'll answer the customer tomorrow.|der Kunde||dat|der Kunde;den Kunden;dem Kunden;des Kunden||dat_verb|antworte|Kunde is an n-noun: dem Kunden.
+dat|Das Essen schmeckt ___ nicht.|The child doesn't like the food.|das Kind||dat|das Kind;das Kind;dem Kind;des Kindes||dat_verb|schmeckt|
+pron|Ich rufe ___ morgen an.|I'll call you tomorrow (polite).|Sie|nom;akk;dat|akk|Sie;Sie;Ihnen||pron_akk|rufe|Anrufen takes the accusative.
+pron|Kannst du ___ das Buch geben?|Can you give him the book?|er|nom;akk;dat|dat|er;ihn;ihm||pron_dat|geben|
+pron|Wir haben ___ lange nicht gesehen.|We haven't seen her for a long time.|sie|nom;akk;dat|akk|sie;sie;ihr||pron_akk|gesehen|
+pron|Ich danke ___ für alles.|Thank you for everything (polite).|Sie|nom;akk;dat|dat|Sie;Sie;Ihnen||pron_dat|danke|
+pron|Hilf ___ bitte!|Help us, please!|wir|nom;akk;dat|dat|wir;uns;uns||pron_dat|Hilf|
+pron|Das Auto gehört ___ nicht.|The car doesn't belong to them.|sie|nom;akk;dat|dat|sie;sie;ihnen||pron_dat|gehört|
+pron|Kennt ihr ___ schon?|Do you know me yet?|ich|nom;akk;dat|akk|ich;mich;mir||pron_akk|Kennt|
+gen|Das ist das Haus ___.|That is my parents' house.|meine Eltern||gen|meine Eltern;meine Eltern;meinen Eltern;meiner Eltern||gen_poss|das Haus|
+gen|Der Name ___ ist schwer zu merken.|The name of the street is hard to remember.|die Straße||gen|die Straße;die Straße;der Straße;der Straße||gen_poss|Der Name|
+gen|Während ___ darf man nicht telefonieren.|You mustn't make calls during the lesson.|der Unterricht||gen|der Unterricht;den Unterricht;dem Unterricht;des Unterrichts||gen_prep|Während|
+gen|Die Ergebnisse ___ sind sehr gut.|The results of the study are very good.|die Studie||gen|die Studie;die Studie;der Studie;der Studie||gen_poss|Die Ergebnisse|
+gen|Trotz ___ sind wir spazieren gegangen.|Despite the cold we went for a walk.|die Kälte||gen|die Kälte;die Kälte;der Kälte;der Kälte||gen_prep|Trotz|
+gen|Das Ende ___ war traurig.|The end of the film was sad.|der Film||gen|der Film;den Film;dem Film;des Films||gen_poss|Das Ende|
+gen|Die Meinung ___ ist mir wichtig.|My colleague's opinion matters to me.|mein Kollege||gen|mein Kollege;meinen Kollegen;meinem Kollegen;meines Kollegen||gen_poss|Die Meinung|Kollege is an n-noun: no -s, just -n.
+gen|Statt ___ nehmen wir den Zug.|Instead of the car we'll take the train.|das Auto||gen|das Auto;das Auto;dem Auto;des Autos||gen_prep|Statt|
+gen|Am Anfang ___ war alles neu.|At the beginning of the year everything was new.|das Jahr||gen|das Jahr;das Jahr;dem Jahr;des Jahres||gen_poss|Am Anfang|
+gen|Innerhalb ___ bekommen Sie eine Antwort.|You'll get an answer within a week.|eine Woche||gen|eine Woche;eine Woche;einer Woche;einer Woche||gen_prep|Innerhalb|
+gen|Das Zimmer ___ ist sehr klein.|The children's room is very small.|die Kinder||gen|die Kinder;die Kinder;den Kindern;der Kinder||gen_poss|Das Zimmer|
 `
 });

@@ -136,16 +136,16 @@ window.CATALOG = [
     "k": "adj",
     "name": "Прилагательные · Adjectives",
     "lv": "B1",
-    "count": 16
+    "count": 22
    },
    {
     "k": "plur",
     "name": "Множественное число · Plural",
     "lv": "B1",
-    "count": 13
+    "count": 23
    }
   ],
-  "total": 133
+  "total": 149
  },
  {
   "id": "prep",
@@ -161,40 +161,40 @@ window.CATALOG = [
     "k": "where",
     "name": "Где? · Where",
     "lv": "A1",
-    "count": 8
+    "count": 17
    },
    {
     "k": "whereto",
     "name": "Куда? · Where to",
     "lv": "A1",
-    "count": 6
+    "count": 17
    },
    {
     "k": "from",
     "name": "Откуда? · Where from",
     "lv": "A2",
-    "count": 7
+    "count": 17
    },
    {
     "k": "person",
     "name": "У, к, от · People",
     "lv": "A2",
-    "count": 6
+    "count": 16
    },
    {
     "k": "time",
     "name": "Когда? · Time",
     "lv": "B1",
-    "count": 7
+    "count": 17
    },
    {
     "k": "other",
     "name": "О, с, без, для… · Other",
     "lv": "A2",
-    "count": 9
+    "count": 20
    }
   ],
-  "total": 43
+  "total": 104
  },
  {
   "id": "numbers",
@@ -253,28 +253,28 @@ window.CATALOG = [
     "k": "comp",
     "name": "Сравнение · Comparatives",
     "lv": "B1",
-    "count": 11
+    "count": 22
    },
    {
     "k": "sup",
     "name": "Самый… · Superlatives",
     "lv": "B1",
-    "count": 8
+    "count": 18
    },
    {
     "k": "short",
     "name": "Краткие формы · Short forms",
     "lv": "B1",
-    "count": 8
+    "count": 20
    },
    {
     "k": "adv",
     "name": "Хороший или хорошо? · Adjective or adverb",
     "lv": "A2",
-    "count": 8
+    "count": 19
    }
   ],
-  "total": 35
+  "total": 79
  },
  {
   "id": "advanced",
@@ -290,28 +290,28 @@ window.CATALOG = [
     "k": "part",
     "name": "Причастия · Participles",
     "lv": "B2",
-    "count": 19
+    "count": 31
    },
    {
     "k": "adv",
     "name": "Деепричастия · Verbal adverbs",
     "lv": "B2",
-    "count": 18
+    "count": 25
    },
    {
     "k": "sya",
     "name": "Глаголы на -ся · -ся verbs",
     "lv": "B1",
-    "count": 20
+    "count": 24
    },
    {
     "k": "cond",
     "name": "Бы и чтобы · Conditional and purpose",
     "lv": "B2",
-    "count": 18
+    "count": 25
    }
   ],
-  "total": 75
+  "total": 105
  },
  {
   "id": "read",
@@ -468,40 +468,40 @@ window.CATALOG = [
     "k": "gen",
     "name": "Глаголы + Р. п. · Verbs with the genitive",
     "lv": "B2",
-    "count": 7
+    "count": 21
    },
    {
     "k": "dat",
     "name": "Глаголы + Д. п. · Verbs with the dative",
     "lv": "B2",
-    "count": 7
+    "count": 20
    },
    {
     "k": "ins",
     "name": "Глаголы + Т. п. · Verbs with the instrumental",
     "lv": "B2",
-    "count": 7
+    "count": 21
    },
    {
     "k": "prepv",
     "name": "Глаголы с предлогами · Verbs with prepositions",
     "lv": "C1",
-    "count": 8
+    "count": 24
    },
    {
     "k": "formal",
     "name": "Отымённые предлоги · Formal prepositions",
     "lv": "C1",
-    "count": 9
+    "count": 23
    },
    {
     "k": "book",
     "name": "Книжные предлоги · Bookish prepositions",
     "lv": "C2",
-    "count": 8
+    "count": 21
    }
   ],
-  "total": 46
+  "total": 130
  },
  {
   "id": "sent",

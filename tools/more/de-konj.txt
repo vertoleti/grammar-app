@@ -1,0 +1,40 @@
+# k2
+k2|Wenn ich reich ___, würde ich ein Haus am Meer kaufen.|If I were rich, I'd buy a house by the sea.|sein|k2hs;k2w;k2m;ind|k2hs|wäre;war;bin;würde|wäre|k2_unreal|würde|
+k2|Ich ___ gern ein Glas Wasser.|I'd like a glass of water.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;würde|hätte|k2_polite|gern|
+k2|An deiner Stelle ___ ich mehr schlafen.|In your place I'd sleep more.|schlafen|k2hs;k2w;k2m;ind|k2w|würde;wurde;werde;wäre|würde|k2_advice|An deiner Stelle|
+k2|Du ___ öfter Sport machen.|You should do sport more often.|sollen|k2hs;k2w;k2m;ind|k2m|solltest;sollst;würdest;hättest|solltest|k2_advice|öfter|Advice: solltest (Konjunktiv II of sollen).
+k2|Wenn ich Zeit habe, ___ ich morgen vorbei.|If I have time, I'll drop by tomorrow.|kommen|k2hs;k2w;k2m;ind|ind|komme;käme;würde;kam|komme|k2_real|Wenn ich Zeit habe|A real possibility: indicative in both parts.
+k2|Wenn ich doch nur mehr Zeit ___!|If only I had more time!|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;wäre|hätte|k2_wish|doch nur|
+k2|Er tut so, als ob er alles ___.|He acts as if he knew everything.|wissen|k2hs;k2w;k2m;ind|k2m|wüsste;wusste;weiß;würde|wüsste|k2_als_ob|als ob|
+k2|___ du mir bitte das Fenster aufmachen?|Would you open the window for me, please?|aufmachen|k2hs;k2w;k2m;ind|k2w|Würdest;Wirst;Wurdest;Hättest|Würdest|k2_polite|bitte|
+k2|Wenn wir ein Auto ___, könnten wir ans Meer fahren.|If we had a car, we could drive to the sea.|haben|k2hs;k2w;k2m;ind|k2hs|hätten;hatten;haben;würden|hätten|k2_unreal|könnten|
+k2|Es ___ schön, wenn du kommen könntest.|It would be lovely if you could come.|sein|k2hs;k2w;k2m;ind|k2hs|wäre;war;ist;würde|wäre|k2_unreal|könntest|
+# pas
+pas|Hier ___ Deutsch gesprochen.|German is spoken here.|werden|pp;ppt;pperf;zust|pp|wird;wurde;ist;worden|wird|pass|Hier|
+pas|Das Paket ___ gestern geliefert.|The parcel was delivered yesterday.|werden|pp;ppt;pperf;zust|ppt|wird;wurde;ist;war|wurde|pass|gestern|
+pas|Die Fenster ___ jeden Freitag geputzt.|The windows are cleaned every Friday.|werden|pp;ppt;pperf;zust|pp|werden;wird;wurden;sind|werden|pass|jeden Freitag|Plural subject: werden.
+pas|Das Geschäft ist heute ___.|The shop is closed today.|schließen|pp;ppt;pperf;zust|zust|geschlossen;geschließt;schließt;schloss|geschlossen|pass_state|ist heute|A state (it is closed): sein + participle.
+pas|Der Brief muss noch ___ werden.|The letter still has to be written.|schreiben|pp;ppt;pperf;pmod|pmod|geschrieben;schreiben;schrieb;geschreibt|geschrieben|pass_modal|muss noch|
+pas|Das Auto ist schon ___ worden.|The car has already been repaired.|reparieren|pp;ppt;pperf;zust|pperf|repariert;gerepariert;reparieren;reparierte|repariert|pass_perf|worden|
+pas|In diesem Raum darf nicht geraucht ___.|Smoking is not allowed in this room.|werden|pp;ppt;pperf;pmod|pmod|werden;wird;worden;geworden|werden|pass_modal|darf|With a modal, werden stays in the infinitive at the end.
+pas|Die Stadt ___ im Krieg zerstört.|The city was destroyed in the war.|werden|pp;ppt;pperf;zust|ppt|wurde;wird;ist;war|wurde|pass|im Krieg|
+pas|Die Tür ___ geöffnet. Wir können reingehen.|The door is open. We can go in.|sein|pp;ppt;pperf;zust|zust|ist;wird;wurde;worden|ist|pass_state|Wir können reingehen|The door is (already) open: Zustandspassiv with sein.
+pas|Die Gäste sind schon ___ worden.|The guests have already been informed.|informieren|pp;ppt;pperf;zust|pperf|informiert;geinformiert;informieren;informierte|informiert|pass_perf|worden|
+pas|Das Problem kann leicht gelöst ___.|The problem can be solved easily.|werden|pp;ppt;pperf;pmod|pmod|werden;wird;worden;sein|werden|pass_modal|kann|
+pas|Von wem ___ das Bild gemalt?|Who was the picture painted by?|werden|pp;ppt;pperf;zust|ppt|wurde;wird;war;ist|wurde|pass|Von wem|The person who does it: von + dative.
+# k2p
+k2p|Wenn du angerufen ___, hätte ich dich abgeholt.|If you'd called, I'd have picked you up.|haben|k2hs;k2w;k2m;ind|k2hs|hättest;hattest;wärst;hast|hättest|k2_past|angerufen|
+k2p|Ich ___ gern mitgekommen, aber ich war krank.|I'd have liked to come along, but I was ill.|sein|k2hs;k2w;k2m;ind|k2hs|wäre;hätte;war;würde|wäre|k2_past|mitgekommen|Mitkommen takes sein: wäre mitgekommen.
+k2p|Das ___ ich nie gedacht!|I'd never have thought that!|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;wäre|hätte|k2_past|gedacht|
+k2p|Wenn es nicht geregnet ___, wären wir gewandert.|If it hadn't rained, we'd have gone hiking.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;wäre;hat|hätte|k2_past|geregnet|
+k2p|Du ___ mich fragen sollen.|You should have asked me.|haben|k2hs;k2w;k2m;ind|k2hs|hättest;hattest;wärst;solltest|hättest|k2_modal_past|sollen|Modal in the past: hätte + infinitive + modal infinitive: hättest fragen sollen.
+k2p|Wenn ich früher aufgestanden ___, hätte ich den Bus bekommen.|If I'd got up earlier, I'd have caught the bus.|sein|k2hs;k2w;k2m;ind|k2hs|wäre;hätte;war;würde|wäre|k2_past|aufgestanden|Aufstehen takes sein.
+k2p|Fast ___ ich den Termin vergessen.|I almost forgot the appointment.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;wäre|hätte|k2_fast|Fast||C1
+k2p|Er sah aus, als ob er die ganze Nacht nicht geschlafen ___.|He looked as if he hadn't slept all night.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;wäre|hätte|k2_als_ob|als ob|
+k2p|Ohne deine Hilfe ___ ich das nicht geschafft.|Without your help I wouldn't have managed it.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;habe;wäre|hätte|k2_past|Ohne deine Hilfe|
+k2p|Wir ___ früher losfahren müssen.|We should have left earlier.|haben|k2hs;k2w;k2m;ind|k2hs|hätten;hatten;wären;mussten|hätten|k2_modal_past|müssen|
+k2p|Wenn sie mehr gelernt ___, hätte sie die Prüfung bestanden.|If she had studied more, she would have passed the exam.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;wäre;hat|hätte|k2_past|gelernt|
+k2p|Beinahe ___ wir den Zug verpasst.|We nearly missed the train.|haben|k2hs;k2w;k2m;ind|k2hs|hätten;hatten;haben;wären|hätten|k2_fast|Beinahe||C1
+k2p|Ich ___ das an deiner Stelle nicht gesagt.|I wouldn't have said that in your place.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;hatte;wäre;würde|hätte|k2_past|an deiner Stelle|
+k2p|Wenn er gekommen ___, hätten wir gefeiert.|If he had come, we'd have celebrated.|sein|k2hs;k2w;k2m;ind|k2hs|wäre;hätte;war;ist|wäre|k2_past|gekommen|
+k2p|Das ___ nicht passieren dürfen.|That shouldn't have happened.|haben|k2hs;k2w;k2m;ind|k2hs|hätte;wäre;hatte;durfte|hätte|k2_modal_past|dürfen|

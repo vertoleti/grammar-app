@@ -1,0 +1,85 @@
+# topic|sentence|English|hint (nominative)|case|rule|signal|note
+gen|Многие боятся ___.|Many people are afraid of change.|перемены|G|gen_verb|боятся|
+gen|Пассажиров просят избегать ___.|Passengers are asked to avoid unnecessary journeys.|лишние поездки|G|gen_verb|избегать|
+gen|Учитель потребовал ___.|The teacher demanded silence.|тишина|G|gen_verb|потребовал|
+gen|Желаю вам ___!|I wish you happiness!|счастье|G|gen_verb|Желаю|Желать кому (dative) чего (genitive).
+gen|Она стесняется своего ___.|She's embarrassed about her accent.|акцент|G|gen_verb|стесняется|
+gen|Этот поступок заслуживает ___.|This act deserves respect.|уважение|G|gen_verb|заслуживает|
+gen|Мы опасаемся ___ цен.|We fear a rise in prices.|рост|G|gen_verb|опасаемся|
+gen|Команда добилась ___.|The team achieved victory.|победа|G|gen_verb|добилась|
+gen|Не стоит ждать от него ___.|Don't expect help from him.|помощь|G|gen_verb|ждать|Ждать чего: something abstract or uncertain takes the genitive.
+gen|Компания достигла хороших ___.|The company achieved good results.|результаты|G|gen_verb|достигла|
+gen|Суд лишил его ___.|The court stripped him of his licence.|лицензия|G|gen_verb|лишил|Лишать кого (accusative) чего (genitive).
+gen|Вопрос касается ___ отпуска.|The question concerns the holiday schedule.|график|G|gen_verb|касается|
+gen|Она добивается ___ для своих детей.|She is fighting for justice for her children.|справедливость|G|gen_verb|добивается|
+gen|Мы ждём от вас ___.|We're waiting for your answer.|ответ|G|gen_verb|ждём|
+dat|Студенты радуются ___.|The students are glad about the holidays.|каникулы|D|dat_verb|радуются|
+dat|Никто не верит ___.|Nobody believes the politicians.|политики|D|dat_verb|верит|Верить кому (dative); верить во что (в + accusative).
+dat|Шум мешает ___.|The noise disturbs my work.|моя работа|D|dat_verb|мешает|
+dat|Новый закон препятствует ___.|The new law hinders development.|развитие|D|dat_verb|препятствует|
+dat|Я научился ___ в детстве.|I learned patience as a child.|терпение|D|dat_verb|научился|Учиться / научиться чему (dative).
+dat|Мы благодарны ___ за поддержку.|We are grateful to our colleagues for their support.|коллеги|D|dat_verb|благодарны|
+dat|Он всегда следует ___ врача.|He always follows the doctor's advice.|советы|D|dat_verb|следует|Следовать чему (dative): follow advice, rules, an example.
+dat|Её поступки противоречат её ___.|Her actions contradict her words.|слова|D|dat_verb|противоречат|
+dat|Этот план угрожает ___.|This plan threatens the environment.|природа|D|dat_verb|угрожает|
+dat|Мы удивились его ___.|We were surprised by his calm.|спокойствие|D|dat_verb|удивились|
+dat|Не стоит подражать ___.|You shouldn't imitate other people.|другие люди|D|dat_verb|подражать|
+dat|Дети подарили ___ цветы.|The children gave the teacher flowers.|учительница|D|dat_verb|подарили|The person who receives: dative.
+dat|Ваше решение соответствует ___.|Your decision complies with the rules.|правила|D|dat_verb|соответствует|
+ins|Она увлекается ___.|She's into photography.|фотография|I|ins_verb|увлекается|
+ins|Он занимается ___ каждый день.|He does sport every day.|спорт|I|ins_verb|занимается|
+ins|Мы любовались ___.|We were admiring the view.|вид|I|ins_verb|любовались|
+ins|Кто управляет ___?|Who runs the company?|компания|I|ins_verb|управляет|
+ins|Он интересуется ___.|He's interested in history.|история|I|ins_verb|интересуется|
+ins|Она дорожит ___.|She values her friends.|друзья|I|ins_verb|дорожит|
+ins|Учёные поделились ___ исследования.|The scientists shared the results of the study.|результаты|I|ins_verb|поделились|
+ins|Не надо хвастаться ___.|There's no need to boast about your successes.|успехи|I|ins_verb|хвастаться|
+ins|Город славится своими ___.|The city is famous for its parks.|парки|I|ins_verb|славится своими|
+ins|Он работает ___ в школе.|He works as a teacher at a school.|учитель|I|ins_verb|работает|Работать / быть / стать кем: instrumental.
+ins|Я обладаю ___.|I have the necessary information.|нужная информация|I|ins_verb|обладаю|
+ins|Она стала известной ___.|She became a famous writer.|писательница|I|ins_verb|стала известной|
+ins|Компания располагает ___.|The company has large resources.|большие ресурсы|I|ins_verb|располагает|
+ins|Мы гордимся нашей ___.|We are proud of our team.|команда|I|ins_verb|гордимся нашей|
+prepv|Это зависит от ___.|It depends on the circumstances.|обстоятельства|G|pv_G|зависит от|
+prepv|Она жалуется на ___.|She complains about a headache.|головная боль|A|pv_A|жалуется на|
+prepv|Мы рассчитываем на вашу ___.|We're counting on your help.|помощь|A|pv_A|рассчитываем на вашу|
+prepv|Он признался в ___.|He confessed to his mistake.|ошибка|P|pv_P|признался в|
+prepv|Студент не разбирается в ___.|The student doesn't understand politics.|политика|P|pv_P|разбирается в|
+prepv|Мы готовимся к ___.|We're preparing for the exam.|экзамен|D|pv_D|готовимся к|
+prepv|Она привыкла к ___.|She has got used to the climate.|климат|D|pv_D|привыкла к|
+prepv|Он отличается от ___.|He's different from his brother.|брат|G|pv_G|отличается от|
+prepv|Мы надеемся на ___.|We hope for a quick answer.|быстрый ответ|A|pv_A|надеемся на|
+prepv|Всё дело в ___.|It's all about money.|деньги|P|pv_P|Всё дело в|
+prepv|Она избавилась от ___.|She got rid of the bad habit.|вредная привычка|G|pv_G|избавилась от|
+prepv|Учёные пришли к ___.|The scientists came to a conclusion.|вывод|D|pv_D|пришли к|
+prepv|Он не обратил внимания на ___.|He paid no attention to the warning.|предупреждение|A|pv_A|обратил внимания на|
+prepv|Проект нуждается в ___.|The project needs funding.|финансирование|P|pv_P|нуждается в|
+prepv|Мы отказались от ___.|We gave up the trip.|поездка|G|pv_G|отказались от|
+prepv|Цены зависят от ___ и предложения.|Prices depend on supply and demand.|спрос|G|pv_G|зависят от|
+formal|В течение ___ шёл снег.|It snowed throughout the day.|день|G|formal_G|В течение|
+formal|Благодаря ___ мы сэкономили время.|Thanks to the new system we saved time.|новая система|D|formal_D|Благодаря|
+formal|Согласно ___, завтра будет дождь.|According to the forecast, it will rain tomorrow.|прогноз|D|formal_D|Согласно|
+formal|В связи с ___ мы меняем расписание.|In connection with the holidays, we're changing the timetable.|праздники|I|formal_I|В связи с|
+formal|В отличие от ___, он говорит тихо.|Unlike his father, he speaks quietly.|отец|G|formal_G|В отличие от|
+formal|Вопреки ___ погода была отличной.|Contrary to the forecast, the weather was excellent.|прогноз|D|formal_D|Вопреки|
+formal|По сравнению с ___ здесь дёшево.|Compared with Moscow, it's cheap here.|Москва|I|formal_I|По сравнению с|
+formal|В результате ___ здание сильно пострадало.|As a result of the fire, the building was badly damaged.|пожар|G|formal_G|В результате|
+formal|Наряду с ___ он изучает немецкий.|Along with English, he's studying German.|английский язык|I|formal_I|Наряду с|
+formal|В зависимости от ___ цена меняется.|The price changes depending on the season.|сезон|G|formal_G|В зависимости от|
+formal|Вследствие ___ рейс задержали.|As a result of the storm, the flight was delayed.|буря|G|formal_G|Вследствие|
+formal|Благодаря ___ всё прошло хорошо.|Thanks to the organisers, everything went well.|организаторы|D|formal_D|Благодаря|
+formal|В целях ___ вход по пропускам.|For security reasons, entry is by pass only.|безопасность|G|formal_G|В целях|
+formal|Согласно ___ компании, сотрудники работают удалённо.|According to the company's rules, staff work remotely.|правила|D|formal_D|Согласно|
+book|Ввиду ___ заседание отменяется.|In view of the circumstances, the meeting is cancelled.|сложившиеся обстоятельства|G|book_G|Ввиду|
+book|Во время ___ телефоны должны быть выключены.|During the performance, phones must be switched off.|спектакль|G|book_G|Во время|
+book|В ходе ___ выяснились новые факты.|In the course of the investigation, new facts emerged.|расследование|G|book_G|В ходе|
+book|По мере ___ мы добавляем новые функции.|As development progresses, we add new features.|развитие|G|book_G|По мере|
+book|Он действовал в ущерб своим ___.|He acted against his own interests.|интересы|D|book_D|в ущерб своим|
+book|В отношении ___ решение ещё не принято.|With regard to the budget, no decision has been taken yet.|бюджет|G|book_G|В отношении|
+book|Невзирая на ___ родителей, они поженились.|Despite their parents' objections, they got married.|возражения|A|book_A|Невзирая на|
+book|На основании ___ суд вынес решение.|On the basis of the evidence, the court reached a decision.|доказательства|G|book_G|На основании|
+book|Взамен ___ вам выдадут новый.|In exchange for the old passport you'll be issued a new one.|старый паспорт|G|book_G|Взамен|
+book|В пользу ___ говорят многие факты.|Many facts speak in favour of this version.|эта версия|G|book_G|В пользу|
+book|По причине ___ занятия отменены.|Owing to illness, the classes are cancelled.|болезнь|G|book_G|По причине|
+book|Несмотря на ___, он не опоздал.|Despite the traffic jams, he wasn't late.|пробки|A|book_A|Несмотря на|
+book|Вопреки ___ здравого смысла он продолжал.|Against the voice of common sense, he carried on.|голос|D|formal_D|Вопреки|

@@ -60,7 +60,51 @@ adv|Сегодня ___ погода.|The weather is cold today.|холодный
 adv|Он очень ___ бегает.|He runs very fast.|быстрый|adv;long;short|0|быстро;быстрый;быстр;быстрее|0|adv_verb|бегает|
 adv|Мне ___ понимать этот текст.|It’s hard for me to understand this text.|трудный|adv;long;short|0|трудно;трудный;трудная;труднее|0|adv_state|Мне|
 adv|Это была ___ ночь.|It was a quiet night.|тихий|long;adv;short|0|тихая;тихо;тиха;тише|0|adj_noun|ночь|
-adv|Дети, говорите ___, малыш спит!|Kids, speak quietly, the baby’s asleep!|тихий|adv;long;short|0|тихо;тихий;тихие;тихая|0|adv_verb|говорите|`;
+adv|Дети, говорите ___, малыш спит!|Kids, speak quietly, the baby’s asleep!|тихий|adv;long;short|0|тихо;тихий;тихие;тихая|0|adv_verb|говорите|
+comp|Эта задача ___ той.|This task is harder than that one.|трудный|comp_simple;long;sup|0|труднее;трудный;самый трудный;более трудный|0|comp_than|той|
+comp|Летом дни ___.|In summer the days are longer.|длинный|comp_simple;long;adv|0|длиннее;длинные;длинно;самые длинные|0|comp_more|Летом|
+comp|Мой дом ___ твоего.|My house is bigger than yours.|большой|comp_simple;long;sup|0|больше;большой;более большой;самый большой|0|comp_irr|твоего|Большой – больше (irregular).
+comp|Сегодня я чувствую себя ___.|I feel better today.|хороший|comp_simple;adv;long|0|лучше;хорошо;хороший;более хороший|0|comp_irr|Сегодня|Хороший / хорошо – лучше (irregular).
+comp|Нам нужна ___ квартира.|We need a bigger flat.|просторный|comp_compound;comp_simple;long|0|более просторная;просторнее;просторная;самая просторная|0|comp_attr|квартира|Before a noun: более + full adjective, which agrees: более просторная квартира.
+comp|Вода в озере ___, чем в море.|The water in the lake is colder than in the sea.|холодный|comp_simple;long;adv|0|холоднее;холодная;холодно;самая холодная|0|comp_than|чем в море|
+comp|Говори ___, я не слышу!|Speak louder, I can't hear!|громкий|comp_simple;adv;long|0|громче;громко;громкий;самый громкий|0|comp_more|не слышу|Громкий – громче: к changes to ч.
+comp|Билеты на поезд ___ билетов на самолёт.|Train tickets are cheaper than plane tickets.|дешёвый|comp_simple;long;sup|0|дешевле;дешёвые;самые дешёвые;более дешёвые|0|comp_irr|билетов|
+comp|Он ___ меня на два года.|He is two years younger than me.|молодой|comp_simple;long;sup|0|моложе;молодой;самый молодой;более молодой|0|comp_irr|меня|For age, молодой – моложе (also младше).
+comp|Это ___ решение, чем я думал.|This is a simpler solution than I thought.|простой|comp_compound;comp_simple;long|0|более простое;проще;простое;самое простое|0|comp_attr|решение|
+comp|Ты стал говорить по-русски гораздо ___.|You've started speaking Russian much better.|хороший|comp_simple;adv;long|0|лучше;хорошо;хороший;более хорошо|0|comp_irr|гораздо|Гораздо, намного = much (before a comparative).
+sup|Это ___ книга, которую я читал.|It's the most interesting book I've read.|интересный|sup;comp_simple;long|0|самая интересная;интереснее;интересная;более интересная|0|sup_samyj|которую я читал|
+sup|Эверест — ___ гора в мире.|Everest is the highest mountain in the world.|высокий|sup;comp_simple;long|0|самая высокая;выше;высокая;более высокая|0|sup_samyj|в мире|
+sup|Он ___ ученик в классе.|He's the best pupil in the class.|хороший|sup;comp_simple;long|0|лучший;лучше;хороший;самый хороший|0|sup_irr|в классе|Хороший → лучший (= самый лучший).
+sup|Это ___ вариант из всех.|It's the worst option of all.|плохой|sup;comp_simple;long|0|худший;хуже;плохой;самый плохой|0|sup_irr|из всех|Плохой → худший.
+sup|Он рассказал ___ новость.|He told the most important news.|важный|sup;comp_simple;long|0|самую важную;важнее;важную;более важную|0|sup_samyj|новость|Самый agrees: feminine accusative самую важную.
+sup|Мы живём в ___ районе города.|We live in the quietest district of the town.|тихий|sup;comp_simple;long|0|самом тихом;тише;тихом;более тихом|0|sup_samyj|районе города|
+sup|Это ___ задача.|This is a very complex task.|сложный|sup;comp_simple;long|0|сложнейшая;сложнее;сложная;самая сложная|0|sup_eish||The -ейший form is bookish and often means "extremely": сложнейшая задача.
+sup|Это была ___ ошибка.|That was a terrible mistake.|грубый|sup;comp_simple;long|0|грубейшая;грубее;грубая;более грубая|0|sup_eish||
+sup|Подари ей ___ цветы.|Give her the most beautiful flowers.|красивый|sup;comp_simple;long|0|самые красивые;красивее;красивые;более красивые|0|sup_samyj|цветы|
+sup|Это ___ время года.|This is the coldest time of the year.|холодный|sup;comp_simple;long|0|самое холодное;холоднее;холодное;более холодное|0|sup_samyj|время года|Время is neuter: самое холодное.
+short|Я ___ с вами.|I agree with you.|согласный|short;long|0|согласен;согласный;согласна;согласны|0|short_only|с вами|Согласен is used only in the short form.
+short|Эти туфли мне ___.|These shoes are too small for me.|маленький|short;long|0|малы;маленькие;мал;мала|0|short_size|мне|Size relative to a person: мал, мала, малы = too small.
+short|Она очень ___ на маму.|She looks very like her mum.|похожий|short;long|0|похожа;похожая;похож;похожи|0|short_state|на маму|
+short|Магазин ___ до восьми.|The shop is open until eight.|открытый|short;long|0|открыт;открытый;открыта;открыто|0|short_state|до восьми|
+short|Ты ___ мне помочь?|Are you able to help me?|способный|short;long|0|способен;способный;способна;способны|0|short_state|мне помочь|Способен + infinitive: able to.
+short|Я тебе очень ___!|I'm very grateful to you!|благодарный|short;long|0|благодарен;благодарный;благодарна;благодарны|0|short_state|очень|A man speaking: благодарен.
+short|Этот пиджак тебе ___.|This jacket is too big for you.|большой|short;long|0|велик;большой;велика;велики|0|short_size|тебе|Большой → велик (too big) for clothes and shoes.
+short|Все места ___.|All the seats are taken.|занятый|short;long|0|заняты;занятые;занят;занята|0|short_state|Все места|
+short|Ты ___!|You're right!|правый|short;long|0|прав;правый;права;правы|0|short_only||Прав (right, correct) is only short. A woman: ты права.
+short|Мы ___ к поездке.|We're ready for the trip.|готовый|short;long|0|готовы;готовые;готов;готова|0|short_state|к поездке|
+short|Окно ___.|The window is open.|открытый|short;long|0|открыто;открытое;открыт;открыта|0|short_state|Окно|
+short|Она ___ своей работой.|She is pleased with her work.|довольный|short;long|0|довольна;довольная;доволен;довольны|0|short_state|своей работой|
+adv|Он ___ водит машину.|He drives a car badly.|плохой|adv;long;short|0|плохо;плохой;плох;хуже|0|adv_verb|водит|
+adv|У неё очень ___ голос.|She has a very beautiful voice.|красивый|long;adv;short|0|красивый;красиво;красив;красивее|0|adj_noun|голос|
+adv|Мне ___.|I'm bored.|скучный|adv;long;short|0|скучно;скучный;скучен;скучнее|0|adv_state|Мне|A state of a person: dative + -о word: мне скучно.
+adv|Это была ___ поездка.|It was a quick trip.|быстрый|long;adv;short|0|быстрая;быстро;быстра;быстрее|0|adj_noun|поездка|
+adv|Он ___ ответил на вопрос.|He answered the question quickly.|быстрый|adv;long;short|0|быстро;быстрый;быстр;быстрее|0|adv_verb|ответил|
+adv|Здесь очень ___.|It's very quiet here.|тихий|adv;long;short|0|тихо;тихий;тих;тише|0|adv_state|Здесь|
+adv|У нас ___ гости.|We have important guests.|важный|long;adv;short|0|важные;важно;важны;важнее|0|adj_noun|гости|
+adv|Тебе не ___?|Aren't you cold?|холодный|adv;long;short|0|холодно;холодный;холоден;холоднее|0|adv_state|Тебе|
+adv|Она ___ поёт.|She sings beautifully.|красивый|adv;long;short|0|красиво;красивая;красива;красивее|0|adv_verb|поёт|
+adv|Это ___ упражнение.|This is an easy exercise.|лёгкий|long;adv;short|0|лёгкое;легко;лёгок;легче|0|adj_noun|упражнение|
+adv|Мне ___ это понять.|It's hard for me to understand this.|трудный|adv;long;short|0|трудно;трудный;труден;труднее|0|adv_state|Мне|`;
 window.EXERCISE = {
   id: 'compare', step1: 'Which form?', step1Short: 'Form type', scoreLabel: 'Form types right',
   topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,

@@ -178,7 +178,23 @@ plur|Он часто говорит о ___.|He often talks about his parents.|р
 plur|В парке много ___.|There are a lot of trees in the park.|деревья|G|деревья,деревьев,деревьям,деревья,деревьями,деревьях|G_qty|много||pl
 plur|Мы гуляли по ___.|We walked around the streets.|улицы|D|улицы,улиц,улицам,улицы,улицами,улицах|D_prep|гуляли по||pl
 plur|Я познакомился со ___ из Испании.|I met some students from Spain.|студенты|I|студенты,студентов,студентам,студентов,студентами,студентах|I_with|познакомился со|со before с + consonant: со студентами.|pl
-plur|Он подарил ___ цветы.|He gave his colleagues flowers.|коллеги|D|коллеги,коллег,коллегам,коллег,коллегами,коллегах|D_ind|подарил||pl`;
+plur|Он подарил ___ цветы.|He gave his colleagues flowers.|коллеги|D|коллеги,коллег,коллегам,коллег,коллегами,коллегах|D_ind|подарил||pl
+plur|Мы купили билеты для ___.|We bought tickets for the children.|дети|G|дети,детей,детям,детей,детьми,детях|G_prep|для|Дети has an irregular plural: детей, детям, детьми.|pl
+plur|На улице много ___.|There are a lot of cars in the street.|машины|G|машины,машин,машинам,машины,машинами,машинах|G_qty|много||pl
+plur|Она помогает ___.|She helps the neighbours.|соседи|D|соседи,соседей,соседям,соседей,соседями,соседях|D_ind|помогает||pl
+plur|Он говорит о своих ___.|He talks about his plans.|планы|P|планы,планов,планам,планы,планами,планах|P_about|о своих||pl
+plur|Мы гуляли с ___.|We went for a walk with friends.|друзья|I|друзья,друзей,друзьям,друзей,друзьями,друзьях|I_with|с||pl
+plur|В городе нет ___.|There are no museums in the town.|музеи|G|музеи,музеев,музеям,музеи,музеями,музеях|G_neg|нет||pl
+plur|Я пишу ___.|I'm writing letters.|письма|A|письма,писем,письмам,письма,письмами,письмах|A_obj|пишу|Inanimate plural: the accusative looks like the nominative.|pl
+plur|Учитель доволен ___.|The teacher is pleased with the students.|студенты|I|студенты,студентов,студентам,студентов,студентами,студентах|I_verb|доволен||pl
+plur|Это игрушки для ___.|These are toys for the cats.|кошки|G|кошки,кошек,кошкам,кошек,кошками,кошках|G_prep|для||pl
+plur|Я позвоню ___.|I'll call my parents.|родители|D|родители,родителей,родителям,родителей,родителями,родителях|D_ind|позвоню||pl
+adj|Он купил ___.|He bought a new phone.|новый телефон|A|новый телефон,нового телефона,новому телефону,новый телефон,новым телефоном,новом телефоне|A_obj|купил|Inanimate masculine: the accusative looks like the nominative.|adj
+adj|Мы видели ___.|We saw a famous actor.|известный актёр|A|известный актёр,известного актёра,известному актёру,известного актёра,известным актёром,известном актёре|A_obj|видели|Animate masculine: the accusative looks like the genitive.|adj
+adj|Она пришла без ___.|She came without her little sister.|младшая сестра|G|младшая сестра,младшей сестры,младшей сестре,младшую сестру,младшей сестрой,младшей сестре|G_prep|без||adj
+adj|Я дал книгу ___.|I gave the book to my best friend.|лучший друг|D|лучший друг,лучшего друга,лучшему другу,лучшего друга,лучшим другом,лучшем друге|D_ind|дал книгу||adj
+adj|Мы любим ___.|We love our grandmother.|наша бабушка|A|наша бабушка,нашей бабушки,нашей бабушке,нашу бабушку,нашей бабушкой,нашей бабушке|A_obj|любим||adj
+adj|Он работает с ___.|He works with a young colleague.|молодой коллега|I|молодой коллега,молодого коллеги,молодому коллеге,молодого коллегу,молодым коллегой,молодом коллеге|I_with|с|Коллега is feminine in form but here a man: молодым коллегой.|adj`;
 window.EXERCISE = {
   id: 'cases', step1: 'Which case?', step1Short: 'Case', scoreLabel: 'Cases right', keepOrder1: true,
   topics: TOPICS, levels: LEVELS, opts: OPTS, rules: RULES,

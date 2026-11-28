@@ -1,0 +1,75 @@
+# vp
+vp|Wir haben lange ___ gesprochen.|We talked about the film for a long time.|der Film|akk;dat|akk|über den Film;über dem Film;von den Film;an den Film|über den Film|vp_akk|gesprochen|Sprechen über + accusative (sprechen von + dative is also possible, with a different form).
+vp|Ich erinnere mich gut ___.|I remember the trip well.|die Reise|akk;dat|akk|an die Reise;an der Reise;über die Reise;von der Reise|an die Reise|vp_akk|erinnere mich|
+vp|Sie bittet ihren Chef ___.|She asks her boss for help.|die Hilfe|akk;dat|akk|um Hilfe;nach Hilfe;für Hilfe;auf Hilfe|um Hilfe|vp_akk|bittet|Bitten um + accusative.
+vp|Wir haben uns ___ geärgert.|We were annoyed about the delay.|die Verspätung|akk;dat|akk|über die Verspätung;über der Verspätung;auf die Verspätung;an der Verspätung|über die Verspätung|vp_akk|geärgert|
+vp|Er kümmert sich ___.|He looks after his little sister.|seine kleine Schwester|akk;dat|akk|um seine kleine Schwester;für seine kleine Schwester;an seiner kleinen Schwester;mit seiner kleinen Schwester|um seine kleine Schwester|vp_akk|kümmert sich|
+vp|Das Kind fragt ___.|The child asks for its mother.|die Mutter|akk;dat|dat|nach der Mutter;nach die Mutter;um die Mutter;für die Mutter|nach der Mutter|vp_dat|fragt|Fragen nach + dative.
+vp|Ich gratuliere dir ___!|Congratulations on your birthday!|dein Geburtstag|akk;dat|dat|zum Geburtstag;für deinen Geburtstag;an deinem Geburtstag;auf deinen Geburtstag|zum Geburtstag|vp_dat|gratuliere|Gratulieren zu + dative.
+vp|Wir zweifeln nicht ___.|We have no doubt about his honesty.|seine Ehrlichkeit|akk;dat|dat|an seiner Ehrlichkeit;an seine Ehrlichkeit;über seine Ehrlichkeit;um seine Ehrlichkeit|an seiner Ehrlichkeit|vp_dat|zweifeln|Zweifeln an + dative.
+vp|Er hat sich ___ verliebt.|He has fallen in love with his colleague.|seine Kollegin|akk;dat|akk|in seine Kollegin;in seiner Kollegin;an seine Kollegin;mit seiner Kollegin|in seine Kollegin|vp_akk|verliebt|Sich verlieben in + accusative.
+vp|Die Kinder fürchten sich ___.|The children are scared of the storm.|das Gewitter|akk;dat|dat|vor dem Gewitter;vor das Gewitter;von dem Gewitter;an dem Gewitter|vor dem Gewitter|vp_dat|fürchten sich|
+vp|Wir bedanken uns ___.|We thank you for the invitation.|die Einladung|akk;dat|akk|für die Einladung;für der Einladung;über die Einladung;um die Einladung|für die Einladung|vp_akk|bedanken uns|
+vp|Ich habe mich ___ entschieden.|I decided on the cheaper flat.|die billigere Wohnung|akk;dat|akk|für die billigere Wohnung;für der billigeren Wohnung;über die billigere Wohnung;an die billigere Wohnung|für die billigere Wohnung|vp_akk|entschieden|
+# nd
+nd|Ich habe heute ___ angerufen.|I called the customer today.|der Kunde|ndekl;normal|ndekl|den Kunden;den Kunde;dem Kunde;des Kundes|den Kunden|n_dekl|angerufen|
+nd|Die Firma sucht ___.|The company is looking for an architect.|ein Architekt|ndekl;normal|ndekl|einen Architekten;einen Architekt;einem Architekt;eines Architekts|einen Architekten|n_dekl|sucht|Nouns in -ent, -ant, -ist, -at, -oge and -ekt are n-nouns.
+nd|Wir haben ___ nach dem Weg gefragt.|We asked a policeman the way.|ein Polizist|ndekl;normal|ndekl|einen Polizisten;einen Polizist;einem Polizist;eines Polizists|einen Polizisten|n_dekl|gefragt|
+nd|Ich helfe ___ beim Umzug.|I'm helping my friend move.|mein Freund|ndekl;normal|normal|meinem Freund;meinem Freunden;meinen Freunden;meines Freunden|meinem Freund|n_normal|helfe|Freund is a normal noun: no -en.
+nd|Der Lehrer lobt ___.|The teacher praises the student.|der Schüler|ndekl;normal|normal|den Schüler;den Schülern;dem Schülern;des Schülers|den Schüler|n_normal|lobt|
+nd|Die Zeitung hat ___ interviewt.|The newspaper interviewed the president.|der Präsident|ndekl;normal|ndekl|den Präsidenten;den Präsident;dem Präsident;des Präsidents|den Präsidenten|n_dekl|interviewt|
+nd|Das ist die Idee ___.|That is the colleague's idea.|mein Kollege|ndekl;normal|ndekl|meines Kollegen;meines Kolleges;meinem Kollege;meinen Kollege|meines Kollegen|n_dekl|die Idee|
+nd|Hast du ___ gesehen?|Have you seen the bear?|der Bär|ndekl;normal|ndekl|den Bären;den Bär;dem Bär;des Bärs|den Bären|n_dekl|gesehen|
+nd|Wir schreiben ___ eine E-Mail.|We're writing the customer an email.|der Kunde|ndekl;normal|ndekl|dem Kunden;dem Kunde;den Kunde;des Kundes|dem Kunden|n_dekl|schreiben|
+nd|Die Ärztin spricht mit ___.|The doctor is talking to the patient.|der Patient|ndekl;normal|ndekl|dem Patienten;dem Patient;den Patient;des Patients|dem Patienten|n_dekl|mit|
+nd|Ich vertraue ___.|I trust the doctor.|der Arzt|ndekl;normal|normal|dem Arzt;dem Arzten;den Arzten;des Arztens|dem Arzt|n_normal|vertraue|Arzt is a normal noun: dem Arzt.
+nd|Der Name ___ steht auf dem Plakat.|The artist's name is on the poster.|der Künstler|ndekl;normal|normal|des Künstlers;des Künstlern;dem Künstlern;den Künstlern|des Künstlers|n_normal|Der Name|
+nd|Ich habe mich mit ___ unterhalten.|I chatted with the journalist.|der Journalist|ndekl;normal|ndekl|dem Journalisten;dem Journalist;den Journalist;des Journalists|dem Journalisten|n_dekl|mit|
+nd|Wir müssen ___ informieren.|We have to inform the biologist.|der Biologe|ndekl;normal|ndekl|den Biologen;den Biologe;dem Biologe;des Biologes|den Biologen|n_dekl|informieren|
+# gf
+gf|Wegen ___ fiel der Flug aus.|Because of the fog the flight was cancelled.|der Nebel|akk;dat;gen|gen|des Nebels;dem Nebel;den Nebel|des Nebels|formal_gen|Wegen|
+gf|Zugunsten ___ wurde das Konzert veranstaltet.|The concert was held in aid of the children's hospital.|das Kinderkrankenhaus|akk;dat;gen|gen|des Kinderkrankenhauses;dem Kinderkrankenhaus;das Kinderkrankenhaus|des Kinderkrankenhauses|formal_gen|Zugunsten|
+gf|Bezüglich ___ melden wir uns bald.|Regarding your enquiry, we'll be in touch soon.|Ihre Anfrage|akk;dat;gen|gen|Ihrer Anfrage;Ihre Anfrage;Ihren Anfragen|Ihrer Anfrage|formal_gen|Bezüglich|
+gf|Im Rahmen ___ wurden neue Wege gebaut.|New paths were built as part of the project.|das Projekt|akk;dat;gen|gen|des Projekts;dem Projekt;das Projekt|des Projekts|formal_gen|Im Rahmen|
+gf|Unweit ___ liegt ein kleines Hotel.|Not far from the station there's a small hotel.|der Bahnhof|akk;dat;gen|gen|des Bahnhofs;dem Bahnhof;den Bahnhof|des Bahnhofs|formal_gen|Unweit|
+gf|Entgegen ___ ist er nicht gekommen.|Contrary to his promise, he didn't come.|sein Versprechen|akk;dat;gen|dat|seinem Versprechen;seines Versprechens;sein Versprechen|seinem Versprechen|formal_dat|Entgegen|
+gf|Gegenüber ___ ist sie sehr höflich.|She is very polite towards her colleagues.|ihre Kollegen|akk;dat;gen|dat|ihren Kollegen;ihrer Kollegen;ihre Kollegen|ihren Kollegen|formal_dat|Gegenüber|
+gf|Ungeachtet ___ wurde das Gesetz beschlossen.|Notwithstanding the protests, the law was passed.|die Proteste|akk;dat;gen|gen|der Proteste;den Protesten;die Proteste|der Proteste|formal_gen|Ungeachtet|
+gf|Seitens ___ gab es keine Einwände.|There were no objections on the part of the management.|die Geschäftsleitung|akk;dat;gen|gen|der Geschäftsleitung;die Geschäftsleitung;den Geschäftsleitungen|der Geschäftsleitung|formal_gen|Seitens|
+gf|Inmitten ___ steht ein altes Haus.|In the middle of the forest stands an old house.|der Wald|akk;dat;gen|gen|des Waldes;dem Wald;den Wald|des Waldes|formal_gen|Inmitten|
+# k1
+k1|Sie meint, das Essen ___ zu salzig.|She thinks the food is too salty.|sein|k1;k2e;ind|k1|sei;wäre;ist;war|sei|konj1|meint|
+k1|Der Arzt sagte, ich ___ mehr Sport treiben.|The doctor said I should do more sport.|sollen|k1;k2e;ind|k1|solle;sollte;soll;sollen|solle|konj1|sagte|
+k1|Er behauptet, er ___ den Brief nie bekommen.|He claims he never received the letter.|haben|k1;k2e;ind|k1|habe;hätte;hat;hatte|habe|konj1|behauptet|
+k1|Die Experten warnen, die Preise ___ weiter steigen.|The experts warn that prices will keep rising.|werden|k1;k2e;ind|k2e|würden;werden;wurden;werde|würden|konj1_ersatz|warnen|Konjunktiv I would be "werden", the same as the indicative: so würden.
+k1|Die Nachbarin erzählte, sie ___ im Urlaub gewesen.|The neighbour said she had been on holiday.|sein|k1;k2e;ind|k1|sei;wäre;ist;war|sei|konj1|erzählte|
+k1|Laut Bericht ___ das Unternehmen 200 Mitarbeiter entlassen.|According to the report, the company has laid off 200 staff.|haben|k1;k2e;ind|k1|habe;hätte;hat;hatte|habe|konj1|Laut Bericht|
+k1|Die Eltern sagen, sie ___ stolz auf ihre Tochter.|The parents say they are proud of their daughter.|sein|k1;k2e;ind|k1|seien;wären;sind;waren|seien|konj1|sagen|Sein has its own Konjunktiv I in every person: sie seien.
+k1|Er erklärte, er ___ morgen nach Paris.|He explained that he was flying to Paris tomorrow.|fliegen|k1;k2e;ind|k1|fliege;flöge;fliegt;flog|fliege|konj1|erklärte|
+k1|Die Schüler meinten, sie ___ die Aufgabe nicht verstanden.|The pupils said they hadn't understood the task.|haben|k1;k2e;ind|k2e|hätten;haben;hatten;habe|hätten|konj1_ersatz|meinten|
+k1|Ich habe gesehen, dass er weggefahren ___.|I saw that he drove away.|sein|k1;k2e;ind|ind|ist;sei;wäre;war|ist|konj1_ind|habe gesehen|
+k1|Sie fragte mich, wann ich ___.|She asked me when I would come.|kommen|k1;k2e;ind|k2e|käme;komme;kam;kommen|käme|konj1_ersatz|fragte|Ich komme would look like the indicative, so the Konjunktiv II replaces it.
+k1|Der Zeuge gab an, er ___ nichts bemerkt.|The witness stated that he had noticed nothing.|haben|k1;k2e;ind|k1|habe;hätte;hat;hatte|habe|konj1|gab an|
+k1|Man sagt, es ___ morgen schneien.|They say it will snow tomorrow.|werden|k1;k2e;ind|k1|werde;würde;wird;wurde|werde|konj1|Man sagt|
+k1|Die Sprecherin betonte, man ___ die Kritik ernst.|The spokeswoman stressed that they take the criticism seriously.|nehmen|k1;k2e;ind|k1|nehme;nähme;nimmt;nahm|nehme|konj1|betonte|
+# pa
+pa|Die ___ Kinder spielen im Hof.|The laughing children are playing in the yard.|lachen|p1;p2;p1zu|p1|lachenden;gelachten;zu lachenden;lachende|lachenden|part_attr|Kinder|
+pa|Das ___ Fenster muss repariert werden.|The broken window must be repaired.|zerbrechen|p1;p2;p1zu|p2|zerbrechende;zerbrochene;zu zerbrechende;zerbrochenen|zerbrochene|part_attr|Fenster|
+pa|Der ___ Zug hatte Verspätung.|The arriving train was late.|ankommen|p1;p2;p1zu|p1|ankommende;angekommene;anzukommende;ankommenden|ankommende|part_attr|Zug|
+pa|Wir suchen einen gut ___ Mitarbeiter.|We're looking for a well-trained employee.|ausbilden|p1;p2;p1zu|p2|ausgebildeten;ausbildenden;auszubildenden;ausgebildete|ausgebildeten|part_attr|Mitarbeiter|
+pa|Das ist eine nicht zu ___ Leistung.|That is an achievement not to be underestimated.|unterschätzen|p1;p2;p1zu|p1zu|unterschätzende;unterschätzte;unterschätzenden;unterschätzt|unterschätzende|part_gerundiv|nicht zu|The zu is already there: zu + Partizip I + ending.
+pa|Die ___ Arbeitslosigkeit ist ein Problem.|Rising unemployment is a problem.|wachsen|p1;p2;p1zu|p1|wachsende;gewachsene;zu wachsende;wachsenden|wachsende|part_attr|Arbeitslosigkeit|
+pa|Er hat das ___ Geld zurückgegeben.|He gave back the money he had found.|finden|p1;p2;p1zu|p2|gefundene;findende;zu findende;gefundenen|gefundene|part_attr|Geld|
+pa|Die bis Freitag ___ Rechnungen liegen hier.|The invoices to be paid by Friday are here.|bezahlen|p1;p2;p1zu|p1zu|zu bezahlenden;bezahlten;bezahlenden;zu bezahlende|zu bezahlenden|part_gerundiv|bis Freitag||C2
+pa|Der seit Jahren in Berlin ___ Künstler stellt aus.|The artist who has lived in Berlin for years is exhibiting.|leben|p1;p2;p1zu|p1|lebende;gelebte;zu lebende;lebenden|lebende|part_attr|Künstler|
+pa|Das im Garten ___ Haus gehört uns nicht.|The house standing in the garden isn't ours.|stehen|p1;p2;p1zu|p1|stehende;gestandene;zu stehende;stehenden|stehende|part_attr|Haus|
+pa|Die ___ Wohnung wurde schnell vermietet.|The renovated flat was let quickly.|renovieren|p1;p2;p1zu|p2|renovierte;renovierende;zu renovierende;renovierten|renovierte|part_attr|Wohnung|
+pa|Die noch ___ Fragen klären wir morgen.|We'll settle the questions still to be answered tomorrow.|beantworten|p1;p2;p1zu|p1zu|zu beantwortenden;beantworteten;beantwortenden;zu beantwortende|zu beantwortenden|part_gerundiv|noch||C2
+pa|Mit ___ Stimme las sie den Brief vor.|In a trembling voice she read the letter aloud.|zittern|p1;p2;p1zu|p1|zitternder;gezitterter;zu zitternder;zitternde|zitternder|part_attr|Stimme|No article, feminine dative: -er.
+pa|Der vor zwei Jahren ___ Vertrag läuft aus.|The contract signed two years ago is expiring.|unterschreiben|p1;p2;p1zu|p2|unterschriebene;unterschreibende;zu unterschreibende;unterschriebenen|unterschriebene|part_attr|Vertrag|
+gf|Anhand ___ lässt sich das gut erklären.|This can be explained well on the basis of the data.|die Daten|akk;dat;gen|gen|der Daten;den Daten;die Daten|der Daten|formal_gen|Anhand|
+gf|Aufgrund ___ wurde das Spiel abgesagt.|Due to the bad weather the match was called off.|das schlechte Wetter|akk;dat;gen|gen|des schlechten Wetters;dem schlechten Wetter;das schlechte Wetter|des schlechten Wetters|formal_gen|Aufgrund|
+gf|Angesichts ___ bleiben wir zu Hause.|In view of the situation we're staying at home.|die Lage|akk;dat;gen|gen|der Lage;die Lage;den Lagen|der Lage|formal_gen|Angesichts|
+gf|Infolge ___ fuhren keine Züge.|As a result of the strike no trains ran.|der Streik|akk;dat;gen|gen|des Streiks;dem Streik;den Streik|des Streiks|formal_gen|Infolge|
+gf|Hinsichtlich ___ sind wir uns einig.|We agree with regard to the costs.|die Kosten|akk;dat;gen|gen|der Kosten;den Kosten;die Kosten|der Kosten|formal_gen|Hinsichtlich|
+gf|Gemäß ___ ist das Rauchen hier verboten.|In accordance with the regulations, smoking is forbidden here.|die Vorschriften|akk;dat;gen|dat|den Vorschriften;der Vorschriften;die Vorschriften|den Vorschriften|formal_dat|Gemäß|

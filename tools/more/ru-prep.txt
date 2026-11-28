@@ -1,0 +1,65 @@
+# topic|sentence|English|noun|options|answer index|case|rule|signal|note
+where|Мама работает ___.|Mum works at a factory.|завод|в;на;у|1|P|na_place|работает|Factories and plants take на: на заводе, на фабрике.
+where|Книги лежат ___.|The books are on the shelf.|полка|в;на;под|1|P|na_place|лежат|
+where|Он сейчас ___.|He's at work now.|работа|в;на;к|1|P|na_place|сейчас|
+where|Деньги лежат ___.|The money is in the bank.|банк|в;на;у|0|P|v_place|лежат|
+where|Студенты сидят ___.|The students are sitting in the lecture.|лекция|в;на;к|1|P|na_place|сидят|Events and activities: на лекции, на уроке, на концерте.
+where|Я видел его ___.|I saw him at the market.|рынок|в;на;у|1|P|na_place|видел|
+where|Мы жили ___.|We lived in a small town.|маленький город|в;на;из|0|P|v_place|жили|
+where|Ключи ___.|The keys are in my bag.|моя сумка|в;на;за|0|P|v_place|Ключи|
+where|Мы встречаемся ___.|We're meeting in the square.|площадь|в;на;у|1|P|na_place|встречаемся|Open spaces take на: на площади, на улице, на стадионе.
+whereto|Завтра мы едем ___.|Tomorrow we're going to the sea.|море|в;на;к|1|A|na_dir|едем|
+whereto|Я иду ___.|I'm going to the shop.|магазин|в;на;к|0|A|v_dir|иду|
+whereto|Он ушёл ___.|He has gone to work.|работа|в;на;к|1|A|na_dir|ушёл|
+whereto|Положи книгу ___.|Put the book on the table.|стол|в;на;к|1|A|na_dir|Положи|Putting something somewhere: на + accusative.
+whereto|Мы летим ___.|We're flying to Italy.|Италия|в;на;к|0|A|v_dir|летим|
+whereto|Она пошла ___.|She went to the post office.|почта|в;на;к|1|A|na_dir|пошла|
+whereto|Дети побежали ___.|The children ran out into the street.|улица|в;на;к|1|A|na_dir|побежали|
+whereto|Я записался ___.|I've signed up for a course.|курсы|в;на;к|1|A|na_dir|записался|
+whereto|Повесь пальто ___.|Hang the coat in the wardrobe.|шкаф|в;на;за|0|A|v_dir|Повесь|
+whereto|Мы пригласили его ___.|We invited him to the wedding.|свадьба|в;на;к|1|A|na_dir|пригласили|
+whereto|Вода попала ___.|Water got into the phone.|телефон|в;на;к|0|A|v_dir|попала|
+whereto|Они переехали ___.|They moved to the countryside.|деревня|в;на;к|0|A|v_dir|переехали|
+from|Он только что вернулся ___.|He has just come back from work.|работа|из;с;от|1|G|s_from|вернулся|The opposite of на: с работы, с концерта, с вокзала.
+from|Мы приехали ___.|We came from Moscow.|Москва|из;с;от|0|G|iz_from|приехали|The opposite of в: из.
+from|Достань молоко ___.|Get the milk out of the fridge.|холодильник|из;с;от|0|G|iz_from|Достань|
+from|Сними книгу ___.|Take the book off the shelf.|полка|из;с;от|1|G|s_from|Сними|Off a surface: с.
+from|Письмо пришло ___.|The letter came from the bank.|банк|из;с;от|0|G|iz_from|пришло|
+from|Дети пришли ___.|The children came back from the park.|парк|из;с;от|0|G|iz_from|пришли|
+from|Он вышел ___ в шесть.|He left the office at six.|офис|из;с;от|0|G|iz_from|вышел|
+from|Мы вернулись ___ поздно.|We got back from the concert late.|концерт|из;с;от|1|G|s_from|вернулись|
+from|Туристы приехали ___.|The tourists came from the Urals.|Урал|из;с;от|1|G|s_from|приехали|На Урале → с Урала.
+from|Она получила письмо ___.|She received a letter from her grandmother.|бабушка|из;с;от|2|G|ot_person|получила письмо|From a person: от.
+person|Вечером я пойду ___.|In the evening I'll go to my friend's.|друг|к;у;от|0|D|k_person|пойду|To a person: к + dative.
+person|Вчера мы были ___.|Yesterday we were at grandma's.|бабушка|к;у;от|1|G|u_person|были|At someone's place: у + genitive.
+person|Я узнал это ___.|I found it out from my colleague.|коллега|к;у;от|2|G|ot_person|узнал это|
+person|Подойди ___!|Come up to the board!|доска|к;у;от|0|D|k_person|Подойди|К also means towards a thing: к доске.
+person|Я знаю, что ___ есть машина.|I know my brother has a car.|мой брат|к;у;от|1|G|u_have|есть|Having something: у + genitive + есть.
+person|Она вернулась ___ поздно вечером.|She came back from the dentist late in the evening.|стоматолог|к;у;от|2|G|ot_person|вернулась|
+person|Мы ездили в гости ___.|We went to visit our relatives.|родственники|к;у;от|0|D|k_person|в гости|
+person|Ночевать будешь ___?|Will you stay the night at your aunt's?|тётя|к;у;от|1|G|u_person|Ночевать|
+person|Мне надо зайти ___.|I need to drop in at the doctor's.|врач|к;у;от|0|D|k_person|зайти|
+person|Сегодня ___ нет времени.|The boss has no time today.|начальник|к;у;от|1|G|u_have|нет времени|
+person|Я получил подарок ___.|I got a present from my parents.|родители|к;у;от|2|G|ot_person|получил подарок|
+person|Она долго жила ___.|She lived at her friend's for a long time.|подруга|к;у;от|1|G|u_person|жила|
+time|Мы уезжаем ___.|We're leaving in an hour.|час|через;в;на|0|A|cherez|уезжаем|
+time|Магазин закрыт ___.|The shop is closed for lunch.|обед|на;в;через|0|A|na_time|закрыт|
+time|Он родился ___.|He was born in May.|май|в;на;через|0|P|v_month|родился|
+time|Встретимся ___.|Let's meet after work.|работа|после;до;через|0|G|posle|Встретимся|
+time|Позвони мне ___.|Call me before lunch.|обед|до;после;через|0|G|do_time|Позвони мне|
+time|Я прочитал книгу ___.|I read the book in a week.|неделя|за;через;на|0|A|za_time|прочитал|How long it took: за + accusative.
+time|Они поженились ___.|They got married on Saturday.|суббота|в;на;через|0|A|v_time|поженились|
+time|Мы взяли машину ___.|We hired the car for the weekend.|выходные|на;за;через|0|A|na_time|взяли|For a planned period: на + accusative.
+time|Поезд придёт ___.|The train will arrive in a minute.|минута|через;за;на|0|A|cherez|придёт|
+time|Все ушли ___.|Everyone left after the lecture.|лекция|после;до;через|0|G|posle|ушли|
+other|Он вошёл ___.|He came in without knocking.|стук|без;с;для|0|G|bez|вошёл|
+other|Это лекарство ___.|This medicine is for a cough.|кашель|от;для;без|0|G|other_gen|лекарство|A remedy against something: от.
+other|Я купил цветы ___.|I bought flowers for my mum.|мама|для;к;у|0|G|dlya|купил цветы|
+other|Он смотрит фильм ___.|He's watching a film with subtitles.|субтитры|с;без;для|0|I|s_with|смотрит фильм|
+other|Мы долго спорили ___.|We argued about the plan for a long time.|план|о;с;на|0|P|o_about|спорили|
+other|Отправь документы ___.|Send the documents by post.|почта|по;в;с|0|D|po|Отправь|
+other|Мы живём ___.|We live near the station.|вокзал|около;напротив;под|0|G|other_gen|живём|
+other|Кот спрятался ___.|The cat hid under the sofa.|диван|под;на;за|0|A|pod|спрятался|Movement under something: под + accusative.
+other|Он скучает ___.|He misses his home.|дом|по;о;за|0|D|po|скучает|Скучать по + dative.
+other|Мы поговорили ___.|We talked about the weather.|погода|о;об;с|0|P|o_about|поговорили|
+other|Чай ___ — мой любимый.|Tea with lemon is my favourite.|лимон|с;без;для|0|I|s_with|Чай|

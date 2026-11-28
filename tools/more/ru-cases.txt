@@ -1,0 +1,23 @@
+# topic|sentence|English|hint|case|rule|signal|note|group
+plur|Я не люблю ___.|I don't like spiders.|пауки|A|A_obj|люблю|Animate plural: the accusative looks like the genitive: пауков.|pl
+plur|Мы купили билеты для ___.|We bought tickets for the children.|дети|G|G_prep|для|Дети has an irregular plural: детей, детям, детьми.|pl
+plur|На улице много ___.|There are a lot of cars in the street.|машины|G|G_qty|много||pl
+plur|Она помогает ___.|She helps the neighbours.|соседи|D|D_ind|помогает||pl
+plur|Он говорит о своих ___.|He talks about his plans.|планы|P|P_about|о своих||pl
+plur|Мы гуляли с ___.|We went for a walk with friends.|друзья|I|I_with|с||pl
+plur|В городе нет ___.|There are no museums in the town.|музеи|G|G_neg|нет||pl
+plur|Я пишу ___.|I'm writing letters.|письма|A|A_obj|пишу|Inanimate plural: the accusative looks like the nominative.|pl
+plur|Учитель доволен ___.|The teacher is pleased with the students.|студенты|I|I_verb|доволен||pl
+plur|Мы живём в ___.|We live in the mountains.|горы|P|P_loc|живём в||pl
+plur|Это игрушки для ___.|These are toys for the cats.|кошки|G|G_prep|для||pl
+plur|Я позвоню ___.|I'll call my parents.|родители|D|D_ind|позвоню||pl
+adj|Я живу в ___.|I live in a big city.|большой город|P|P_loc|живу в||adj
+adj|Он купил ___.|He bought a new phone.|новый телефон|A|A_obj|купил|Inanimate masculine: the accusative looks like the nominative.|adj
+adj|Мы видели ___.|We saw a famous actor.|известный актёр|A|A_obj|видели|Animate masculine: the accusative looks like the genitive.|adj
+adj|Она пришла без ___.|She came without her little sister.|младшая сестра|G|G_prep|без||adj
+adj|Я дал книгу ___.|I gave the book to my best friend.|лучший друг|D|D_ind|дал книгу||adj
+adj|Он гордится ___.|He is proud of his old car.|старая машина|I|I_verb|гордится||adj
+adj|Мы говорили о ___.|We talked about the last film.|последний фильм|P|P_about|говорили о||adj
+adj|У нас нет ___.|We don't have hot water.|горячая вода|G|G_neg|нет||adj
+adj|Мы любим ___.|We love our grandmother.|наша бабушка|A|A_obj|любим||adj
+adj|Он работает с ___.|He works with a young colleague.|молодой коллега|I|I_with|с|Коллега is feminine in form but here a man: молодым коллегой.|adj

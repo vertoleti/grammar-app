@@ -1,0 +1,34 @@
+part|Человек, ___ у окна, — мой начальник.|The man standing at the window is my boss.|стоять|apres;apast;ppres|0|стоящий;стоявший;стоящая;стоящего|0|part_apres|у окна|Agrees with человек: masculine nominative.|
+part|Мы прочитали статью, ___ вчера в газете.|We read the article published in the newspaper yesterday.|опубликовать|ppast;apast;apres|0|опубликованную;опубликовавшую;опубликованная;публикующую|0|part_ppast|вчера|Agrees with статью: feminine accusative.|
+part|Студенты, ___ по-русски, могут сдать экзамен.|Students who speak Russian can take the exam.|говорить|apres;apast;ppres|0|говорящие;говорившие;говорящих;говоримые|0|part_apres|по-русски|
+part|Я нашёл ___ кошелёк.|I found the lost wallet.|потерять|ppast;apast;apres|0|потерянный;потерявший;теряющий;потерянная|0|part_ppast|кошелёк|Inanimate masculine accusative = nominative.|
+part|Мы говорили с женщиной, ___ в Сибири.|We talked to a woman who had lived in Siberia.|жить|apast;apres;ppast|0|жившей;живущей;жившая;живущая|0|part_apast|в Сибири|Agrees with женщиной: feminine instrumental.|
+part|Это задача, ___ всеми.|This is a task recognised by everyone.|признавать|ppres;ppast;apres|0|признаваемая;признанная;признающая;признававшая|0|part_ppres|всеми|Present passive: -емый / -имый; признавать keeps -ва-: признаваемый.|B2
+part|В комнату вошёл мужчина, ___ чемодан.|A man carrying a suitcase came into the room.|нести|apres;apast;ppres|0|несущий;нёсший;несущая;несомый|0|part_apres|чемодан|
+part|Дети, ___ в лагере всё лето, вернулись домой.|The children who had spent the whole summer at camp came home.|провести|apast;apres;ppast|0|проведшие;проводящие;проведённые;проведшая|0|part_apast|всё лето|Провести: проведший, проведшие.|
+part|Это ___ всеми фильм.|This is a film loved by everyone.|любить|ppres;ppast;apres|0|любимый;любленный;любящий;любимая|0|part_ppres|всеми|Любимый is also an ordinary adjective: favourite.|
+part|На столе лежали ___ вещи.|Forgotten things were lying on the table.|забыть|ppast;apast;apres|0|забытые;забывшие;забывающие;забытая|0|part_ppast|вещи|Short -т- participle: забыть → забытый.|
+part|Я знаю девушку, ___ в этом доме.|I know the girl who lives in this house.|жить|apres;apast;ppres|0|живущую;жившую;живущая;живущей|0|part_apres|в этом доме|Agrees with девушку: feminine accusative.|
+part|Книги, ___ из библиотеки, надо вернуть.|Books taken from the library must be returned.|взять|ppast;apast;apres|0|взятые;взявшие;берущие;взятых|0|part_ppast|из библиотеки|
+adv|___ по улице, она думала о работе.|Walking down the street, she was thinking about work.|гулять|advi;advp|0|гуляя;погуляв;гулявшая;гуляющая|0|adv_impf||
+adv|___ письмо, он отправил его.|Having written the letter, he sent it.|написать|advp;advi|0|написав;пиша;написавший;написанное|0|adv_pf|||
+adv|Он ушёл, не ___.|He left without saying goodbye.|попрощаться|advp;advi|0|попрощавшись;прощаясь;попрощался;попрощавшийся|0|adv_pf|не|-ся verbs: -вшись: попрощавшись.|
+adv|___ ответ, она улыбнулась.|Hearing the answer, she smiled.|услышать|advp;advi|0|услышав;слыша;услышавшая;услышит|0|adv_pf||
+adv|___ в Москву, он сразу позвонил маме.|Having arrived in Moscow, he called his mum at once.|приехать|advp;advi|0|приехав;приезжая;приехавший;приедет|0|adv_pf||
+adv|Не ___ языка, трудно жить за границей.|Without knowing the language, it's hard to live abroad.|знать|advi;advp|0|зная;узнав;знающий;знавший|0|adv_impf|Не|
+adv|___ домой, я понял, что забыл ключи.|On coming home, I realised I'd forgotten the keys.|прийти|advp;advi|0|придя;приходя;пришедший;придёт|0|adv_pf||Прийти → придя.|
+adv|Она сидела, ___ в окно.|She sat looking out of the window.|смотреть|advi;advp|0|смотря;посмотрев;смотревшая;смотрящая|0|adv_impf||
+adv|___ работу, мы пошли в кафе.|Having finished work, we went to a café.|закончить|advp;advi|0|закончив;заканчивая;закончившие;закончат|0|adv_pf||
+sya|Дверь ___ сама.|The door closed by itself.|закрыть / закрыться|закрыть:trans;закрыться:refl|1|закрылся;закрылась;закрылось;закрылись|1|sya_refl|сама||p
+sya|Он ___ окно.|He closed the window.|закрыть / закрыться|закрыть:trans;закрыться:refl|0|закрыл;закрыла;закрыло;закрыли|0|sya_trans|окно||p
+sya|Мы ___ в парке каждое воскресенье.|We meet in the park every Sunday.|встречать / встречаться|встречать:trans;встречаться:refl|1|встречаюсь;встречаешься;встречается;встречаемся;встречаетесь;встречаются|3|sya_recip|в парке|Meeting each other: встречаться.|n
+sya|Я ___ гостей на вокзале.|I'm meeting the guests at the station.|встречать / встречаться|встречать:trans;встречаться:refl|0|встречаю;встречаешь;встречает;встречаем;встречаете;встречают|0|sya_trans|гостей||n
+sya|Цены ___ каждый год.|Prices go up every year.|повышать / повышаться|повышать:trans;повышаться:refl|1|повышаюсь;повышаешься;повышается;повышаемся;повышаетесь;повышаются|5|sya_refl|Цены||n
+sya|Магазины ___ цены перед праздниками.|Shops raise prices before the holidays.|повышать / повышаться|повышать:trans;повышаться:refl|0|повышаю;повышаешь;повышает;повышаем;повышаете;повышают|5|sya_trans|цены||n
+cond|Если бы ты позвонил, я бы ___ тебя.|If you'd called, I'd have met you.|встретить|cond;real|0|встретил;встречу;встретил бы;встречал|0|cond_unreal|Если бы|Бы is already in the sentence: я бы встретил.|
+cond|Если ты придёшь, мы ___ в кино.|If you come, we'll go to the cinema.|пойти|real;cond|0|пойдём;пошли бы;идём;пошли|0|cond_real|Если ты придёшь|
+cond|Я позвонил, чтобы ___ о встрече.|I called to remind you about the meeting.|напомнить|chtoby_inf;chtoby_past|0|напомнить;напомнил;напомню;напоминал|0|chtoby_same||Same subject (я позвонил, я напомню): чтобы + infinitive.|
+cond|Мама попросила, чтобы мы ___ раньше.|Mum asked us to come back earlier.|вернуться|chtoby_past;chtoby_inf|0|вернулись;вернуться;вернёмся;вернулись бы|0|chtoby_diff|попросила, чтобы|Different subject: чтобы + past tense.|
+cond|На твоём месте я бы ___ врачу.|In your place I'd go to the doctor.|обратиться|cond;real|0|обратился;обращусь;обратился бы;обращался|0|cond_unreal|На твоём месте|
+cond|Хорошо бы ___ отпуск!|It would be nice to have a holiday!|взять|cond;real|0|взять;возьму;взял;брал бы|0|cond_unreal|Хорошо бы|Хорошо бы / было бы хорошо + infinitive: a wish.|
+cond|Я говорю медленно, чтобы все ___.|I speak slowly so that everyone understands.|понять|chtoby_past;chtoby_inf|0|поняли;понять;поймут;поняли бы|0|chtoby_diff|чтобы все|

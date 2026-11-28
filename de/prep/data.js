@@ -61,5 +61,42 @@ genp|Während ___ hat er geschlafen.|He slept during the film.|der Film|akk;dat;
 genp|Wegen ___ müssen wir warten.|We have to wait because of the traffic jam.|der Stau|akk;dat;gen|gen|den Stau;dem Stau;des Staus|des Staus|gen_prep|Wegen|
 genp|Innerhalb ___ bekommen Sie eine Antwort.|You'll get an answer within a month.|ein Monat|akk;dat;gen|gen|einen Monat;einem Monat;eines Monats|eines Monats|gen_prep|Innerhalb|
 genp|Außerhalb ___ ist es ruhiger.|It's quieter outside the city centre.|das Zentrum|akk;dat;gen|gen|das Zentrum;dem Zentrum;des Zentrums|des Zentrums|gen_prep|Außerhalb|
+akkp|Wir fahren ohne ___ in den Urlaub.|We're going on holiday without the children.|die Kinder|akk;dat;gen|akk|die Kinder;den Kindern;der Kinder|die Kinder|akk_prep|ohne|
+akkp|Er läuft um ___ herum.|He runs around the lake.|der See|akk;dat;gen|akk|den See;dem See;des Sees|den See|akk_prep|um|
+akkp|Das Auto fuhr gegen ___.|The car drove into a tree.|ein Baum|akk;dat;gen|akk|einen Baum;einem Baum;eines Baums|einen Baum|akk_prep|gegen|
+akkp|Wir gehen durch ___ zum Bahnhof.|We're walking through the town centre to the station.|das Zentrum|akk;dat;gen|akk|das Zentrum;dem Zentrum;des Zentrums|das Zentrum|akk_prep|durch|
+akkp|Ich mache das für ___.|I'm doing it for my grandmother.|meine Oma|akk;dat;gen|akk|meine Oma;meiner Oma;meiner Oma|meine Oma|akk_prep|für|
+akkp|Ohne ___ kann ich nicht arbeiten.|I can't work without my glasses.|meine Brille|akk;dat;gen|akk|meine Brille;meiner Brille;meiner Brille|meine Brille|akk_prep|Ohne|
+akkp|Wir sitzen um ___.|We're sitting round the big table.|der große Tisch|akk;dat;gen|akk|den großen Tisch;dem großen Tisch;des großen Tisches|den großen Tisch|akk_prep|um|
+akkp|Die Straße führt durch ___.|The road leads through the forest.|der Wald|akk;dat;gen|akk|den Wald;dem Wald;des Waldes|den Wald|akk_prep|durch|
+akkp|Sie kämpft für ___.|She's fighting for her rights.|ihre Rechte|akk;dat;gen|akk|ihre Rechte;ihren Rechten;ihrer Rechte|ihre Rechte|akk_prep|für|
+akkp|Bis ___ muss alles fertig sein.|Everything has to be ready by next week.|nächste Woche|akk;dat;gen|akk|nächste Woche;nächster Woche;nächster Woche|nächste Woche|akk_prep|Bis|Bis + a time without an article: the accusative.
+datp|Ich wohne bei ___.|I'm living with my aunt.|meine Tante|akk;dat;gen|dat|meine Tante;meiner Tante;meiner Tante|meiner Tante|dat_prep|bei|
+datp|Das Geschenk ist von ___.|The present is from my friends.|meine Freunde|akk;dat;gen|dat|meine Freunde;meinen Freunden;meiner Freunde|meinen Freunden|dat_prep|von|Dative plural: -n on the noun too.
+datp|Wir fahren zu ___.|We're driving to my parents'.|meine Eltern|akk;dat;gen|dat|meine Eltern;meinen Eltern;meiner Eltern|meinen Eltern|dat_prep|zu|
+datp|Gegenüber ___ ist eine Apotheke.|Opposite the station there's a pharmacy.|der Bahnhof|akk;dat;gen|dat|den Bahnhof;dem Bahnhof;des Bahnhofs|dem Bahnhof|dat_prep|Gegenüber|
+datp|Ich gehe mit ___ ins Kino.|I'm going to the cinema with my colleague.|meine Kollegin|akk;dat;gen|dat|meine Kollegin;meiner Kollegin;meiner Kollegin|meiner Kollegin|dat_prep|mit|
+datp|Das Buch ist aus ___.|The book is from the library.|die Bibliothek|akk;dat;gen|dat|die Bibliothek;der Bibliothek;der Bibliothek|der Bibliothek|dat_prep|aus|
+datp|Wir haben nach ___ gesucht.|We searched for a solution.|eine Lösung|akk;dat;gen|dat|eine Lösung;einer Lösung;einer Lösung|einer Lösung|dat_prep|nach|
+datp|Ab ___ habe ich Urlaub.|I'm on holiday from Monday.|der Montag|akk;dat;gen|dat|den Montag;dem Montag;des Montags|dem Montag|dat_prep|Ab|
+wech|Ich hänge das Bild an ___.|I'm hanging the picture on the wall.|die Wand|akk;dat|akk|die Wand;der Wand|die Wand|wechsel_akk|hänge|Movement to a place (wohin?): accusative.
+wech|Wir gehen heute in ___.|We're going to the theatre today.|das Theater|akk;dat|akk|das Theater;dem Theater|das Theater|wechsel_akk|gehen|
+wech|Die Katze schläft unter ___.|The cat is sleeping under the bed.|das Bett|akk;dat|dat|das Bett;dem Bett|dem Bett|wechsel_dat|schläft|
+wech|Stell die Flaschen neben ___.|Put the bottles next to the fridge.|der Kühlschrank|akk;dat|akk|den Kühlschrank;dem Kühlschrank|den Kühlschrank|wechsel_akk|Stell|
+wech|Er setzt sich vor ___.|He sits down in front of the computer.|der Computer|akk;dat|akk|den Computer;dem Computer|den Computer|wechsel_akk|setzt sich|Sich setzen is a movement: accusative.
+wech|Er sitzt den ganzen Tag vor ___.|He sits in front of the computer all day.|der Computer|akk;dat|dat|den Computer;dem Computer|dem Computer|wechsel_dat|sitzt|
+genp|Während ___ war ich in Spanien.|During the holidays I was in Spain.|die Ferien|akk;dat;gen|gen|die Ferien;den Ferien;der Ferien|der Ferien|gen_prep|Während|
+genp|Statt ___ haben wir Tee getrunken.|Instead of coffee we drank tea.|der Kaffee|akk;dat;gen|gen|den Kaffee;dem Kaffee;des Kaffees|des Kaffees|gen_prep|Statt|
+genp|Innerhalb ___ müssen Sie zahlen.|You have to pay within a month.|ein Monat|akk;dat;gen|gen|einen Monat;einem Monat;eines Monats|eines Monats|gen_prep|Innerhalb|
+genp|Wegen ___ kam er zu spät.|He was late because of the traffic jam.|der Stau|akk;dat;gen|gen|den Stau;dem Stau;des Staus|des Staus|gen_prep|Wegen|
+genp|Trotz ___ ist das Restaurant immer voll.|Despite the high prices the restaurant is always full.|die hohen Preise|akk;dat;gen|gen|die hohen Preise;den hohen Preisen;der hohen Preise|der hohen Preise|gen_prep|Trotz|
+genp|Während ___ hat er kein Wort gesagt.|He didn't say a word during the meeting.|die Besprechung|akk;dat;gen|gen|die Besprechung;der Besprechung;der Besprechung|der Besprechung|gen_prep|Während|The feminine forms look alike: during = genitive.
+genp|Oberhalb ___ liegt eine Hütte.|Above the village there's a hut.|das Dorf|akk;dat;gen|gen|das Dorf;dem Dorf;des Dorfes|des Dorfes|gen_prep|Oberhalb|
+genp|Wegen ___ wurde die Straße gesperrt.|The road was closed because of an accident.|ein Unfall|akk;dat;gen|gen|einen Unfall;einem Unfall;eines Unfalls|eines Unfalls|gen_prep|Wegen|
+genp|Anstatt ___ hat er eine Mail geschrieben.|Instead of a letter he wrote an email.|ein Brief|akk;dat;gen|gen|einen Brief;einem Brief;eines Briefes|eines Briefes|gen_prep|Anstatt|
+genp|Trotz ___ hat sie die Prüfung bestanden.|She passed the exam despite her illness.|ihre Krankheit|akk;dat;gen|gen|ihre Krankheit;ihrer Krankheit;ihrer Krankheit|ihrer Krankheit|gen_prep|Trotz|
+genp|Innerhalb ___ war alles geregelt.|Within a few days everything was settled.|wenige Tage|akk;dat;gen|gen|wenige Tage;wenigen Tagen;weniger Tage|weniger Tage|gen_prep|Innerhalb|
+genp|Unterhalb ___ fließt ein Bach.|A stream flows below the castle.|die Burg|akk;dat;gen|gen|die Burg;der Burg;der Burg|der Burg|gen_prep|Unterhalb|
+genp|Infolge ___ fiel der Strom aus.|As a result of the storm the power went out.|das Unwetter|akk;dat;gen|gen|das Unwetter;dem Unwetter;des Unwetters|des Unwetters|gen_prep|Infolge|
 `
 });
