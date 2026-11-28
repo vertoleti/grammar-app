@@ -1,5 +1,5 @@
 // Offline support for Грамматика. Bump VERSION whenever files change.
-const VERSION = 'grammar-v13';
+const VERSION = 'grammar-v14';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'verbs-of-motion/', 'verbs-of-motion/index.html',
@@ -10,7 +10,7 @@ const SHELL = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -45,6 +45,12 @@ self.addEventListener('fetch', e => {
         return hit || net;
       }))
     );
+    return;
+  }
+
+  // Login settings and account code: network first, so a change reaches the app at once.
+  if (url.origin === location.origin && /shared\/(config|account)\.js$/.test(url.pathname)) {
+    e.respondWith(fetch(req, { cache: 'no-cache' }).then(res => { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req, copy)); return res; }).catch(() => caches.match(req)));
     return;
   }
 
