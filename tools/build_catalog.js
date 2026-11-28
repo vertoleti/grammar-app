@@ -9,6 +9,7 @@ const LINES = [
   { id: 'numbers', href: 'numbers/', n: 4, c: '#c25e00', ru: 'Числа', en: 'Numbers', d: '1, 2–4, 5+: age, time, money, quantity', group: 'nouns', src: 'numbers' },
   { id: 'compare', href: 'compare/', n: 8, c: '#c2185b', ru: 'Сравнение и краткие формы', en: 'Comparison and short forms', d: 'Comparatives, superlatives, short adjectives, adverbs', group: 'adj', src: 'compare' },
   { id: 'advanced', href: 'advanced/', n: 5, c: '#7a2a8c', ru: 'Продвинутый уровень', en: 'Advanced grammar', d: 'Participles, verbal adverbs, -ся verbs, бы and чтобы', group: 'adv', src: 'advanced' },
+  { id: 'read', href: 'reading/', n: 12, c: '#00796b', ru: 'Чтение', en: 'Reading', d: 'Graded texts with questions, your own texts, speaking', group: 'practice', practice: 'reading', dir: 'reading' },
   { id: 'gov', href: 'gov/', n: 11, c: '#9a7b00', ru: 'Управление', en: 'Government', d: 'Cases after verbs and formal prepositions (B2–C2)', group: 'adv', src: 'gov' },
   { id: 'sent', href: 'sentences/', n: 9, c: '#3949ab', ru: 'Предложения', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences' },
   { id: 'tables', href: 'tables/', n: 10, c: '#5d7a00', ru: 'Таблицы', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables' },
@@ -33,6 +34,10 @@ for (const L of LINES) {
     rows.forEach(r => { const t = r.split('|')[0]; cnt[t] = (cnt[t] || 0) + 1; });
     line.topics = Object.keys(tlv).map(k => ({ k, name: top[k], lv: tlv[k], count: cnt[k] || 0 }));
     line.total = rows.length;
+  } else if (L.practice === 'reading') {
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W);
+    line.modes = [{ k: 'reading', name: 'Reading' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.TEXTS.length; line.unit = 'texts';
+    line.levels = {}; W.TEXTS.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'sentences') {
     const window = {}; new Function('window', fs.readFileSync('sentences/data.js', 'utf8'))(window);
     const D = window.SENTENCES;
@@ -72,6 +77,7 @@ const DE = [
   { id: 'de-adv', href: 'adv/', n: 7, c: '#9a7b00', ru: 'Fortgeschritten', en: 'Advanced grammar', d: 'Konjunktiv I, verbs with prepositions, participles (B2–C2)', group: 'adv', src: 'de/adv' },
   { id: 'de-sent', href: 'saetze/', n: 8, c: '#3949ab', ru: 'Sätze', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences', dir: 'de/saetze' },
   { id: 'de-tables', href: 'tabellen/', n: 9, c: '#5d7a00', ru: 'Tabellen', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables', dir: 'de/tabellen' },
+  { id: 'de-read', href: 'reading/', n: 12, c: '#00796b', ru: 'Lesen', en: 'Reading', d: 'Graded texts with questions, your own texts, speaking', group: 'practice', practice: 'reading', dir: 'de/reading' },
   { id: 'de-genus', href: 'genus/', n: 11, c: '#1f8a3b', ru: 'der · die · das', en: 'Noun genders', d: 'A fast drill for the article of 275 common nouns', group: 'practice', practice: 'genus', dir: 'de/genus' },
   { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Wortschatz', en: 'Vocabulary', d: 'Flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
 ];
@@ -86,6 +92,10 @@ for (const L of DE) {
     E.items.forEach(q => { cnt[q.t] = (cnt[q.t] || 0) + 1; });
     line.topics = Object.keys(E.topics).map(k => ({ k, name: E.topics[k], lv: E.levels[k], count: cnt[k] || 0 }));
     line.total = E.items.length;
+  } else if (L.practice === 'reading') {
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/texts.js`, 'utf8'))(W);
+    line.modes = [{ k: 'reading', name: 'Reading' }, { k: 'speaking', name: 'Speaking' }]; line.total = W.TEXTS.length; line.unit = 'texts';
+    line.levels = {}; W.TEXTS.forEach(t => { line.levels[t.lv] = (line.levels[t.lv] || 0) + 1; });
   } else if (L.practice === 'sentences') {
     const W = {}; new Function('window', fs.readFileSync(`${L.dir}/data.js`, 'utf8'))(W);
     const D = W.SENTENCES;

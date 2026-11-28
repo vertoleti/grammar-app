@@ -14,7 +14,7 @@ SWAP = [
   ('<h3>Answer by · Как отвечать</h3>', '<h3>Answer by · Antworten</h3>'), ('<h3>Steps · Шаги</h3>', '<h3>Steps · Schritte</h3>'),
   ('<h3>Questions per round · Вопросов в раунде</h3>', '<h3>Questions per round · Fragen pro Runde</h3>'),
   ('<a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a>', '<a href="../../profile/">Sign in to keep it on every device · Profil</a>'),
-  (' Tap any Russian word to look it up.', ''), ('<script src="../../shared/lookup.js"></script>\n', ''),
+  (' Tap any Russian word to look it up.', ' Tap any German word to look it up.'),
   ('Quick reference <a href="../grammar/">Full grammar guide →</a>', 'Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a>'),
   ('<p class="home"><a href="../">← All exercises</a> · <a href="../grammar/">Grammar guide</a></p>', '<p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p>'),
   ('<h3>Translation · Перевод</h3>', '<h3>Translation · Übersetzung</h3>'),

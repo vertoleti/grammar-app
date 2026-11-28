@@ -341,6 +341,36 @@ window.CATALOG = [
   }
  },
  {
+  "id": "de-read",
+  "href": "reading/",
+  "n": 12,
+  "c": "#00796b",
+  "ru": "Lesen",
+  "en": "Reading",
+  "d": "Graded texts with questions, your own texts, speaking",
+  "group": "practice",
+  "practice": "reading",
+  "modes": [
+   {
+    "k": "reading",
+    "name": "Reading"
+   },
+   {
+    "k": "speaking",
+    "name": "Speaking"
+   }
+  ],
+  "total": 10,
+  "unit": "texts",
+  "levels": {
+   "A1": 2,
+   "A2": 2,
+   "B1": 2,
+   "B2": 2,
+   "C1": 2
+  }
+ },
+ {
   "id": "de-genus",
   "href": "genus/",
   "n": 11,

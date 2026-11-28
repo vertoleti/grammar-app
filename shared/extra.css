@@ -44,3 +44,25 @@ ol.plan li::before{content:counter(p);flex:none;width:24px;height:24px;border-ra
 .glist span{color:var(--mute);font-size:14px}
 .rh{font-size:13px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;margin:16px 0 6px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* reading */
+.back{margin:0 0 10px;font-size:14px}.back a{color:var(--mute);text-decoration:none}.back a:hover{color:var(--ink)}
+.rtitle{font-size:clamp(22px,4vw,28px)!important;font-weight:650;letter-spacing:-.02em;margin:6px 0 2px!important}
+.rtools{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.rtools .btn{font-size:14px;min-height:38px;padding:4px 14px}
+.rtools .btn[aria-pressed=true]{background:var(--sunk);border-color:var(--ink)}
+.rtext{font-size:clamp(18px,2.6vw,20px);line-height:1.75}
+.para{margin:0 0 16px}
+.paraen{margin:-8px 0 18px;font-size:15px;line-height:1.55;color:var(--mute);border-left:3px solid var(--line);padding-left:12px}
+.sent{border-radius:4px;transition:background .2s}
+.sent.now{background:var(--mark)}
+.mic{font-size:14px;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;vertical-align:middle;padding:0}
+.wok{color:var(--ok)}.wno{color:var(--bad);text-decoration:underline wavy;text-underline-offset:4px}
+ol.qs{padding-left:20px;margin:0}
+ol.qs li{margin-bottom:14px}
+ol.qs p{margin:0 0 8px;font-weight:600}
+ol.qs .opts{grid-template-columns:1fr;gap:6px}
+ol.qs .opt{font-size:15px;min-height:42px;text-align:left;padding:8px 14px}
+.impf{display:grid;gap:8px}
+.impf input,.impf select,.impf textarea{font:16px Inter,sans-serif;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:42px}
+.impf textarea{min-height:160px;resize:vertical;line-height:1.5}

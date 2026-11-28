@@ -87,3 +87,10 @@ built.append(shell('de/genus/index.html', 'de', 'der · die · das', 'Noun gende
 
 if __name__ == '__main__':
     for p in built: print('built', p)
+
+# ---------- reading ----------
+READ_JS = '<script src="{R}shared/levels.js"></script>\n<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n<script src="texts.js"></script>\n<script src="{R}shared/reading.js"></script>\n<script src="{R}shared/lookup.js"></script>'
+built.append(shell('reading/index.html', 'ru', 'Чтение', 'Reading', '¶', '#00796b', '<div id="main"></div>', READ_JS, sub='graded texts and your own', score=False))
+built.append(shell('de/reading/index.html', 'de', 'Lesen', 'Reading', '¶', '#00796b', '<div id="main"></div>', READ_JS, sub='graded texts and your own', score=False))
+if __name__ == '__main__':
+    for p in built[-2:]: print('built', p)
