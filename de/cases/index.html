@@ -20,16 +20,17 @@
 <script src="../../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/engine.css">
 <link rel="stylesheet" href="../../shared/ui.css">
-<style>:root{--red:#1f8a3b}.m{color:#1f8a3b}</style>
+<style>:root{--red:#1f8a3b}</style>
+<link rel="stylesheet" href="../../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">2</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Fälle & Artikel</h1><p class="sub">Cases and articles · pick the case, then the form · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">2</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p><h1>Fälle & Artikel</h1><p class="sub">Cases and articles<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -46,6 +47,7 @@
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
       <section class="grp" data-all="All topics"><h3>Topic · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
       <section class="grp" data-fmt="{v} the form"><h3>Answer by · Antworten</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
+      <section class="grp" data-fmt="Translation {v}"><h3>Translation · Übersetzung</h3><div class="seg segctl" id="ens" role="group" aria-label="Translation"><button id="e-after" data-e="after">after answering</button><button id="e-always" data-e="always">always</button></div></section>
       <section class="grp" data-fmt="{v}"><h3>Steps · Schritte</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
       <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Fragen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
       <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
@@ -55,11 +57,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet · Spickzettel</h2>
+    <details class="refbox"><summary>Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>The articles</h3><div class="tbl"><table><thead><tr><th></th><th>m</th><th>f</th><th>n</th><th>pl</th></tr></thead><tbody><tr><td>Nom</td><td>der / ein</td><td>die / eine</td><td>das / ein</td><td>die / –</td></tr><tr><td>Akk</td><td><b>den / einen</b></td><td>die / eine</td><td>das / ein</td><td>die / –</td></tr><tr><td>Dat</td><td>dem / einem</td><td>der / einer</td><td>dem / einem</td><td>den …-n</td></tr><tr><td>Gen</td><td>des …-s</td><td>der / einer</td><td>des …-s</td><td>der</td></tr></tbody></table></div></div><div><h3>How to find the case</h3><div class="tbl"><table><thead><tr><th>Case</th><th>Question</th><th>Typical triggers</th></tr></thead><tbody><tr><td>Nominativ</td><td>wer? was?</td><td>the subject; after sein, werden, heißen</td></tr><tr><td>Akkusativ</td><td>wen? was?</td><td>direct object; es gibt; durch, für, gegen, ohne, um</td></tr><tr><td>Dativ</td><td>wem?</td><td>receiver; helfen, danken, gefallen, gehören; aus, bei, mit, nach, seit, von, zu</td></tr><tr><td>Genitiv</td><td>wessen?</td><td>owner; wegen, trotz, während, statt</td></tr></tbody></table></div><p class="note">Only the masculine changes in the accusative: der → den. The dative plural adds -n to the noun: den Kindern.</p></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../../shared/levels.js"></script>
+<script src="../../shared/guide-map.js"></script>
 <script src="../../shared/lines.js"></script>
 <script src="data.js"></script>
 <script src="../../shared/coach.js"></script>

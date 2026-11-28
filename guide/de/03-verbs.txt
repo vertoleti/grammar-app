@@ -1,0 +1,325 @@
+# Verbs: the present {#verbs}
+
+## Regular verbs {#praesens}
+
+@for de-verbs:praes, de-tables:praes
+
+Take the stem (infinitive minus _-en_ or _-n_) and add the endings.
+
+| | machen | arbeiten (stem in -t) | heißen (stem in -ß) | sammeln (-eln) |
+| ich | mache | arbeite | heiße | sammle |
+| du | machst | arbeit**e**st | heißt | sammelst |
+| er / sie / es | macht | arbeit**e**t | heißt | sammelt |
+| wir | machen | arbeiten | heißen | sammeln |
+| ihr | macht | arbeit**e**t | heißt | sammelt |
+| sie / Sie | machen | arbeiten | heißen | sammeln |
+
+- Stems ending in _-t, -d_ (_arbeiten, finden, warten_) or in a consonant + _m/n_ (_öffnen, atmen, regnen_) add _-e-_ before _-st_ and _-t_.
+- Stems ending in _-s, -ß, -z, -x_ (_heißen, tanzen, reisen_) add only _-t_ in the du-form: _du heißt, du tanzt_.
+
+The present is also used for the future when a time word makes it clear: _Morgen fahre ich nach Berlin._
+
+## Vowel changes {#stem-change}
+
+Many strong verbs change their stem vowel in the **du** and **er/sie/es** forms only.
+
+| Change | Verbs | du / er |
+| a → ä | fahren, schlafen, tragen, waschen, fallen, halten, lassen, laufen (au → äu) | du fährst, er fährt; du läufst |
+| e → i | sprechen, geben, nehmen, essen, helfen, treffen, vergessen, werfen, sterben | du sprichst, er spricht; du nimmst, er nimmt |
+| e → ie | lesen, sehen, empfehlen, stehlen | du liest, er liest; du siehst, er sieht |
+| o → ö | stoßen | du stößt |
+
+The change never happens in the ich-, wir-, ihr- or sie-forms: _ich fahre, wir fahren, ihr fahrt_.
+
+## sein, haben, werden, wissen {#irregular-present}
+
+| | sein | haben | werden | wissen |
+| ich | bin | habe | werde | weiß |
+| du | bist | hast | wirst | weißt |
+| er / sie / es | ist | hat | wird | weiß |
+| wir | sind | haben | werden | wissen |
+| ihr | seid | habt | werdet | wisst |
+| sie / Sie | sind | haben | werden | wissen |
+
+_Seid_ (you are) is a verb; _seit_ (since) is a preposition. _Wissen_ means to know a fact; _kennen_ means to know a person or place: _Ich weiß, wo er wohnt. Ich kenne ihn._
+
+## Modal verbs {#modal}
+
+@for de-verbs:modal
+
+Modal verbs are conjugated in position 2 and send the main verb to the end as an infinitive. In the singular they have no ending in the ich- and er-forms and usually change the vowel.
+
+| | können | müssen | dürfen | wollen | sollen | mögen | möchten |
+| ich | kann | muss | darf | will | soll | mag | möchte |
+| du | kannst | musst | darfst | willst | sollst | magst | möchtest |
+| er / sie / es | kann | muss | darf | will | soll | mag | möchte |
+| wir | können | müssen | dürfen | wollen | sollen | mögen | möchten |
+| ihr | könnt | müsst | dürft | wollt | sollt | mögt | möchtet |
+| sie / Sie | können | müssen | dürfen | wollen | sollen | mögen | möchten |
+| Präteritum | konnte | musste | durfte | wollte | sollte | mochte | (wollte) |
+
+| Modal | Meaning | Example |
+| können | can, be able to; possibility | Ich kann schwimmen. Es kann regnen. |
+| müssen | must, have to | Ich muss arbeiten. |
+| nicht müssen | don't have to | Du musst nicht kommen. |
+| dürfen | may, be allowed to | Darf ich das Fenster öffnen? |
+| nicht dürfen | must not | Hier darf man nicht rauchen. |
+| wollen | want to, plan to | Ich will Pilot werden. |
+| sollen | be supposed to (someone else's wish); shall I? | Der Arzt sagt, ich soll mehr schlafen. Soll ich helfen? |
+| mögen | like (+ noun) | Ich mag Kaffee. |
+| möchten | would like (polite) | Ich möchte ein Zimmer reservieren. |
+
+!! _Nicht müssen_ means "don't have to". "Must not" is _nicht dürfen_. This is a classic mistake for English speakers.
+
+> Ich kann heute leider nicht kommen. — Unfortunately I can't come today.
+> Kinder dürfen hier nicht schwimmen. — Children aren't allowed to swim here.
+
+In the Perfekt, a modal with an infinitive uses the infinitive instead of the participle (double infinitive): _Ich habe nicht kommen können._ Usually the Präteritum is preferred: _Ich konnte nicht kommen._
+
+## Separable and inseparable verbs {#prefixes}
+
+| Type | Prefixes | Present | Participle |
+| separable (stressed prefix) | ab-, an-, auf-, aus-, bei-, ein-, mit-, nach-, vor-, weg-, zu-, zurück-, zusammen-, fern-, los-, statt- | Ich rufe dich an. Der Zug fährt um acht ab. | angerufen, abgefahren |
+| inseparable (unstressed) | be-, emp-, ent-, er-, ge-, miss-, ver-, zer- | Ich verstehe das. Wir besuchen Oma. | verstanden, besucht |
+| either (meaning changes) | durch-, über-, um-, unter-, wieder- | Er übersetzt den Text (translates). Die Fähre setzt über (crosses). | übersetzt / übergesetzt |
+
+Separable prefixes go to the end of a main clause, but stay attached in a subordinate clause, in the infinitive and in the participle: _Ich weiß, dass er morgen anruft. Ich will dich anrufen. Ich habe dich angerufen. Ich versuche, dich anzurufen._
+
+## Reflexive verbs {#reflexive-verbs}
+
+Reflexive verbs come with _sich_, which changes with the subject (see [reflexive pronouns](#reflexive)). Some are only reflexive; some are ordinary verbs used reflexively.
+
+| Verb | Example |
+| sich freuen (auf / über) | Ich freue mich auf das Wochenende. |
+| sich interessieren für | Sie interessiert sich für Kunst. |
+| sich erinnern an | Erinnerst du dich an ihn? |
+| sich beeilen | Beeil dich! |
+| sich setzen, sich hinlegen | Setz dich! |
+| sich fühlen | Ich fühle mich gut. |
+| sich gewöhnen an | Ich habe mich an das Wetter gewöhnt. |
+| sich entscheiden (für) | Hast du dich entschieden? |
+| sich vorstellen (Dat) | Ich kann mir das nicht vorstellen. (imagine: dative) |
+| sich etwas ansehen, sich etwas wünschen | Ich wünsche mir ein Fahrrad. (dative + object) |
+
+All reflexive verbs form the Perfekt with _haben_.
+
+## The imperative {#imperative}
+
+| Form | Formation | machen | fahren | sprechen | sein |
+| du | stem (no -st), stem-change e → i kept, a → ä dropped | mach! | fahr! | sprich! | sei! |
+| ihr | ihr-form without ihr | macht! | fahrt! | sprecht! | seid! |
+| Sie | Sie-form, Sie after the verb | machen Sie! | fahren Sie! | sprechen Sie! | seien Sie! |
+| wir (let's) | wir-form, wir after the verb | machen wir! | fahren wir! | sprechen wir! | seien wir! |
+
+Stems in _-t, -d, -ig_ keep _-e_ in the du-form: _Warte! Antworte! Entschuldige!_ Separable prefixes go to the end: _Ruf mich an! Steh auf!_ Add _bitte_ and _doch, mal_ to soften: _Komm doch mal vorbei!_
+
+# The past {#past}
+
+## Perfekt: the spoken past {#perfekt}
+
+The Perfekt is the normal past tense in conversation: **haben or sein** (conjugated, position 2) + **Partizip II** (at the end).
+
+> Ich habe gestern lange gearbeitet. — I worked late yesterday.
+> Wir sind ins Kino gegangen. — We went to the cinema.
+
+## haben or sein {#haben-sein}
+
+@for de-verbs:perf
+
+| sein | haben |
+| movement from A to B: gehen, fahren, fliegen, kommen, laufen, reisen, schwimmen (across), fallen, steigen | all verbs with an accusative object: Ich habe das Auto in die Garage gefahren. |
+| change of state: aufwachen, einschlafen, aufstehen, werden, sterben, wachsen, passieren, geschehen | all reflexive verbs: Ich habe mich erholt. |
+| sein, bleiben, begegnen, gelingen | verbs of state and activity: schlafen, arbeiten, sitzen (in the north), liegen, stehen, wohnen, weinen, essen |
+| | modal verbs |
+
+!! In southern Germany, Austria and Switzerland, _sitzen, liegen, stehen_ take _sein_: _Ich bin gesessen._ The northern _ich habe gesessen_ is the standard in exams.
+
+## Partizip II {#partizip}
+
+@for de-verbs:part
+
+| Type | Formation | Examples |
+| weak (regular) | ge- + stem + -(e)t | machen – gemacht, arbeiten – gearbeitet, kaufen – gekauft |
+| strong | ge- + stem (often new vowel) + -en | lesen – gelesen, gehen – gegangen, trinken – getrunken |
+| mixed | ge- + new vowel + -t | bringen – gebracht, denken – gedacht, kennen – gekannt, wissen – gewusst, nennen – genannt, rennen – gerannt |
+| no ge-: -ieren | stem + -t | studieren – studiert, telefonieren – telefoniert |
+| no ge-: inseparable prefix | prefix + stem + -t / -en | besuchen – besucht, verstehen – verstanden, gefallen – gefallen, erzählen – erzählt |
+| separable | prefix + ge + stem + -t / -en | abholen – abgeholt, aufstehen – aufgestanden, einkaufen – eingekauft |
+
+## Präteritum: the written past {#praeteritum}
+
+@for de-verbs:praet
+
+The Präteritum is used in writing (stories, news, reports) and, in speech, mainly for _sein, haben, werden_, the modal verbs, and a few common verbs (_es gab, ich wusste, ich dachte, ich fand_).
+
+| | weak: machen | strong: kommen | mixed: denken | sein | haben | werden |
+| ich | machte | kam | dachte | war | hatte | wurde |
+| du | machtest | kamst | dachtest | warst | hattest | wurdest |
+| er / sie / es | machte | kam | dachte | war | hatte | wurde |
+| wir | machten | kamen | dachten | waren | hatten | wurden |
+| ihr | machtet | kamt | dachtet | wart | hattet | wurdet |
+| sie / Sie | machten | kamen | dachten | waren | hatten | wurden |
+
+- Weak verbs add _-te_ (_-ete_ after _-t, -d_, consonant + _n_: _arbeitete, regnete_).
+- Strong verbs change the vowel and have **no ending** in the ich- and er-forms: _ich kam, er ging, sie fuhr_.
+- Modal verbs lose the umlaut: _konnte, musste, durfte_ (_könnte_ with umlaut is Konjunktiv II).
+
+## Plusquamperfekt {#plusquam}
+
+The past perfect describes an action before another past action: _hatte_ / _war_ + Partizip II. It is typical after _nachdem_.
+
+> Nachdem wir gegessen hatten, gingen wir spazieren. — After we had eaten, we went for a walk.
+> Als ich ankam, war der Zug schon abgefahren. — When I arrived, the train had already left.
+
+## Common strong and mixed verbs {#strong-verbs}
+
+| Infinitive | Präsens (er) | Präteritum | Perfekt | Meaning |
+| beginnen | beginnt | begann | hat begonnen | begin |
+| bleiben | bleibt | blieb | ist geblieben | stay |
+| bringen | bringt | brachte | hat gebracht | bring |
+| denken | denkt | dachte | hat gedacht | think |
+| essen | isst | aß | hat gegessen | eat |
+| fahren | fährt | fuhr | ist / hat gefahren | drive, go |
+| fallen | fällt | fiel | ist gefallen | fall |
+| finden | findet | fand | hat gefunden | find |
+| fliegen | fliegt | flog | ist geflogen | fly |
+| geben | gibt | gab | hat gegeben | give |
+| gehen | geht | ging | ist gegangen | go |
+| helfen | hilft | half | hat geholfen | help |
+| kennen | kennt | kannte | hat gekannt | know (person) |
+| kommen | kommt | kam | ist gekommen | come |
+| laufen | läuft | lief | ist gelaufen | run, walk |
+| lesen | liest | las | hat gelesen | read |
+| liegen | liegt | lag | hat gelegen | lie |
+| nehmen | nimmt | nahm | hat genommen | take |
+| rufen | ruft | rief | hat gerufen | call |
+| schlafen | schläft | schlief | hat geschlafen | sleep |
+| schreiben | schreibt | schrieb | hat geschrieben | write |
+| schwimmen | schwimmt | schwamm | ist / hat geschwommen | swim |
+| sehen | sieht | sah | hat gesehen | see |
+| sitzen | sitzt | saß | hat gesessen | sit |
+| sprechen | spricht | sprach | hat gesprochen | speak |
+| stehen | steht | stand | hat gestanden | stand |
+| sterben | stirbt | starb | ist gestorben | die |
+| tragen | trägt | trug | hat getragen | carry, wear |
+| treffen | trifft | traf | hat getroffen | meet |
+| trinken | trinkt | trank | hat getrunken | drink |
+| tun | tut | tat | hat getan | do |
+| vergessen | vergisst | vergaß | hat vergessen | forget |
+| verlieren | verliert | verlor | hat verloren | lose |
+| waschen | wäscht | wusch | hat gewaschen | wash |
+| werden | wird | wurde | ist geworden | become |
+| wissen | weiß | wusste | hat gewusst | know (fact) |
+| ziehen | zieht | zog | hat / ist gezogen | pull / move |
+
+## The future {#futur}
+
+**Futur I**: _werden_ + infinitive at the end. Germans often use the present instead when a time word makes the future clear. Futur I is used for predictions, promises, and assumptions about now (with _wohl_).
+
+> Morgen regnet es. / Morgen wird es regnen. — It will rain tomorrow.
+> Ich werde dir helfen. — I'll help you. (promise)
+> Er wird wohl krank sein. — He's probably ill. (assumption)
+
+**Futur II** (_werden_ + participle + _haben / sein_) says something will have been done, or guesses about the past: _Bis morgen werde ich das Buch gelesen haben. Er wird den Zug verpasst haben_ (he's probably missed the train).
+
+## werden and lassen {#werden-lassen}
+
+| werden + | Meaning | Example |
+| noun or adjective | become | Er wird Arzt. Es wird dunkel. |
+| infinitive | future | Ich werde kommen. |
+| Partizip II | passive | Das Haus wird gebaut. |
+| würde + infinitive | would (Konjunktiv II) | Ich würde gern kommen. |
+
+_Lassen_ means "let" or "have something done": _Lass mich in Ruhe! Ich lasse mein Auto reparieren_ (I'm having my car repaired). _Sich lassen_ + infinitive = "can be done": _Das Problem lässt sich lösen._
+
+# Konjunktiv II {#konj2}
+
+## Forms {#konj2-forms}
+
+@for de-konj:k2
+
+The Konjunktiv II expresses what is unreal, imagined, wished for or polite.
+
+| Verb | Form | Note |
+| haben | hätte, hättest, hätte, hätten, hättet, hätten | always used, never replaced |
+| sein | wäre, wär(e)st, wäre, wären, wär(e)t, wären | always used |
+| modal verbs | könnte, müsste, dürfte, sollte, wollte, möchte | sollte and wollte look like the Präteritum |
+| wissen, kommen, gehen, geben, finden | wüsste, käme, ginge, gäbe, fände | used, but often replaced by würde |
+| all other verbs | würde + infinitive | ich würde fahren, du würdest helfen |
+
+The special forms come from the Präteritum with an umlaut where possible: _hatte → hätte, war → wäre, konnte → könnte, wusste → wüsste, kam → käme_.
+
+## Uses {#konj2-uses}
+
+| Use | Example |
+| unreal conditions | Wenn ich Zeit hätte, würde ich dich besuchen. — If I had time, I'd visit you. |
+| wishes | Ich wünschte, ich hätte mehr Geld. Wenn ich nur reich wäre! |
+| polite requests | Könnten Sie mir helfen? Würden Sie bitte das Fenster schließen? Ich hätte gern ein Glas Wasser. |
+| advice | Du solltest mehr schlafen. An deiner Stelle würde ich zum Arzt gehen. |
+| suggestions | Wir könnten ins Kino gehen. |
+| comparisons with als ob | Er tut so, als ob er alles wüsste. |
+
+!! Real possibilities take the indicative: _Wenn ich morgen Zeit habe, komme ich vorbei_ (I might well have time). Use Konjunktiv II only when the condition is unlikely or untrue.
+
+The _wenn_ can be left out if the verb goes first: _Hätte ich Zeit, würde ich kommen._
+
+## Konjunktiv II for the past {#konj2-past}
+
+@for de-konj:k2p
+
+For things that didn't happen: _hätte_ or _wäre_ + Partizip II. Use _wäre_ with the verbs that take _sein_ in the Perfekt.
+
+> Wenn ich das gewusst hätte, wäre ich gekommen. — If I'd known, I would have come.
+> Wenn du früher losgefahren wärst, hättest du den Zug erreicht. — If you'd left earlier, you'd have caught the train.
+> Ich hätte fast den Bus verpasst. — I almost missed the bus.
+> Ohne deine Hilfe hätte ich das nie geschafft. — Without your help I'd never have managed.
+
+With a modal verb, use a double infinitive: _Das hättest du nicht sagen sollen_ (you shouldn't have said that). _Ich hätte kommen können_ (I could have come).
+
+## als ob, als wenn, als {#als-ob}
+
+"As if" takes Konjunktiv II (Konjunktiv I in formal writing). With plain _als_, the verb comes right after it.
+
+> Er tut so, als ob er alles wüsste. — He acts as if he knew everything.
+> Er tut so, als wüsste er alles. — (the same, with als + verb first)
+> Sie sieht aus, als ob sie nicht geschlafen hätte. — She looks as if she hadn't slept.
+
+# The passive {#passiv}
+
+## Vorgangspassiv: werden + participle {#passiv-forms}
+
+@for de-konj:pas
+
+The passive puts the action in the centre, not the person doing it: _werden_ + Partizip II.
+
+| Tense | Form | Example |
+| Präsens | wird + participle | Das Haus wird renoviert. |
+| Präteritum | wurde + participle | Die Brücke wurde 1890 gebaut. |
+| Perfekt | ist + participle + worden | Der Dieb ist verhaftet worden. |
+| Plusquamperfekt | war + participle + worden | Das Haus war verkauft worden. |
+| Futur | wird + participle + werden | Das Projekt wird beendet werden. |
+| with a modal | modal + participle + werden | Das Auto muss repariert werden. |
+| Konjunktiv II | würde + participle / wäre + participle + worden | Das würde gemacht. Das wäre gemacht worden. |
+
+!! In the passive, the participle of _werden_ is **worden** (no ge-): _ist gebaut worden_. _Geworden_ means "become": _Er ist Arzt geworden._
+
+The doer, if mentioned, takes _von_ + dative (a person) or _durch_ + accusative (a means, cause): _Der Brief wurde von meiner Oma geschrieben. Die Stadt wurde durch ein Erdbeben zerstört._
+
+Verbs without an accusative object form an impersonal passive: _Hier wird nicht geraucht. Am Sonntag wird nicht gearbeitet._
+
+## Zustandspassiv: sein + participle {#zustandspassiv}
+
+_Sein_ + participle describes the **resulting state**, not the action.
+
+> Die Tür wird um acht geöffnet. — The door is (being) opened at eight. (action)
+> Die Tür ist geöffnet. — The door is open. (state)
+> Das Geschäft ist geschlossen. — The shop is closed.
+
+## Alternatives to the passive {#passiv-alt}
+
+| Construction | Example | Meaning |
+| man | Man spricht hier Deutsch. | German is spoken here. |
+| sich lassen + infinitive | Das Problem lässt sich lösen. | The problem can be solved. |
+| sein + zu + infinitive | Die Aufgabe ist bis morgen zu erledigen. | The task must be done by tomorrow. |
+| -bar adjectives | Das ist machbar. Das Wasser ist trinkbar. | That can be done. The water is drinkable. |
+| bekommen + participle | Ich bekomme das Paket geschickt. | The parcel is being sent to me. |

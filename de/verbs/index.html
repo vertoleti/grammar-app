@@ -20,16 +20,17 @@
 <script src="../../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/engine.css">
 <link rel="stylesheet" href="../../shared/ui.css">
-<style>:root{--red:#0a68b0}.m{color:#0a68b0}</style>
+<style>:root{--red:#0a68b0}</style>
+<link rel="stylesheet" href="../../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">1</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Verben & Zeiten</h1><p class="sub">Verbs and tenses · pick the pattern, then the form · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">1</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p><h1>Verben & Zeiten</h1><p class="sub">Verbs and tenses<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -46,6 +47,7 @@
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
       <section class="grp" data-all="All topics"><h3>Topic · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
       <section class="grp" data-fmt="{v} the form"><h3>Answer by · Antworten</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
+      <section class="grp" data-fmt="Translation {v}"><h3>Translation · Übersetzung</h3><div class="seg segctl" id="ens" role="group" aria-label="Translation"><button id="e-after" data-e="after">after answering</button><button id="e-always" data-e="always">always</button></div></section>
       <section class="grp" data-fmt="{v}"><h3>Steps · Schritte</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
       <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Fragen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
       <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
@@ -55,11 +57,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet · Spickzettel</h2>
+    <details class="refbox"><summary>Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>Present tense</h3><div class="tbl"><table><thead><tr><th></th><th>machen</th><th>fahren</th><th>sprechen</th><th>sein</th></tr></thead><tbody><tr><td>ich</td><td>mache</td><td>fahre</td><td>spreche</td><td>bin</td></tr><tr><td>du</td><td>machst</td><td><b>fährst</b></td><td><b>sprichst</b></td><td>bist</td></tr><tr><td>er/sie/es</td><td>macht</td><td><b>fährt</b></td><td><b>spricht</b></td><td>ist</td></tr><tr><td>wir</td><td>machen</td><td>fahren</td><td>sprechen</td><td>sind</td></tr><tr><td>ihr</td><td>macht</td><td>fahrt</td><td>sprecht</td><td>seid</td></tr><tr><td>sie/Sie</td><td>machen</td><td>fahren</td><td>sprechen</td><td>sind</td></tr></tbody></table></div></div><div><h3>Perfekt: haben or sein?</h3><p><b>sein</b>: movement from A to B (gehen, fahren, fliegen, kommen), change of state (aufwachen, einschlafen, sterben, werden), and sein, bleiben, passieren. <b>haben</b>: everything else, including all verbs with an accusative object and all reflexive verbs.</p><h3>Participle</h3><div class="tbl"><table><thead><tr><th>Type</th><th>Pattern</th><th>Example</th></tr></thead><tbody><tr><td>weak</td><td>ge- … -t</td><td>gemacht</td></tr><tr><td>strong</td><td>ge- … -en</td><td>gelesen, gegangen</td></tr><tr><td>mixed</td><td>ge- … -t + vowel change</td><td>gebracht, gedacht</td></tr><tr><td>-ieren, be-, ver-, er- …</td><td>no ge-</td><td>studiert, verstanden</td></tr><tr><td>separable</td><td>prefix + ge + …</td><td>abgeholt, aufgestanden</td></tr></tbody></table></div></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../../shared/levels.js"></script>
+<script src="../../shared/guide-map.js"></script>
 <script src="../../shared/lines.js"></script>
 <script src="data.js"></script>
 <script src="../../shared/coach.js"></script>

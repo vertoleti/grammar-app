@@ -1,0 +1,296 @@
+# How to use this guide {#start}
+
+## Reading the tables {#reading}
+
+Each chapter gives the idea first, then the forms in tables, then examples. German is in the tables and example lines; English follows a dash. After a wrong answer in an exercise, **Rule** opens the section that explains it. Use the search box to find any word or ending.
+
+| Abbreviation | Meaning |
+| m, f, n, pl | masculine, feminine, neuter, plural |
+| Nom, Akk, Dat, Gen | the four cases |
+| jdn, jdm | jemanden (accusative person), jemandem (dative person) |
+| etw. | etwas (something) |
+
+# Spelling and sounds {#spelling}
+
+## Capitals, umlauts and ß {#capitals}
+
+- **All nouns are capitalised**, including nouns made from other words: _das Essen_, _beim Lesen_, _etwas Neues_, _im Allgemeinen_. Adjectives, verbs and pronouns are lower case, except the polite _Sie_, _Ihr_, _Ihnen_.
+- The umlauts _ä, ö, ü_ are separate sounds. Without a German keyboard they are written _ae, oe, ue_. In this app you can type them that way.
+- _ß_ is written after a long vowel or a diphthong (_Straße, groß, heißen, Fuß_) and _ss_ after a short vowel (_Fluss, dass, muss, wissen_). In Switzerland _ss_ is used everywhere.
+
+## Pronunciation in brief {#sounds}
+
+| Spelling | Sound | Examples |
+| ei, ai | like English "eye" | mein, Mai |
+| ie | long "ee" | Liebe, sie |
+| eu, äu | like "oy" | heute, Häuser |
+| ch after a, o, u, au | rough, at the back | Bach, Buch, auch |
+| ch elsewhere | soft, at the front | ich, Milch, Mädchen |
+| s before a vowel | like English "z" | Sonne, Rose |
+| sp, st at the start | "shp", "sht" | Sport, Straße |
+| v | usually "f" | Vater, viel (but Vase, Vokabel: "v") |
+| w | English "v" | Wasser, wo |
+| z | "ts" | Zeit, Zug |
+| -ig at the end | like "-ich" | König, wichtig |
+| final b, d, g | p, t, k | ab, Hund, Tag |
+
+# Nouns {#nouns}
+
+## Gender {#gender}
+
+Every noun is masculine (_der_), feminine (_die_) or neuter (_das_). Always learn the article with the noun. Some endings are reliable guides:
+
+| Gender | Typical endings and groups | Examples |
+| masculine (der) | -er (people, tools), -ling, -ismus, -or, -ig, -ich; days, months, seasons, weather, cars | der Lehrer, der Computer, der Frühling, der Motor, der Montag, der Mai, der Regen |
+| feminine (die) | -ung, -heit, -keit, -schaft, -ion, -tät, -ie, -ik, -ur, -ei, -in (women), most nouns in -e | die Zeitung, die Freiheit, die Möglichkeit, die Nation, die Universität, die Musik, die Lehrerin, die Lampe |
+| neuter (das) | -chen, -lein (always), -ment, -um, -ma, verbs used as nouns, colours, most metals, hotels, cafés | das Mädchen, das Fräulein, das Dokument, das Museum, das Thema, das Essen, das Blau, das Gold |
+
+!! In compound nouns the **last** part decides the gender: _die Tür + der Schlüssel = der Türschlüssel_, _das Haus + die Tür = die Haustür_.
+
+Words for people usually follow the person's sex (_der Mann, die Frau_), with the famous exception _das Mädchen_ (girl), which is neuter because of _-chen_.
+
+## The plural {#plural}
+
+German has five main plural patterns. The article in the plural is always _die_.
+
+| Pattern | Mostly | Examples |
+| -e (often with umlaut) | masculine and many neuter one-syllable nouns | der Tag – die Tage, der Baum – die Bäume, das Jahr – die Jahre |
+| -(e)n | almost all feminine nouns, n-declension nouns | die Frau – die Frauen, die Lampe – die Lampen, der Student – die Studenten |
+| -er (with umlaut where possible) | many neuter one-syllable nouns | das Kind – die Kinder, das Haus – die Häuser, das Buch – die Bücher, der Mann – die Männer |
+| no ending (sometimes umlaut) | masculine and neuter in -er, -el, -en, -chen, -lein | der Lehrer – die Lehrer, das Mädchen – die Mädchen, der Vater – die Väter |
+| -s | foreign words, abbreviations, words ending in a vowel other than -e | das Auto – die Autos, das Hotel – die Hotels, die Oma – die Omas |
+
+Feminine nouns in _-in_ double the _n_: _die Lehrerin – die Lehrerinnen_.
+
+## n-declension (weak masculine nouns) {#n-dekl}
+
+@for de-adv:nd
+
+A group of masculine nouns adds _-n_ or _-en_ in **every case except the nominative singular**.
+
+| Case | der Student | der Kollege | der Herr | der Name |
+| Nom | der Student | der Kollege | der Herr | der Name |
+| Akk | den Studenten | den Kollegen | den Herrn | den Namen |
+| Dat | dem Studenten | dem Kollegen | dem Herrn | dem Namen |
+| Gen | des Studenten | des Kollegen | des Herrn | des Namens |
+| Plural | die Studenten | die Kollegen | die Herren | die Namen |
+
+Which nouns are weak:
+- masculine nouns for people and animals in _-e_: _der Junge, der Kunde, der Kollege, der Neffe, der Zeuge, der Löwe, der Affe, der Franzose, der Deutsche_ (but that one declines like an adjective)
+- foreign words in _-ant, -ent, -ist, -at, -oge, -graf, -nom_: _der Praktikant, der Student, der Präsident, der Polizist, der Tourist, der Soldat, der Biologe, der Fotograf, der Astronom_
+- a few others: _der Herr, der Mensch, der Nachbar, der Bauer, der Held, der Bär, der Prinz, der Fürst_
+- a small group with genitive _-ns_: _der Name, der Gedanke, der Buchstabe, der Glaube, der Wille_ (_des Namens_), and the neuter _das Herz_ (_des Herzens, dem Herzen_)
+
+> Ich habe den Studenten gefragt. — I asked the student.
+> Kennen Sie Herrn Müller? — Do you know Mr Müller?
+> Das ist das Auto meines Nachbarn. — That's my neighbour's car.
+
+## Compound nouns {#compounds}
+
+German joins nouns into one word. The last part is the main noun; the parts before describe it. Linking letters (_-s-, -n-, -es-, -er-_) often appear: _die Arbeit + der Platz = der Arbeitsplatz_, _die Sonne + die Brille = die Sonnenbrille_, _das Kind + der Garten = der Kindergarten_.
+
+# Articles and cases {#cases}
+
+## The articles {#articles}
+
+@for de-cases, de-tables:art
+
+| | m | f | n | pl |
+| Nom | der / ein | die / eine | das / ein | die / – (keine) |
+| Akk | den / einen | die / eine | das / ein | die / – (keine) |
+| Dat | dem / einem | der / einer | dem / einem | den / – (keinen) + n |
+| Gen | des / eines + s | der / einer | des / eines + s | der / – (keiner) |
+
+### Words that work like der (der-words)
+
+_dieser_ (this), _jener_ (that), _jeder_ (every), _welcher_ (which), _mancher_ (some), _solcher_ (such), _alle_ (all, plural). They take the endings of _der_: _dieser Mann, diesen Mann, diesem Mann, dieses Mannes; diese Frau; dieses Kind_.
+
+### Words that work like ein (ein-words)
+
+_kein_ (no, not a) and the possessives _mein, dein, sein, ihr, unser, euer, ihr, Ihr_. They take the endings of _ein_ and also have a plural: _meine Kinder, keine Zeit, unseren Freunden_. _Euer_ loses its _e_ when it gets an ending: _eure Eltern_.
+
+### When there is no article
+
+- plural indefinite: _Ich habe Kinder._ — I have children.
+- uncountable things: _Ich trinke Wasser. Wir brauchen Zeit._
+- professions, nationalities and religions after _sein_ and _werden_: _Er ist Arzt. Sie ist Deutsche._
+- most names of cities and countries: _in Berlin, nach Deutschland_ (but _die Schweiz, die Türkei, der Iran, die USA_)
+
+## The four cases {#cases-overview}
+
+| Case | Question | Main uses |
+| Nominativ | wer? was? | the subject; after _sein, werden, heißen, bleiben_ |
+| Akkusativ | wen? was? | the direct object; after _durch, für, gegen, ohne, um_; after _es gibt_; two-way prepositions with movement; time "for, every": _jeden Tag, den ganzen Tag_ |
+| Dativ | wem? | the indirect object (the receiver); after dative verbs; after _aus, bei, mit, nach, seit, von, zu_; two-way prepositions for location |
+| Genitiv | wessen? | the owner ("of"); after _wegen, trotz, während, statt_ and formal prepositions |
+
+!! The order in a sentence is free in many cases, so the **article**, not the position, tells you who does what: _Den Hund beißt der Mann_ means "the man bites the dog".
+
+## Nominative {#nom}
+
+The nominative is the subject (_Der Mann wohnt hier._) and the form after _sein, werden, heißen, bleiben_, which link two things that are the same: _Das ist mein Lehrer. Er wird Arzt. Sie bleibt meine Freundin._
+
+The subject is not always first. If something else is in position 1, the subject comes after the verb: _Heute kommt **der Lehrer** später. Den Film kennt **mein Vater** schon._
+
+## Accusative {#akk}
+
+@for de-cases:akk
+
+The accusative marks the direct object. **Only the masculine changes**: _der → den, ein → einen, mein → meinen, kein → keinen_. Feminine, neuter and plural look like the nominative.
+
+> Ich sehe den Mann. Ich sehe die Frau. Ich sehe das Kind. — I see the man / woman / child.
+> Wir brauchen einen neuen Tisch. — We need a new table.
+> Es gibt hier einen guten Bäcker. — There's a good baker here.
+> Ich arbeite jeden Tag. — I work every day.
+
+_Haben_ and _es gibt_ always take the accusative. Many verbs do: _sehen, hören, kaufen, brauchen, haben, suchen, finden, kennen, besuchen, fragen, lieben, trinken, essen, nehmen, anrufen_.
+
+## Dative {#dat}
+
+@for de-cases:dat
+
+The dative marks the person who receives or benefits, and it follows a set of verbs and prepositions.
+
+| | m | f | n | pl |
+| article | dem / einem / meinem | der / einer / meiner | dem / einem / meinem | den / – / meinen |
+| noun | – (n-nouns: -n) | – | – | **+ n** (den Kindern), except plurals in -s or -n |
+
+### Verbs with dative and accusative
+
+With verbs of giving, showing, telling, sending, explaining (_geben, schenken, bringen, zeigen, sagen, erklären, schicken, empfehlen, leihen, erzählen_) the **person** is dative and the **thing** is accusative.
+
+> Sie gibt dem Kind das Buch. — She gives the child the book.
+> Ich schenke meiner Mutter Blumen. — I'm giving my mother flowers.
+> Er zeigt den Gästen die Stadt. — He shows the guests the city.
+
+Word order: noun objects go dative before accusative (_dem Kind das Buch_); if the accusative is a pronoun, it comes first (_Sie gibt es dem Kind_).
+
+### Verbs with only a dative object {#dat-verbs}
+
+| Verb | Example |
+| helfen | Ich helfe meinem Nachbarn. |
+| danken | Wir danken Ihnen für die Hilfe. |
+| gefallen | Der Film gefällt mir. (the thing liked is the subject) |
+| gehören | Das Auto gehört meinem Vater. |
+| antworten | Bitte antworten Sie dem Kunden. |
+| gratulieren | Wir gratulieren dir zum Geburtstag. |
+| schmecken | Die Suppe schmeckt dem Gast nicht. |
+| passen | Die Hose passt mir nicht. |
+| fehlen | Du fehlst mir. — I miss you. |
+| folgen | Folgen Sie mir! |
+| glauben (a person) | Ich glaube dir. |
+| vertrauen | Ich vertraue ihm. |
+| zuhören | Hör mir zu! |
+| begegnen | Ich bin ihm gestern begegnet. |
+| wehtun | Der Kopf tut mir weh. |
+| leidtun | Es tut mir leid. |
+| gelingen | Das ist mir nicht gelungen. |
+
+Set phrases about how someone feels use the dative too: _Wie geht es dir? Mir ist kalt. Mir ist schlecht._
+
+## Genitive {#gen}
+
+@for de-cases:gen
+
+The genitive shows whose something is, and follows some prepositions. Masculine and neuter add _-s_ (one-syllable nouns often _-es_) to the noun; feminine and plural nouns don't change.
+
+| | m | f | n | pl |
+| article | des / eines / meines | der / einer / meiner | des / eines / meines | der / – / meiner |
+| noun | + (e)s: des Mannes, des Vaters | – | + (e)s: des Kindes, des Autos | – |
+
+> Das ist das Auto meines Bruders. — That's my brother's car.
+> Die Farbe des Kleides gefällt mir. — I like the colour of the dress.
+> Die Wohnung meiner Eltern ist groß. — My parents' flat is big.
+
+Names add _-s_ without an apostrophe and go before the noun: _Annas Auto, Peters Mutter_.
+
+In speech, _von_ + dative often replaces the genitive: _das Auto von meinem Bruder_. In writing, the genitive is standard.
+
+## Noun endings in the cases {#noun-endings}
+
+Most nouns hardly change; the article carries the case. Only three noun endings matter:
+
+- **-s / -es** in the genitive singular of masculine and neuter nouns: _des Mannes, des Kindes, des Autos_.
+- **-n** in the dative plural: _den Kindern, mit den Freunden, in den Häusern_ (not when the plural already ends in _-n_ or _-s_: _den Frauen, den Autos_).
+- **-n / -en** everywhere except the nominative singular for [n-declension nouns](#n-dekl): _den Kollegen, dem Kunden_.
+
+# Pronouns {#pronouns}
+
+## Personal pronouns {#personal}
+
+@for de-cases:pron, de-tables:pron
+
+| Nom | Akk | Dat | Possessive |
+| ich | mich | mir | mein |
+| du | dich | dir | dein |
+| er | ihn | ihm | sein |
+| sie | sie | ihr | ihr |
+| es | es | ihm | sein |
+| wir | uns | uns | unser |
+| ihr | euch | euch | euer |
+| sie | sie | ihnen | ihr |
+| Sie (polite) | Sie | Ihnen | Ihr |
+
+_Du_ (one person) and _ihr_ (several) are informal: family, friends, children, and increasingly colleagues. _Sie_ (with capital S) is the polite form for one or more people and takes the plural verb: _Können Sie mir helfen?_
+
+> Kannst du mir helfen? — Can you help me?
+> Ich liebe dich. — I love you.
+> Das ist für ihn. — That's for him.
+> Kommst du mit mir? — Are you coming with me?
+
+## Possessives {#possessive}
+
+Possessives are ein-words: the stem shows the owner, the ending agrees with the thing owned.
+
+| Owner | Stem | Example |
+| ich, du | mein, dein | mein Bruder, meine Schwester, meinem Vater |
+| er, es | sein | sein Auto, mit seiner Frau |
+| sie (she) | ihr | ihr Mann, ihre Kinder |
+| wir, ihr | unser, euer | unser Haus, eure Eltern |
+| sie (they), Sie | ihr, Ihr | ihr Lehrer, Ihr Pass |
+
+!! _Ihr_ has three meanings: her, their (_ihr_) and your polite (_Ihr_). The context and the capital letter tell you which.
+
+## Reflexive pronouns {#reflexive}
+
+Reflexive pronouns refer back to the subject. They are the same as the personal pronouns except in the third person and with _Sie_, which all use _sich_.
+
+| | ich | du | er / sie / es | wir | ihr | sie / Sie |
+| Akk | mich | dich | sich | uns | euch | sich |
+| Dat | mir | dir | sich | uns | euch | sich |
+
+The dative form is used when there is already an accusative object: _Ich wasche mich_ (I wash myself) but _Ich wasche mir die Hände_ (I wash my hands). See [reflexive verbs](#reflexive-verbs).
+
+## Relative pronouns {#relative}
+
+Relative clauses describe a noun. The relative pronoun takes the **gender and number of the noun** and the **case of its role in the relative clause**. The verb goes to the end, and a comma separates the clause.
+
+| | m | f | n | pl |
+| Nom | der | die | das | die |
+| Akk | den | die | das | die |
+| Dat | dem | der | dem | **denen** |
+| Gen | **dessen** | **deren** | **dessen** | **deren** |
+
+> Der Mann, der dort steht, ist mein Vater. — The man who is standing there is my father. (subject: Nom)
+> Der Mann, den ich gesehen habe, … — The man (whom) I saw … (object: Akk)
+> Der Mann, dem ich geholfen habe, … — The man I helped … (helfen + Dat)
+> Die Frau, deren Auto gestohlen wurde, … — The woman whose car was stolen …
+> Die Kinder, mit denen ich spiele, … — The children I play with …
+
+After _alles, etwas, nichts, das_ and whole sentences, use _was_: _Alles, was du sagst, stimmt. Er kam spät, was mich ärgerte._ After places, _wo_ is common: _die Stadt, wo ich wohne_ (= _in der ich wohne_).
+
+## man, jemand, niemand, etwas, nichts {#indefinite}
+
+- _man_ (one, you, people) takes the er-form: _Hier darf man nicht rauchen._ Its accusative is _einen_, dative _einem_.
+- _jemand_ (somebody), _niemand_ (nobody): _Ist jemand da? Ich habe niemanden gesehen._
+- _etwas_ (something), _nichts_ (nothing), _alles_ (everything) don't change. After them an adjective becomes a noun: _etwas Neues, nichts Besonderes, alles Gute_ (see [adjectives as nouns](#adj-nouns)).
+- _einer, eine, eines_ (one), _keiner, keine, keines_ (none) as pronouns: _Hast du einen Stift? – Ja, ich habe einen. / Nein, ich habe keinen._
+
+## The many uses of es {#es}
+
+| Use | Example |
+| weather, time | Es regnet. Es ist spät. |
+| es gibt + Akk | Es gibt keine Milch. |
+| how someone is | Wie geht es dir? |
+| placeholder subject | Es kommen viele Gäste. (= Viele Gäste kommen.) |
+| pointing ahead to a clause | Es ist wichtig, dass du kommst. |

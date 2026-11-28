@@ -20,16 +20,17 @@
 <script src="../../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/engine.css">
 <link rel="stylesheet" href="../../shared/ui.css">
-<style>:root{--red:#7a2a8c}.m{color:#7a2a8c}</style>
+<style>:root{--red:#7a2a8c}</style>
+<link rel="stylesheet" href="../../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">6</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Konjunktiv II & Passiv</h1><p class="sub">Subjunctive and passive · pick the construction, then the form · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">6</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p><h1>Konjunktiv II & Passiv</h1><p class="sub">Subjunctive and passive<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -46,6 +47,7 @@
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
       <section class="grp" data-all="All topics"><h3>Topic · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
       <section class="grp" data-fmt="{v} the form"><h3>Answer by · Antworten</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
+      <section class="grp" data-fmt="Translation {v}"><h3>Translation · Übersetzung</h3><div class="seg segctl" id="ens" role="group" aria-label="Translation"><button id="e-after" data-e="after">after answering</button><button id="e-always" data-e="always">always</button></div></section>
       <section class="grp" data-fmt="{v}"><h3>Steps · Schritte</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
       <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Fragen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
       <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
@@ -55,11 +57,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet · Spickzettel</h2>
+    <details class="refbox"><summary>Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>Konjunktiv II</h3><div class="tbl"><table><thead><tr><th></th><th>Present</th><th>Past</th></tr></thead><tbody><tr><td>haben</td><td>hätte</td><td>hätte gehabt</td></tr><tr><td>sein</td><td>wäre</td><td>wäre gewesen</td></tr><tr><td>können</td><td>könnte</td><td>hätte … können</td></tr><tr><td>most verbs</td><td>würde + infinitive</td><td>hätte/wäre + participle</td></tr></tbody></table></div><p class="note">Real possibility: indicative (Wenn ich Zeit habe, komme ich). Unreal: Konjunktiv II (Wenn ich Zeit hätte, würde ich kommen).</p></div><div><h3>Passive</h3><div class="tbl"><table><thead><tr><th>Tense</th><th>Form</th></tr></thead><tbody><tr><td>Präsens</td><td>wird gebaut</td></tr><tr><td>Präteritum</td><td>wurde gebaut</td></tr><tr><td>Perfekt</td><td>ist gebaut worden</td></tr><tr><td>with a modal</td><td>muss gebaut werden</td></tr><tr><td>state</td><td>ist gebaut (Zustandspassiv)</td></tr></tbody></table></div></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../../shared/levels.js"></script>
+<script src="../../shared/guide-map.js"></script>
 <script src="../../shared/lines.js"></script>
 <script src="data.js"></script>
 <script src="../../shared/coach.js"></script>

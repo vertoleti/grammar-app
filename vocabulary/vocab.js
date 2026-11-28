@@ -12,7 +12,7 @@ const LS = {
 const MIN = 60000, DAY = 86400000;
 const LEARN = [1, 10], RELEARN = [10];
 // German flashcards set window.VOC_CFG before loading this file; the Russian page uses the defaults.
-const VC = Object.assign({ decks: ['decks/ru-core.tsv', 'decks/ru-levels.tsv'], prefix: 'voc-', lang: 'ru', tts: 'ru-RU', themes: null, all: 'Все темы · All', done: 'Готово!', listen: '${VC.listen}' }, window.VOC_CFG || {});
+const VC = Object.assign({ decks: ['decks/ru-core.tsv', 'decks/ru-levels.tsv'], prefix: 'voc-', lang: 'ru', tts: 'ru-RU', themes: null, all: 'Все темы · All', done: 'Готово!', listen: 'Listen · Слушать' }, window.VOC_CFG || {});
 const DECKS = VC.decks, K = n => VC.prefix + n;
 const LEVELS = window.CEFR;
 const LV = LEVELS.map(l => l.code);

@@ -20,16 +20,17 @@
 <script src="../../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/engine.css">
 <link rel="stylesheet" href="../../shared/ui.css">
-<style>:root{--red:#5d7a00}.m{color:#5d7a00}</style>
+<style>:root{--red:#5d7a00}</style>
+<link rel="stylesheet" href="../../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">9</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Tabellen</h1><p class="sub">Tables · conjugation and declension · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">9</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p><h1>Tabellen</h1><p class="sub">Tables<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -48,11 +49,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet · Spickzettel</h2>
+    <details class="refbox"><summary>Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>Verbs</h3><p>Present: vowel changes only in du and er/sie/es (fährst, liest, nimmt). Modals have no ending in ich and er (ich kann, er muss). Präteritum: strong verbs change the vowel and have no ending in ich and er (ging, kam); weak verbs add -te (machte).</p></div><div><h3>Articles and endings</h3><p>Only the masculine accusative differs from the nominative (den, einen). Every dative plural adds -n. After der the adjective takes -e or -en; after ein it shows the gender where ein can’t (ein guter Mann, ein gutes Kind).</p></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../../shared/levels.js"></script>
+<script src="../../shared/guide-map.js"></script>
 <script src="data.js"></script>
 <script src="../../shared/coach.js"></script>
 <script src="../../shared/ui.js"></script>

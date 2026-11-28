@@ -1,0 +1,276 @@
+# Word order {#word-order}
+
+## The verb in second place {#v2}
+
+@for de-sent, de-conn
+
+In a German main clause the conjugated verb is always the **second element**. Anything can stand in position 1 (the subject, a time, an object, a whole clause); if it isn't the subject, the subject moves to just after the verb.
+
+| Position 1 | Verb | Subject | Rest |
+| Ich | fahre | – | morgen nach Berlin. |
+| Morgen | fahre | ich | nach Berlin. |
+| Nach Berlin | fahre | ich | morgen. |
+| Wenn ich Zeit habe, | fahre | ich | nach Berlin. |
+
+!! "Morgen ich fahre" is the most common learner mistake. After a time word, an adverb (_deshalb, dann, trotzdem_) or a subordinate clause, the verb comes next.
+
+## The verb bracket {#klammer}
+
+When the verb has two parts, the conjugated part is in position 2 and the rest goes to the **very end**, forming a bracket around the middle of the sentence.
+
+| Type | Position 2 | … | End |
+| Perfekt | Ich habe | gestern das Buch | gelesen. |
+| modal verb | Ich muss | morgen früh | arbeiten. |
+| separable verb | Der Zug fährt | um acht Uhr | ab. |
+| future | Ich werde | dir morgen | helfen. |
+| passive | Das Haus wird | gerade | renoviert. |
+
+## The middle field {#mittelfeld}
+
+Between the verb and the end, a few tendencies decide the order:
+
+- pronouns come early, nouns later: _Ich gebe es ihm. Ich gebe ihm das Buch._
+- dative noun before accusative noun: _Ich gebe dem Kind das Buch._
+- adverbs in the order **te-ka-mo-lo**: time, cause, manner, place: _Ich fahre **morgen** **wegen der Arbeit** **mit dem Zug** **nach Berlin**._
+- new or important information goes later.
+
+## Questions {#questions}
+
+| Type | Order | Example |
+| yes/no question | verb first | Kommst du morgen? |
+| W-question | W-word, verb, subject | Wann kommst du? Wo wohnst du? Warum lernst du Deutsch? |
+| indirect question | W-word or ob, verb at the end | Ich weiß nicht, wann er kommt. Sag mir, ob du kommst. |
+
+W-words: _wer, wen, wem, wessen, was, wo, wohin, woher, wann, warum, wie, wie viel(e), welcher, was für ein_.
+
+## Negation: nicht and kein {#negation}
+
+| Use | When | Example |
+| kein | negates a noun with ein or no article | Ich habe keine Zeit. Das ist kein Problem. |
+| nicht | everything else | Ich komme nicht. Das ist nicht mein Auto. Ich verstehe das nicht. |
+
+Position of _nicht_: it negates a whole sentence from as late as possible, before the second part of the verb, before adjectives and before prepositional phrases of place or direction: _Ich habe ihn nicht gesehen. Er ist nicht krank. Ich fahre nicht nach Berlin._ It goes before a single word it contrasts: _Nicht ich, sondern er hat es gemacht._
+
+_Doch_ answers "yes" to a negative question: _Kommst du nicht? – Doch!_ (Yes, I am coming.)
+
+# Joining clauses {#clauses}
+
+## Three word orders {#three-orders}
+
+@for de-conn:cause
+
+Every German connector belongs to one of three groups, and the group decides where the verb goes.
+
+| Group | Words | Verb | Example |
+| conjunctions (position 0) | und, aber, oder, denn, sondern, doch | normal order: subject, verb | Ich bleibe zu Hause, **denn** ich **bin** krank. |
+| subordinating conjunctions | weil, da, dass, ob, obwohl, wenn, als, falls, damit, während, bevor, nachdem, seit, bis, sobald, solange, sodass, indem | verb **at the end** | Ich bleibe zu Hause, **weil** ich krank **bin**. |
+| connecting adverbs (position 1) | deshalb, darum, deswegen, also, trotzdem, dann, danach, außerdem, sonst, dennoch, allerdings, stattdessen | verb **next**, subject after it | Ich bin krank, **deshalb bleibe ich** zu Hause. |
+
+A subordinate clause at the start counts as position 1, so the main clause begins with its verb: _Weil ich krank bin, **bleibe** ich zu Hause._
+
+## Cause and result {#cause}
+
+| Meaning | Words |
+| because | weil, da (subordinating), denn (position 0) |
+| so, that's why | deshalb, darum, deswegen, daher, also (adverbs) |
+| so that (result) | sodass, so … dass |
+
+> Ich lerne viel, weil ich die Prüfung bestehen will. — I study a lot because I want to pass the exam.
+> Es hat geregnet, darum sind wir zu Hause geblieben. — It rained, so we stayed at home.
+> Da es regnet, nehmen wir das Auto. — As it's raining, we'll take the car.
+
+## Contrast {#contrast}
+
+@for de-conn:contrast
+
+| Meaning | Words |
+| but | aber (position 0) |
+| but rather (after a negation) | sondern (position 0) |
+| although | obwohl (subordinating) |
+| still, anyway | trotzdem, dennoch (adverbs) |
+| whereas | während (subordinating) |
+| instead | stattdessen (adverb), statt … zu, anstatt dass |
+
+> Obwohl es kalt ist, gehen wir schwimmen. — Although it's cold, we're going swimming.
+> Es ist kalt, trotzdem gehen wir schwimmen. — It's cold; we're going swimming anyway.
+> Das ist nicht mein Auto, sondern das meines Bruders. — That's not my car but my brother's.
+
+## als, wenn, wann {#als-wenn}
+
+@for de-conn:time
+
+| Word | Use | Example |
+| als | one event or one period in the past | Als ich ein Kind war, lebte ich in Graz. Als ich gestern nach Hause kam, war niemand da. |
+| wenn | repeated events (also in the past), the present and future; "if" | Immer wenn ich in Berlin bin, besuche ich meine Tante. Wenn du nach Hause kommst, ruf mich an! |
+| wann | question word only, also in indirect questions | Wann kommst du? Weißt du, wann der Zug kommt? |
+
+### Other time connectors
+
+| Word | Meaning | Note |
+| nachdem | after | earlier action one tense back: Nachdem wir gegessen hatten, gingen wir. |
+| bevor | before | Wasch dir die Hände, bevor du isst. |
+| während | while | Während ich koche, liest er. |
+| seit, seitdem | since | Seit er in Wien wohnt, ist er glücklicher. |
+| bis | until | Warte, bis ich komme. |
+| sobald | as soon as | Sobald ich ankomme, rufe ich an. |
+| solange | as long as | Solange es regnet, bleiben wir drinnen. |
+| dann, danach | then, after that (adverbs) | Zuerst esse ich, dann lese ich. |
+
+## dass, ob, and indirect questions {#dass-ob}
+
+| Word | Use | Example |
+| dass | that (statements) | Ich hoffe, dass du bald kommst. |
+| ob | whether (yes/no questions) | Ich weiß nicht, ob er heute kommt. |
+| W-word | indirect W-question | Er fragt, wo ich wohne. |
+
+_Dass_ (conjunction) has two s; _das_ (article, pronoun, relative) has one. If you can replace it with _dieses_ or _welches_, it's _das_.
+
+## Purpose: damit and um … zu {#purpose}
+
+@for de-conn:purpose
+
+| Construction | When | Example |
+| um … zu + infinitive | same subject in both clauses | Ich spare Geld, um ein Auto zu kaufen. |
+| damit + clause | different subjects, or a modal in the clause | Sprich langsam, damit alle dich verstehen. |
+
+## Infinitive clauses with zu {#zu}
+
+Many verbs, nouns and adjectives are followed by _zu_ + infinitive at the end of the clause: _Ich versuche, pünktlich zu sein. Es ist schwer, Deutsch zu lernen. Ich habe keine Zeit, einzukaufen._ With separable verbs, _zu_ goes between the prefix and the verb: _anzurufen, einzukaufen, aufzustehen_.
+
+Not after modal verbs, _lassen_, _werden_, or verbs of perception (_sehen, hören_): _Ich kann kommen. Ich höre ihn singen._
+
+| Construction | Meaning | Example |
+| um … zu | in order to | um zu lernen |
+| ohne … zu | without doing | Er ging, ohne sich zu verabschieden. |
+| statt … zu | instead of doing | Statt zu arbeiten, schläft er. |
+
+## Two-part connectors {#two-part}
+
+| Connector | Meaning | Example |
+| entweder … oder | either … or | Entweder kommst du mit, oder du bleibst hier. |
+| sowohl … als auch | both … and | Sie spricht sowohl Deutsch als auch Englisch. |
+| weder … noch | neither … nor | Ich habe weder Zeit noch Geld. |
+| nicht nur … sondern auch | not only … but also | Er ist nicht nur klug, sondern auch nett. |
+| zwar … aber | admittedly … but | Das Hotel ist zwar teuer, aber schön. |
+| je … desto / umso | the more … the more | Je mehr ich lerne, desto besser verstehe ich. |
+
+In _je … desto_, the je-clause has the verb at the end, and the desto-part has the verb right after the comparative.
+
+# Advanced grammar {#advanced}
+
+## Verbs with prepositions {#verb-prep}
+
+@for de-adv:vp
+
+Many verbs, adjectives and nouns take a fixed preposition. With _an, auf, über, in, vor_ the case is not predictable from the meaning, so learn each one as a set phrase. _Für, um, durch, gegen_ always take the accusative; _von, aus, mit, nach, bei, zu_ always the dative.
+
+| With accusative | With dative |
+| warten auf, sich freuen auf (future), hoffen auf, sich verlassen auf, achten auf, sich konzentrieren auf, reagieren auf | teilnehmen an, zweifeln an, leiden an, sterben an, arbeiten an |
+| denken an, sich erinnern an, sich gewöhnen an, glauben an, schreiben an | Angst haben vor, sich fürchten vor, warnen vor, schützen vor |
+| sich freuen über (now, past), sprechen über, sich ärgern über, sich beschweren über, nachdenken über, sich informieren über | abhängen von, träumen von, erzählen von, sich erholen von, halten von (opinion) |
+| sich interessieren für, sich entscheiden für, sich bedanken für, sich entschuldigen für | bestehen aus, entstehen aus |
+| es geht um, sich kümmern um, bitten um, sich bewerben um | sich beschäftigen mit, anfangen mit, aufhören mit, telefonieren mit, rechnen mit |
+| sich verlieben in | fragen nach, suchen nach, riechen nach, sich sehnen nach |
+| | sich bedanken bei, sich bewerben bei, helfen bei |
+| | einladen zu, gratulieren zu, gehören zu, passen zu |
+
+> Ich warte schon lange auf den Bus. — I've been waiting for the bus for a long time.
+> Wir nehmen am Kurs teil. — We're taking part in the course.
+> Das hängt vom Wetter ab. — That depends on the weather.
+> Ich freue mich auf den Urlaub. — I'm looking forward to the holiday.
+> Ich freue mich über das Geschenk. — I'm pleased about the present.
+
+## Formal prepositions {#formal-gen}
+
+@for de-adv:gf
+
+Written and official German uses many prepositions formed from nouns. Almost all take the genitive.
+
+| Preposition | Case | Meaning | Example |
+| aufgrund | Gen | due to | Aufgrund der hohen Kosten wurde das Projekt gestoppt. |
+| angesichts | Gen | in view of | Angesichts des Klimawandels müssen wir handeln. |
+| hinsichtlich, bezüglich | Gen | regarding | Hinsichtlich des Vertrags gibt es noch Fragen. |
+| infolge | Gen | as a result of | Infolge des Unfalls kam es zu Verspätungen. |
+| anlässlich | Gen | on the occasion of | Anlässlich des Jubiläums gab es ein Fest. |
+| mithilfe | Gen | with the help of | Mithilfe eines Navis fanden wir den Weg. |
+| zugunsten | Gen | in favour of | zugunsten der Opfer |
+| im Laufe | Gen | in the course of | im Laufe des Tages |
+| seitens | Gen | on the part of | seitens der Regierung |
+| dank | Gen or Dat | thanks to | dank Ihrer Hilfe |
+| gemäß | Dat | according to | gemäß den Regeln |
+| entsprechend | Dat | in line with | entsprechend Ihrem Wunsch |
+| zufolge | Dat (after the noun) | according to | dem Bericht zufolge |
+| entgegen | Dat | contrary to | entgegen allen Erwartungen |
+| laut | Dat (or Gen) | according to | laut Wetterbericht |
+
+## n-declension in practice {#n-dekl-practice}
+
+See [n-declension](#n-dekl) for the forms. In fast speech the _-n_ is often dropped, but in writing it is required: _den Kunden, dem Kollegen, des Herrn_.
+
+## Konjunktiv I: reported speech {#konj1}
+
+@for de-adv:k1
+
+The Konjunktiv I reports what someone said without the reporter vouching for it. It is standard in news, reports and academic writing.
+
+| | sein | haben | werden | können | kommen |
+| ich | sei | habe* | werde* | könne | komme* |
+| du | seist | habest | werdest | könnest | kommest |
+| er / sie / es | **sei** | **habe** | **werde** | **könne** | **komme** |
+| wir | seien | haben* | werden* | können* | kommen* |
+| ihr | seiet | habet | werdet | könnet | kommet |
+| sie / Sie | seien | haben* | werden* | können* | kommen* |
+
+Starred forms: where the Konjunktiv I looks the same as the indicative, use the Konjunktiv II instead (_sie hätten, sie würden kommen, sie könnten_).
+
+| Original tense | Reported form | Example |
+| present | Konjunktiv I | Er sagt, er sei krank. |
+| past (any tense) | habe / sei + Partizip II | Er sagte, er habe nichts davon gewusst. Sie sagt, sie sei schon gegangen. |
+| future | werde + infinitive | Die Firma teilte mit, man werde die Preise erhöhen. |
+| question | ob / W-word + Konjunktiv I | Er fragte, ob sie morgen Zeit habe. |
+| command | sollen / mögen in Konjunktiv I | Er sagte, ich solle warten. |
+
+> Laut Polizei sei der Täter ins Ausland geflohen. — According to the police, the culprit has fled abroad.
+> Die Zeugen behaupten, sie hätten nichts gesehen. — The witnesses claim they saw nothing.
+
+In everyday speech people use the indicative or Konjunktiv II: _Er hat gesagt, er ist krank / er wäre krank._
+
+## Participles as adjectives {#part-attr}
+
+@for de-adv:pa
+
+Both participles can stand before a noun and take adjective endings. Extra words go **before** the participle, which makes long "extended attributes" typical of written German.
+
+| Form | Formation | Meaning | Example |
+| Partizip I | infinitive + -d + ending | active, happening at the same time | die steigenden Preise, ein lachendes Kind, die schlafenden Kinder |
+| Partizip II | participle + ending | completed or passive | das reparierte Auto, die angekommenen Briefe, der von allen geschätzte Kollege |
+| zu + Partizip I (Gerundiv) | zu + infinitive + -d + ending | must or can be done | die noch zu erledigenden Aufgaben, ein schwer zu lösendes Problem |
+
+Reading tip: when an article is followed by a long gap before its noun, skip to the noun, then read the words in between as a relative clause: _die im letzten Jahr veröffentlichte Studie_ = _die Studie, die im letzten Jahr veröffentlicht wurde_.
+
+## Nominal style {#nominal}
+
+Formal German prefers nouns where everyday German uses verbs. Recognising the pattern makes official texts much easier.
+
+| Verbal style | Nominal style |
+| Weil die Kosten hoch sind, … | Aufgrund der hohen Kosten … |
+| Wenn Sie Fragen haben, … | Bei Fragen … |
+| Nachdem er angekommen war, … | Nach seiner Ankunft … |
+| Während wir verhandelten, … | Während der Verhandlungen … |
+| Um die Umwelt zu schützen, … | Zum Schutz der Umwelt … |
+| Obwohl es regnete, … | Trotz des Regens … |
+
+Typical noun-verb pairs (Funktionsverbgefüge): _zur Verfügung stehen_ (be available), _in Frage kommen_ (be an option), _eine Entscheidung treffen_ (make a decision), _in Anspruch nehmen_ (take up, use), _zur Sprache bringen_ (raise a topic), _Kritik üben_ (criticise), _Bescheid sagen_ (let know).
+
+## Modal particles {#particles}
+
+Small words like _doch, mal, ja, denn, eben, halt, schon, wohl_ don't change the facts but add tone. They are typical of spoken German.
+
+| Particle | Effect | Example |
+| denn | interest in a question | Wo wohnst du denn? |
+| doch | urging, or "after all" | Komm doch mit! Das weißt du doch. |
+| mal | makes a request casual | Kannst du mal kommen? |
+| ja | "as you know", surprise | Das ist ja toll! |
+| eben, halt | that's just how it is | Das ist eben so. |
+| schon | reassurance | Das klappt schon. |
+| wohl | probably | Er ist wohl krank. |

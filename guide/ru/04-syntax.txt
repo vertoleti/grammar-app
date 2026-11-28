@@ -1,0 +1,322 @@
+# Participles and verbal adverbs {#participles}
+
+## Active participles {#active-participles}
+
+@for advanced:part
+
+Participles are adjectives made from verbs. They replace a _который_-clause and are typical of written Russian. They decline like adjectives and agree with their noun.
+
+| Participle | Formation | Example | = который-clause |
+| present active | они-form minus _-т_ + _-щий_ (impf only) | читающий (читают), говорящий (говорят) | который читает |
+| past active | past stem + _-вший_ (after a vowel) or _-ший_ (after a consonant) | читавший, прочитавший; нёсший, выросший; шедший (идти) | который читал / прочитал |
+
+> Студент, читающий книгу, — мой друг. — The student reading the book is my friend.
+> Студенты, сидящие в первом ряду, внимательно слушают. — The students sitting in the front row are listening carefully.
+> Человек, написавший эту книгу, живёт в Москве. — The man who wrote this book lives in Moscow.
+
+Reflexive verbs keep _-ся_ (never _-сь_): _занимающийся, вернувшийся_.
+
+## Passive participles {#passive-participles}
+
+| Participle | Formation | Example |
+| present passive | мы-form + _-ый_ (impf, mostly bookish) | читаемый, любимый, уважаемый |
+| past passive | pf verbs: _-нный_ (-ать, -ять), _-енный_ (-ить, -еть, consonant stems), _-тый_ (-нуть, -ыть, -оть, short roots) | прочитанный, написанный; построенный, решённый, купленный; открытый, забытый, взятый |
+
+The consonant change of the _я_-form appears in _-енный_: _купить – куплю – купленный_, _решить – решённый_, _встретить – встреченный_, _освободить – освобождённый_.
+
+### Short passive participles {#short-passive}
+
+The short form of the past passive participle is the Russian passive: _был, будет_ + short participle, agreeing with the subject. The agent is in the instrumental.
+
+| m | f | n | pl |
+| построен | построена | построено | построены |
+| открыт | открыта | открыто | открыты |
+| решён | решена | решено | решены |
+
+> Дом был построен в 1900 году. — The house was built in 1900.
+> Магазин открыт до десяти. — The shop is open until ten.
+> Письмо написано по-русски. — The letter is written in Russian.
+> Вопрос решён. — The question is settled.
+
+The long form describes a noun (_построенный дом_), the short form is the predicate (_дом построен_). Only the long form has _-нн-_; the short form has one _-н_.
+
+## Verbal adverbs (деепричастия) {#verbal-adverbs}
+
+@for advanced:adv
+
+A verbal adverb describes a second action by the same subject, like English "-ing" or "having done". It never changes.
+
+| Type | Formation | Example | Meaning |
+| imperfective | они-form minus ending + _-я_ (_-а_ after ж, ш, щ, ч) | читая, говоря, слыша, занимаясь | while doing (at the same time) |
+| perfective | past stem + _-в_ (or _-вшись_ with -ся) | прочитав, сделав, вернувшись | having done (before the main verb) |
+| perfective, irregular | from the future stem + _-я_ | придя, войдя, принеся, увидя (also увидев) | having come in, etc. |
+
+> Читая книгу, он пил чай. — Reading the book, he drank tea. (both at once)
+> Прочитав книгу, он лёг спать. — Having read the book, he went to bed.
+> Вернувшись домой, она позвонила маме. — When she got back home, she called her mum.
+
+!! The subject of the verbal adverb must be the subject of the main verb. _Подъезжая к станции, у меня слетела шляпа_ (approaching the station, my hat flew off) is a famous mistake: the hat wasn't approaching the station.
+
+No imperfective verbal adverb: _писать, ждать, пить, есть, бежать, петь_ and verbs in _-чь_. Use a clause with _когда_ instead.
+
+# Sentences {#syntax}
+
+## Word order {#word-order}
+
+@for sent
+
+Russian word order is flexible because endings show who does what. The basic neutral order is subject, verb, object: _Мама читает книгу_. Changing the order changes the emphasis: new or important information goes towards the end.
+
+> Книгу читает мама. — It's mum who's reading the book.
+> В комнату вошёл человек. — A man came into the room. (new: человек at the end)
+> Человек вошёл в комнату. — The man came into the room. (known man)
+
+Unstressed pronouns tend to come before the verb: _Я тебя люблю_ is more natural than _Я люблю тебя_ (both are correct).
+
+## Questions {#questions}
+
+A yes/no question has the same words as a statement, with rising intonation on the word being asked about: _Ты был в Москве?_ In writing, _ли_ after the questioned word makes a formal or indirect question: _Знаете ли вы…?_, _Я не знаю, придёт ли он_ (I don't know whether he'll come).
+
+| Question word | Meaning | Question word | Meaning |
+| кто | who | когда | when |
+| что | what | почему, зачем | why (reason), what for (purpose) |
+| где | where (location) | как | how |
+| куда | where to | сколько | how much, how many |
+| откуда | where from | какой, который | which, what kind |
+| чей | whose | | |
+
+## Negation {#negation}
+
+_Не_ goes directly before the word it negates, usually the verb: _Я не знаю. Это не мой телефон._ Absence uses _нет_ + genitive in the present, _не было_ in the past and _не будет_ in the future, always neuter singular: _У меня не было времени._
+
+In negative sentences the direct object is often genitive instead of accusative, especially with abstract nouns or "any": _Я не вижу разницы. Он не получил ответа_ (also _ответ_).
+
+Double negation is required with _ни-_ words: _Я никогда никому ничего не говорил_ (see [negative pronouns](#negative-pronouns)). _Ни… ни…_ means "neither… nor": _У меня нет ни времени, ни денег._
+
+## Joining clauses {#conjunctions}
+
+| Conjunction | Meaning | Example |
+| и | and | Я читаю, и он читает. |
+| а | and, while (contrast) | Я читаю, а он спит. |
+| но | but | Я хочу, но не могу. |
+| или / или… или | or / either… or | Чай или кофе? |
+| что | that | Я знаю, что он придёт. |
+| потому что | because | Я дома, потому что я болен. |
+| поэтому | so, therefore | Я болен, поэтому я дома. |
+| так как | since, as | Так как шёл дождь, мы остались дома. |
+| когда | when | Когда я был маленьким, … |
+| если | if | Если будет время, я позвоню. |
+| хотя | although | Хотя было холодно, мы пошли гулять. |
+| пока / пока не | while / until | Подожди, пока я не вернусь. |
+| как только | as soon as | Как только приеду, позвоню. |
+| прежде чем, перед тем как | before | Подумай, прежде чем говорить. |
+| после того как | after | После того как мы поели, мы пошли гулять. |
+| несмотря на то что | despite the fact that | Несмотря на то что шёл дождь, … |
+
+A comma always separates the clauses before these conjunctions (except a single _и_ or _или_ joining short parts).
+
+### а or но
+
+_А_ contrasts two different things side by side (_Я люблю чай, а она кофе_). _Но_ introduces something unexpected given the first part (_Он богатый, но несчастный_). After a negation, "but rather" is _а_: _Это не мой, а его телефон._
+
+## чтобы {#chtoby}
+
+@for advanced:cond
+
+_Чтобы_ means "in order to" and "that" after wishes and requests.
+
+| Same subject | Different subjects |
+| чтобы + infinitive | чтобы + past tense |
+| Я учу русский, чтобы читать Толстого. — I learn Russian (in order) to read Tolstoy. | Я говорю медленно, чтобы ты понял. — I speak slowly so that you understand. |
+| | Я хочу, чтобы ты пришёл. — I want you to come. |
+| | Мама попросила, чтобы я купил хлеб. — Mum asked me to buy bread. |
+
+After verbs of motion, "in order to" is just the infinitive: _Я пришёл поговорить._
+
+## Real and unreal conditions {#if}
+
+| Type | Form | Example |
+| real (possible) | если + present / future | Если пойдёт дождь, мы останемся дома. — If it rains, we'll stay home. |
+| unreal (imagined, or past and impossible) | если бы + past, бы + past | Если бы пошёл дождь, мы остались бы дома. — If it rained / had rained, we would stay / have stayed home. |
+
+Russian has no separate "would have" form: context tells you whether it's present or past.
+
+## Impersonal sentences {#impersonal}
+
+Many Russian sentences have no subject. The person involved is dative and the verb is neuter singular in the past.
+
+| Type | Examples |
+| state words in -о | Мне холодно. Ему было скучно. Здесь тихо. Вам удобно? |
+| need, possibility, permission | Мне нужно / надо идти. Можно войти? Здесь нельзя курить. |
+| feeling like | Мне хочется спать. Ему не спится. Мне не верится. |
+| weather and nature | Темнеет. Светает. Было холодно. |
+| luck, success | Мне повезло. Ей удалось найти работу. |
+| it seems | Мне кажется, что… — I think that… |
+
+_Нужен, нужна, нужно, нужны_ also agrees with a noun: _Мне нужна помощь. Нам нужны деньги._
+
+## Time expressions {#time-expr}
+
+@for prep:time
+
+| What | Form | Example |
+| day of the week | в + Acc | в понедельник, в среду, в субботу |
+| part of day, season | Ins, no preposition | утром, вечером, летом, зимой |
+| month, year, century | в + Prep | в мае, в 2026 году, в XXI веке |
+| week | на + Prep | на этой неделе, на прошлой неделе |
+| date | Gen | пятого мая |
+| clock time | в + Acc | в три часа |
+| ago | Acc + назад | два дня назад, год назад |
+| in (from now) | через + Acc | через неделю |
+| for (duration, past or present) | Acc, no preposition | Я жил там год. |
+| for (planned period) | на + Acc | Я приехал на неделю. |
+| in (time needed) | за + Acc | Он сделал это за час. |
+| until, before | до + Gen | до обеда, до свидания |
+| after | после + Gen | после работы |
+| since | с + Gen | с утра, с 2020 года |
+| from … to | с + Gen … до + Gen | с девяти до пяти |
+| during | во время + Gen | во время урока |
+| regularly on | по + Dat pl | по понедельникам, по вечерам |
+
+## Reported speech {#reported}
+
+Russian keeps the tense of the original words: _Он сказал: «Я устал»_ → _Он сказал, что устал_ (he said he was tired). Questions use the question word or _ли_: _Она спросила, где я живу. Он спросил, приду ли я._ Commands use _чтобы_: _Он сказал, чтобы я подождал._
+
+# Verb government {#government}
+
+## What government means {#gov-intro}
+
+@for gov
+
+Every verb decides the case of the word that depends on it. Most verbs take a direct object in the accusative, but many common verbs need another case or a fixed preposition. They have to be learned as phrases: _бояться + Gen_, _помогать + Dat_, _заниматься + Ins_, _думать о + Prep_.
+
+## Verbs with the genitive {#gov-gen}
+
+@for gov:gen
+
+| Verb | Example |
+| бояться | бояться темноты, собак — to be afraid of the dark, of dogs |
+| пугаться, стесняться, стыдиться | стесняться вопросов — to be shy of asking |
+| избегать | избегать конфликтов — to avoid conflicts |
+| достигать / достигнуть | достичь цели — to reach a goal |
+| добиваться / добиться | добиться успеха — to achieve success |
+| требовать | требовать внимания — to demand attention |
+| желать | желать удачи — to wish luck |
+| ждать (abstract or unknown) | ждать ответа, ждать помощи — to wait for an answer; but ждать маму (Acc, a specific person) |
+| искать (abstract) | искать помощи, искать правды |
+| хотеть (abstract, colloquial) | хотеть мира — to want peace |
+| касаться | Это касается всех. — This concerns everyone. |
+| лишать / лишить (кого чего) | лишить права — to deprive of a right |
+| заслуживать | заслуживать уважения — to deserve respect |
+| придерживаться | придерживаться мнения — to hold an opinion |
+
+## Verbs with the dative {#gov-dat}
+
+@for gov:dat
+
+| Verb | Example |
+| помогать / помочь | помогать другу — to help a friend |
+| мешать / помешать | мешать соседям — to disturb the neighbours |
+| звонить / позвонить | звонить маме — to call mum |
+| советовать / посоветовать | советовать врачу… — to advise |
+| завидовать | завидовать брату — to envy one's brother |
+| сочувствовать | сочувствовать пострадавшим — to sympathise with the victims |
+| удивляться / удивиться | удивиться новости — to be surprised at the news |
+| радоваться / обрадоваться | радоваться подарку — to be glad about a present |
+| верить / поверить | верить другу — to believe a friend (but верить в Бога: в + Acc) |
+| соответствовать | соответствовать ожиданиям — to match expectations |
+| способствовать | способствовать росту — to promote growth |
+| препятствовать | препятствовать развитию — to hinder development |
+| учить (кого чему), учиться (чему) | учить детей музыке; учиться русскому языку |
+| принадлежать | принадлежать государству — to belong to the state |
+| угрожать | угрожать жизни — to threaten life |
+| нравиться, казаться, хотеться, удаваться | Мне нравится… Мне кажется… (impersonal) |
+
+## Verbs with the instrumental {#gov-ins}
+
+@for gov:ins
+
+| Verb | Example |
+| заниматься | заниматься спортом — to do sport |
+| интересоваться | интересоваться историей — to be interested in history |
+| увлекаться | увлекаться музыкой — to be keen on music |
+| руководить, управлять, командовать | руководить отделом — to head a department |
+| владеть | владеть языком — to have command of a language |
+| пользоваться | пользоваться транспортом — to use transport |
+| злоупотреблять | злоупотреблять доверием — to abuse trust |
+| гордиться | гордиться сыном — to be proud of one's son |
+| восхищаться, любоваться | восхищаться талантом — to admire talent |
+| рисковать, жертвовать | рисковать жизнью — to risk one's life |
+| пренебрегать | пренебрегать советом — to disregard advice |
+| болеть (an illness) | болеть гриппом — to have the flu |
+| быть, стать, становиться, являться, считаться, казаться, оказаться, работать | стать врачом, работать учителем |
+
+## Verbs with prepositions {#gov-prep}
+
+@for gov:prepv
+
+| Preposition + case | Verbs |
+| от + Gen | зависеть от, отказаться от, отличаться от, защищать от, освобождаться от |
+| из + Gen | состоять из (to consist of) |
+| на + Acc | влиять на, реагировать на, надеяться на, рассчитывать на, жаловаться на, обижаться на, сердиться на, смотреть на, отвечать на, ссылаться на, тратить на |
+| в + Acc | верить в, играть в (a game), превращаться в, вмешиваться в |
+| за + Acc | благодарить за, отвечать за (responsible for), голосовать за, бороться за, платить за |
+| в + Prep | участвовать в, сомневаться в, нуждаться в, убедиться в, признаваться в, ошибаться в, обвинять в |
+| на + Prep | настаивать на, жениться на, сказываться на, играть на (an instrument), специализироваться на |
+| о + Prep | думать о, мечтать о, заботиться о, говорить о, жалеть о, напоминать о |
+| к + Dat | обращаться к, привыкать к, относиться к, готовиться к, стремиться к, приводить к |
+| с + Ins | знакомиться с, встречаться с, советоваться с, соглашаться с, бороться с, справляться с, сталкиваться с, поздравлять с |
+| над + Ins | работать над, думать над, смеяться над, издеваться над |
+| перед + Ins | извиняться перед, отчитываться перед |
+
+> Всё зависит от погоды. — Everything depends on the weather.
+> Это повлияло на решение суда. — This influenced the court's decision.
+> Я сомневаюсь в его честности. — I doubt his honesty.
+> Она вышла замуж за художника. — She married an artist. (a woman: выйти замуж за + Acc; a man: жениться на + Prep)
+
+## Formal prepositions {#formal-preps}
+
+@for gov:formal
+
+Official and written Russian uses many prepositions formed from nouns, adverbs and verbal adverbs.
+
+| Preposition | Case | Meaning | Example |
+| благодаря | Dat | thanks to | благодаря помощи друзей |
+| согласно | Dat | according to | согласно договору (not договора) |
+| вопреки | Dat | contrary to | вопреки советам врачей |
+| навстречу | Dat | towards | идти навстречу гостям |
+| в течение | Gen | during, within | в течение недели |
+| в связи с | Ins | in connection with, due to | в связи с ремонтом |
+| по сравнению с | Ins | compared with | по сравнению с прошлым годом |
+| в отличие от | Gen | unlike | в отличие от сестры |
+| вследствие | Gen | as a result of | вследствие аварии |
+| в результате | Gen | as a result of | в результате переговоров |
+| наряду с | Ins | along with | наряду с другими факторами |
+| в целях | Gen | for the purpose of | в целях безопасности |
+| в случае | Gen | in case of | в случае пожара |
+| за счёт | Gen | at the expense of, through | за счёт экономии |
+| по поводу | Gen | concerning | по поводу вашего письма |
+| с целью | Gen | with the aim of | с целью улучшения |
+| ввиду | Gen | in view of | ввиду обстоятельств |
+| несмотря на | Acc | despite | несмотря на дождь |
+| в зависимости от | Gen | depending on | в зависимости от погоды |
+| по мере | Gen | as, in proportion to | по мере роста |
+
+### Bookish prepositions {#bookish}
+
+@for gov:book
+
+| Preposition | Case | Meaning | Example |
+| во избежание | Gen | to avoid | во избежание недоразумений |
+| по истечении | Gen | on expiry of | по истечении срока |
+| по окончании | Gen | on completion of | по окончании учёбы |
+| по прибытии, по приезде | Prep | upon arrival | по прибытии в Москву |
+| в силу | Gen | by virtue of, owing to | в силу обстоятельств |
+| в ущерб | Dat | to the detriment of | в ущерб качеству |
+| в угоду | Dat | to please | в угоду публике |
+| в преддверии | Gen | on the eve of | в преддверии праздников |
+| невзирая на | Acc | regardless of | невзирая на трудности |
+| сообразно с | Ins | in accordance with | сообразно с обстоятельствами |
+| ввиду того что | clause | in view of the fact that | ввиду того что срок истёк |
+
+!! _По_ meaning "upon, after" takes the prepositional in careful style: _по приезде, по окончании, по истечении_. In everyday speech _по приезду_ is common, but it is not standard.

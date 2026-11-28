@@ -1,0 +1,360 @@
+# How to use this guide {#start}
+
+## Reading the tables {#reading}
+
+Every chapter starts with the idea in a few sentences, then gives the endings in tables, then examples. Russian words are in the tables and example lines; English follows a dash. Stress is marked only where it changes the meaning or the ending, for example _до́ма_ (at home) and _дома́_ (houses).
+
+The exercises link here: after a wrong answer, **Rule** opens the section that explains it. Use the search box at the top to find any word, ending or topic.
+
+| Abbreviation | Meaning |
+| m, f, n | masculine, feminine, neuter |
+| sg, pl | singular, plural |
+| Nom, Acc, Gen, Dat, Ins, Prep | the six cases |
+| impf, pf | imperfective, perfective aspect |
+
+# Sounds and spelling {#spelling}
+
+## Hard and soft consonants {#hard-soft}
+
+Most Russian consonants come in pairs: hard (_т_, _л_, _н_) and soft (_ть_, _ль_, _нь_). Softness is not written on the consonant but on the next letter. That is why most endings exist in two spellings: a hard one and a soft one.
+
+| Hard vowel letter | а | о | у | ы | э |
+| Soft vowel letter | я | ё / е | ю | и | е |
+
+So the dative of _мама_ is _маме_, and of _неделя_ it is _неделе_; the plural of _стол_ is _столы_, of _словарь_ _словари_. It is the same ending, spelled for a hard or a soft stem.
+
+Some consonants are always hard (_ж_, _ш_, _ц_) and some always soft (_ч_, _щ_, _й_). After them the spelling rules below decide.
+
+## The spelling rules {#spelling-rules}
+
+@for tables
+
+Three short rules change thousands of endings. Learn them once and many "irregular" endings stop being irregular.
+
+| Rule | After | Write | Not | Examples |
+| 7-letter rule | г, к, х, ж, ш, щ, ч | и | ы | книги, ножи, врачи |
+| 8-letter rule | г, к, х, ж, ш, щ, ч, ц | а, у | я, ю | лежат, кричу, хорошая |
+| 5-letter rule | ж, ш, щ, ч, ц | о (stressed), е (unstressed) | – | большой, хорошее, отцом, месяцем |
+
+> книга → книги — book → books (not книгы)
+> хороший — good (not хорошый)
+> они слышат — they hear (not слышят)
+> с отцом, с месяцем — with the father, with the month
+
+## Stress and vowel reduction {#stress}
+
+Unstressed _о_ is pronounced like _а_, and unstressed _е_ and _я_ like a short _и_. This is why you hear _малако́_ but write _молоко́_. Stress is free in Russian and can move within one word: _рука́_, but _ру́ку_; _писа́ть_, but _пи́шет_. Dictionaries and these flashcards mark it.
+
+The letter _ё_ is always stressed. In ordinary texts it is often printed as _е_; in this app you can type _е_ for _ё_.
+
+## Voicing at the end of words {#voicing}
+
+At the end of a word, and before a voiceless consonant, voiced consonants lose their voice: _хлеб_ sounds like _хлеп_, _лодка_ like _лотка_. The spelling keeps the original letter, which you can find by changing the form: _хлеб – хлеба_.
+
+# Nouns {#nouns}
+
+## Gender {#gender}
+
+Every noun has a gender, and you can almost always see it from the ending of the dictionary form.
+
+| Ending | Gender | Examples |
+| consonant, -й | masculine | стол, музей, город |
+| -а, -я | feminine | мама, неделя, Россия |
+| -о, -е, -ё, -мя | neuter | окно, море, здание, время, имя |
+| -ь | masculine or feminine | словарь, день (m); площадь, ночь, тетрадь (f) |
+
+- Words for men ending in _-а_ / _-я_ are masculine but decline like feminine nouns: _папа_, _дедушка_, _мужчина_, _дядя_, _Саша_ (for a man). Adjectives agree with the meaning: _мой папа_, _хороший мужчина_.
+- Nouns in _-ь_ have to be learned with their gender. Feminine: words in _-ость_ (_радость_), _-сть_, _-чь_, _-шь_, _-жь_, _-щь_ (_ночь_, _мышь_, _ложь_, _вещь_), and _площадь_, _тетрадь_, _дверь_, _жизнь_, _соль_, _осень_. Masculine: _день_, _словарь_, _учитель_, _рубль_, _гость_, _путь_, months (_январь_).
+- Ten nouns in _-мя_ are neuter: _время_, _имя_, _знамя_, _племя_, _пламя_, _семя_, _стремя_, _темя_, _вымя_, _бремя_. They add _-ен-_ in the other cases: _времени_, _имени_.
+- Borrowed nouns in _-о_, _-е_, _-и_, _-у_ do not decline and are neuter: _кафе_, _метро_, _кино_, _такси_, _меню_. Exception: _кофе_ is masculine (_чёрный кофе_).
+
+## Animate and inanimate {#animacy}
+
+@for cases:object
+
+For the accusative it matters whether a noun means a living being. Masculine animate nouns in the singular, and **all** animate nouns in the plural, take the genitive form in the accusative.
+
+> Я вижу стол. — I see the table. (inanimate: Acc = Nom)
+> Я вижу брата. — I see my brother. (animate: Acc = Gen)
+> Я вижу столы. — I see the tables.
+> Я вижу сестёр. — I see the sisters. (animate plural: Acc = Gen)
+
+Feminine nouns in _-а_ / _-я_ always have their own accusative in the singular (_маму_, _книгу_), animate or not.
+
+## The plural (nominative) {#plural}
+
+@for cases:plur
+
+| Singular ending | Plural ending | Examples |
+| hard consonant | -ы | стол – столы, журнал – журналы |
+| -й, -ь, г/к/х/ж/ш/щ/ч | -и | музей – музеи, словарь – словари, книга – книги, врач – врачи |
+| -а | -ы (-и after spelling rules) | мама – мамы, книга – книги |
+| -я, -ь (f) | -и | неделя – недели, площадь – площади |
+| -о | -а | окно – окна, слово – слова |
+| -е | -я | море – моря, здание – здания |
+
+### Stressed -а / -я in masculine plurals
+
+A group of common masculine nouns take a stressed _-а́_ / _-я́_: _дом – дома́_, _город – города́_, _глаз – глаза́_, _поезд – поезда́_, _адрес – адреса́_, _паспорт – паспорта́_, _берег – берега́_, _вечер – вечера́_, _лес – леса́_, _учитель – учителя́_, _доктор – доктора́_, _цвет – цвета́_, _номер – номера́_.
+
+### -ья and other special plurals
+
+| Singular | Plural | Genitive plural |
+| брат | братья | братьев |
+| стул | стулья | стульев |
+| лист (leaf) | листья | листьев |
+| друг | друзья | друзей |
+| сын | сыновья | сыновей |
+| муж | мужья | мужей |
+| человек | люди | людей (but пять человек) |
+| ребёнок | дети | детей |
+| мать, дочь | матери, дочери | матерей, дочерей |
+| имя, время | имена, времена | имён, времён |
+| глаз | глаза | глаз |
+| ухо | уши | ушей |
+| сосед | соседи | соседей |
+| хозяин | хозяева | хозяев |
+| англичанин | англичане | англичан |
+
+Nouns in _-анин_ / _-янин_ (nationalities, citizens) drop _-ин_ in the plural: _англичане_, _граждане_, _христиане_.
+
+## Fleeting vowels {#fleeting}
+
+Many nouns lose an _о_ or _е_ in the last syllable as soon as an ending is added: _день – дня_, _отец – отца_, _рынок – рынка_, _подарок – подарка_, _ребёнок – ребёнка_, _потолок – потолка_, _сон – сна_, _угол – угла_, _лоб – лба_, _церковь – церкви_.
+
+The opposite happens in the genitive plural, where a vowel often appears between two final consonants: _окно – окон_, _сестра – сестёр_, _девушка – девушек_, _ручка – ручек_, _письмо – писем_, _кухня – кухонь_.
+
+## Nouns used only in the plural or singular {#plural-only}
+
+Plural only: _деньги_, _часы_ (clock, watch), _очки_ (glasses), _брюки_, _джинсы_, _ножницы_, _сутки_ (24 hours), _каникулы_, _духи_ (perfume), _ворота_, _именины_, _выборы_ (election), _переговоры_. They take plural agreement: _Мои часы спешат_. With numbers they use collective numerals: _двое суток_, _трое часов_ (see [collective numerals](#collective)).
+
+Singular only: mass and abstract nouns: _молоко_, _сахар_, _молодёжь_, _мебель_, _одежда_, _посуда_, _информация_, _любовь_. _Мебель_ is singular in Russian even though "furniture" refers to many things: _Мебель новая_.
+
+# The six cases {#cases}
+
+## Overview {#cases-overview}
+
+@for cases, sent
+
+A Russian noun changes its ending to show its role in the sentence. There are six cases. The table gives the question, the main uses, and the prepositions.
+
+| Case | Question | Main uses | Prepositions |
+| Nominative (именительный) | кто? что? | subject; after _это_; dictionary form | – |
+| Accusative (винительный) | кого? что? куда? | direct object; direction; time "for", "every" | в, на (direction), через, про, за, под (direction), сквозь |
+| Genitive (родительный) | кого? чего? откуда? | "of"; absence with _нет_; quantities; numbers 2+ | у, без, для, до, из, от, с (from), после, около, кроме, вокруг, мимо, напротив, среди, вместо, против |
+| Dative (дательный) | кому? чему? | "to, for" someone; age; _нужно_, _нравится_ | к, по, благодаря, согласно, вопреки |
+| Instrumental (творительный) | кем? чем? | "by, with" an instrument; after _быть_, _стать_, _работать_ | с (with), над, под, перед, за, между |
+| Prepositional (предложный) | о ком? о чём? где? | only after a preposition: location, "about" | в, на (location), о / об / обо, при |
+
+### Endings in one table (singular)
+
+| Case | m hard: стол | m soft: музей | f -а: мама | f -я: неделя | f -ь: площадь | n -о: окно | n -е: море |
+| Nom | стол | музей | мама | неделя | площадь | окно | море |
+| Acc | стол (брата) | музей | маму | неделю | площадь | окно | море |
+| Gen | стола | музея | мамы | недели | площади | окна | моря |
+| Dat | столу | музею | маме | неделе | площади | окну | морю |
+| Ins | столом | музеем | мамой | неделей | площадью | окном | морем |
+| Prep | столе | музее | маме | неделе | площади | окне | море |
+
+### Endings in one table (plural)
+
+| Case | m hard | m soft | f -а | f -я / -ь | n |
+| Nom | столы | музеи | мамы | недели, площади | окна, моря |
+| Acc | столы (братьев) | музеи | мамы (мам) | недели | окна |
+| Gen | столов | музеев | мам | недель, площадей | окон, морей |
+| Dat | столам | музеям | мамам | неделям, площадям | окнам, морям |
+| Ins | столами | музеями | мамами | неделями, площадями | окнами, морями |
+| Prep | столах | музеях | мамах | неделях, площадях | окнах, морях |
+
+!! In the plural, dative, instrumental and prepositional are the same for every gender: _-ам / -ям_, _-ами / -ями_, _-ах / -ях_. Only the genitive plural needs real attention.
+
+## Nominative {#nom}
+
+The nominative is the dictionary form and the subject of the sentence. It is also used after _это_ and in the present tense where English has "is": Russian leaves out _быть_ in the present.
+
+> Это мой брат. — This is my brother.
+> Москва — столица России. — Moscow is the capital of Russia.
+> У меня есть машина. — I have a car. (the thing you have is the subject)
+> Мне нравится музыка. — I like music. (the thing liked is the subject)
+
+In the past and future, a noun after _быть_ is usually instrumental: _Он был врачом_ (see [instrumental](#ins)).
+
+## Accusative {#acc}
+
+@for cases:object
+
+The accusative marks the direct object, and direction after _в_ and _на_.
+
+| | Singular | Plural |
+| Masculine inanimate | = Nom (стол, музей) | = Nom (столы) |
+| Masculine animate | = Gen (брата, учителя) | = Gen (братьев) |
+| Feminine -а / -я | -у / -ю (маму, неделю) | inanimate = Nom, animate = Gen |
+| Feminine -ь | = Nom (площадь, мать, дочь) | inanimate = Nom, animate = Gen (матерей, дочерей) |
+| Neuter | = Nom (окно, море) | = Nom |
+
+### Uses
+
+- Direct object: _Я читаю книгу. Мы ждём автобус._
+- Direction with _в_ and _на_ (куда?): _Я иду в школу. Мы едем на работу._
+- Time: duration without a preposition (_Я работал всю ночь_), "every" (_каждую неделю_), days with _в_ (_в среду_), _через_ (in, after: _через час_), _назад_ follows the accusative (_неделю назад_), _на_ for planned duration (_на неделю_), _за_ for time needed to finish (_за час_).
+- _Про_ (about, colloquial): _фильм про войну_.
+- _За_ + Acc: thanks or payment "for" (_Спасибо за помощь_, _заплатить за обед_), and direction behind (_поставить за шкаф_).
+- _Через_: across or through (_через улицу_) and "in, after" (_через неделю_).
+
+> Я люблю маму и папу. — I love mum and dad.
+> Мы были в Москве неделю. — We were in Moscow for a week.
+> Позвони мне через час. — Call me in an hour.
+
+## Genitive {#gen}
+
+@for cases:gen
+
+The genitive answers "of what, of whom". It is the most frequent case after the nominative because it covers possession, absence, quantity and a long list of prepositions.
+
+### Singular endings
+
+| Gender | Ending | Examples |
+| Masculine, neuter | -а / -я | стола, музея, словаря, окна, моря |
+| Feminine -а / -я | -ы / -и | мамы, книги, недели |
+| Feminine -ь | -и | площади, ночи |
+
+### Uses
+
+- Possession and "of": _книга брата_, _центр города_, _чашка чая_.
+- Absence with _нет_, _не было_, _не будет_: _У меня нет машины. Вчера не было урока._
+- After numbers and quantity words: _два стола_, _пять столов_, _много времени_, _мало людей_, _сколько стоит?_ (see [numbers](#numbers)).
+- Dates: _первое мая_ (the first of May), _третьего марта_ (on the third of March).
+- After the prepositions _у, без, для, до, из, от, с_ (from, off), _после, около, кроме, вокруг, мимо, напротив, среди, вместо, против, вдоль_.
+- After comparatives, instead of _чем_: _Он старше меня_ (see [comparatives](#comparative)).
+- After verbs of fearing, avoiding, wanting abstract things (see [government](#gov-gen)): _бояться темноты_, _желать успеха_.
+- Partitive "some": _налить чаю / чая_, _купить хлеба_ (some bread).
+
+> У брата есть собака. — My brother has a dog.
+> Здесь нет метро. — There's no metro here.
+> Я из Германии. — I'm from Germany.
+
+### The genitive plural {#gen-pl}
+
+@for cases:plur
+
+| Nominative singular | Genitive plural | Examples |
+| hard consonant (m) | -ов | стол – столов, город – городов |
+| -ж, -ш, -щ, -ч (m) | -ей | врач – врачей, нож – ножей |
+| -й (m) | -ев | музей – музеев, трамвай – трамваев |
+| -ц (m), unstressed | -ев | месяц – месяцев (but отец – отцов) |
+| -ь (m and f) | -ей | словарь – словарей, площадь – площадей |
+| -а (f), -о (n) | zero ending | мама – мам, книга – книг, окно – окон |
+| -я (f) after a consonant | -ь | неделя – недель, кухня – кухонь |
+| -ия, -ие | -ий | история – историй, здание – зданий |
+| -я after a vowel | -й | статья – статей, семья – семей |
+| -е (n), most | -ей | море – морей, поле – полей |
+
+The zero ending often adds a fleeting vowel: _сестра – сестёр_, _девушка – девушек_, _окно – окон_, _письмо – писем_, _ложка – ложек_.
+
+Words to learn: _человек – людей_ (but _пять человек_), _раз – раз_ (_пять раз_), _солдат – солдат_, _глаз – глаз_, _сапог – сапог_, _грамм – граммов / грамм_, _носок – носков_, _чулок – чулок_, _год – лет_ (after numbers: _пять лет_), _деньги – денег_, _туфли – туфель_.
+
+## Dative {#dat}
+
+@for cases:dat
+
+The dative answers "to whom, for whom". It is the case of the person who receives something or experiences something.
+
+| Gender | Ending | Examples |
+| Masculine, neuter | -у / -ю | столу, музею, другу, окну, морю |
+| Feminine -а / -я | -е | маме, неделе (but -ии: России, Марии) |
+| Feminine -ь | -и | площади, матери |
+| Plural | -ам / -ям | друзьям, мамам, неделям |
+
+### Uses
+
+- Indirect object, after verbs of giving and telling: _дать, подарить, сказать, писать, звонить, показать, объяснить, помогать, советовать_: _Я подарил маме цветы. Позвони брату._
+- The person who feels or needs, in impersonal sentences: _Мне холодно. Ему скучно. Нам нужно идти. Тебе можно. Ей нельзя._
+- Age: _Мне двадцать лет. Сколько лет вашему сыну?_
+- Liking with _нравиться_: _Мне нравится этот город_ (see [нравиться](#nravitsya)).
+- _К_ (towards, to a person's place): _Я иду к врачу. Приходи ко мне._
+- _По_ (along, around, by means of, on the subject of): _гулять по городу_, _говорить по телефону_, _экзамен по истории_, _по субботам_ (on Saturdays).
+
+> Я иду к бабушке. — I'm going to grandma's.
+> Вам нужна помощь? — Do you need help?
+> Мы гуляли по парку. — We walked around the park.
+
+## Instrumental {#ins}
+
+@for cases:ins
+
+The instrumental answers "with what, by whom". It is the case of the tool, of company with _с_, and of roles and professions.
+
+| Gender | Ending | Examples |
+| Masculine, neuter | -ом / -ем (-ём) | столом, музеем, словарём, окном, морем |
+| Feminine -а / -я | -ой / -ей (-ёй) | мамой, неделей, землёй |
+| Feminine -ь | -ью | площадью, ночью, матерью |
+| Plural | -ами / -ями | друзьями, книгами (людьми, детьми) |
+
+Spelling rule: after _ж, ш, щ, ч, ц_ the ending is _-ем / -ей_ when unstressed: _с отцом_ (stressed), but _с месяцем_, _с Сашей_, _с улицей_.
+
+### Uses
+
+- Instrument: _писать ручкой_, _есть ложкой_, _ехать поездом_ (also _на поезде_).
+- Company with _с_: _кофе с молоком_, _Я говорил с другом_, _Мы с сестрой_ (my sister and I).
+- Role or profession after _быть_ (past, future, infinitive), _стать_, _работать_, _являться_, _считаться_, _казаться_, _оказаться_: _Он был студентом. Она хочет стать врачом. Я работаю учителем._
+- Interests: _заниматься спортом_, _интересоваться историей_, _увлекаться музыкой_ (see [verbs with the instrumental](#gov-ins)).
+- Position with _над, под, перед, за, между_: _над столом_, _под кроватью_, _перед домом_, _за домом_ (behind), _между нами_.
+- Times of day and seasons, without a preposition: _утром, днём, вечером, ночью, весной, летом, осенью, зимой_.
+- The agent in passive sentences: _Дом построен известным архитектором._
+
+> Мы с мамой ходили в кино. — Mum and I went to the cinema.
+> Он работает программистом. — He works as a programmer.
+
+## Prepositional {#prep-case}
+
+@for cases:place
+
+The prepositional (also called locative) is only used after a preposition: _в_ and _на_ for location (где?), _о_ for "about", and _при_ (in the presence of, attached to).
+
+| Gender | Ending | Examples |
+| Most nouns | -е | столе, музее, маме, неделе, окне, море |
+| Feminine -ь | -и | площади, тетради |
+| -ий, -ия, -ие | -ии | санатории, России, здании |
+| Plural | -ах / -ях | столах, музеях, площадях |
+
+### The locative -у́
+
+About 150 masculine nouns take a stressed _-у́_ / _-ю́_ after _в_ and _на_ when they mean a place: _в лесу́, в саду́, в шкафу́, в углу́, в аэропорту́, на мосту́, на полу́, на берегу́, в году́ (в этом году), в снегу́, в носу́, на носу́, в глазу́, во рту, в порту́, на льду́, в раю́, в бою́, в Крыму́, на Дону́_. After _о_ (about) they take the normal _-е_: _о лесе_, _об аэропорте_.
+
+### о, об, обо
+
+_О_ becomes _об_ before a vowel (_об Анне_, _об этом_) and _обо_ in _обо мне, обо всём, обо всех_.
+
+> Книга лежит на столе. — The book is on the table.
+> Мы говорили о погоде. — We talked about the weather.
+> Он живёт в Санкт-Петербурге. — He lives in Saint Petersburg.
+
+## Full declension tables {#noun-tables}
+
+@for tables:noun
+
+These tables cover the patterns behind almost every noun. The irregular ones are listed in the next table.
+
+| | брат (m animate) | словарь (m -ь) | санаторий (m -ий) | книга (f, k-stem) | история (f -ия) | дочь (f, irregular) | здание (n -ие) |
+| Nom | брат | словарь | санаторий | книга | история | дочь | здание |
+| Acc | брата | словарь | санаторий | книгу | историю | дочь | здание |
+| Gen | брата | словаря | санатория | книги | истории | дочери | здания |
+| Dat | брату | словарю | санаторию | книге | истории | дочери | зданию |
+| Ins | братом | словарём | санаторием | книгой | историей | дочерью | зданием |
+| Prep | брате | словаре | санатории | книге | истории | дочери | здании |
+
+| | время (n -мя) | мать | путь (m, mixed) | церковь | день | отец |
+| Nom | время | мать | путь | церковь | день | отец |
+| Acc | время | мать | путь | церковь | день | отца |
+| Gen | времени | матери | пути | церкви | дня | отца |
+| Dat | времени | матери | пути | церкви | дню | отцу |
+| Ins | временем | матерью | путём | церковью | днём | отцом |
+| Prep | времени | матери | пути | церкви | дне | отце |
+
+| Plural | люди | дети | братья | друзья | дочери | имена |
+| Nom | люди | дети | братья | друзья | дочери | имена |
+| Acc | людей | детей | братьев | друзей | дочерей | имена |
+| Gen | людей | детей | братьев | друзей | дочерей | имён |
+| Dat | людям | детям | братьям | друзьям | дочерям | именам |
+| Ins | людьми | детьми | братьями | друзьями | дочерьми | именами |
+| Prep | людях | детях | братьях | друзьях | дочерях | именах |

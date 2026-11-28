@@ -19,16 +19,17 @@
 <script src="../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/engine.css">
 <link rel="stylesheet" href="../shared/ui.css">
-<style>:root{--red:#5d7a00}.m{color:#5d7a00}</style>
+<style>:root{--red:#5d7a00}</style>
+<link rel="stylesheet" href="../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">10</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Таблицы</h1><p class="sub">Tables · conjugation and declension · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">10</a><div><p class="home"><a href="../">← All exercises</a> · <a href="../grammar/">Grammar guide</a></p><h1>Таблицы</h1><p class="sub">Tables<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -47,11 +48,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet</h2>
+    <details class="refbox"><summary>Quick reference <a href="../grammar/">Full grammar guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>Verb patterns to watch</h3><p>Consonant changes in the я-form only: видеть → вижу, сидеть → сижу, платить → плачу, готовить → готовлю, любить → люблю. In some verbs the change runs through every form: писать → пишу, пишешь; плакать → плачу, плачешь; искать → ищу, ищешь. Perfective verbs have no present: their person forms are the future.</p></div><div><h3>Noun patterns to watch</h3><p>Fleeting vowels: день → дня, ребёнок → ребёнка. Plurals with -ья: брат → братья, друг → друзья, стул → стулья. Different stems: человек → люди, ребёнок → дети, мать → матери, имя → имени. Animate plurals use the genitive in the accusative.</p></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../shared/levels.js"></script>
+<script src="../shared/guide-map.js"></script>
 <script src="data.js"></script>
 <script src="../shared/coach.js"></script>
 <script src="../shared/ui.js"></script>

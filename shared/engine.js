@@ -56,6 +56,7 @@ function poolFor(t, lv) {
   return Q.map((q, k) => k).filter(k => (lv === 'all' || Q[k].lv === lv) && (t === 'all' || t === 'smart' || (t === 'miss' ? miss.has(Q[k].ru) : Q[k].t === t)));
 }
 function enterQ() {
+  st.showEn = false;
   const q = cur(); if (!q) return;
   st.step = ONE() ? 2 : 1; st.p1 = null; st.pickF = null;
   const idx = q.o1.map((_, k) => k);
@@ -106,6 +107,7 @@ function renderControls() {
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === st.mode));
   const stp = $('steps');
   if (stp) { stp.closest('.grp').hidden = !!EX.twoStepOnly; stp.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === (st.steps === 'two' ? 'two' : 'one'))); }
+  document.querySelectorAll('#ens button').forEach(b => b.setAttribute('aria-pressed', b.dataset.e === st.en));
   $('sizes').innerHTML = SIZES.map(n => `<button id="n-${n || 'all'}" data-n="${n}" aria-pressed="${n === st.size}">${n || 'All'}</button>`).join('');
 }
 function render() {
@@ -138,6 +140,12 @@ function emptyHTML() {
   return `<p class="meta"><span>My mistakes</span></p><p class="ru" style="font-size:24px">Nothing to review yet.</p><p class="en">Every sentence you get wrong is saved here, and it leaves the list once you answer it fully right.</p><button class="btn go" data-act="topic" data-k="all">Practise all sentences</button>`;
 }
 
+function guideHref(q) {
+  const map = ((window.GUIDE_MAP || {})[LG.code]) || {}, id = q.ex || EX.id, t = q.ot || q.t;
+  const a = map[id + ':' + t] || map[id] || '';
+  return LG.root + (LG.code === 'ru' ? '' : LG.code + '/') + 'grammar/' + (a ? '#' + a : '');
+}
+const shortName = o => ((o.label && opt(o).name !== o.label) ? o.label : opt(o).name).split(' · ').pop();
 function qHTML() {
   const q = cur(), r = st.res[st.i] || {}, fx = st.fx;
   const mark = s => st.step === 3 && q.cue && s.includes(q.cue) ? s.replace(q.cue, `<mark>${q.cue}</mark>`) : s;
@@ -152,7 +160,7 @@ function qHTML() {
     if (fx === 'a' && k === st.p1) c += fxc(r.a);
     return `<button class="opt ${c}" data-act="a" data-k="${k}" ${st.step > 1 ? 'disabled' : ''}><kbd>${n + 1}</kbd>${optHTML(o)}</button>`;
   }).join('');
-  const quick = st.step > 1 ? `<p class="quick ${r.a ? 'ok' : 'bad'} ${fx === 'a' ? 'in' : ''}">${r.a ? 'Right: ' + optLabel(right1) + '.' : `Not quite: it’s ${optLabel(right1)}.`}${st.step === 2 ? ' <span>The full explanation comes after the form.</span>' : ''}</p>` : '';
+  const quick = st.step > 1 ? `<p class="quick ${r.a ? 'ok' : 'bad'} ${fx === 'a' ? 'in' : ''}">${r.a ? 'Right: ' + optLabel(right1) + '.' : `Not quite: it’s ${optLabel(right1)}.`}</p>` : '';
   let s2 = '', exp = '';
   if (st.step >= 2) {
     let body;
@@ -161,28 +169,33 @@ function qHTML() {
     } else if (st.step === 2) {
       body = `<form class="type" id="tf"><input id="ans" lang="${LG.code}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${LG.typeHint}" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">${LG.typeNote}</p>`;
     } else body = `<p class="quick ${r.f ? 'ok' : 'bad'}">${r.f ? 'Right: ' : `You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
-    s2 = one ? `<div class="step one" id="s2"><h2>Fill the gap${q.hint ? ` · <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>` : `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
+    s2 = one ? `<div class="step one" id="s2">${body}</div>` : `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
   }
   if (st.step === 3) {
     const R = EX.rules[q.rule], open = st.open;
     const nots = q.o1.map((o, k) => k === q.a1 ? '' : `<li><b>${optLabel(o)}</b>${o.label && opt(o).name !== o.label ? ` (${opt(o).name})` : ''}: ${opt(o).use}</li>`).join('');
     const table = q.labels ? `<table class="par casetbl" aria-label="All forms">${q.labels.map((l, k) => q.forms[k] === undefined ? '' : `<tr class="${k === q.a2 ? 'hit' : q.forms[k] === st.pickF && q.forms[k] !== ans ? 'miss' : ''}"><td>${l}</td><td>${q.forms[k]}</td></tr>`).join('')}</table>` : '';
-    exp = `<div class="sum ${fx === 'f' ? 'in' : ''}" id="exp">
-${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ Not quite:'} ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p><p class="idn">${q.s1s || EX.step1Short || 'Choice'}: ${optLabel(right1)}</p>` : `<p class="verdict ${r.a ? 'ok' : 'bad'}">${r.a ? '✓' : '✗'} ${q.s1s || EX.step1Short || 'Choice'}: ${optLabel(right1)}${r.a ? '' : ` <span>(you chose ${optLabel(q.o1[st.p1])})</span>`}</p>
-<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓' : '✗'} Form: ${ans}${r.f ? '' : ` <span>(you ${st.mode === 'type' ? 'wrote' : 'chose'} “${esc(st.pickF)}”)</span>`}</p>`}
-<p class="rt">${R[0]}</p>
-<button class="more" id="more" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open ? 'Hide the explanation' : 'Show the full explanation'}</span><i aria-hidden="true"></i></button></div>
+    const ok = one ? r.f : (r.a && r.f);
+    const shown = one || r.a ? ans : shortName(right1) + (r.f ? '' : ' · ' + ans);
+    // one short, specific reason: the signal word, then the item's own note or the first sentence of its form note
+    const first = t => (String(t || '').match(/^.*?[.!?](\s|$)/) || [String(t || '')])[0].trim();
+    const need = /^Needed/.test(q.fnote || '') ? first(q.fnote).replace(/\s*\([^)]*\)/g, '') : '';
+    const why = [q.cue ? `<mark>${q.cue}</mark> → ${shortName(right1)}.` : '', q.note ? first(q.note) : need || R[0] + '.'].filter(Boolean).join(' ');
+    exp = `<div class="fb ${fx === 'f' ? 'in' : ''}" id="exp">
+<p class="verdict ${ok ? 'ok' : 'bad'}">${ok ? '✓ Correct' : `✗ Answer: <b>${shown}</b>`}</p>${ok ? '' : `<p class="why">${why}</p>`}
+<p class="links"><a href="${guideHref(q)}" target="_blank" rel="noopener">Rule: ${R[0]}</a><button id="more" type="button" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open ? 'Hide details' : 'Details'}</span></button></p></div>
 <div class="panel ${open ? 'open' : ''}" id="panel" ${open ? '' : 'inert'}><div><div class="exp">
 <section><h3>The rule</h3><p class="rt">${R[0]}</p><p>${R[1]}</p><p class="idn">Example: ${R[2]}</p></section>
 <section><h3>In this sentence</h3><p>${q.cue ? `Signal: <mark>${q.cue}</mark>. ` : ''}${q.en}${q.note ? ` ${q.note}` : ''}</p></section>
 <section><h3>Why ${optLabel(right1)}</h3><p>${right1.label && opt(right1).name !== right1.label ? `${right1.label} is ${opt(right1).name.split(' · ').pop().toLowerCase()} (${opt(right1).name.split(' · ')[0].toLowerCase()})` : opt(right1).name}: ${opt(right1).use}</p><h3 style="margin-top:12px">Why not the others</h3><ul class="nots">${nots}</ul></section>
 <section class="formgrid"><div><h3>The form</h3><p>${q.fnote || ''}</p></div>${table}</section></div></div></div>
-<div class="dock"><span>${r.a && r.f ? (one ? 'Right ✓' : 'Both right ✓') : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next station →' : 'See results'}</button></div>`;
+<div class="dock"><span>${st.i + 1} / ${st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next' : 'See results'}</button></div>`;
   }
   const L = (window.CEFR || []).find(l => l.code === q.lv);
   const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
-  return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (EX.label ? EX.label(q) : (NAMES[q.t] || TOP[q.t])) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
-${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">${LG.listen}</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="${LG.code}">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
+  const enLine = st.step === 3 || st.en === 'always' || st.showEn ? `<p class="en">${q.en}</p>` : `<button class="entog" type="button" data-act="en">Show translation</button>`;
+  return `${up}<div class="meta"><span>${st.step === 3 ? (EX.label ? EX.label(q) : (NAMES[q.t] || TOP[q.t])) + ' · ' + q.lv : ''}</span><span>${st.i + 1} / ${st.round.length}</span></div>
+${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">${LG.listen}</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="${LG.code}">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p>${enLine}${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
 ${one ? '' : `<div class="step"><h2><b>1</b> ${q.s1 || EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
 }
 
@@ -253,10 +266,10 @@ function next() {
   if (RM.matches) go(); else { card.classList.remove('enter'); card.classList.add('leave'); setTimeout(go, 170); }
 }
 function toggleMore() {
-  st.open = !st.open; LS.set('gr-open', st.open);
+  st.open = !st.open; LS.set('gr-details', st.open);
   const p = $('panel'), b = $('more'); if (!p || !b) return;
   p.classList.toggle('open', st.open); p.toggleAttribute('inert', !st.open);
-  b.setAttribute('aria-expanded', st.open); b.querySelector('span').textContent = st.open ? 'Hide the explanation' : 'Show the full explanation';
+  b.setAttribute('aria-expanded', st.open); b.querySelector('span').textContent = st.open ? 'Hide details' : 'Details';
   if (st.open) setTimeout(() => reveal(p), RM.matches ? 0 : 120);
 }
 const savePrefs = () => LS.set(EX.id + '-prefs', { topic: st.topic, mode: st.mode });
@@ -272,6 +285,7 @@ $('card').addEventListener('click', e => {
   else if (a === 'new') newRound();
   else if (a === 'topic') setTopic(b.dataset.k);
   else if (a === 'more') toggleMore();
+  else if (a === 'en') { st.showEn = true; render(); }
   else if (a === 'say' || a === 'slow') { const q = cur(); if (q) say(spoken(q), a === 'slow'); }
   else if (a === 'level') setLevel(b.dataset.k);
   else if (a === 'up') { st.topic = 'smart'; savePrefs(); setLevel(b.dataset.k); }
@@ -289,13 +303,14 @@ $('topics').addEventListener('click', e => { const b = e.target.closest('button'
 $('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setLevel(b.dataset.l); });
 if ($('steps')) $('steps').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.steps = b.dataset.s; LS.set('gr-steps', st.steps); newRound(); });
 $('modes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.mode = b.dataset.m; savePrefs(); render(); });
+if ($('ens')) $('ens').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.en = b.dataset.e; LS.set('gr-en', st.en); render(); });
 $('sizes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.size = +b.dataset.n; LS.set('gr-size', st.size); newRound(); });
 
 const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
 const lvPref = LS.get(LG.levelKey, 'all');
 const hashT = decodeURIComponent((location.hash || '').slice(1));
-st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: EX.lockTopic ? 'smart' : TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
+st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: EX.lockTopic ? 'smart' : TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-details', false) === true, en: LS.get('gr-en', 'after') === 'always' ? 'always' : 'after', showEn: false, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
 newRound();
 try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register(LG.root + 'sw.js', { scope: LG.root }).catch(() => {})); } catch (e) {}
 window.__gr = { answer: () => full(cur()) };   // used by the automated tests

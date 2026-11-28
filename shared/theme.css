@@ -1,0 +1,194 @@
+/* Calm, professional theme. Loaded last on every page, so it overrides the older page styles.
+   One typeface (Inter), neutral surfaces, the line colour only as a small accent. */
+:root{
+  color-scheme:light dark;
+  --bg:light-dark(#f6f6f4,#111113);
+  --surface:light-dark(#ffffff,#1b1b1e);
+  --soft:light-dark(#ffffff,#1b1b1e);
+  --sunk:light-dark(#f1f1ee,#232327);
+  --ink:light-dark(#1b1b1f,#ededf0);
+  --mute:light-dark(#6c6c72,#9d9da5);
+  --line:light-dark(#e5e4df,#2e2e33);
+  --ok:light-dark(#18794e,#4cc38a);
+  --bad:light-dark(#c2362f,#f2726b);
+  --okbg:light-dark(#eef8f2,#12261c);
+  --badbg:light-dark(#fcf1f0,#2b1716);
+  --mark:light-dark(#fff1c2,#3d3315);
+  --blue:light-dark(#2f5fd0,#7ea4ff);
+  --good:light-dark(#c98a0b,#e3b341);
+  --weak:light-dark(#d2552b,#f08a5d);
+  --radius:14px;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 1px rgba(0,0,0,.03);
+}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.big{font-family:Inter,system-ui,sans-serif;letter-spacing:-.015em}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ---------- page header (exercise pages, flashcards, profile) ---------- */
+.top{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line);padding-top:max(16px,calc(env(safe-area-inset-top) + 8px));padding-bottom:14px}
+.top .wrap{max-width:1000px}
+.head{gap:10px 20px;align-items:center}
+.brand{gap:12px}
+.top .m,.brand .m{width:34px;height:34px;border-radius:10px;background:var(--red);color:#fff;font:600 15px/1 Inter,sans-serif;box-shadow:none}
+h1{font-size:clamp(20px,3.2vw,26px);font-weight:650;line-height:1.2}
+.sub{font-size:14px;color:var(--mute);opacity:1;margin-top:2px}
+.home{margin:0 0 2px;font-size:13px}
+.home a{color:var(--mute);text-decoration:none}
+.home a:hover{color:var(--ink)}
+.score{gap:18px}
+.score b{font:600 17px/1.2 Inter,sans-serif}
+.score span{font-size:12px;color:var(--mute);opacity:1;text-transform:uppercase;letter-spacing:.04em}
+.track{height:4px;margin-top:14px}
+.rail{left:0;right:0;top:0;height:4px;background:var(--line);border-radius:2px}
+.rail i{background:var(--red);border-radius:2px}
+.stops{display:none}
+
+/* ---------- task card ---------- */
+.band{padding-block:clamp(16px,3vw,32px)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,3.5vw,32px)}
+.meta{font-size:13px;color:var(--mute)}
+.ru{font-size:clamp(21px,3.4vw,28px);font-weight:600;line-height:1.35;margin:10px 0 4px;letter-spacing:-.01em}
+.gap{border-bottom:2px solid var(--ink);color:var(--mute);font-weight:500;min-width:3em}
+.gap .hint{font-size:.7em;font-style:normal;color:var(--mute)}
+.gap.ok{color:var(--ok);border-color:var(--ok)}
+.gap.bad{color:var(--bad);border-color:var(--bad)}
+.en{font-size:15px;color:var(--mute);margin:0 0 16px}
+.entog{font:inherit;font-size:13px;color:var(--mute);background:none;border:0;padding:4px 0;margin:0 0 14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.entog:hover{color:var(--ink)}
+.step{border-top:1px solid var(--line);padding-top:16px;margin-top:14px}
+.step.one{border-top:0;padding-top:4px;margin-top:6px}
+.step>h2{font:500 15px Inter,sans-serif;color:var(--mute);margin:0 0 12px}
+.step>h2 b{width:22px;height:22px;font-size:12px;background:var(--ink);color:var(--surface)}
+.step>h2 em{font:600 15px Inter,sans-serif;color:var(--ink)}
+.opts{gap:8px;grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}
+.seg button,.btn,.opt{font-family:Inter,sans-serif;border:1px solid var(--line);background:var(--surface);border-radius:10px;min-height:44px;transition:border-color .15s,background .15s}
+.opt{font-size:17px;font-weight:500;min-height:50px;border-radius:12px}
+@media(hover:hover){.opt:not(:disabled):hover,.seg button:hover,.btn:not(.go):hover{border-color:var(--ink)}}
+.opt kbd{font:500 11px Inter,sans-serif;color:var(--mute);opacity:.7;left:8px;top:5px}
+@media(hover:none){.opt kbd{display:none}}
+.opt:disabled{opacity:.45}
+.opt.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok);font-weight:600;opacity:1}
+.opt.bad{border-color:var(--bad);background:var(--badbg);color:var(--bad);opacity:1}
+.btn.go{background:var(--ink);border-color:var(--ink);color:var(--surface);font-weight:600;border-radius:10px}
+.btn.go:hover{opacity:.9}
+.seg button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+form.type input{font:18px Inter,sans-serif;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+form.type input:focus{border-color:var(--ink);outline:none}
+.note{font-size:13px}
+.keys{display:none}
+.quick{font-size:15px}
+
+/* feedback after answering */
+.fb{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.fb .verdict{font-size:16px;font-weight:600;margin:0}
+.fb .verdict b{font-weight:700}
+.fb .why{margin:6px 0 0;font-size:15px;color:var(--ink);line-height:1.5}
+.fb .why mark{background:var(--mark);border-radius:3px;padding:0 3px}
+.fb .links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:14px}
+.fb .links a,.fb .links button{color:var(--mute);background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.fb .links a:hover,.fb .links button:hover{color:var(--ink)}
+.ru mark{background:var(--mark)}
+.panel .exp{background:var(--sunk);border-radius:12px}
+.more{display:none}
+.dock{border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(8px)}
+.dock span{color:var(--mute);font-size:14px}
+.coachline{font-size:14px;color:var(--mute);background:var(--sunk);border-radius:10px;padding:10px 12px}
+.verdict.ok{color:var(--ok)}
+.verdict.bad{color:var(--bad)}
+
+/* quick reference below the card */
+.ref{background:transparent;padding-top:0}
+details.refbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 18px}
+details.refbox>summary{cursor:pointer;list-style:none;min-height:50px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+details.refbox>summary::-webkit-details-marker{display:none}
+details.refbox>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .2s}
+details.refbox[open]>summary::after{transform:rotate(-135deg)}
+details.refbox>summary a{font-weight:500;color:var(--mute);font-size:14px}
+details.refbox .refin{padding-bottom:18px}
+.ref h2{font-size:18px}
+.ref h3{font-size:15px}
+.ref table td,.ref table th{font-size:14px}
+
+/* settings sheet and summary chips */
+.ctrls .grp h3{font:600 12px Inter,sans-serif;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.chips .chip,.sumbar .chip{font-family:Inter,sans-serif}
+:is(.list,#topics) button{border-radius:10px}
+
+/* ---------- home page ---------- */
+.top.hub,body>header.top{padding-bottom:18px}
+.langs{background:var(--sunk);border:1px solid var(--line);padding:3px;gap:0}
+.langs a{color:var(--mute);font-weight:600;font-size:14px;padding:6px 12px}
+.langs a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.me{background:var(--sunk);color:var(--ink);border:1px solid var(--line);border-radius:12px;min-height:46px;padding:4px 12px 4px 4px}
+.me svg{width:36px;height:36px}
+.me circle:first-of-type{stroke:var(--line)}
+.me circle+circle{stroke:var(--ink)}
+.me text{fill:var(--ink)}
+.me span{opacity:1;color:var(--mute)}
+.me b{color:var(--ink)}
+.picker p{color:var(--mute);opacity:1;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.lvrow{background:var(--sunk);border:1px solid var(--line)}
+.lvrow button{color:var(--mute);font:600 14px Inter,sans-serif}
+.lvrow button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.m{background:var(--ink);color:var(--surface);border-radius:12px;font:700 20px/1 Inter,sans-serif;width:42px;height:42px}
+h2{font-weight:650}
+h2 small{font:400 14px Inter,sans-serif}
+.lvlcard,.next{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.lvlcard h3,.next h3,.group h3{font:600 12px Inter,sans-serif;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.lvlcard .big{font:650 clamp(36px,5vw,48px)/1 Inter,sans-serif;color:var(--ink);letter-spacing:-.03em}
+.lvlcard .big small{font:400 14px Inter,sans-serif}
+.ladder i,.ladder span.done::before{background:var(--ink);border-color:var(--ink)}
+.ladder span::before{width:16px;height:16px;border-width:3px}
+.ladder::before,.ladder i{top:6px;height:3px}
+.ladder span.now::before{border-color:var(--ink);box-shadow:none}
+.lvlcard p{font-size:14px;color:var(--mute)}
+.lvlcard p b{color:var(--ink)}
+.lvlcard .small a{color:var(--ink)}
+.sug{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+@media(hover:hover){.sug:hover{border-color:var(--ink)}}
+.sug .dot{width:30px;height:30px;border-radius:8px;font:600 13px Inter,sans-serif}
+.sug b{font-size:15px;font-weight:600}
+.sug span.why{font-size:13px}
+.sug .go{font:600 14px Inter,sans-serif;color:var(--mute)}
+.sug.primary{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.sug.primary .dot{background:var(--surface);color:var(--ink)}
+.sug.primary span.why,.sug.primary .go{color:var(--surface);opacity:.75}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;gap:8px}
+@media(hover:hover){.ex:hover{border-color:var(--ink)}}
+.num{width:28px;height:28px;border-radius:8px;font:600 13px Inter,sans-serif}
+.ex h4{font:600 16px/1.25 Inter,sans-serif}
+.ex h4 span{font-size:13px}
+.segs{height:4px;gap:2px}
+.segs i{border-radius:2px}
+.exf{font-size:12px}
+.lvs span{font-size:11px;border-width:1px;font-weight:600;padding:0 6px}
+.chip{background:var(--surface);border:1px solid var(--line);font-size:14px}
+details.fold,a.fold{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+details.fold summary,a.acctlink{font-weight:600;font-size:15px}
+.guidecard{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);margin-bottom:12px}
+.guidecard .gi{flex:none;width:28px;height:28px;border-radius:8px;background:var(--sunk);display:grid;place-items:center;font:600 14px Inter,sans-serif}
+.guidecard b{display:block;font-size:16px}
+.guidecard span.s{display:block;font-size:13px;color:var(--mute)}
+.guidecard .go{margin-left:auto;color:var(--mute);font-weight:600;font-size:14px}
+@media(hover:hover){.guidecard:hover{border-color:var(--ink)}}
+
+/* the skill map is folded on the home page */
+details.mapfold{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 18px}
+details.mapfold>summary{cursor:pointer;list-style:none;min-height:52px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+details.mapfold>summary::-webkit-details-marker{display:none}
+details.mapfold>summary small{font-weight:400;color:var(--mute)}
+details.mapfold>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .2s}
+details.mapfold[open]>summary::after{transform:rotate(-135deg)}
+details.mapfold .mapin{padding-bottom:18px}
+
+/* flashcards, profile and practice pages share the card look */
+.face,.box,.stat,.panelbox{border-radius:var(--radius)}
+.tile{border-width:1px;border-bottom-width:2px;border-radius:10px;font-family:Inter,sans-serif;font-size:17px}
+.wtok{font-family:Inter,sans-serif}
+table.fill input{border-width:1px;border-radius:8px;font-family:Inter,sans-serif}
+.hd .m{background:var(--ink);color:var(--surface)}
+.sum:empty{display:none}

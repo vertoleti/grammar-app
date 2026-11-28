@@ -1,0 +1,235 @@
+# Prepositions {#preps}
+
+## Overview {#preps-overview}
+
+@for de-prep
+
+| Case | Prepositions |
+| Akkusativ | durch, für, gegen, ohne, um, bis, entlang (after the noun) |
+| Dativ | aus, außer, bei, gegenüber, mit, nach, seit, von, zu, ab |
+| Akkusativ or Dativ | an, auf, hinter, in, neben, über, unter, vor, zwischen |
+| Genitiv | wegen, trotz, während, statt (anstatt), innerhalb, außerhalb, oberhalb, unterhalb, aufgrund, angesichts and many formal ones |
+
+## With the accusative {#prep-akk}
+
+@for de-prep:akkp
+
+| Preposition | Meaning | Example |
+| durch | through | Wir gehen durch den Park. |
+| für | for | Das Geschenk ist für meinen Vater. |
+| gegen | against; around (time) | Er ist gegen einen Baum gefahren. Ich komme gegen acht. |
+| ohne | without | Ich fahre ohne meinen Bruder. |
+| um | around; at (clock time) | Wir sitzen um den Tisch. Um acht Uhr. |
+| bis | until, as far as | bis Montag, bis Berlin (usually without article; with article: bis zum) |
+| entlang | along (after the noun) | Wir gehen die Straße entlang. |
+
+!! A memory aid for the five main ones: **DOGFU** — durch, ohne, gegen, für, um.
+
+## With the dative {#prep-dat}
+
+@for de-prep:datp
+
+| Preposition | Meaning | Example |
+| aus | out of, from (origin) | Er kommt aus dem Büro. Sie kommt aus Spanien. |
+| außer | except, apart from | Außer meiner Schwester waren alle da. |
+| bei | at someone's place, at a company, near, during | Ich wohne bei meinen Eltern. Sie arbeitet bei Siemens. Beim Essen spricht man nicht. |
+| gegenüber | opposite (often after a pronoun) | gegenüber dem Bahnhof, mir gegenüber |
+| mit | with, by (transport) | Ich fahre mit dem Bus. |
+| nach | after; to (cities, countries without article, home) | nach dem Essen, nach Berlin, nach Hause |
+| seit | since, for (still continuing) | Seit einem Jahr lerne ich Deutsch. |
+| von | from, of, by | ein Brief von unserem Sohn, von 9 bis 5 |
+| zu | to (people, places, events) | Ich gehe zum Arzt. Wir fahren zur Arbeit. Ich bleibe zu Hause. |
+| ab | from (time, place on) | ab Montag, ab dem 1. Mai |
+
+!! _Seit_ + present tense for something that started in the past and is still going on: _Ich wohne seit zwei Jahren hier_ (I have lived here for two years). Never use the Perfekt here.
+
+### Going somewhere: nach, zu, in
+
+| Destination | Preposition | Example |
+| cities, countries without article | nach | nach Wien, nach Italien |
+| home | nach Hause (to), zu Hause (at) | Ich gehe nach Hause. Ich bin zu Hause. |
+| people, shops named by person, events | zu | zu meiner Oma, zum Bäcker, zur Party |
+| buildings you go inside, countries with article | in + Akk | ins Kino, in die Schweiz, in die USA |
+| open places, events, water | an / auf + Akk | an den See, ans Meer, auf den Markt, auf eine Party |
+
+## Two-way prepositions {#wechsel}
+
+@for de-prep:wech
+
+_an, auf, hinter, in, neben, über, unter, vor, zwischen_ take the **accusative for movement to a new place** (wohin?) and the **dative for location** (wo?).
+
+| Wohin? + Akk (movement) | Wo? + Dat (location) |
+| Ich lege das Buch auf den Tisch. | Das Buch liegt auf dem Tisch. |
+| Ich stelle die Vase auf den Tisch. | Die Vase steht auf dem Tisch. |
+| Ich setze mich neben dich. | Ich sitze neben dir. |
+| Ich hänge das Bild an die Wand. | Das Bild hängt an der Wand. |
+| Wir gehen ins Kino. | Wir sind im Kino. |
+| Wir fahren ans Meer. | Wir sind am Meer. |
+
+### The position verbs {#position-verbs}
+
+These pairs are the key to two-way prepositions: the first verb of each pair is an action (with an object, Akk after the preposition), the second is a state (Dat).
+
+| Action (Akk) | State (Dat) | Meaning |
+| legen, legte, hat gelegt | liegen, lag, hat gelegen | lay / lie (flat) |
+| stellen, stellte, hat gestellt | stehen, stand, hat gestanden | put / stand (upright) |
+| setzen (sich), setzte, hat gesetzt | sitzen, saß, hat gesessen | sit down / be sitting |
+| hängen, hängte, hat gehängt | hängen, hing, hat gehangen | hang (something) / be hanging |
+| stecken | stecken | put into / be in |
+
+Meeting, living and working are locations: _Wir treffen uns vor dem Kino. Ich wohne in der Stadt._ Time expressions with these prepositions take the dative: _am Montag, im Mai, vor einer Woche, in zwei Tagen_.
+
+## With the genitive {#prep-gen}
+
+@for de-prep:genp
+
+| Preposition | Meaning | Example |
+| wegen | because of | Wegen des Sturms fällt das Spiel aus. |
+| trotz | despite | Trotz seines Schnupfens ist er gekommen. |
+| während | during | Während des Films hat er geschlafen. |
+| statt, anstatt | instead of | Statt eines Kaffees hat sie Tee getrunken. |
+| innerhalb, außerhalb | within, outside | innerhalb eines Monats, außerhalb des Zentrums |
+| aufgrund | due to | aufgrund der hohen Kosten |
+
+In everyday speech, _wegen_, _trotz_ and _während_ are often used with the dative (_wegen dem Wetter_). In writing and exams, use the genitive. When the genitive can't be seen (a plural noun without article), use the dative or _von_: _innerhalb von zehn Tagen_. More in [formal prepositions](#formal-gen).
+
+## Contractions {#contractions}
+
+| | Contraction | Example |
+| an + dem | am | am Montag, am Meer |
+| an + das | ans | ans Meer |
+| in + dem | im | im Kino, im Mai |
+| in + das | ins | ins Kino |
+| zu + dem | zum | zum Arzt |
+| zu + der | zur | zur Schule |
+| von + dem | vom | vom Bahnhof |
+| bei + dem | beim | beim Arzt |
+
+The contraction is normal and often required in set phrases (_im Sommer, zum Glück, am besten_). Use the full form to stress "the one, that one": _in dem Haus, in dem ich wohne_.
+
+## Prepositions of time {#time-preps}
+
+| What | Preposition | Example |
+| clock time | um | um acht Uhr |
+| days, dates, parts of the day | am | am Montag, am 3. Mai, am Abend (but in der Nacht) |
+| months, seasons, years with Jahr, weeks | im | im Mai, im Sommer, im Jahr 2026, in der Woche |
+| years alone | no preposition | 2026 (or im Jahr 2026) |
+| ago | vor + Dat | vor einer Woche |
+| in (from now) | in + Dat | in zwei Tagen |
+| for (still going on) | seit + Dat | seit einem Jahr |
+| for (completed duration) | Akk, or lang | Ich war drei Wochen dort. Drei Wochen lang … |
+| from … to | von … bis | von 9 bis 17 Uhr |
+| within | innerhalb + Gen / von + Dat | innerhalb einer Woche |
+| during | während + Gen | während des Urlaubs |
+| before, after | vor, nach + Dat | vor dem Essen, nach der Arbeit |
+
+## da- and wo- compounds {#da-wo}
+
+With verbs and adjectives that take a preposition (_warten auf, sich freuen über_), a **thing** is replaced by _da(r)- + preposition_, and asked about with _wo(r)- + preposition_. People keep the preposition and a pronoun.
+
+| | Things | People |
+| statement | Ich warte darauf. — I'm waiting for it. | Ich warte auf ihn. — I'm waiting for him. |
+| question | Worauf wartest du? — What are you waiting for? | Auf wen wartest du? — Who are you waiting for? |
+
+_-r-_ is added before a vowel: _darauf, daran, darüber, worum, worüber_. _Da-_ words also point ahead to a clause: _Ich freue mich darauf, dich zu sehen._
+
+# Adjectives {#adjectives}
+
+## When adjectives take endings {#adj-basics}
+
+An adjective after the verb (_sein, werden, bleiben_) has **no ending**: _Das Haus ist alt._ An adjective **before a noun** always has an ending: _das alte Haus, ein altes Haus, alte Häuser_.
+
+The ending depends on how much the word before it already shows. Think of it as a relay: case and gender must be shown once, either by the article or by the adjective.
+
+## After der, die, das (weak) {#weak}
+
+@for de-adj:weak
+
+After the definite article and der-words (_dieser, jeder, welcher, alle, beide_), the article shows everything, so the adjective takes only **-e** or **-en**.
+
+| | m | f | n | pl |
+| Nom | der alt**e** Mann | die alt**e** Frau | das alt**e** Haus | die alt**en** Leute |
+| Akk | den alt**en** Mann | die alt**e** Frau | das alt**e** Haus | die alt**en** Leute |
+| Dat | dem alt**en** Mann | der alt**en** Frau | dem alt**en** Haus | den alt**en** Leuten |
+| Gen | des alt**en** Mannes | der alt**en** Frau | des alt**en** Hauses | der alt**en** Leute |
+
+!! _-e_ appears only in the five "nominative-like" places: the three nominative singulars, and feminine and neuter accusative. Everything else is _-en_.
+
+## After ein, kein, mein (mixed) {#mixed}
+
+@for de-adj:mixed
+
+Ein-words have no ending in three places: masculine nominative (_ein_), neuter nominative and accusative (_ein_). There the adjective shows the gender with **-er** or **-es**. Everywhere else it's like the weak declension.
+
+| | m | f | n | pl (keine, meine) |
+| Nom | ein alt**er** Mann | eine alt**e** Frau | ein alt**es** Haus | keine alt**en** Leute |
+| Akk | einen alt**en** Mann | eine alt**e** Frau | ein alt**es** Haus | keine alt**en** Leute |
+| Dat | einem alt**en** Mann | einer alt**en** Frau | einem alt**en** Haus | keinen alt**en** Leuten |
+| Gen | eines alt**en** Mannes | einer alt**en** Frau | eines alt**en** Hauses | keiner alt**en** Leute |
+
+> Das ist ein netter Mann. — That's a nice man.
+> Sie hat ein schnelles Auto. — She has a fast car.
+> Ich suche einen guten Job. — I'm looking for a good job.
+
+## Without an article (strong) {#strong}
+
+@for de-adj:strong
+
+With no article, the adjective takes the endings the definite article would have had (_der → -er, den → -en, dem → -em, die → -e, das → -es_). The only exception is the masculine and neuter genitive: _-en_, because the noun already ends in _-s_.
+
+| | m | f | n | pl |
+| Nom | gut**er** Wein | gut**e** Milch | gut**es** Brot | gut**e** Freunde |
+| Akk | gut**en** Wein | gut**e** Milch | gut**es** Brot | gut**e** Freunde |
+| Dat | gut**em** Wein | gut**er** Milch | gut**em** Brot | gut**en** Freunden |
+| Gen | gut**en** Wein**es** | gut**er** Milch | gut**en** Brot**es** | gut**er** Freunde |
+
+> Ich trinke gern heißen Kaffee. — I like drinking hot coffee.
+> Bei schönem Wetter gehen wir spazieren. — In nice weather we go for a walk.
+> Mit freundlichen Grüßen — Kind regards
+> Wegen schlechten Wetters fiel das Konzert aus. — The concert was cancelled because of bad weather.
+
+## One table for all three {#adj-logic}
+
+| | m | f | n | pl |
+| Nom | der -e / ein -er / -er | die -e / eine -e / -e | das -e / ein -es / -es | die -en / keine -en / -e |
+| Akk | den -en / einen -en / -en | die -e / eine -e / -e | das -e / ein -es / -es | die -en / keine -en / -e |
+| Dat | -en / -en / -em | -en / -en / -er | -en / -en / -em | -en / -en / -en |
+| Gen | -en / -en / -en | -en / -en / -er | -en / -en / -en | -en / -en / -er |
+
+All adjectives in a row take the same ending: _ein schönes, großes, helles Zimmer_.
+
+## After quantifiers {#adj-quant}
+
+@for de-adj:quant
+
+| After | Declension | Example |
+| viele, einige, mehrere, wenige, ein paar, numbers | strong (no article) | viele gute Freunde, zwei kleine Kinder, mit einigen alten Kollegen |
+| alle, beide, sämtliche | weak (like die) | alle neuen Studenten, beide kleinen Kinder |
+| manche, solche | weak (usually) | manche jungen Leute |
+
+## Adjectives as nouns {#adj-nouns}
+
+Adjectives and participles can become nouns. They are capitalised but keep adjective endings: _der Deutsche, ein Deutscher, die Deutschen; der Bekannte, ein Bekannter; die Angestellte; das Neue_.
+
+After _etwas, nichts, viel, wenig_ the adjective is a neuter noun with the strong ending _-es_; after _alles_ it is weak _-e_.
+
+> Etwas Neues ist passiert. — Something new has happened.
+> Wir haben nichts Interessantes gefunden. — We found nothing interesting.
+> Alles Gute zum Geburtstag! — Happy birthday! (all the best)
+> Ich habe einen Bekannten getroffen. — I met an acquaintance.
+
+## Comparison {#comparison}
+
+| Form | Formation | Examples |
+| comparative | + -er (often umlaut in one-syllable words) | schnell – schneller, alt – älter, groß – größer, jung – jünger |
+| superlative (predicative) | am + -sten (-esten after s, ß, z, t, d) | am schnellsten, am ältesten, am kürzesten |
+| superlative (before a noun) | der / die / das + -ste + ending | der schnellste Zug, die älteste Stadt |
+
+Irregular: _gut – besser – am besten_, _viel – mehr – am meisten_, _gern – lieber – am liebsten_, _hoch – höher – am höchsten_ (_das hohe Haus_), _nah – näher – am nächsten_, _groß – größer – am größten_.
+
+> Mein Bruder ist größer als ich. — My brother is taller than me.
+> Sie ist so alt wie ich. — She's as old as me.
+> Das ist die schönste Stadt Deutschlands. — That's the most beautiful city in Germany.
+> Je mehr man liest, desto besser schreibt man. — The more you read, the better you write.
+
+_Als_ after a comparative ("than"), _wie_ after _so … wie_ ("as … as"). Comparatives and superlatives before a noun take normal adjective endings: _ein schnelleres Auto, mit dem besten Freund_.

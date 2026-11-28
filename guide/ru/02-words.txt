@@ -1,0 +1,330 @@
+# Prepositions {#preps}
+
+## Prepositions by case {#preps-table}
+
+@for prep:other
+
+Every preposition takes a fixed case, and a few take two cases with different meanings.
+
+| Case | Prepositions |
+| Accusative | в, на (direction); за (for; behind, direction); под (under, direction); через (across; in); про (about); сквозь (through); по (up to, each, in counting: по пять) |
+| Genitive | без, для, до, из, из-за, из-под, от, у, с (from, off), после, около, кроме, вокруг, мимо, напротив, среди, вместо, против, вдоль, внутри, возле, позади, ради, насчёт |
+| Dative | к (ко), по, благодаря, согласно, вопреки, навстречу |
+| Instrumental | с (со) (with), над, под (location), перед, за (behind, location; to fetch), между |
+| Prepositional | в, на (location), о (об, обо), при |
+
+### Prepositions with two or three cases
+
+| Preposition | Case | Meaning | Example |
+| в | Acc | into (куда?) | Я иду в театр. |
+| в | Prep | in (где?) | Я в театре. |
+| на | Acc | onto, to (куда?) | Положи книгу на стол. |
+| на | Prep | on, at (где?) | Книга на столе. |
+| за | Acc | behind (movement); for | Он сел за стол. Спасибо за подарок. |
+| за | Ins | behind (location); to fetch | Он сидит за столом. Я иду за хлебом. |
+| под | Acc | under (movement) | Кошка залезла под диван. |
+| под | Ins | under (location) | Кошка под диваном. |
+| с | Gen | from, off | Я с работы. Возьми книгу со стола. |
+| с | Ins | with | Я с другом. |
+| по | Dat | along, around, by, on | по улице, по телефону, по субботам |
+
+## в or на {#v-na}
+
+@for prep:where
+
+_В_ means "in, inside" and _на_ means "on, at". With places the choice is often fixed and has to be learned.
+
+| в + Prep (in) | на + Prep (on, at) |
+| countries, cities, buildings: в России, в Москве, в школе, в магазине | open spaces: на улице, на площади, на стадионе, на рынке |
+| в университете, в институте, в классе, в офисе | на работе, на заводе, на факультете, на уроке, на лекции, на занятии |
+| в театре, в кино, в музее, в ресторане | на концерте, на выставке, на балете, на опере, на дискотеке |
+| в парке, в саду, в лесу | на море, на озере, на реке, на пляже, на даче |
+| в горах | на Кавказе, на Урале, на острове, на Кубе, на Аляске |
+| в квартире, в комнате, в доме | на кухне, на этаже, на балконе |
+| в поезде (inside) | на поезде (by train), на вокзале, на станции, на почте |
+
+!! Events take _на_: _на концерте, на уроке, на собрании, на свадьбе_. Enclosed spaces take _в_. If you're unsure, ask whether you could be "inside" it.
+
+## Direction: куда? {#direction}
+
+@for prep:whereto
+
+Where something goes uses the same preposition as where it is, but with the accusative. People take _к_ + dative.
+
+| Where? (где?) | Where to? (куда?) | Where from? (откуда?) |
+| в школе (Prep) | в школу (Acc) | из школы (Gen) |
+| на работе (Prep) | на работу (Acc) | с работы (Gen) |
+| у врача (Gen) | к врачу (Dat) | от врача (Gen) |
+| дома | домой | из дома |
+| здесь, тут | сюда | отсюда |
+| там | туда | оттуда |
+
+> Он был в Москве. Он едет в Москву. Он приехал из Москвы. — He was in Moscow. He's going to Moscow. He came from Moscow.
+> Я была у бабушки. Я иду к бабушке. Я иду от бабушки. — I was at grandma's. I'm going to grandma's. I'm coming from grandma's.
+
+## из, с, от: from {#from}
+
+@for prep:from
+
+The "from" preposition mirrors the "to" preposition: _в → из_, _на → с_, _к → от_.
+
+- _из_ + Gen: out of a place that takes _в_: _из России, из магазина, из кино_.
+- _с_ + Gen: from a place that takes _на_: _с работы, с концерта, с улицы, с Кавказа_; and "off a surface": _со стола_.
+- _от_ + Gen: from a person: _письмо от мамы_, _Я иду от врача_; and distance: _далеко от центра_.
+
+## у, к, от: people {#people-preps}
+
+@for prep:person
+
+With people, "at, to, from" are _у_ + Gen, _к_ + Dat, _от_ + Gen.
+
+> Вчера я был у друга. — Yesterday I was at my friend's.
+> Завтра я пойду к другу. — Tomorrow I'll go to my friend's.
+> Я получил письмо от друга. — I got a letter from my friend.
+
+_У_ + Gen also expresses possession: _У меня есть брат. У неё нет времени._
+
+# Pronouns {#pronouns}
+
+## Personal pronouns {#personal}
+
+@for cases:pron, tables:pron
+
+| | я | ты | он / оно | она | мы | вы | они |
+| Nom | я | ты | он, оно | она | мы | вы | они |
+| Acc | меня | тебя | его | её | нас | вас | их |
+| Gen | меня | тебя | его | её | нас | вас | их |
+| Dat | мне | тебе | ему | ей | нам | вам | им |
+| Ins | мной | тобой | им | ей (ею) | нами | вами | ими |
+| Prep | (обо) мне | (о) тебе | (о) нём | (о) ней | (о) нас | (о) вас | (о) них |
+
+### н- after prepositions
+
+After a preposition, the third-person pronouns add _н-_: _у него, к нему, с ним, о нём, для неё, к ней, с ней, без них, к ним, с ними_. This does not happen with the possessives _его, её, их_ (his, her, their): _у его брата_ (at his brother's).
+
+> Я дал ему книгу. — I gave him the book.
+> Я пошёл к нему. — I went to his place.
+> Это для неё. — This is for her.
+
+_Вы_ is both plural "you" and the polite singular "you". In writing to one person it is often capitalised: _Вы_, _Вас_.
+
+## Possessives and свой {#possessive}
+
+| | m | f | n | pl |
+| my | мой | моя | моё | мои |
+| your (ты) | твой | твоя | твоё | твои |
+| our | наш | наша | наше | наши |
+| your (вы) | ваш | ваша | ваше | ваши |
+| his, its | его | его | его | его |
+| her | её | её | её | её |
+| their | их | их | их | их |
+
+_Мой, твой, наш, ваш_ decline like adjectives and agree with the noun: _у моей сестры, с нашим другом_. _Его, её, их_ never change: _с его сестрой, в их доме_.
+
+### свой {#svoy}
+
+_Свой_ means "one's own" and refers back to the subject of the same clause. It declines like _мой_. With _он, она, они_ it is required when the owner is the subject, because _его_ would mean someone else's.
+
+> Он любит свою жену. — He loves his (own) wife.
+> Он любит его жену. — He loves his (another man's) wife.
+> Я взял свою сумку. — I took my bag. (_мою_ is also correct with я, ты, мы, вы)
+
+_Свой_ is not used in the subject itself: _Его жена работает_, never _Своя жена_.
+
+## Demonstratives and весь {#demonstratives}
+
+| | этот (this) | тот (that) | весь (all) |
+| Nom | этот, эта, это, эти | тот, та, то, те | весь, вся, всё, все |
+| Acc | этот / этого, эту, это, эти / этих | тот / того, ту, то, те / тех | весь / всего, всю, всё, все / всех |
+| Gen | этого, этой, этого, этих | того, той, того, тех | всего, всей, всего, всех |
+| Dat | этому, этой, этому, этим | тому, той, тому, тем | всему, всей, всему, всем |
+| Ins | этим, этой, этим, этими | тем, той, тем, теми | всем, всей, всем, всеми |
+| Prep | этом, этой, этом, этих | том, той, том, тех | всём, всей, всём, всех |
+
+_Это_ alone (not agreeing) means "this is, these are": _Это мои книги._
+
+## кто, что and question words {#kto-chto}
+
+| Nom | кто | что |
+| Acc | кого | что |
+| Gen | кого | чего |
+| Dat | кому | чему |
+| Ins | кем | чем |
+| Prep | (о) ком | (о) чём |
+
+_Чей_ (whose) agrees like an adjective: _чей, чья, чьё, чьи_. _Какой_ (which, what kind) and _который_ (which, in order) are adjectives too.
+
+## который: relative clauses {#kotory}
+
+_Который_ joins a clause that describes a noun. It takes the **gender and number of the noun** it refers to and the **case of its role inside its own clause**. A comma always comes before it.
+
+> Это книга, которая мне нравится. — This is the book that I like. (subject → Nom)
+> Это книга, которую я читаю. — This is the book I'm reading. (object → Acc)
+> Это друг, с которым я работаю. — This is the friend I work with. (с + Ins)
+> Это дом, в котором я живу. — This is the house I live in. (в + Prep)
+> Это люди, которым я помогаю. — These are the people I help. (помогать + Dat)
+
+It declines like an adjective: _который, которого, которому, которым, котором_ (m); _которая, которой, которую_ (f); _которые, которых, которым, которыми_ (pl).
+
+In "whose" clauses, _которого / которой / которых_ follows the noun: _писатель, книги которого я читал_ (the writer whose books I read).
+
+## Negative pronouns: никто, ничего {#negative-pronouns}
+
+Russian uses a double negative: _ни-_ words always come with _не_.
+
+| Positive | Negative | Example |
+| кто | никто | Никто не знает. — Nobody knows. |
+| что | ничто, ничего | Я ничего не вижу. — I see nothing. |
+| где | нигде | Его нигде нет. — He's nowhere. |
+| куда | никуда | Я никуда не иду. — I'm not going anywhere. |
+| когда | никогда | Я никогда не был в Китае. — I've never been to China. |
+| как | никак | Никак не могу понять. — I just can't understand. |
+| какой | никакой | Нет никаких проблем. — There are no problems at all. |
+
+With a preposition, it goes between _ни_ and the pronoun: _ни о чём, ни с кем, ни у кого_. _Я ни с кем не говорил._
+
+## некого, нечего: "there is no one to" {#nekogo}
+
+_Не́кого, не́чего, не́где, не́куда, не́когда_ (stressed _не-_) mean "there is no one / nothing / nowhere / no time to …". They go with an infinitive and the person in the dative, and there is no _не_ before the verb.
+
+> Мне некого спросить. — There's no one I can ask.
+> Нам нечего делать. — We have nothing to do.
+> Ему негде жить. — He has nowhere to live.
+> Мне некогда. — I have no time.
+
+Compare: _Я никого не спросил_ (I didn't ask anyone) with _Мне некого спросить_ (there's no one to ask).
+
+## Indefinite pronouns: -то, -нибудь, кое- {#indefinite}
+
+| Suffix | Meaning | Example |
+| -то | a specific thing, but unknown or unnamed | Кто-то звонил. — Somebody called. |
+| -нибудь | any one, it doesn't matter which; questions, requests, future | Купи что-нибудь. — Buy something (anything). Ты был когда-нибудь в Риме? — Have you ever been to Rome? |
+| кое- | something I know but don't say | Я кое-что тебе привёз. — I've brought you something. |
+
+!! Rule of thumb: if it already happened, use _-то_; if it's a question, a request or the future, use _-нибудь_.
+
+## The reflexive pronoun себя {#sebya}
+
+_Себя_ (oneself) has no nominative: _себя, себе, собой, о себе_. It refers to the subject: _Он думает только о себе. Возьми зонт с собой. Как вы себя чувствуете?_
+
+# Adjectives and adverbs {#adjectives}
+
+## Adjective endings {#adj-endings}
+
+@for cases:adj
+
+Adjectives agree with their noun in gender, number and case. There are three spelling types: hard (_новый_), soft (_синий_), and stems in _г, к, х, ж, ш, щ, ч_ that follow the [spelling rules](#spelling-rules) (_русский, хороший, большой_). Stressed endings in _-ой_ follow the hard type.
+
+| Case | m | n | f | pl |
+| Nom | новый, синий, большой | новое, синее, большое | новая, синяя, большая | новые, синие, большие |
+| Acc | = Nom or Gen (animate) | новое | новую, синюю | = Nom or Gen (animate) |
+| Gen | нового, синего | нового, синего | новой, синей | новых, синих |
+| Dat | новому, синему | новому, синему | новой, синей | новым, синим |
+| Ins | новым, синим | новым, синим | новой, синей | новыми, синими |
+| Prep | новом, синем | новом, синем | новой, синей | новых, синих |
+
+- The _-ого / -его_ ending is pronounced _-ово / -ево_.
+- Feminine genitive, dative, instrumental and prepositional are all the same: _новой_.
+- After _ж, ш, щ, ч_: _хороший, хорошего, хорошему, хорошим, хорошем_; _хорошая, хорошую, хорошей_; _хорошие, хороших_.
+- After _г, к, х_: _русский, русского, русским_; _русские, русских_ (never _-ы_).
+
+> Я живу в новом доме. — I live in a new house.
+> Мы говорили с русской студенткой. — We talked to a Russian student.
+> У меня нет хороших друзей. — I have no good friends.
+
+### Possessive adjectives and ordinals
+
+Ordinal numbers decline like adjectives: _первый, второй, третий_ (_третий_ is soft with _ь_: _третьего, третьей, третьи_). Possessive adjectives like _мамин_ (mum's) and _папин_ have short endings in Nom and Acc: _мамин телефон, мамина сумка_.
+
+## Short adjectives {#short-adj}
+
+@for compare:short
+
+Many quality adjectives have a short form used only as the predicate (after "is"). It agrees in gender and number.
+
+| Long | m | f | n | pl |
+| новый | нов | нова | ново | новы |
+| интересный | интересен | интересна | интересно | интересны |
+| свободный | свободен | свободна | свободно | свободны |
+| готовый | готов | готова | готово | готовы |
+| хороший | хорош | хороша | хорошо | хороши |
+| большой | велик | велика | велико | велики |
+| маленький | мал | мала | мало | малы |
+
+The masculine often inserts _е_ or _о_: _интересен, свободен, болен, умён, силён, короток, лёгок_.
+
+### When to use the short form
+
+- Some adjectives are used almost only in the short form as predicates: _рад_ (glad), _должен_ (must), _готов_ (ready), _согласен_ (agree), _занят_ (busy), _прав_ (right), _болен_ (ill), _нужен_ (needed), _уверен_ (sure), _похож_ (similar).
+- Short forms describe a temporary state or a quality in relation to something: _Он болен_ (he's ill now) vs _больной человек_ (a sick person); _Эти туфли мне малы_ (too small for me).
+- _Большой_ and _маленький_ use _велик_ and _мал_ for "too big, too small": _Куртка мне велика._
+- The neuter short form is also the adverb: _хорошо, интересно, быстро_.
+
+> Я рад вас видеть. — I'm glad to see you.
+> Ты готова? — Are you ready? (to a woman)
+> Он должен работать. — He must work.
+> Вы правы. — You're right.
+
+## Comparatives {#comparative}
+
+@for compare:comp
+
+### The short comparative
+
+Most adjectives add _-ее_ (colloquially _-ей_) to the stem: _новый – новее, интересный – интереснее, быстрый – быстрее, тёплый – теплее_. It does not change for gender or case and is used after the verb, or with _чем_ / the genitive.
+
+Many common adjectives have an irregular comparative ending in _-е_ with a consonant change:
+
+| Adjective | Comparative | Adjective | Comparative |
+| хороший | лучше | плохой | хуже |
+| большой | больше | маленький | меньше |
+| высокий | выше | низкий | ниже |
+| дорогой | дороже | дешёвый | дешевле |
+| молодой | моложе / младше | старый | старше (people), старее (things) |
+| лёгкий | легче | простой | проще |
+| громкий | громче | тихий | тише |
+| жаркий | жарче | короткий | короче |
+| далёкий | дальше | близкий | ближе |
+| частый | чаще | редкий | реже |
+| богатый | богаче | широкий | шире |
+| глубокий | глубже | поздний | позже / позднее |
+| ранний | раньше | долгий | дольше |
+| сладкий | слаще | строгий | строже |
+
+### чем or the genitive
+
+After a comparative, "than" is _чем_ + Nom (with a comma) or simply the genitive with no comma. The genitive is only possible when the thing compared is a noun or pronoun in the nominative.
+
+> Мой брат выше меня. / Мой брат выше, чем я. — My brother is taller than me.
+> В Москве холоднее, чем в Париже. — It's colder in Moscow than in Paris. (only чем)
+
+### The long comparative
+
+To make a comparative that declines, use _более_ + long adjective: _более интересная книга_, _в более дорогом ресторане_. A few adjectives have their own long comparative: _лучший, худший, больший, меньший, старший, младший_ (_мой старший брат_).
+
+Useful words: _гораздо, намного_ (much: _гораздо лучше_), _ещё_ (even: _ещё холоднее_), _чуть, немного_ (a bit: _немного дешевле_), _как можно_ (as … as possible: _как можно быстрее_), _чем …, тем …_ (the more …, the more: _Чем больше, тем лучше_).
+
+## Superlatives {#superlative}
+
+@for compare:sup
+
+| Way | Form | Example |
+| самый + adjective | самый, самая, самое, самые (declines) | самый интересный фильм, в самом большом городе |
+| comparative + всех / всего | after the verb | Он бегает быстрее всех. — He runs fastest of all. Это важнее всего. — This matters most. |
+| -ейший / -айший | bookish, often "very" | интереснейшая книга (a most interesting book), величайший, ближайший (nearest) |
+| наи- + comparative | formal | наилучший, наибольший |
+
+_Лучший_ and _худший_ are also superlatives: _лучший друг_ (best friend), _в худшем случае_ (at worst).
+
+## Adjectives and adverbs {#adverbs}
+
+@for compare:adv
+
+An adjective describes a noun; an adverb describes a verb or a whole situation. Most adverbs are the neuter short form: _хороший → хорошо_, _быстрый → быстро_, _интересный → интересно_. Adjectives in _-ский_ form adverbs in _по-…-ски_: _по-русски, по-английски, по-дружески_.
+
+> Он хороший водитель. — He's a good driver. (adjective)
+> Он хорошо водит. — He drives well. (adverb)
+> Здесь холодно. — It's cold here. (adverb in an impersonal sentence)
+> Говорите по-русски? — Do you speak Russian?
+
+The adverb form is also the word for impersonal states: _Мне скучно. Здесь тихо. Было весело._

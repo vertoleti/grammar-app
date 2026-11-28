@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* VOICE everyday study tool: calm, clear, a little bit of Moscow
    IDEA a metro line: each question is a station, the round is a ride
@@ -163,6 +163,7 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
 @media(max-width:600px){.top{padding-bottom:20px}.score{gap:16px}.score b{font-size:21px}.m{width:46px;height:46px;font-size:24px}.st{width:18px;height:18px;border-width:3px;margin-top:8px}.opt{font-size:18px}.opt kbd{display:none}.exp{padding-inline:14px}.formgrid{grid-template-columns:minmax(0,1fr)}#topics{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1*max(5vw,16px));padding:0 max(5vw,16px) 2px;scrollbar-width:none}#topics::-webkit-scrollbar{display:none}#topics button{flex:none;scroll-snap-align:start}.dock{padding-left:16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel,.more i{transition:none}.rail i,.st{transition:none}.in,.card.enter,.card.leave,.pop,.shake,.bump{animation:none}}
 </style>
+<link rel="stylesheet" href="../shared/theme.css">
 </head>
 <body>
 <header class="top band">
@@ -193,7 +194,7 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet</h2>
+    <details class="refbox"><summary>Quick reference <a href="../grammar/#motion">Full grammar guide →</a></summary><div class="refin">
     <div class="cols">
       <div>
         <h3>When to use which</h3>
@@ -218,6 +219,7 @@ button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
         </table>
       </div>
     </div>
+    </div></details>
   </div>
 </section>
 
@@ -640,7 +642,7 @@ function qHTML(){
   if(st.step===3){gap=ans;gc=(r.f?'ok':'bad')+(fx==='f'?' pop':'')}
   const fxc=(picked,ok)=>picked?(ok?' pop':' shake'):'';
   const vBtns=st.vo.map((v,k)=>{let c='';if(st.step>1){if(v===q.v)c='ok';else if(v===st.pickV)c='bad'}c+=fx==='v'&&v===st.pickV?fxc(1,r.v):'';return`<button class="opt ${c}" data-act="v" data-k="${v}" ${st.step>1?'disabled':''}><kbd>${k+1}</kbd>${v}</button>`}).join('');
-  const quick=st.step>1?`<p class="quick ${r.v?'ok':'bad'} ${fx==='v'?'in':''}">${r.v?'Right: '+q.v+'.':`Not quite: it’s ${q.v}.`}${st.step===2?' <span>The full explanation comes after the form.</span>':''}</p>`:'';
+  const quick=st.step>1?`<p class="quick ${r.v?'ok':'bad'} ${fx==='v'?'in':''}">${r.v?'Right: '+q.v+'.':`Not quite: it’s ${q.v}.`}</p>`:'';
   const tense=q.tn==='p'?'past tense':vb.k==='p'?'future (perfective)':'present';
   let s2='',exp='';
   if(st.step>=2){
@@ -650,18 +652,20 @@ function qHTML(){
     }else if(st.step===2){
       body=`<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
     }else body=`<p class="quick ${r.f?'ok':'bad'}">${r.f?'Right: ':`You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
-    s2=ONE()?`<div class="step one" id="s2"><h2>Fill the gap${st.step===3?`<span class="tag">${q.v}, ${tense}</span>`:''}</h2>${body}</div>`:`<div class="step ${fx==='v'?'in':''}" id="s2"><h2><b>2</b> Conjugate <em>${q.v}</em>${st.step===3?`<span class="tag">${tense}</span>`:''}</h2>${body}</div>`;
+    s2=ONE()?`<div class="step one" id="s2">${body}</div>`:`<div class="step ${fx==='v'?'in':''}" id="s2"><h2><b>2</b> Conjugate <em>${q.v}</em>${st.step===3?`<span class="tag">${tense}</span>`:''}</h2>${body}</div>`;
   }
   if(st.step===3){
     const R=RULES[q.rule],forms=vb[q.tn],pr=PRON[q.tn];
     const aspectNote=vb.k==='p'&&q.tn==='n'?'<p>A perfective verb has no present tense: the forms that look like present are the future (пойду = I will go).</p>':q.tn==='p'?'<p>In the past tense Russian verbs agree in gender and number, not person: он ходил, она ходила, оно ходило, они ходили. я, ты and вы take the gender or number of the real person.</p>':'';
     const vy=vb.pre==='вы'&&vb.k==='p'?'<p>Perfective вы- carries the stress, so ё in the stem becomes е.</p>':'';
     const open=st.open;
-    exp=`<div class="sum ${fx==='f'?'in':''}" id="exp">
-${ONE()?`<p class="verdict ${r.f?'ok':'bad'}">${r.f?'✓ Right:':'✗ Not quite:'} ${ans}${r.f?'':` <span>(you ${st.mode==='type'?'wrote':'chose'} “${esc(st.pickF)}”)</span>`}</p><p class="idn">Verb: ${q.v} · ${tense}</p>`:`<p class="verdict ${r.v?'ok':'bad'}">${r.v?'✓':'✗'} Verb: ${q.v}${r.v?'':` <span>(you chose ${st.pickV})</span>`}</p>
-<p class="verdict ${r.f?'ok':'bad'}">${r.f?'✓':'✗'} Form: ${ans}${r.f?'':` <span>(you ${st.mode==='type'?'wrote':'chose'} “${esc(st.pickF)}”)</span>`}</p>`}
-<p class="rt">${R[0]}</p>
-<button class="more" id="more" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open?'Hide the explanation':'Show the full explanation'}</span><i aria-hidden="true"></i></button></div>
+    const ok=ONE()?r.f:(r.v&&r.f);
+    const first=t=>(String(t||'').match(/^.*?[.!?](\s|$)/)||[String(t||'')])[0].trim();
+    const why=[q.cue?`<mark>${q.cue}</mark> → ${q.v}.`:'',q.note?first(q.note):R[0]+'.'].filter(Boolean).join(' ');
+    const gm=((window.GUIDE_MAP||{}).ru)||{},ga=gm['vom:'+q.t]||gm.vom||'motion';
+    exp=`<div class="fb ${fx==='f'?'in':''}" id="exp">
+<p class="verdict ${ok?'ok':'bad'}">${ok?'✓ Correct':`✗ Answer: <b>${ans}</b>`}</p>${ok?'':`<p class="why">${why}</p>`}
+<p class="links"><a href="../grammar/#${ga}" target="_blank" rel="noopener">Rule: ${R[0]}</a><button id="more" type="button" data-act="more" aria-expanded="${open}" aria-controls="panel"><span>${open?'Hide details':'Details'}</span></button></p></div>
 <div class="panel ${open?'open':''}" id="panel" ${open?'':'inert'}><div><div class="exp">
 <section><h3>The verb</h3><p>${q.v}: ${ident(q.v)}</p></section>
 <section><h3>The rule</h3><p class="rt">${R[0]}</p><p>${R[1]}</p><p class="idn">Example: ${R[2]}</p></section>
@@ -669,11 +673,12 @@ ${ONE()?`<p class="verdict ${r.f?'ok':'bad'}">${r.f?'✓ Right:':'✗ Not quite:
 <section><h3>Why not the others</h3><ul class="nots">${q.d.map(d=>whyNot(q.v,d)).join('')}</ul></section>
 <section class="formgrid"><div><h3>Which form and why</h3><p>Needed: the ${PERS[q.tn][q.i]} of the ${tense}.</p>${aspectNote}<h3 style="margin-top:12px">How ${q.v} conjugates</h3><p>${FAM[vb.root]}</p>${vy}</div>
 <table class="par" aria-label="Full conjugation">${forms.map((f,k)=>`<tr class="${k===q.i?'hit':f===st.pickF?'miss':''}"><td>${pr[k]}</td><td>${f}</td></tr>`).join('')}</table></section></div></div></div>
-<div class="dock"><span>${r.v&&r.f?(ONE()?'Right ✓':'Both right ✓'):(st.i+1)+' / '+st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next station →':'See results'}</button></div>`;
+<div class="dock"><span>${st.i+1} / ${st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i+1<st.round.length?'Next':'See results'}</button></div>`;
   }
   const up=st.topic==='smart'&&st.frontier&&st.frontier.up&&st.i===0&&st.step===(ONE()?2:1)?`<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>`:'';
-  return`${up}<div class="meta"><span>${q.lv}${st.step===3?' · '+TOP[q.t]:''}</span><span>Station ${st.i+1} of ${st.round.length}</span></div>
-<p class="ru" lang="ru">${markCue(a)}<span class="gap ${gc}">${gap}</span>${markCue(b)}</p><p class="en">${q.en}</p>
+  const enLine=st.step===3||LS.get('gr-en','after')==='always'||st.enFor===st.i?`<p class="en">${q.en}</p>`:`<button class="entog" type="button" data-act="en">Show translation</button>`;
+  return`${up}<div class="meta"><span>${st.step===3?TOP[q.t]+' · '+q.lv:''}</span><span>${st.i+1} / ${st.round.length}</span></div>
+<p class="ru" lang="ru">${markCue(a)}<span class="gap ${gc}">${gap}</span>${markCue(b)}</p>${enLine}
 ${ONE()?'':`<div class="step"><h2><b>1</b> Pick the verb</h2><div class="opts">${vBtns}</div>${quick}</div>`}${s2}${exp}`;
 }
 
@@ -735,9 +740,9 @@ function next(){
   if(RM.matches)go();else{card.classList.remove('enter');card.classList.add('leave');setTimeout(go,170)}
 }
 function toggleMore(){
-  st.open=!st.open;LS.set('vom-open',st.open);
+  st.open=!st.open;LS.set('gr-details',st.open);
   const p=$('panel'),b=$('more');if(!p||!b)return;
-  p.classList.toggle('open',st.open);p.toggleAttribute('inert',!st.open);b.setAttribute('aria-expanded',st.open);b.querySelector('span').textContent=st.open?'Hide the explanation':'Show the full explanation';
+  p.classList.toggle('open',st.open);p.toggleAttribute('inert',!st.open);b.setAttribute('aria-expanded',st.open);b.querySelector('span').textContent=st.open?'Hide details':'Details';
   if(st.open)setTimeout(()=>reveal(p),RM.matches?0:120);
 }
 function setTopic(t){st.topic=t;LS.set('vom-prefs',{topic:st.topic,mode:st.mode});newRound();const b=$('t-'+t);if(b)b.scrollIntoView({block:'nearest',inline:'nearest'})}
@@ -753,6 +758,7 @@ $('card').addEventListener('click',e=>{
   else if(a==='level'){st.level=b.dataset.k;LS.set('gr-level',st.level);newRound()}
   else if(a==='up'){st.topic='smart';st.level=b.dataset.k;LS.set('gr-level',st.level);LS.set('vom-prefs',{topic:st.topic,mode:st.mode});newRound()}
   else if(a==='more')toggleMore();
+  else if(a==='en'){st.enFor=st.i;render()}
 });
 $('card').addEventListener('submit',e=>{e.preventDefault();const v=$('ans').value;if(!v.trim())return;pickF(v)});
 document.addEventListener('keydown',e=>{
@@ -773,7 +779,7 @@ function start(data){
   const prefs=LS.get('vom-prefs',{});
   if(data&&Array.isArray(data.round)&&data.round.length&&data.round.every(k=>Q[k])){st=data;if(st.size===undefined)st.size=10;if(!st.steps)st.steps='one';if(!st.level)st.level='all';render();return}
   const lvP=LS.get('gr-level','all');
-  st={level:lvP==='all'||LVS.some(l=>l.code===lvP)?lvP:'all',topic:TOP[decodeURIComponent(location.hash.slice(1))]?decodeURIComponent(location.hash.slice(1)):TOP[prefs.topic]?prefs.topic:'smart',mode:prefs.mode==='type'?'type':'pick',round:[],i:0,res:[],step:1,vo:[],fo:[],pickV:null,pickF:null,open:LS.get('vom-open',false)===true,steps:LS.get('gr-steps','one')==='two'?'two':'one',size:[5,10,20,30,0].includes(LS.get('gr-size',10))?LS.get('gr-size',10):10};
+  st={level:lvP==='all'||LVS.some(l=>l.code===lvP)?lvP:'all',topic:TOP[decodeURIComponent(location.hash.slice(1))]?decodeURIComponent(location.hash.slice(1)):TOP[prefs.topic]?prefs.topic:'smart',mode:prefs.mode==='type'?'type':'pick',round:[],i:0,res:[],step:1,vo:[],fo:[],pickV:null,pickF:null,open:LS.get('gr-details',false)===true,steps:LS.get('gr-steps','one')==='two'?'two':'one',size:[5,10,20,30,0].includes(LS.get('gr-size',10))?LS.get('gr-size',10):10};
   newRound();
 }
 window.claude?.hot?.snapshot?.(()=>st);

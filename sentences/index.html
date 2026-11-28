@@ -19,16 +19,17 @@
 <script src="../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/engine.css">
 <link rel="stylesheet" href="../shared/ui.css">
-<style>:root{--red:#3949ab}.m{color:#3949ab}</style>
+<style>:root{--red:#3949ab}</style>
+<link rel="stylesheet" href="../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">9</a><div><p class="home"><a href="../">← All exercises</a></p><h1>Предложения</h1><p class="sub">Sentences · translate, order, dictation, mistakes · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">9</a><div><p class="home"><a href="../">← All exercises</a> · <a href="../grammar/">Grammar guide</a></p><h1>Предложения</h1><p class="sub">Sentences<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -47,11 +48,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet</h2>
+    <details class="refbox"><summary>Quick reference <a href="../grammar/">Full grammar guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>How answers are checked</h3><p>Translations are checked word by word. Russian word order is flexible, so the same words in another order count as right. A one-letter slip in a long word counts as right and is shown. If your translation is right but different from ours, tap <b>My answer was right too</b>.</p></div><div><h3>Finding mistakes</h3><p>Every sentence has exactly one wrong word: usually an ending (case, agreement, person), sometimes aspect or a missing не. Check what the verb or preposition needs, then whether the endings agree.</p></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../shared/levels.js"></script>
+<script src="../shared/guide-map.js"></script>
 <script src="data.js"></script>
 <script src="../shared/coach.js"></script>
 <script src="../shared/ui.js"></script>

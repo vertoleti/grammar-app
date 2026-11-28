@@ -20,16 +20,17 @@
 <script src="../../shared/account.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/engine.css">
 <link rel="stylesheet" href="../../shared/ui.css">
-<style>:root{--red:#9a7b00}.m{color:#9a7b00}</style>
+<style>:root{--red:#9a7b00}</style>
+<link rel="stylesheet" href="../../shared/theme.css">
 </head>
 <body>
 <header class="top band">
   <div class="wrap">
     <div class="head">
-      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">7</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Fortgeschritten</h1><p class="sub">Advanced grammar · B2 to C2 · <span id="count"></span> sentences</p></div></div>
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">7</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p><h1>Fortgeschritten</h1><p class="sub">Advanced grammar<span id="count" hidden></span></p></div></div>
       <div class="score" id="score"></div>
     </div>
     <div class="track" id="track" aria-hidden="true"></div>
@@ -46,6 +47,7 @@
       <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
       <section class="grp" data-all="All topics"><h3>Topic · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
       <section class="grp" data-fmt="{v} the form"><h3>Answer by · Antworten</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
+      <section class="grp" data-fmt="Translation {v}"><h3>Translation · Übersetzung</h3><div class="seg segctl" id="ens" role="group" aria-label="Translation"><button id="e-after" data-e="after">after answering</button><button id="e-always" data-e="always">always</button></div></section>
       <section class="grp" data-fmt="{v}"><h3>Steps · Schritte</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
       <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Fragen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
       <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
@@ -55,11 +57,13 @@
 
 <section class="band ref">
   <div class="wrap">
-    <h2>Cheat sheet · Spickzettel</h2>
+    <details class="refbox"><summary>Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a></summary><div class="refin">
 <div class="cols"><div><h3>Verbs with prepositions</h3><div class="tbl"><table><thead><tr><th>Accusative</th><th>Dative</th></tr></thead><tbody><tr><td>warten auf, denken an</td><td>teilnehmen an, abhängen von</td></tr><tr><td>sich freuen auf / über</td><td>Angst haben vor, träumen von</td></tr><tr><td>sich interessieren für</td><td>bestehen aus</td></tr><tr><td>sich gewöhnen an, sprechen über</td><td>zweifeln an</td></tr></tbody></table></div><h3>Konjunktiv I</h3><div class="tbl"><table><thead><tr><th></th><th>sein</th><th>haben</th><th>werden</th></tr></thead><tbody><tr><td>er/sie</td><td>sei</td><td>habe</td><td>werde</td></tr><tr><td>sie (pl)</td><td>seien</td><td>hätten*</td><td>würden*</td></tr></tbody></table></div><p class="note">* where Konjunktiv I looks like the indicative, Konjunktiv II replaces it.</p></div><div><h3>n-declension</h3><p>Masculine nouns for people and animals in -e (Kollege, Junge, Kunde), in -ent, -ant, -ist, -at (Student, Polizist), and Herr, Mensch, Nachbar: -(e)n everywhere except the nominative singular.</p><h3>Participles before a noun</h3><div class="tbl"><table><thead><tr><th>Form</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>Partizip I</td><td>active, ongoing</td><td>die steigenden Preise</td></tr><tr><td>Partizip II</td><td>done, passive</td><td>das reparierte Auto</td></tr><tr><td>zu + Partizip I</td><td>must or can be done</td><td>die zu lösende Aufgabe</td></tr></tbody></table></div></div></div>
+    </div></details>
   </div>
 </section>
 <script src="../../shared/levels.js"></script>
+<script src="../../shared/guide-map.js"></script>
 <script src="../../shared/lines.js"></script>
 <script src="data.js"></script>
 <script src="../../shared/coach.js"></script>

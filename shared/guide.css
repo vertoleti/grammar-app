@@ -1,0 +1,48 @@
+/* Grammar guide pages */
+.guide{background:var(--bg)}
+.gwrap{max-width:1120px;margin:0 auto;padding-inline:max(5vw,16px)}
+.gtop{background:var(--surface);border-bottom:1px solid var(--line);padding:max(18px,calc(env(safe-area-inset-top) + 10px)) 0 16px}
+.gback{font-size:13px;color:var(--mute);text-decoration:none}
+.gback:hover{color:var(--ink)}
+.gtop h1{font-size:clamp(22px,3.4vw,30px);font-weight:650;margin:4px 0 2px;letter-spacing:-.02em}
+.gsub{margin:0 0 12px;color:var(--mute);font-size:14px}
+#q{width:100%;max-width:520px;font:16px Inter,sans-serif;min-height:42px;padding:6px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+#q:focus{outline:none;border-color:var(--ink)}
+.glayout{display:grid;grid-template-columns:1fr;gap:24px;padding-top:20px;padding-bottom:80px}
+@media(min-width:1000px){.glayout{grid-template-columns:260px minmax(0,1fr)}.gtoc{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;align-self:start}}
+.gtoc details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 14px}
+.gtoc summary{cursor:pointer;min-height:46px;display:flex;align-items:center;font-weight:600;font-size:14px;list-style:none}
+.gtoc summary::-webkit-details-marker{display:none}
+.gtoc ol{list-style:none;margin:0;padding:0 0 12px;font-size:14px}
+.gtoc ol ol{padding:2px 0 6px 12px;border-left:1px solid var(--line);margin-left:2px}
+.gtoc li{margin:0}
+.gtoc a{display:block;padding:4px 0;color:var(--mute);text-decoration:none;line-height:1.35}
+.gtoc>details>ol>li>a{color:var(--ink);font-weight:600;padding-top:8px}
+.gtoc a:hover{color:var(--ink)}
+#guide{min-width:0;max-width:760px}
+#guide section.ch{margin-bottom:36px;scroll-margin-top:16px}
+#guide h2{font-size:clamp(22px,3vw,28px);font-weight:650;letter-spacing:-.02em;margin:8px 0 14px;padding-top:10px;border-top:1px solid var(--line)}
+#guide section.sec{scroll-margin-top:16px;margin-bottom:22px}
+#guide h3{font-size:19px;font-weight:650;margin:22px 0 8px;letter-spacing:-.01em}
+#guide h4{font-size:15px;font-weight:650;margin:18px 0 6px;color:var(--ink)}
+#guide p,#guide li{font-size:16px;line-height:1.65}
+#guide p{margin:0 0 12px}
+#guide ul{padding-left:20px;margin:0 0 14px}
+#guide i{font-style:normal;font-weight:600}
+#guide a{color:var(--blue);text-decoration:none}
+#guide a:hover{text-decoration:underline}
+#guide :target>h3,#guide :target>h2{animation:hl 1.8s ease;border-radius:6px}
+@keyframes hl{0%{background:var(--mark)}100%{background:transparent}}
+.tw{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.tw table{border-collapse:collapse;width:100%;font-size:14px}
+.tw th,.tw td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+.tw th{background:var(--sunk);font-weight:600;font-size:13px;color:var(--mute);white-space:nowrap}
+.tw tr:last-child td{border-bottom:0}
+.tw td:first-child{font-weight:500}
+.tw b{color:var(--blue);font-weight:700}
+#guide ul.ex{list-style:none;padding:0;margin:0 0 16px;border-left:3px solid var(--line)}
+#guide ul.ex li{padding:6px 0 6px 14px;display:flex;flex-direction:column}
+#guide ul.ex li>span:first-child{font-weight:500}
+#guide ul.ex li>span+span{color:var(--mute);font-size:14px}
+#guide p.tip{background:var(--sunk);border-radius:10px;padding:12px 14px;font-size:15px}
+.none{color:var(--mute)}

@@ -69,6 +69,16 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.
 
+## Grammar guides
+
+`grammar/` (Russian) and `de/grammar/` (German) are full reference guides: about 11,600 and 9,400 words, 14 chapters each, with endings tables, examples and a search box. They are written as plain-text chapters in `guide/ru/*.txt` and `guide/de/*.txt` and built by `python3 tools/build_guide.py`, which also writes `shared/guide-map.js`. Each section can claim exercise topics with a line like `@for cases:gen`; after a wrong answer, **Rule** opens that section.
+
+## Look and task screens
+
+`shared/theme.css` (loaded last on every page) gives the app its calm style: one typeface (Inter), white cards, the line colour only as a small accent, a thin progress bar. Task screens show only the sentence and the choices; the translation appears after answering (or on tap, or always: Settings → Translation). A wrong answer shows the right answer and one specific reason, with links to the guide section and to the full details.
+
+Build everything: `python3 tools/build_guide.py && python3 tools/build_pages.py && python3 tools/build_vom.py && python3 tools/build_de.py && node tools/build_catalog.js`.
+
 ## Deutsch · German
 
 `de/` is a second, complete language side with the same system: CEFR levels, the coach, Daily mix, placement test, sentences, tables and flashcards. The home page has a Русский / Deutsch switch; the app remembers the choice and opens on that side.

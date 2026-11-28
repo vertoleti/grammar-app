@@ -1,0 +1,413 @@
+# Numbers {#numbers}
+
+## Cardinal numbers {#cardinals}
+
+| | | | | | |
+| 1 один, одна, одно | 11 одиннадцать | 21 двадцать один | 100 сто | 600 шестьсот | 1 000 тысяча |
+| 2 два, две | 12 двенадцать | 30 тридцать | 200 двести | 700 семьсот | 2 000 две тысячи |
+| 3 три | 13 тринадцать | 40 сорок | 300 триста | 800 восемьсот | 5 000 пять тысяч |
+| 4 четыре | 14 четырнадцать | 50 пятьдесят | 400 четыреста | 900 девятьсот | 1 000 000 миллион |
+| 5 пять | 15 пятнадцать | 60 шестьдесят | 500 пятьсот | | 1 000 000 000 миллиард |
+| 6 шесть | 16 шестнадцать | 70 семьдесят | | | |
+| 7 семь | 17 семнадцать | 80 восемьдесят | | | |
+| 8 восемь | 18 восемнадцать | 90 девяносто | | | |
+| 9 девять | 19 девятнадцать | | | | |
+| 10 десять | 20 двадцать | | | | |
+
+_Один_ agrees like an adjective (_один дом, одна книга, одно окно, одни часы_). _Два_ has a feminine form _две_ (_две книги_). _Тысяча_ is a feminine noun (_две тысячи, пять тысяч_); _миллион_ is a masculine noun (_два миллиона, пять миллионов_).
+
+## Numbers with nouns {#num-nouns}
+
+@for numbers:count, numbers:money
+
+In the nominative and inanimate accusative, the number decides the case of the noun. Only the **last word** of a compound number counts: _двадцать один_ behaves like _один_.
+
+| Number | Noun | Examples |
+| 1, 21, 31 … (not 11) | Nom singular | один рубль, двадцать одна неделя, сто один день |
+| 2, 3, 4, 22, 33, 104 … (not 12–14) | Gen singular | два рубля, три недели, двадцать четыре часа |
+| 5–20, 25–30 …, 100, 1000, 11–14 | Gen plural | пять рублей, одиннадцать недель, сто дней |
+| много, мало, несколько, сколько, столько | Gen plural (countable), Gen singular (mass) | много людей, мало времени, несколько книг |
+
+> У меня двадцать один рубль. — I have 21 roubles.
+> Это стоит тридцать два рубля. — It costs 32 roubles.
+> В группе двенадцать студентов. — There are 12 students in the group.
+
+### Adjectives with 2, 3, 4
+
+After _два, три, четыре_ the noun is genitive singular, but an adjective between them is **genitive plural** for masculine and neuter, and usually **nominative plural** for feminine: _два новых стола_, _три больших окна_, _две новые книги_ (also _новых_).
+
+### Money and prices {#money}
+
+_Рубль – рубля – рублей_, _копейка – копейки – копеек_, _евро_ and _доллар – доллара – долларов_. _Сколько стоит?_ (singular thing) / _Сколько стоят?_ (plural). _Это стоит сто рублей._
+
+### Numbers in other cases
+
+In the genitive, dative, instrumental and prepositional, the number and the noun both take that case, and the noun is plural (after 2 and above):
+
+| | два | пять | сорок, сто |
+| Nom | два стола, две книги | пять столов | сорок, сто столов |
+| Gen | двух столов | пяти столов | сорока, ста столов |
+| Dat | двум столам | пяти столам | сорока, ста столам |
+| Ins | двумя столами | пятью столами | сорока, ста столами |
+| Prep | (о) двух столах | (о) пяти столах | (о) сорока, ста столах |
+
+_Три_ and _четыре_ go like _два_: _трёх, трём, тремя_; _четырёх, четырём, четырьмя_. Numbers 5–20 and 30 decline like _площадь_: _пяти, пятью_. _Восемь_ → _восьми, восемью_.
+
+> Я живу с двумя друзьями. — I live with two friends.
+> Мы говорили о трёх проблемах. — We talked about three problems.
+
+## Age {#age}
+
+@for numbers:age
+
+Age uses the dative for the person and _год / года / лет_ for years, following the [number rule](#num-nouns): 1 _год_, 2–4 _года_, 5–20 _лет_.
+
+> Мне двадцать один год. — I'm 21.
+> Сестре двадцать три года. — My sister is 23.
+> Сколько лет твоему отцу? — How old is your father?
+> Ему было пять лет. — He was five. (past: _было_)
+> Ей будет тридцать. — She'll be thirty.
+
+## Telling the time {#clock}
+
+@for numbers:time
+
+| Question | Answer |
+| Который час? / Сколько времени? (What time is it?) | Сейчас три часа. — It's three o'clock. |
+| Во сколько? / В котором часу? (At what time?) | В семь часов. — At seven. |
+
+- _Час_ follows the number rule: _час_ (one o'clock, no _один_), _два часа_, _пять часов_.
+- Minutes: _три часа десять минут_ (3:10); _в пять тридцать_ (at 5:30).
+- Parts of the day: _в семь утра_ (7 a.m.), _в три часа дня_ (3 p.m.), _в девять вечера_, _в два часа ночи_.
+- Half and quarter (traditional): _половина третьего_ (2:30, "half of the third hour"), _без четверти пять_ (4:45), _четверть шестого_ (5:15).
+
+## Quantity words {#quantity}
+
+@for numbers:qty
+
+_Много, мало, немного, несколько, сколько, столько, большинство_ take the genitive: plural for things you can count, singular for things you can't.
+
+> много друзей, много работы — many friends, a lot of work
+> несколько дней — a few days
+> Сколько у вас детей? — How many children do you have?
+
+With quantity words the verb is usually neuter singular in the past: _Пришло много людей_.
+
+Weights and containers: _килограмм яблок, литр молока, бутылка воды, пачка чая, кусок хлеба_.
+
+## Ordinal numbers and dates {#ordinals}
+
+Ordinals are adjectives: _первый, второй, третий, четвёртый, пятый, шестой, седьмой, восьмой, девятый, десятый, двадцатый, сотый, тысячный_. In compounds only the last word is ordinal: _двадцать первый век_.
+
+| What | Form | Example |
+| Today's date | neuter Nom + month in Gen | Сегодня первое мая. — Today is the 1st of May. |
+| On a date | neuter Gen | Я родился третьего марта. — I was born on the 3rd of March. |
+| Year | в + Prep, ordinal | в тысяча девятьсот девяносто пятом году — in 1995; в две тысячи двадцать шестом году — in 2026 |
+| Month | в + Prep | в мае, в январе |
+| Century | в + Prep | в двадцать первом веке |
+
+## Collective numerals {#collective}
+
+_Двое, трое, четверо, пятеро, шестеро, семеро_ count people (especially men and mixed groups), children, and plural-only nouns: _двое детей, трое друзей, двое суток, трое часов_ (three watches). With _нас, вас, их_: _Нас было трое_ (there were three of us). _Оба / обе_ means "both" and takes the genitive singular: _оба брата, обе сестры_.
+
+# Verbs: conjugation {#verbs}
+
+## Present tense: two conjugations {#conj}
+
+@for tables:pres
+
+Russian verbs have two sets of present-tense endings. The infinitive does not always tell you which one a verb uses; the _ты_- or _они_-form in the dictionary does.
+
+| | 1st conjugation: читать | 1st, stem in consonant: жить | 2nd conjugation: говорить |
+| я | читаю | живу | говорю |
+| ты | читаешь | живёшь | говоришь |
+| он, она | читает | живёт | говорит |
+| мы | читаем | живём | говорим |
+| вы | читаете | живёте | говорите |
+| они | читают | живут | говорят |
+
+- **1st conjugation**: _-ешь / -ёшь_, _-ут / -ют_. Most verbs in _-ать, -ять, -еть_ (_делать, гулять, уметь_), and all monosyllabic stems like _жить, пить, мыть_.
+- **2nd conjugation**: _-ишь_, _-ат / -ят_. Most verbs in _-ить_ (_говорить, любить, учить_) and about a dozen exceptions in _-еть_ and _-ать_: _видеть, смотреть, сидеть, висеть, терпеть, вертеть, зависеть, обидеть, ненавидеть; слышать, держать, дышать, гнать_.
+- Exceptions in _-ить_ that are 1st conjugation: _брить_ (бреет), _стелить_ (стелет), and monosyllabic _жить, пить, бить, лить, шить, вить_.
+
+!! Spelling rules apply: after _ж, ш, щ, ч_ write _-у, -ат_ instead of _-ю, -ят_: _учу, учат; лежу, лежат; слышу, слышат_.
+
+## Consonant changes {#alternations}
+
+In 2nd-conjugation verbs the last stem consonant changes **in the я-form only**. In some 1st-conjugation verbs it changes **in every form**.
+
+| Change | 2nd conj. (я only) | 1st conj. (all forms) |
+| с → ш | просить: прошу, просишь | писать: пишу, пишешь |
+| з → ж | возить: вожу, возишь | сказать: скажу, скажешь |
+| т → ч | платить: плачу, платишь | – |
+| т → щ | посетить: посещу, посетишь; защитить: защищу | – |
+| д → ж | видеть: вижу, видишь; водить: вожу | – |
+| ст → щ | чистить: чищу, чистишь | свистеть: свищу |
+| к → ч, г → ж | – | плакать: плачу, плачешь; лгать: лгу, лжёшь |
+| ск → щ | – | искать: ищу, ищешь |
+| б → бл, п → пл, в → вл, м → мл, ф → фл | любить: люблю, любишь; купить: куплю; готовить: готовлю; кормить: кормлю | – |
+
+> Я хожу, ты ходишь. Я сижу, ты сидишь. Я плачу, ты платишь. — I walk, you walk. I sit, you sit. I pay, you pay.
+> Я пишу, ты пишешь. Я ищу, ты ищешь. — I write, you write. I look for, you look for.
+
+## Verb classes worth knowing {#verb-classes}
+
+| Infinitive | Pattern | Example |
+| -овать / -евать | -ую, -уешь | рисовать: рисую, рисуешь; танцевать: танцую |
+| -авать (давать, вставать, узнавать, продавать) | -аю, -аёшь | давать: даю, даёшь; вставать: встаю, встаёшь |
+| -нуть | -ну, -нешь | отдохнуть: отдохну, отдохнёшь |
+| -ереть | -ру, -рёшь | умереть: умру, умрёшь |
+| -чь | г/к in я and они | мочь: могу, можешь, могут; печь: пеку, печёшь, пекут |
+| -сти / -зти | д, т, с, з stem | вести: веду; нести: несу; везти: везу; цвести: цвету |
+
+## Irregular verbs {#irregular}
+
+@for aspect:irr
+
+| | хотеть | есть (eat) | дать (pf) | бежать | мочь | быть (future) |
+| я | хочу | ем | дам | бегу | могу | буду |
+| ты | хочешь | ешь | дашь | бежишь | можешь | будешь |
+| он | хочет | ест | даст | бежит | может | будет |
+| мы | хотим | едим | дадим | бежим | можем | будем |
+| вы | хотите | едите | дадите | бежите | можете | будете |
+| они | хотят | едят | дадут | бегут | могут | будут |
+| past | хотел | ел, ела | дал, дала | бежал | мог, могла | был, была |
+
+Also learn: _идти_ (иду, идёшь; past шёл, шла), _ехать_ (еду, едешь), _жить_ (живу, живёшь), _брать_ (беру, берёшь), _звать_ (зову, зовёшь), _ждать_ (жду, ждёшь), _петь_ (пою, поёшь), _пить_ (пью, пьёшь), _мыть_ (мою, моешь), _спать_ (сплю, спишь), _встать_ (встану, встанешь), _сесть_ (сяду, сядешь), _лечь_ (лягу, ляжешь, лягут; past лёг, легла), _взять_ (возьму, возьмёшь), _понять_ (пойму, поймёшь), _начать_ (начну, начнёшь), _открыть_ (открою, откроешь).
+
+## Past tense {#past}
+
+The past tense agrees with the subject in gender and number, not in person. Take the infinitive stem and add _-л, -ла, -ло, -ли_.
+
+| | читать | идти | мочь | нести | умереть |
+| он | читал | шёл | мог | нёс | умер |
+| она | читала | шла | могла | несла | умерла |
+| оно | читало | шло | могло | несло | умерло |
+| они | читали | шли | могли | несли | умерли |
+
+With _я_ and _ты_ the gender is the speaker's: _Я читал_ (a man), _Я читала_ (a woman). With _вы_ the past is always plural, even for one person: _Вы были правы_.
+
+Verbs whose stem ends in a consonant drop the _-л_ in the masculine: _мочь – мог, нести – нёс, везти – вёз, лечь – лёг, умереть – умер, расти – рос, привыкнуть – привык_.
+
+## Future tense {#future}
+
+| Aspect | How | Example |
+| Imperfective | буду, будешь … + infinitive | Я буду читать. — I'll be reading / I'll read (process, regularly). |
+| Perfective | conjugate like the present | Я прочитаю. — I'll read it (to the end). |
+
+Perfective verbs have no present tense: their "present" forms mean the future. _Я напишу письмо_ = I'll write the letter. See [aspect in the future](#aspect-future).
+
+## The imperative {#imperative}
+
+Take the _они_-form, remove the ending, and add:
+
+| Stem ends in | Add | Examples |
+| a vowel | -й (-йте) | читают → читай(те); рисуют → рисуй(те) |
+| a consonant, stress on the ending | -и (-ите) | говорят → говори(те); пишут → пиши(те); идут → иди(те) |
+| a consonant, stress on the stem | -ь (-ьте) | встанут → встань(те); забудут → забудь(те) |
+
+Irregular: _дать – дай, есть – ешь, пить – пей, лечь – ляг, ехать – поезжай, вставать – вставай, давать – давай, быть – будь_. _Давай(те)_ + infinitive or perfective _мы_-form means "let's": _Давайте поговорим._ _Пусть_ + verb means "let him / let them": _Пусть он позвонит._ See [aspect in the imperative](#aspect-imperative).
+
+## Reflexive verbs in -ся {#reflexive}
+
+@for advanced:sya
+
+_-ся_ (after a consonant) and _-сь_ (after a vowel) are added after all the other endings: _учиться: учусь, учишься, учится, учимся, учитесь, учатся; учился, училась_.
+
+| Meaning | Examples |
+| reflexive (oneself) | мыться (to wash oneself), одеваться (to get dressed) |
+| reciprocal (each other) | встречаться, целоваться, ссориться, познакомиться |
+| change of state, without an agent | начинаться (фильм начинается), открываться, закрываться, кончаться, возвращаться |
+| feeling, attitude | нравиться, бояться, радоваться, удивляться, интересоваться |
+| passive (imperfective) | Дом строится. — The house is being built. Здесь говорится … — Here it says … |
+| impersonal | Мне не спится. — I can't sleep. Мне хочется пить. — I feel like a drink. |
+| only with -ся | смеяться, бояться, улыбаться, нравиться, надеяться, стараться |
+
+!! A verb with _-ся_ can't take a direct object. Compare: _Я начинаю урок_ (I start the lesson) and _Урок начинается_ (the lesson starts); _Он вернул книгу_ (returned the book) and _Он вернулся_ (came back).
+
+### нравиться {#nravitsya}
+
+_Нравиться_ is "to please": the thing liked is the subject, and the person who likes is dative. The verb agrees with the thing liked.
+
+> Мне нравится этот фильм. — I like this film.
+> Мне нравятся эти фильмы. — I like these films.
+> Ей понравилась Москва. — She liked Moscow. (feminine, agreeing with Москва)
+
+## The conditional with бы {#conditional}
+
+@for advanced:cond
+
+_Бы_ + past tense makes "would". It is used for unreal conditions, wishes and polite requests. Both parts of an unreal condition take _бы_.
+
+> Если бы у меня было время, я бы пошёл. — If I had time, I would go.
+> Если бы ты позвонил, я бы пришла. — If you had called, I would have come. (same form for past and present)
+> Я бы хотел чашку кофе. — I'd like a cup of coffee.
+> Хорошо бы поехать на море. — It would be nice to go to the sea.
+
+Real conditions use the normal tenses, often the future after _если_: _Если будет время, я позвоню_ (if I have time, I'll call). See also [чтобы](#chtoby).
+
+# Aspect {#aspect}
+
+## The idea {#aspect-idea}
+
+@for aspect
+
+Almost every Russian verb comes as a pair: **imperfective** (impf) for the process, repetition or the fact of an action; **perfective** (pf) for one complete action with a result.
+
+| Imperfective (process) | Perfective (result) |
+| Я читал книгу. — I was reading / I read the book (some of it, or the activity). | Я прочитал книгу. — I read the book (to the end). |
+| Он долго решал задачу. — He worked on the problem for a long time. | Он решил задачу. — He solved the problem. |
+| Каждый день я покупаю хлеб. — I buy bread every day. | Сегодня я купил хлеб. — Today I bought bread. |
+
+## How the pairs are formed {#aspect-pairs}
+
+| Way | Imperfective | Perfective |
+| prefix | писать, читать, делать, есть, пить, видеть, звонить | написать, прочитать, сделать, съесть, выпить, увидеть, позвонить |
+| suffix change | решать, получать, отвечать, начинать, давать, вставать | решить, получить, ответить, начать, дать, встать |
+| -ыва- / -ива- (impf) | рассказывать, показывать, спрашивать, опаздывать | рассказать, показать, спросить, опоздать |
+| different roots | говорить, брать, класть, ловить, искать (find) | сказать, взять, положить, поймать, найти |
+| stress or other | покупать, садиться, ложиться, становиться | купить, сесть, лечь, стать |
+
+## Aspect in the past {#aspect-past}
+
+@for aspect:past
+
+| Use imperfective for | Use perfective for |
+| a process, often with _долго, весь день, два часа_ | a result: the action was completed |
+| repeated actions: _часто, каждый день, всегда, обычно_ | one specific action |
+| the general fact "did you ever…?" | a sequence of events: first this, then that |
+| an action that was reversed: _Кто открывал окно?_ (it's shut again) | the result still in force: _Кто открыл окно?_ (it's open now) |
+| background: _Когда я шёл домой, …_ | the main events: _…, я встретил друга_ |
+
+> Вы читали «Войну и мир»? — Have you read War and Peace? (ever, the fact)
+> Я читал два часа и прочитал сто страниц. — I read for two hours and got through 100 pages.
+> Он позвонил, сказал «привет» и ушёл. — He called, said hi and left.
+
+## Aspect in the future {#aspect-future}
+
+@for aspect:fut
+
+| Imperfective future: буду + infinitive | Perfective future: conjugated form |
+| process, duration: _Я буду работать весь вечер._ | result: _Я сделаю это к пятнице._ |
+| repeated: _Я буду звонить каждый день._ | one action: _Я позвоню завтра._ |
+| just the activity: _Что ты будешь делать?_ | the outcome: _Что ты сделаешь, если…_ |
+
+## Aspect in the imperative {#aspect-imperative}
+
+@for aspect:imp
+
+| Perfective | Imperfective |
+| a specific request: _Закройте дверь, пожалуйста._ | a general instruction or habit: _Закрывайте дверь!_ |
+| | an invitation, encouraging to start or continue: _Садитесь! Проходите! Говорите!_ |
+| | urging someone to do what was asked: _Ну, рассказывай!_ |
+| | **negative** commands: _Не открывай окно!_ (don't open) |
+
+!! Negative imperatives are almost always imperfective: _Не кури! Не опаздывай!_ A negative perfective is a warning about an accident: _Не упади!_ (Don't fall!), _Не забудь!_ (Don't forget!).
+
+## Aspect with the infinitive {#aspect-infinitive}
+
+- After _начинать / начать, кончать / кончить, продолжать, переставать, бросить_ (to quit), _устать_, _надоесть_: always imperfective. _Я начал читать._
+- After _нельзя_: perfective means "impossible", imperfective means "not allowed". _Сюда нельзя войти_ (you can't get in: it's locked); _Сюда нельзя входить_ (you mustn't go in).
+- After _не надо, не нужно, не стоит_: imperfective. _Не надо звонить._
+- After _забыть_, _успеть_, _удаться_: usually perfective. _Я забыл купить хлеб._
+
+## Time expressions and aspect {#aspect-time}
+
+> Я читал книгу час. — I read the book for an hour. (impf + duration)
+> Я прочитал книгу за час. — I read the book in an hour. (pf + за: time it took)
+> Я взял книгу на неделю. — I borrowed the book for a week. (на: intended duration)
+
+# Verbs of motion {#motion}
+
+## The two kinds of motion verb {#motion-basics}
+
+@for vom, vom:walk
+
+Russian has fourteen pairs of motion verbs. Each pair has a **unidirectional** verb (one trip, in one direction, in progress) and a **multidirectional** verb (round trips, habits, no particular direction, the ability). Both are imperfective.
+
+| Use the unidirectional (идти) | Use the multidirectional (ходить) |
+| motion in one direction, now or at a specific moment: _Я иду в школу._ | regular trips: _Я хожу в школу каждый день._ |
+| a single trip in the future: _Завтра я иду в театр._ | a round trip in the past ("went and came back"): _Вчера я ходил в театр._ |
+| background in the past: _Когда я шёл домой, пошёл дождь._ | moving around with no direction: _Мы ходили по городу._ |
+| | the ability or habit: _Ребёнок уже ходит._ |
+
+## On foot and by transport {#motion-transport}
+
+@for vom:ride
+
+| | Unidirectional | Multidirectional |
+| on foot | идти: иду, идёшь; шёл, шла | ходить: хожу, ходишь |
+| by vehicle | ехать: еду, едешь; ехал | ездить: езжу, ездишь |
+
+_Идти_ is used for any motion under your own power within a town. As soon as transport is involved, use _ехать / ездить_: _Я еду на работу на автобусе. Летом мы ездили в Италию._ Things that move by themselves "walk" in Russian: _Идёт дождь_ (it's raining), _Идёт фильм_, _Часы идут_.
+
+## The other pairs {#motion-pairs}
+
+@for vom:move
+
+| Meaning | Unidirectional | Multidirectional |
+| run | бежать (бегу, бежишь, бегут) | бегать |
+| fly | лететь (лечу, летишь) | летать |
+| swim, sail | плыть (плыву, плывёшь) | плавать |
+| crawl | ползти (ползу) | ползать |
+| climb | лезть (лезу) | лазить (лажу) |
+| roll | катить (качу) | катать |
+| chase, drive (animals) | гнать (гоню, гонишь) | гонять |
+| wander | брести (бреду) | бродить |
+
+## Carrying and leading {#motion-carry}
+
+@for vom:carry
+
+| Meaning | Unidirectional | Multidirectional |
+| carry (on foot) | нести (несу; нёс, несла) | носить (ношу, носишь) |
+| take, transport (by vehicle) | везти (везу; вёз, везла) | возить (вожу, возишь) |
+| lead, take (a person, on foot) | вести (веду; вёл, вела) | водить (вожу, водишь) |
+
+> Я несу сумку. — I'm carrying a bag.
+> Мама ведёт ребёнка в садик. — Mum is taking the child to kindergarten.
+> Папа везёт нас в аэропорт. — Dad is driving us to the airport.
+> Она носит очки. — She wears glasses. (_носить_ also means "wear")
+> Он водит машину. — He drives a car. (_водить машину_ = to be a driver)
+
+## Prefixed motion verbs {#motion-prefixes}
+
+@for vom:pref
+
+Adding a prefix gives direction to the movement. The prefix goes on both verbs of the pair (with spelling changes: _-йти_ for _идти_, _-езжать_ for _ездить_ in the imperfective, _-плывать_, _-бегать_).
+
+| Prefix | Meaning | Preposition | Example |
+| при- | arrive | в, на, к | Он пришёл домой. Поезд приехал в Москву. |
+| у- | leave (completely) | из, с, от | Он ушёл из дома. Она уехала в отпуск. |
+| в- (во-) | enter | в | Он вошёл в комнату. |
+| вы- | exit | из | Он вышел из комнаты. (stressed вы́-) |
+| за- | drop in; go behind | в, на, к, за | Зайди ко мне вечером. |
+| про- | pass by, through; cover a distance | мимо, через, по | Мы прошли мимо музея. Прошли пять километров. |
+| пере- | cross | через, + Acc | Перейдите (через) улицу. |
+| под- (подо-) | approach | к | Он подошёл к окну. |
+| от- (ото-) | move away | от | Отойдите от двери. |
+| до- | reach, get as far as | до | Как доехать до центра? |
+| об- (обо-) | go round; visit all | вокруг, + Acc | Мы обошли весь город. |
+| с- (со-) | go down, get off (with the unidirectional); a quick round trip (with the multidirectional, perfective) | с | Он сошёл с поезда. Сходи в магазин! |
+| вз- (взо-) | go up | на | Он взошёл на гору. |
+| раз- (разо-) + -ся | disperse | по | Гости разошлись. |
+| по- + unidirectional | set off, start | в, на, к | Он пошёл домой. Пойдём в кино! |
+
+## Aspect of prefixed motion verbs {#motion-aspect}
+
+@for vom:aspect
+
+Prefix + unidirectional = **perfective**; prefix + multidirectional = **imperfective**. So the pair "to arrive" is _приходить_ (impf) / _прийти_ (pf).
+
+| Impf | Pf | Impf | Pf |
+| приходить | прийти (приду, придёшь; пришёл) | приезжать | приехать |
+| уходить | уйти (уйду) | уезжать | уехать |
+| входить | войти (войду) | въезжать | въехать |
+| выходить | выйти (выйду) | выезжать | выехать |
+| приносить | принести | привозить | привезти |
+| приводить | привести | прилетать | прилететь |
+
+> Каждый день он приходит в девять. — He arrives at nine every day. (impf: repeated)
+> Сегодня он пришёл в десять. — Today he came at ten. (pf: once, result)
+> Я пошёл в магазин. — I set off for the shop / I've gone to the shop. (he is not back yet)
+> Я ходил в магазин. — I went to the shop (and I'm back).

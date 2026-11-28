@@ -15,8 +15,9 @@ SWAP = [
   ('<h3>Questions per round · Вопросов в раунде</h3>', '<h3>Questions per round · Fragen pro Runde</h3>'),
   ('<a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a>', '<a href="../../profile/">Sign in to keep it on every device · Profil</a>'),
   (' Tap any Russian word to look it up.', ''), ('<script src="../../shared/lookup.js"></script>\n', ''),
-  ('<h2>Cheat sheet</h2>', '<h2>Cheat sheet · Spickzettel</h2>'),
-  ('<p class="home"><a href="../">← All exercises</a></p>', '<p class="home"><a href="../">← Alle Übungen · All exercises</a></p>'),
+  ('Quick reference <a href="../grammar/">Full grammar guide →</a>', 'Spickzettel · Quick reference <a href="../grammar/">Grammatik · Full guide →</a>'),
+  ('<p class="home"><a href="../">← All exercises</a> · <a href="../grammar/">Grammar guide</a></p>', '<p class="home"><a href="../">← Alle Übungen · All exercises</a> · <a href="../grammar/">Grammatik · Guide</a></p>'),
+  ('<h3>Translation · Перевод</h3>', '<h3>Translation · Übersetzung</h3>'),
 ]
 def de(h):
     for a, b in SWAP: h = h.replace(a, b)
@@ -105,7 +106,7 @@ R = [
   ('<div class="m" aria-hidden="true">М</div><div><h1>Грамматика</h1><p class="sub">Russian grammar and vocabulary · Русская грамматика и лексика</p>', '<div class="m" aria-hidden="true">D</div><div><h1>Grammatik</h1><p class="sub">German grammar and vocabulary · Deutsche Grammatik und Wortschatz</p>'),
   ('<a href="./?ru" data-lang="ru" aria-current="page">Русский</a><a href="de/" data-lang="de">Deutsch</a>', '<a href="../?ru" data-lang="ru">Русский</a><a href="./" data-lang="de" aria-current="page">Deutsch</a>'),
   ('My level · Мой уровень', 'My level · Mein Niveau'), ('Что дальше <small>', 'Wie weiter? <small>'), ('Suggested for you · Рекомендации', 'Suggested for you · Empfehlungen'),
-  ('Линии <small>', 'Linien <small>'), ('Карта навыков <small>', 'Kompetenzkarte <small>'), ('Настройки <small>', 'Einstellungen <small>'),
+  ('Линии <small>', 'Linien <small>'), ('Карта навыков · Skill map', 'Kompetenzkarte · Skill map'), ('Grammar guide · Справочник', 'Grammar guide · Grammatik'), ('Настройки <small>', 'Einstellungen <small>'),
   ('Account and profile · Аккаунт', 'Account and profile · Konto'), ('Your progress · Ваш прогресс', 'Your progress · Dein Fortschritt'),
   ('Backup file · Резервная копия', 'Backup file · Sicherungskopie'), ('Sync with GitHub · Синхронизация', 'Sync with GitHub · Synchronisieren'),
   ('Keep it on your phone · Установить', 'Keep it on your phone · Installieren'),
@@ -127,3 +128,30 @@ left = sorted(set(_re.findall(r'[А-Яа-яЁё]+', h)) - {'Русский', 'Г
 if left: print('Cyrillic left on the German hub:', left)
 open('de/index.html', 'w').write(h)
 print('German hub ok')
+
+# ---------- German flashcards page, from the Russian one ----------
+h = open('vocabulary/index.html').read()
+R = [('"../shared/', '"../../shared/'), ('"../icons/', '"../../icons/'), ('"../manifest.webmanifest"', '"../../manifest.webmanifest"'),
+   ('<script src="../../shared/progress.js"></script>\n', '<script src="../../shared/progress.js"></script>\n<script>window.GR_LANG=\'de\'</script>\n<script src="../../shared/lang.js"></script>\n'),
+   ('<title>Словарь</title>', '<title>Wortschatz</title>'), ('title="All exercises">6</a>', 'title="All exercises">10</a>'),
+   ('<h1>Словарь</h1>', '<h1>Wortschatz</h1>'), ('<p class="home"><a href="../">← All exercises</a></p>', '<p class="home"><a href="../">← Alle Übungen · All exercises</a></p>'),
+   ('<summary>All cards · Все карточки</summary>', '<summary>All cards · Alle Karten</summary>'),
+   ('<summary>Export to Anki · Экспорт</summary>', '<summary>Export to Anki · Export</summary>'),
+   ('<summary>Import Anki cards · Импорт</summary>', '<summary>Import Anki cards · Import</summary>'),
+   ('placeholder="дом&#9;house&#10;кот&#9;cat"', 'placeholder="das Haus&#9;house&#10;die Katze&#9;cat"'),
+   ('<a href="decks/ru-core.tsv" download>ru-core.tsv</a> (your 300 cards, re-levelled) and <a href="decks/ru-levels.tsv" download>ru-levels.tsv</a> (new cards for every level, A1 to C2)', '<a href="decks/de-core.tsv" download>de-core.tsv</a> (German cards for every level, A1 to C2)'),
+   ('<h3>Card direction · Направление</h3>', '<h3>Card direction · Richtung</h3>'),
+   ('data-d="r">RU → EN</button><button id="d-p" data-d="p">EN → RU</button>', 'data-d="r">DE → EN</button><button id="d-p" data-d="p">EN → DE</button>'),
+   ('<h3>New cards per day · Новых в день</h3>', '<h3>New cards per day · Neue pro Tag</h3>'), ('<h3>Theme · Тема</h3>', '<h3>Theme · Thema</h3>'),
+   ('<a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a>', '<a href="../../profile/">Sign in to keep it on every device · Profil</a>'),
+   ('<script src="vocab.js"></script>', '''<script>window.VOC_CFG = { decks: ['decks/de-core.tsv'], prefix: 'de-voc-', lang: 'de', tts: 'de-DE', all: 'Alle Themen · All', done: 'Fertig!', listen: 'Listen · Anhören', themes: {
+  basic: 'Grundlagen · Basics', people: 'Menschen · People', feelings: 'Gefühle · Feelings', health: 'Gesundheit · Health', society: 'Gesellschaft · Society',
+  communication: 'Kommunikation · Communication', abstract: 'Begriffe · Ideas', home: 'Wohnen · Home', city: 'Stadt · City', travel: 'Reisen · Travel',
+  shopping: 'Einkaufen · Shopping', food: 'Essen · Food', work: 'Arbeit · Work', study: 'Lernen · Study', time: 'Zeit · Time', qualities: 'Eigenschaften · Qualities',
+  linking: 'Verbindungswörter · Linking words', nature: 'Natur · Nature', economy: 'Wirtschaft · Economy', general: 'Allgemein · General', imported: 'Import · Imported' } };</script>
+<script src="../../vocabulary/vocab.js"></script>''')]
+for a, b in R:
+    if a not in h: raise SystemExit('vocab: not found: ' + a[:70])
+    h = h.replace(a, b)
+open('de/vocabulary/index.html', 'w').write(h)
+print('German flashcards ok')
