@@ -69,6 +69,28 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.
 
+## Deutsch · German
+
+`de/` is a second, complete language side with the same system: CEFR levels, the coach, Daily mix, placement test, sentences, tables and flashcards. The home page has a Русский / Deutsch switch; the app remembers the choice and opens on that side.
+
+Grammar lines (`de/*/data.js`, compact text tables read by `shared/lines.js`):
+
+| Line | Levels | Topics |
+|---|---|---|
+| Verben & Zeiten | A1–B1 | present tense, modal verbs, Perfekt with haben or sein, participles, Präteritum |
+| Fälle & Artikel | A1–B1 | nominative or accusative, dative, pronouns, genitive |
+| Präpositionen | A2–B2 | accusative, dative and genitive prepositions, two-way prepositions |
+| Adjektivendungen | A2–C1 | weak, mixed and strong endings, after quantifiers, adjectives as nouns |
+| Satzbau & Konnektoren | A2–C1 | where the verb goes after weil, denn, deshalb, obwohl, als, wenn, damit, um … zu |
+| Konjunktiv II & Passiv | B1–C1 | würde, hätte, wäre, könnte; passive tenses, Zustandspassiv, modal passive |
+| Fortgeschritten | B2–C2 | verbs with prepositions, n-declension, formal prepositions, Konjunktiv I, participle attributes |
+
+Plus Sätze (translate, word order, dictation, find the mistake; German word order must be correct), Tabellen (present, past, articles, adjective endings, pronouns), and Wortschatz (127 cards A1–C2 in `de/vocabulary/decks/de-core.tsv`, same Anki columns). Typing accepts ss for ß and ae, oe, ue for umlauts.
+
+Progress for German uses keys starting with `de-` and is saved and synced with everything else. The daily goal and streak count both languages.
+
+Build: `python3 tools/build_pages.py && python3 tools/build_de.py && node tools/build_catalog.js`. Check: `node tools/validate_de.js`, `python3 tools/test_de.py`.
+
 ### Account and login
 
 `shared/account.js` adds sign-in with a 6-digit email code (Supabase Auth) and saves all progress to the signed-in account automatically. A code is used instead of a magic link because links open in Safari, not in the home-screen app on iPhone. To switch it on:

@@ -139,6 +139,6 @@
     return { reached, working, per, answers };
   }
   // remember the estimated level once per day, for the progress chart
-  function logLevel(est) { const H = get('gr-levels', {}), k = dkey(); if (est.reached !== undefined && H[k] !== (est.reached || '')) { H[k] = est.reached || ''; set('gr-levels', H); } }
+  function logLevel(est) { const H = get((window.GR_L && window.GR_L.levelsKey) || 'gr-levels', {}), k = dkey(); if (est.reached !== undefined && H[k] !== (est.reached || '')) { H[k] = est.reached || ''; set((window.GR_L && window.GR_L.levelsKey) || 'gr-levels', H); } }
   window.GRCoach = { ORDER, LABEL, stats, record, state, solid, topicsOf, frontier, smartPick, nextStep, estimate, logCard, profile, today, streak, dueReviews, logLevel, dkey };
 })();

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!--redirect--><script>try{if(JSON.parse(localStorage.getItem('gr-lang')||'"ru"')==='de'&&!/[?&]ru\b/.test(location.search))location.replace('de/')}catch(e){}</script><!--/redirect-->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Грамматика</title>
 <meta name="description" content="Russian grammar and vocabulary practice with a coach that tracks your level and moves you on.">
@@ -46,6 +47,9 @@ h1{font-size:clamp(30px,5vw,46px);font-weight:700}
 .sub{margin:4px 0 0;opacity:.92;font-size:16px}
 .picker p{margin:0 0 6px;font-size:14px;opacity:.92}
 .hdr{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.langs{display:flex;gap:2px;background:rgba(0,0,0,.18);border-radius:999px;padding:4px;align-self:center}
+.langs a{color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-weight:700;font-size:15px;min-height:28px;display:flex;align-items:center}
+.langs a[aria-current]{background:#fff;color:#141414}
 .me{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;background:rgba(0,0,0,.16);border-radius:14px;padding:6px 14px 6px 6px;min-height:52px}
 .me svg{flex:none;width:40px;height:40px}
 .me b{display:block;font-size:15px;line-height:1.2}
@@ -157,6 +161,7 @@ ol.steps{margin:6px 0 10px;padding-left:1.2em;font-size:16px}
   <div class="wrap hd">
     <div class="brand"><div class="m" aria-hidden="true">М</div><div><h1>Грамматика</h1><p class="sub">Russian grammar and vocabulary · Русская грамматика и лексика</p></div></div>
     <div class="hdr">
+    <nav class="langs" aria-label="Language"><a href="./?ru" data-lang="ru" aria-current="page">Русский</a><a href="de/" data-lang="de">Deutsch</a></nav>
     <a class="me" id="me" href="profile/"></a>
     <div class="picker"><p id="lvl-lbl">My level · Мой уровень</p><div class="lvrow" id="lvrow" role="group" aria-labelledby="lvl-lbl"></div></div>
     </div>
@@ -260,7 +265,7 @@ function suggestions(est){
   if(!placed&&est.answers<40)out.push({c:'#3d3d3d',n:'?',title:'Find your level: placement test',why:'16 questions from A1 to B2. Skips the topics you already know',href:'placement/'});
   const dueN0=GRAM.reduce((a,L)=>a+C.dueReviews(L.id).length,0);
   out.push({c:'#141414',n:'★',title:'Daily mix · about 10 minutes',why:(dueN0?`${dueN0} grammar mistake${dueN0>1?'s':''} due, then`:'One question from each line,')+' your weakest topics across all grammar',href:'mix/'});
-  if(v.due)out.push({c:VOC.c,n:'6',title:`Review ${v.due} flashcard${v.due>1?'s':''}`,why:'Due today: spaced repetition works best on time',href:VOC.href});
+  if(v.due)out.push({c:VOC.c,n:VOC.n,title:`Review ${v.due} flashcard${v.due>1?'s':''}`,why:'Due today: spaced repetition works best on time',href:VOC.href});
   const all=[];GRAM.forEach(L=>{const s=C.stats(L.id);L.topics.forEach(t=>all.push(Object.assign({L,t},C.state(L.id,t.k,s))))});
   const weak=all.filter(x=>x.st==='weak').sort((a,b)=>a.pct-b.pct)[0];
   if(weak)out.push({c:weak.L.c,n:weak.L.n,title:`Strengthen: ${short(weak.t.name)}`,why:`${weak.pct}% right lately · ${weak.L.ru}`,href:`${weak.L.href}#${weak.t.k}`,level:weak.t.lv});
@@ -279,7 +284,7 @@ function suggestions(est){
     const best=GRAM.slice().sort((a,b)=>score(b)-score(a))[0];
     if(best&&score(best))out.push({c:best.c,n:best.n,title:`Recommended round: ${best.ru}`,why:`Mixes weak spots with new ${lvl==='all'?'':target+' '}topics and skips what you’ve mastered`,href:`${best.href}#smart`});
   }
-  if(out.length<3&&!v.started)out.push({c:VOC.c,n:'6',title:'Start the flashcards',why:`${VOC.total} words from A1 to C2`,href:VOC.href});
+  if(out.length<3&&!v.started)out.push({c:VOC.c,n:VOC.n,title:'Start the flashcards',why:`${VOC.total} words from A1 to C2`,href:VOC.href});
   return out.slice(0,4);
 }
 function draw(){
@@ -318,6 +323,7 @@ draw();
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-level],a[data-set]');if(!a)return;if(a.dataset.set){LS.set('gr-level',a.dataset.set);if(a.getAttribute('href')==='#'){e.preventDefault();draw()}}else LS.set('gr-level',a.dataset.level)});
 $('lvrow').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;LS.set('gr-level',b.dataset.l);const v=LS.get('voc-settings',{});v.levels=b.dataset.l==='all'?window.CEFR.map(l=>l.code):[b.dataset.l];LS.set('voc-settings',v);draw()});
 window.GR_NO_TOAST=true;
+document.querySelectorAll('.langs a').forEach(a=>a.addEventListener('click',()=>LS.set('gr-lang',a.dataset.lang)));
 window.addEventListener('gr-progress-merged',draw);
 window.addEventListener('pageshow',e=>{if(e.persisted)draw()});
 

@@ -1,13 +1,14 @@
 /* Tables line: fill in conjugation and declension tables. Data in data.js (window.TABLES). */
 {
-const D = window.TABLES, COACH = window.GRCoach, ID = 'tables';
+const LG = window.GR_L || { code: 'ru', levelKey: 'gr-level', how: '${LG.how}', typeNote: 'ё can be typed as е.', norm: s => String(s).toLowerCase().replace(/ё/g, 'е') };
+const D = window.TABLES, COACH = window.GRCoach, ID = LG.code === 'ru' ? 'tables' : LG.code + '-tables';
 const $ = id => document.getElementById(id);
 const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
 const shuf = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[^а-я-]/g, '');
+const norm = s => LG.norm(s).replace(/[^\p{L} -]/gu, '').replace(/\s+/g, ' ').trim();
 const ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-const TOP = { smart: 'Рекомендуем · Recommended', pres: 'Спряжение · Present and future', past: 'Прошедшее время · Past tense', noun: 'Склонение · Nouns', pron: 'Местоимения · Pronouns' };
+const TOP = D.TOP || { smart: 'Рекомендуем · Recommended', pres: 'Спряжение · Present and future', past: 'Прошедшее время · Past tense', noun: 'Склонение · Nouns', pron: 'Местоимения · Pronouns' };
 const GAPS = { some: 'A few gaps', half: 'Half', all: 'Whole table' };
 const SIZES = [3, 5, 10];
 const CASES = ['Nominative', 'Genitive', 'Dative', 'Accusative', 'Instrumental', 'Prepositional'];
@@ -15,17 +16,17 @@ const CS = ['Им.', 'Род.', 'Дат.', 'Вин.', 'Твор.', 'Пред.'];
 const PERS = ['я', 'ты', 'он / она', 'мы', 'вы', 'они'];
 
 // each table: {t: topic, lv, key, title, sub, cols:[header...], rows:[{h, cells:[answer|null...]}], given:[[r,c]...]}
-const T = [];
-D.V.forEach(([lv, inf, en, asp, ...f]) => {
+const T = D.T ? D.T.slice() : [];
+if (D.V) D.V.forEach(([lv, inf, en, asp, ...f]) => {
   const fut = asp === 'pf';
   T.push({ t: 'pres', lv, key: 'pres:' + inf, title: inf, sub: `${en} · ${fut ? 'perfective: future tense' : 'present tense'}`, cols: ['', fut ? 'Future' : 'Present'], rows: PERS.map((p, i) => ({ h: p, cells: [f[i]] })) });
   T.push({ t: 'past', lv, key: 'past:' + inf, title: inf, sub: `${en} · past tense`, cols: ['', 'Past'], rows: [['он', f[6]], ['она', f[7]], ['оно', f[7].replace(/а$/, 'о')], ['они', f[8]]].map(([h, v]) => ({ h, cells: [v] })) });
 });
-D.N.forEach(([lv, nom, en, ...f]) => T.push({ t: 'noun', lv, key: 'noun:' + nom, title: nom, sub: en, cols: ['', 'Singular', 'Plural'], rows: CASES.map((c, i) => ({ h: `${CS[i]} <small>${c}</small>`, cells: [f[i], f[i + 6]] })), lock: [[0, 0]] }));
-T.push({ t: 'pron', lv: 'A2', key: 'pron:all', title: 'я, ты, он…', sub: 'personal pronouns · after a preposition он, она, они add н-: у него, к ней, о них', cols: ['', ...CS.slice(1)], rows: D.P.map(r => ({ h: r[0], cells: r.slice(1) })) });
+if (D.N) D.N.forEach(([lv, nom, en, ...f]) => T.push({ t: 'noun', lv, key: 'noun:' + nom, title: nom, sub: en, cols: ['', 'Singular', 'Plural'], rows: CASES.map((c, i) => ({ h: `${CS[i]} <small>${c}</small>`, cells: [f[i], f[i + 6]] })), lock: [[0, 0]] }));
+if (D.P) T.push({ t: 'pron', lv: 'A2', key: 'pron:all', title: 'я, ты, он…', sub: 'personal pronouns · after a preposition он, она, они add н-: у него, к ней, о них', cols: ['', ...CS.slice(1)], rows: D.P.map(r => ({ h: r[0], cells: r.slice(1) })) });
 
 // ---------- state ----------
-const lvPref = LS.get('gr-level', 'all'), prefs = LS.get(ID + '-prefs', {});
+const lvPref = LS.get(LG.levelKey, 'all'), prefs = LS.get(ID + '-prefs', {});
 const hashT = decodeURIComponent(location.hash.slice(1));
 let st = { level: lvPref === 'all' || ORDER.includes(lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', gaps: GAPS[prefs.gaps] ? prefs.gaps : 'some', size: SIZES.includes(prefs.size) ? prefs.size : 5, round: [], i: 0, res: [], done: false };
 const seen = new Set(LS.get(ID + '-seen', []));
@@ -85,15 +86,15 @@ function qHTML() {
   const cell = (v, ri, ci) => {
     const id = ri + ':' + ci;
     if (!v) return '<td class="na">—</td>';
-    if (!st.blank.has(id)) return `<td lang="ru">${esc(v.split('/')[0])}</td>`;
-    if (!st.checked) return `<td><input data-c="${id}" lang="ru" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="${esc(x.rows[ri].h.replace(/<[^>]+>/g, ''))} ${esc(x.cols[ci + 1])}"></td>`;
+    if (!st.blank.has(id)) return `<td lang="${LG.code}">${esc(v.split('/')[0])}</td>`;
+    if (!st.checked) return `<td><input data-c="${id}" lang="${LG.code}" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="${esc(x.rows[ri].h.replace(/<[^>]+>/g, ''))} ${esc(x.cols[ci + 1])}"></td>`;
     const u = st.vals[id] || '', good = okCell(v, u);
-    return `<td class="${good ? 'c-ok' : 'c-bad'}" lang="ru">${good ? esc(v.split('/')[0]) : `${u ? `<s>${esc(u)}</s> ` : ''}<b>${esc(v.replace('/', ' / '))}</b>`}</td>`;
+    return `<td class="${good ? 'c-ok' : 'c-bad'}" lang="${LG.code}">${good ? esc(v.split('/')[0]) : `${u ? `<s>${esc(u)}</s> ` : ''}<b>${esc(v.replace('/', ' / '))}</b>`}</td>`;
   };
   return `<div class="meta"><span>${x.lv} · ${TOP[x.t].split(' · ')[1]}</span><span>Table ${st.i + 1} of ${st.round.length}</span></div>
-<p class="ru tt" lang="ru">${esc(x.title)}</p><p class="en">${esc(x.sub)}</p>
-<form id="f" class="tblform"><div class="tbl"><table class="fill"><thead><tr>${x.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${x.rows.map((row, ri) => `<tr><th scope="row" lang="ru">${row.h}</th>${row.cells.map((v, ci) => cell(v, ri, ci)).join('')}</tr>`).join('')}</tbody></table></div>
-${st.checked ? '' : `<div class="row"><button class="btn go">Check</button><span class="note">Tab or Enter moves to the next gap. ё can be typed as е.</span></div>`}</form>
+<p class="ru tt" lang="${LG.code}">${esc(x.title)}</p><p class="en">${esc(x.sub)}</p>
+<form id="f" class="tblform"><div class="tbl"><table class="fill"><thead><tr>${x.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${x.rows.map((row, ri) => `<tr><th scope="row" lang="${LG.code}">${row.h}</th>${row.cells.map((v, ci) => cell(v, ri, ci)).join('')}</tr>`).join('')}</tbody></table></div>
+${st.checked ? '' : `<div class="row"><button class="btn go">Check</button><span class="note">Tab or Enter moves to the next gap. ${LG.code === 'ru' ? 'ё can be typed as е.' : LG.typeNote}</span></div>`}</form>
 ${st.checked ? `<p class="verdict ${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓ All right' : `✗ ${r.right} of ${r.n} right`}</p><div class="dock"><span>${r.ok ? 'Right ✓' : (st.i + 1) + ' / ' + st.round.length}</span><button class="btn go" id="next" data-act="next">${st.i + 1 < st.round.length ? 'Next table →' : 'See results'}</button></div>` : ''}`;
 }
 function endHTML() {
@@ -102,7 +103,7 @@ function endHTML() {
   const rows = COACH ? used.map(t => { const a = COACH.state(ID, t, s), b = st.before[t]; const d = b === null || b === undefined || a.pct === null ? '' : a.pct > b ? ` <span class="up">▲ ${a.pct - b}</span>` : a.pct < b ? ` <span class="down">▼ ${b - a.pct}</span>` : ''; return `<li><span>${TOP[t]}</span><span class="mstate" data-st="${a.st}"><b>${a.pct === null ? '—' : a.pct + '%'}</b>${d} · ${COACH.LABEL[a.st]}</span></li>`; }).join('') : '';
   const miss = st.round.filter((k, j) => !st.res[j] || !st.res[j].ok).map(k => T[k].title);
   return `<p class="meta"><span>End of the line</span></p><p class="big">${ok}/${n}</p><p>${ok === n ? 'Every table complete.' : `Worth another go: ${miss.map(esc).join(', ')}. They come back in later rounds.`}</p>
-${rows ? `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul>` : ''}
+${rows ? `<h3 class="rh">${LG.how}</h3><ul class="mlist">${rows}</ul>` : ''}
 <div class="row" style="margin-top:16px"><button class="btn go" data-act="new">New round</button>${st.gaps !== 'all' ? `<button class="btn" data-act="harder">More gaps</button>` : ''}<a class="btn" href="../">All exercises</a></div>`;
 }
 
@@ -122,7 +123,7 @@ document.addEventListener('click', e => {
 });
 const save = () => LS.set(ID + '-prefs', { topic: st.topic, gaps: st.gaps, size: st.size });
 $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.topic = b.dataset.t; save(); history.replaceState(null, '', '#' + st.topic); newRound(); });
-$('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.level = b.dataset.l; LS.set('gr-level', st.level); newRound(); });
+$('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.level = b.dataset.l; LS.set(LG.levelKey, st.level); newRound(); });
 $('gaps').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.gaps = b.dataset.g; save(); newRound(); });
 $('sizes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.size = +b.dataset.n; save(); newRound(); });
 window.addEventListener('gr-progress-merged', () => render());

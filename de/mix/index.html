@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Täglicher Mix</title>
+<meta name="description" content="One short daily German session: grammar mistakes that are due, then the topics you most need, across every line.">
+<meta name="theme-color" content="#141414">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<script src="../../shared/progress.js"></script>
+<script>window.GR_LANG='de'</script>
+<script src="../../shared/lang.js"></script>
+<script src="../../shared/config.js"></script>
+<script src="../../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/engine.css">
+<link rel="stylesheet" href="../../shared/ui.css">
+<style>:root{--red:#141414}.m{color:#141414}</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">★</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Täglicher Mix</h1><p class="sub">Daily mix · about 10 minutes of everything<span id="count" hidden></span></p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>1</kbd>–<kbd>6</kbd> to choose, <kbd>Enter</kbd> for the next station.</p>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section>
+      <section class="grp" data-all="All topics"><h3>Topic · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Topic"></div></section>
+      <section class="grp" data-fmt="{v} the form"><h3>Answer by · Antworten</h3><div class="seg segctl" id="modes" role="group" aria-label="Answer mode"><button id="m-pick" data-m="pick">Choose</button><button id="m-type" data-m="type">Type</button><button id="m-listen" data-m="listen">Listen</button></div></section>
+      <section class="grp" data-fmt="{v}"><h3>Steps · Schritte</h3><div class="seg segctl" id="steps" role="group" aria-label="Steps"><button id="s-one" data-s="one">One step</button><button id="s-two" data-s="two">Two steps</button></div></section>
+      <section class="grp" data-fmt="{v} per round" data-all="Every question"><h3>Questions per round · Fragen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Questions per round"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
+    </aside>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet · Spickzettel</h2>
+<h2>How the daily mix works</h2><div class="cols"><div><p>Each round starts with German grammar mistakes that are due again (they come back after 1, 3, 7 and 21 days). The rest is one recommended question from each line in turn, starting with the lines that have the most topics left to learn.</p></div><div><p>Your level filter applies here too. Answers count toward each line’s progress, your daily goal and your streak.</p></div></div>
+  </div>
+</section>
+<script src="../../shared/levels.js"></script>
+<script src="../../shared/catalog-de.js"></script>
+<script src="../../shared/coach.js"></script>
+<script src="../../shared/lines.js"></script>
+<script>window.ALL=[]</script>
+<script src="../verbs/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../cases/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../prep/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../adj/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../conn/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../konj/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../adv/data.js"></script><script>ALL.push(EXERCISE)</script>
+<script src="../../shared/multi.js"></script>
+<script>buildMix()</script>
+<script src="../../shared/ui.js"></script>
+<script src="../../shared/engine.js"></script>
+</body>
+</html>

@@ -1,15 +1,17 @@
 /* Sentences line: translate, word order, dictation, find the mistake. Data in data.js (window.SENTENCES). */
 {
-const D = window.SENTENCES, COACH = window.GRCoach, ID = 'sent';
+const LG = window.GR_L || { code: 'ru', tts: 'ru-RU', levelKey: 'gr-level', listen: '${LG.listen}', how: '${LG.how}', norm: s => String(s).toLowerCase().replace(/ё/g, 'е') };
+const DE = LG.code === 'de';
+const D = window.SENTENCES, COACH = window.GRCoach, ID = DE ? 'de-sent' : 'sent';
 const $ = id => document.getElementById(id);
 const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
 const shuf = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[.,!?;:«»"“”()]/g, ' ').replace(/\s[—–-]\s/g, ' ').replace(/\s+/g, ' ').trim();
+const norm = s => LG.norm(s).replace(/[.,!?;:«»"“”„()]/g, ' ').replace(/\s[—–-]\s/g, ' ').replace(/\s+/g, ' ').trim();
 const words = s => norm(s).split(' ').filter(Boolean);
 const ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-const MODES = { tr: 'Перевод · Translate', order: 'Порядок слов · Word order', dict: 'Диктант · Dictation', err: 'Найди ошибку · Find the mistake' };
-const TOP = Object.assign({ smart: 'Рекомендуем · Recommended' }, MODES);
+const MODES = DE ? { tr: 'Übersetzen · Translate', order: 'Satzbau · Word order', dict: 'Diktat · Dictation', err: 'Fehler finden · Find the mistake' } : { tr: 'Перевод · Translate', order: 'Порядок слов · Word order', dict: 'Диктант · Dictation', err: 'Найди ошибку · Find the mistake' };
+const TOP = Object.assign({ smart: LG.smart || 'Рекомендуем · Recommended' }, MODES);
 const TTS = 'speechSynthesis' in window;
 const SIZES = [5, 10, 20];
 
@@ -29,6 +31,8 @@ D.M.forEach(([lv, s, why]) => {
   Q.push({ m: 'err', lv, toks: shown, bad, wrong, right, ru: fixed, why, key: 'err:' + fixed });
 });
 const MSTATS = Object.keys(MODES);
+// German nouns are capitalised anywhere, so only words that are never nouns lose their capital as the first tile.
+const DE_LOWER = new Set('ich du er sie es wir ihr man der die das den dem des ein eine einen einem einer mein meine dein deine sein seine unser unsere euer eure ihre dieser diese dieses jeder jede jedes kein keine wo wann warum wie was wer wen wem welche welcher welches woher wohin heute gestern morgen jetzt hier dort da dann deshalb darum trotzdem obwohl weil wenn als ob dass damit nachdem bevor während seit falls je kannst kann können könnten könnte hast hat haben habe bist ist sind war waren hatte hatten wird werden würde würden darf muss musst soll sollte möchte möchten will gibt gab im am in an auf aus bei mit nach von zu zum zur für ohne gegen um durch letztes letzte nächste nächsten nächstes leider vielleicht natürlich bitte sag gib komm geh nimm mach schreib ruf hör entschuldigung so sehr immer nie oft manchmal zuerst erst noch schon nicht auch nur alle viele einige ohne trotz wegen statt'.split(' '));
 
 // ---------- matching ----------
 const lev = (a, b) => { const d = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; };
@@ -67,12 +71,12 @@ const diffHTML = a => a.out.map(x => x.k === 'ok' ? `<span>${esc(x.u)}</span>` :
 
 // ---------- speech ----------
 let voice = null;
-const pickVoice = () => { if (!TTS) return; const v = speechSynthesis.getVoices().filter(x => /^ru/i.test(x.lang)); voice = v.find(x => /google|milena|yuri|katya/i.test(x.name)) || v[0] || null; };
+const pickVoice = () => { if (!TTS) return; const v = speechSynthesis.getVoices().filter(x => x.lang && x.lang.toLowerCase().startsWith(LG.code)); voice = v.find(x => /google|milena|yuri|katya|anna|helena|markus/i.test(x.name)) || v[0] || null; };
 if (TTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-function say(text, slow) { if (!TTS) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'ru-RU'; if (voice) u.voice = voice; u.rate = slow ? 0.6 : 0.9; speechSynthesis.speak(u); }
+function say(text, slow) { if (!TTS) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = LG.tts; if (voice) u.voice = voice; u.rate = slow ? 0.6 : 0.9; speechSynthesis.speak(u); }
 
 // ---------- rounds ----------
-const lvPref = LS.get('gr-level', 'all'), prefs = LS.get(ID + '-prefs', {});
+const lvPref = LS.get(LG.levelKey, 'all'), prefs = LS.get(ID + '-prefs', {});
 const hashT = decodeURIComponent(location.hash.slice(1));
 let st = { level: lvPref === 'all' || ORDER.includes(lvPref) ? lvPref : 'all', topic: TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', size: SIZES.includes(LS.get('gr-size', 10)) ? LS.get('gr-size', 10) : 10, round: [], i: 0, res: [], done: false };
 if (!TTS && st.topic === 'dict') st.topic = 'tr';
@@ -98,7 +102,7 @@ const cur = () => Q[st.round[st.i]];
 function submit(text) {
   const q = cur(); if (!q || st.result) return;
   if (q.m === 'order') { const r = check(text, q.vars.filter(v => bag(words(v)) === bag(words(text))), false); st.result = r && r.ok ? r : { ok: false, v: q.ru, a: align(words(text), words(q.ru)) }; }
-  else st.result = check(text, q.vars, q.m === 'tr');
+  else st.result = check(text, q.vars, q.m === 'tr' && !DE);   // German word order is grammar: only listed versions count
   st.typed = text; st.res[st.i] = { ok: st.result.ok }; render();
 }
 function pickWord(i) {
@@ -145,26 +149,26 @@ function qHTML() {
   const meta = `<div class="meta"><span>${q.lv}${r ? ' · ' + MODES[q.m].split(' · ')[1] : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>`;
   let body = '', fb = '';
   if (q.m === 'tr') {
-    body = `<p class="en big-en">${esc(q.en)}</p><h2 class="ask">Translate into Russian</h2>` + (r ? '' : `<form class="type" id="f"><input id="ans" lang="ru" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Напишите по-русски…" value="${esc(st.typed)}"><button class="btn go">Check</button></form>`);
+    body = `<p class="en big-en">${esc(q.en)}</p><h2 class="ask">Translate into ${DE ? 'German' : 'Russian'}</h2>` + (r ? '' : `<form class="type" id="f"><input id="ans" lang="${LG.code}" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="${DE ? 'Auf Deutsch schreiben…' : 'Напишите по-русски…'}" value="${esc(st.typed)}"><button class="btn go">Check</button></form>`);
   } else if (q.m === 'dict') {
-    body = `<div class="listen"><button class="btn go" data-act="say">Listen · Слушать</button><button class="btn" data-act="slow">Slower</button></div><h2 class="ask">Write what you hear</h2>` + (r ? '' : `<form class="type" id="f"><input id="ans" lang="ru" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Пишите…"><button class="btn go">Check</button></form>`);
+    body = `<div class="listen"><button class="btn go" data-act="say">${LG.listen}</button><button class="btn" data-act="slow">Slower</button></div><h2 class="ask">Write what you hear</h2>` + (r ? '' : `<form class="type" id="f"><input id="ans" lang="${LG.code}" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="${DE ? 'Schreib, was du hörst…' : 'Пишите…'}"><button class="btn go">Check</button></form>`);
   } else if (q.m === 'order') {
-    if (!st.bank) { const t = q.ru.replace(/[.,!?]/g, '').split(/\s+/).filter(w => w && !/^[—–-]$/.test(w)); if (!/^(Анна|Москв|Санкт|Петербург|Россия)/.test(t[0])) t[0] = t[0].toLowerCase(); let b; do { b = shuf(t.map((w, i) => ({ w, i }))); } while (t.length > 2 && b.every((x, k) => x.i === k)); st.bank = b; }
+    if (!st.bank) { const t = q.ru.replace(/[.,!?]/g, '').split(/\s+/).filter(w => w && !/^[—–-]$/.test(w)); if (DE ? DE_LOWER.has(t[0].toLowerCase()) : !/^(Анна|Москв|Санкт|Петербург|Россия)/.test(t[0])) t[0] = t[0].toLowerCase(); let b; do { b = shuf(t.map((w, i) => ({ w, i }))); } while (t.length > 2 && b.every((x, k) => x.i === k)); st.bank = b; }
     const used = new Set(st.ans);
     body = `<p class="en big-en">${esc(q.en)}</p><h2 class="ask">Put the words in order</h2>
 <div class="build${r ? '' : ' live'}" id="build" aria-label="Your sentence">${st.ans.length ? st.ans.map(i => `<button class="tile" data-act="out" data-i="${i}" ${r ? 'disabled' : ''}>${esc(st.bank[i].w)}</button>`).join('') : '<span class="ph">Tap the words below</span>'}</div>
 ${r ? '' : `<div class="bank">${st.bank.map((x, i) => `<button class="tile" data-act="in" data-i="${i}" ${used.has(i) ? 'disabled aria-hidden="true"' : ''}>${esc(x.w)}</button>`).join('')}</div>
 <div class="row"><button class="btn" data-act="clear">Clear</button><button class="btn go" data-act="check" ${st.ans.length === st.bank.length ? '' : 'disabled'}>Check</button></div>`}`;
   } else {
-    body = `<h2 class="ask">Tap the word with the mistake</h2><p class="ru errline" lang="ru">${q.toks.map((t, i) => `<button class="wtok ${r ? (i === q.bad ? 'bad' : i === st.pick ? 'miss' : '') : ''}" data-act="w" data-i="${i}" ${r ? 'disabled' : ''}>${esc(t)}</button>`).join(' ')}</p>${r ? '' : `<p class="note">Exactly one word is wrong. ${q.lv === 'A1' || q.lv === 'A2' ? 'Look at agreement and case endings.' : ''}</p>`}`;
+    body = `<h2 class="ask">Tap the word with the mistake</h2><p class="ru errline" lang="${LG.code}">${q.toks.map((t, i) => `<button class="wtok ${r ? (i === q.bad ? 'bad' : i === st.pick ? 'miss' : '') : ''}" data-act="w" data-i="${i}" ${r ? 'disabled' : ''}>${esc(t)}</button>`).join(' ')}</p>${r ? '' : `<p class="note">Exactly one word is wrong. ${q.lv === 'A1' || q.lv === 'A2' ? 'Look at agreement and case endings.' : ''}</p>`}`;
   }
   if (r) {
-    if (q.m === 'err') fb = `<p class="verdict ${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓ Found it:' : '✗ The mistake was'} <s>${esc(q.wrong)}</s> → <b>${esc(q.right)}</b></p><p class="ru" lang="ru">${esc(q.ru)}</p><p class="rt">${esc(q.why)}</p>`;
+    if (q.m === 'err') fb = `<p class="verdict ${r.ok ? 'ok' : 'bad'}">${r.ok ? '✓ Found it:' : '✗ The mistake was'} <s>${esc(q.wrong)}</s> → <b>${esc(q.right)}</b></p><p class="ru" lang="${LG.code}">${esc(q.ru)}</p><p class="rt">${esc(q.why)}</p>`;
     else {
       const how = { exact: 'Right', order: 'Right (another word order, also fine)', typo: 'Right, with a small spelling slip', self: 'Counted as right' }[r.how] || '';
       const yours = q.m === 'order' ? st.ans.map(i => st.bank[i].w).join(' ') : st.typed;
-      fb = r.ok ? `<p class="verdict ok">✓ ${how}</p>${r.how === 'typo' ? `<p class="diff" lang="ru">${diffHTML(r.a)}</p>` : ''}<p class="ru" lang="ru">${esc(r.v)}</p>${q.vars.length > 1 && q.m === 'tr' ? `<p class="note">Also right: ${q.vars.filter(v => v !== r.v).map(esc).join(' · ')}</p>` : ''}`
-        : `<p class="verdict bad">✗ Not quite</p><p class="diff" lang="ru">${diffHTML(r.a)}</p><p class="note">Crossed out: not needed · green: missing or correct form</p><p class="ru" lang="ru">${esc(r.v)}</p>${q.m === 'tr' && q.vars.length > 1 ? `<p class="note">Also right: ${q.vars.filter(v => v !== r.v).map(esc).join(' · ')}</p>` : ''}${q.m === 'tr' ? `<p><button class="btn" data-act="self">My answer was right too</button></p>` : ''}`;
+      fb = r.ok ? `<p class="verdict ok">✓ ${how}</p>${r.how === 'typo' ? `<p class="diff" lang="${LG.code}">${diffHTML(r.a)}</p>` : ''}<p class="ru" lang="${LG.code}">${esc(r.v)}</p>${q.vars.length > 1 && q.m === 'tr' ? `<p class="note">Also right: ${q.vars.filter(v => v !== r.v).map(esc).join(' · ')}</p>` : ''}`
+        : `<p class="verdict bad">✗ Not quite</p><p class="diff" lang="${LG.code}">${diffHTML(r.a)}</p><p class="note">Crossed out: not needed · green: missing or correct form</p><p class="ru" lang="${LG.code}">${esc(r.v)}</p>${q.m === 'tr' && q.vars.length > 1 ? `<p class="note">Also right: ${q.vars.filter(v => v !== r.v).map(esc).join(' · ')}</p>` : ''}${q.m === 'tr' ? `<p><button class="btn" data-act="self">My answer was right too</button></p>` : ''}`;
       if (q.m === 'dict') fb += `<p class="en">${esc(q.en)}</p>`;
     }
     fb += `${TTS && q.m !== 'dict' ? `<p><button class="btn" data-act="say">Listen</button></p>` : TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}
@@ -178,8 +182,8 @@ function endHTML() {
   const rows = COACH ? used.map(m => { const a = COACH.state(ID, m, s), b = st.before[m]; const d = b === null || b === undefined || a.pct === null ? '' : a.pct > b ? ` <span class="up">▲ ${a.pct - b}</span>` : a.pct < b ? ` <span class="down">▼ ${b - a.pct}</span>` : ''; return `<li><span>${MODES[m]}</span><span class="mstate" data-st="${a.st}"><b>${a.pct === null ? '—' : a.pct + '%'}</b>${d} · ${COACH.LABEL[a.st]}</span></li>`; }).join('') : '';
   const miss = st.round.map((k, j) => ({ q: Q[k], r: st.res[j] })).filter(o => !o.r || !o.r.ok);
   return `<p class="meta"><span>End of the line</span></p><p class="big">${ok}/${n}</p><p>${ok === n ? 'A clean run.' : `${n - ok} to look at again. Mistakes come back in later rounds.`}</p>
-${rows ? `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul>` : ''}
-${miss.length ? `<h3 class="rh">Worth another look</h3><ul class="misses">${miss.map(o => `<li><span lang="ru">${esc(o.q.ru)}</span>${o.q.en ? `<br><span class="note">${esc(o.q.en)}</span>` : `<br><span class="note">${esc(o.q.why)}</span>`}</li>`).join('')}</ul>` : ''}
+${rows ? `<h3 class="rh">${LG.how}</h3><ul class="mlist">${rows}</ul>` : ''}
+${miss.length ? `<h3 class="rh">Worth another look</h3><ul class="misses">${miss.map(o => `<li><span lang="${LG.code}">${esc(o.q.ru)}</span>${o.q.en ? `<br><span class="note">${esc(o.q.en)}</span>` : `<br><span class="note">${esc(o.q.why)}</span>`}</li>`).join('')}</ul>` : ''}
 <div class="row" style="margin-top:16px"><button class="btn go" data-act="new">New round</button><a class="btn" href="../">All exercises</a></div>`;
 }
 
@@ -204,7 +208,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Enter' && cur() && cur().m === 'order' && !st.result && st.bank && st.ans.length === st.bank.length) submit(st.ans.map(i => st.bank[i].w).join(' '));
 });
 $('topics').addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.disabled) return; st.topic = b.dataset.t; LS.set(ID + '-prefs', { topic: st.topic }); history.replaceState(null, '', '#' + st.topic); newRound(); });
-$('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.level = b.dataset.l; LS.set('gr-level', st.level); newRound(); });
+$('lvls').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.level = b.dataset.l; LS.set(LG.levelKey, st.level); newRound(); });
 $('sizes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; st.size = +b.dataset.n; LS.set('gr-size', st.size); newRound(); });
 window.addEventListener('gr-progress-merged', () => render());
 $('count').textContent = D.S.length + D.M.length;

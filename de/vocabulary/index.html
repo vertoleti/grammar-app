@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wortschatz</title>
+<meta name="description" content="Russian vocabulary with Anki-style spaced repetition, sorted by CEFR level and theme.">
+<meta name="theme-color" content="#00897b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<script src="../../shared/progress.js"></script>
+<script>window.GR_LANG='de'</script>
+<script src="../../shared/lang.js"></script>
+<script src="../../shared/config.js"></script>
+<script src="../../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/engine.css">
+<link rel="stylesheet" href="../../shared/ui.css">
+<style>
+/* VOICE everyday study tool; IDEA a flashcard box like Anki, on line 6 of the metro map
+   PICTURE the big card in the middle, with the six levels as a strip above it
+   COLOUR teal line colour, white ground, Anki’s blue/red/green for new/learning/review counts
+   TYPE Unbounded + PT Sans; LAYOUT levels strip, filters, card, browse and import below */
+:root{--red:#00897b;--new:light-dark(#1565c0,#7ab4f5);--lrn:light-dark(#c62828,#ff8a80);--rev:light-dark(#2e7d32,#69d48a)}
+.m{color:#00897b}
+.levels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.lv{font:inherit;color:var(--ink);text-align:left;background:var(--soft);border:2px solid transparent;border-radius:14px;padding:10px 12px;cursor:pointer;min-height:44px;transition:border-color .2s,background-color .2s,transform .12s}
+.lv:active{transform:scale(.98)}
+.lv[aria-pressed=true]{border-color:var(--red);background:var(--bg)}
+.lv[aria-pressed=false]{opacity:.6}
+.lv b{display:block;font:700 22px/1.1 Unbounded,sans-serif;color:var(--red)}
+.lv .nm{display:block;font-size:14px;line-height:1.25;margin-top:2px;overflow-wrap:anywhere}
+.lv .ru{color:var(--mute)}
+.lv .bar{display:block;height:5px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}
+.lv .bar i{display:block;height:100%;background:var(--red)}
+.lv .ct{display:block;font-size:13px;color:var(--mute);margin-top:4px;font-variant-numeric:tabular-nums}
+.counts{display:flex;gap:18px;font:700 20px/1 Unbounded,sans-serif;font-variant-numeric:tabular-nums}
+.counts span{display:flex;flex-direction:column;gap:4px}
+.counts small{font:400 13px "PT Sans",sans-serif;color:var(--mute)}
+.c-new{color:var(--new)}.c-lrn{color:var(--lrn)}.c-rev{color:var(--rev)}
+.top .counts span{color:#fff}
+.top .counts small{color:#fff;opacity:.9}
+.top .counts span::before{content:"";display:block;width:22px;height:4px;border-radius:2px;margin-bottom:6px;background:#fff}
+.top .counts .c-new::before{background:#9ecbff}.top .counts .c-lrn::before{background:#ffb4a9}.top .counts .c-rev::before{background:#a5e8b8}
+.vcard{background:var(--soft);border-radius:20px;padding:clamp(18px,4vw,36px);min-height:360px;display:flex;flex-direction:column}
+.vtop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.face{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px 0 12px}
+.term{font:700 clamp(34px,7vw,56px)/1.1 "PT Sans",sans-serif;margin:0}
+.mean{font:700 clamp(26px,5vw,40px)/1.15 "PT Sans",sans-serif;margin:0}
+.gram{color:var(--mute);margin:8px 0 0}
+.back{border-top:2px solid var(--line);margin-top:18px;padding-top:16px;text-align:left}
+.back .row{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:4px 12px;padding:5px 0}
+.back .row span:first-child{color:var(--mute);font-size:15px}
+.ex{font-size:19px}
+.ex small{display:block;color:var(--mute);font-size:16px}
+.chip{display:inline-block;font-size:13px;padding:2px 10px;border-radius:999px;background:var(--bg);color:var(--mute);margin-right:6px}
+.say{font:inherit;font-size:15px;min-height:40px;padding:4px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;margin-top:10px;align-self:center}
+.say.sm{display:block;margin:8px 0 0;font-size:14px;min-height:36px}
+.actions{margin-top:18px}
+.show{width:100%;min-height:56px;font:700 18px "PT Sans",sans-serif;border:0;border-radius:14px;background:var(--red);color:#fff;cursor:pointer}
+.rate{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rate button{font:700 17px "PT Sans",sans-serif;min-height:60px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .12s}
+.rate button:active{transform:scale(.97)}
+.rate button small{font:400 13px "PT Sans",sans-serif;color:var(--mute)}
+.rate .again{border-color:var(--lrn);color:var(--lrn)}
+.rate .good{border-color:var(--rev);color:var(--rev)}
+.done{text-align:center;margin:auto 0}
+.done .big{color:var(--red)}
+details.box{margin-top:20px;background:var(--soft);border-radius:16px;padding:0 18px}
+details.box summary{cursor:pointer;min-height:52px;display:flex;align-items:center;font-weight:700;list-style:none}
+details.box summary::-webkit-details-marker{display:none}
+details.box summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);transition:transform .25s}
+details.box[open] summary::after{transform:rotate(-135deg)}
+details.box>div{padding-bottom:18px}
+.browse-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.browse-tools input{flex:1 1 220px;font:16px "PT Sans",sans-serif;min-height:44px;padding:6px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.blist{width:100%;font-size:16px}
+.blist td{border-bottom:1px solid var(--line);padding:6px 10px 6px 0;vertical-align:top}
+.blist td:nth-child(3),.blist td:nth-child(4){white-space:nowrap;color:var(--mute)}
+textarea{width:100%;min-height:120px;font:15px/1.4 ui-monospace,Menlo,monospace;padding:10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+select{font:16px "PT Sans",sans-serif;min-height:44px;padding:4px 10px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.msg{margin:8px 0 0;color:var(--mute)}
+.settings{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+@media(max-width:760px){.levels{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.levels{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.lv{padding:8px 4px;text-align:center;border-radius:12px}.lv b{font-size:16px}.lv .nm,.lv .ct{display:none}.lv .bar{margin-top:6px}#dirs button{padding:6px 10px}}
+@media(max-width:600px){.back .row{grid-template-columns:minmax(0,1fr)}.rate button{font-size:15px}.counts{font-size:17px}.blist td:nth-child(4){display:none}}
+</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">10</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Wortschatz</h1><p class="sub">Vocabulary · Anki-style spaced repetition · <span id="total"></span> cards, A1–C2</p></div></div>
+      <div class="counts" id="counts" aria-label="Cards to study today"></div>
+    </div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <div class="levels" id="levels" role="group" aria-label="Levels to study"></div>
+      <section class="vcard" id="card" aria-live="polite"></section>
+      <p class="keys">Keyboard: <kbd>Space</kbd> to show the answer, then <kbd>1</kbd> Again · <kbd>2</kbd> Hard · <kbd>3</kbd> Good · <kbd>4</kbd> Easy</p>
+    <details class="box" id="browse">
+        <summary>All cards · Alle Karten</summary>
+        <div>
+          <div class="browse-tools"><input id="q" type="search" placeholder="Search Russian or English" aria-label="Search cards"></div>
+          <div class="tbl"><table class="blist"><tbody id="blist"></tbody></table></div>
+          <p class="msg" id="bmore"></p>
+        </div>
+      </details>
+
+      <details class="box" id="exportbox">
+        <summary>Export to Anki · Export</summary>
+        <div>
+          <p>Download the words you have practised here as an Anki file (same columns as your anki-decks repo, note type Vocab). Each card gets the tag <code>grammar-app</code> plus <code>learned</code>, <code>learning</code> or <code>hard</code>. In Anki: File → Import, and choose the file.</p>
+          <div class="settings"><button class="btn go" id="xall">All practised words</button><button class="btn" id="xhard">Only hard words</button><button class="btn" id="xmine">Only words I added</button></div>
+          <p class="msg" id="xmsg"></p>
+        </div>
+      </details>
+      <details class="box" id="importbox">
+        <summary>Import Anki cards · Import</summary>
+        <div>
+          <p>Paste or open an Anki text export (.txt or .tsv). Files with a <code>#columns:</code> header, like your anki-decks repo, keep all their fields; otherwise the first column is read as Russian and the second as English.</p>
+          <p><input type="file" id="ifile" accept=".txt,.tsv,.csv,text/plain"></p>
+          <textarea id="itext" placeholder="das Haus&#9;house&#10;die Katze&#9;cat"></textarea>
+          <div class="settings" style="margin-top:10px">
+            <label for="ilevel">Level for cards without one</label>
+            <select id="ilevel"></select>
+            <button class="btn go" id="ido">Import</button>
+            <button class="btn" id="iclear">Remove imported cards</button>
+          </div>
+          <p class="msg" id="imsg"></p>
+          <p class="msg">The built-in decks can go straight into Anki: <a href="decks/de-core.tsv" download>de-core.tsv</a> (German cards for every level, A1 to C2).</p>
+        </div>
+      </details>
+    </div>
+    <aside class="ctrls" data-sheet>
+      <section class="grp"><h3>Card direction · Richtung</h3><div class="seg segctl" id="dirs" role="group" aria-label="Card direction"><button id="d-both" data-d="both">Both ways</button><button id="d-r" data-d="r">DE → EN</button><button id="d-p" data-d="p">EN → DE</button></div></section>
+      <section class="grp" data-fmt="{v} new a day"><h3>New cards per day · Neue pro Tag</h3><div class="seg segctl" id="sizes" role="group" aria-label="New cards per day"></div></section>
+      <section class="grp" data-all="All themes"><h3>Theme · Thema</h3><div class="seg list" id="topics" role="group" aria-label="Theme"></div></section>
+      <p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p>
+    </aside>
+  </div>
+</main>
+<script src="../../shared/levels.js"></script>
+<script src="../../shared/coach.js"></script>
+<script src="../../shared/ui.js"></script>
+<script>window.VOC_CFG = { decks: ['decks/de-core.tsv'], prefix: 'de-voc-', lang: 'de', tts: 'de-DE', all: 'Alle Themen · All', done: 'Fertig!', listen: 'Listen · Anhören', themes: {
+  basic: 'Grundlagen · Basics', people: 'Menschen · People', feelings: 'Gefühle · Feelings', health: 'Gesundheit · Health', society: 'Gesellschaft · Society',
+  communication: 'Kommunikation · Communication', abstract: 'Begriffe · Ideas', home: 'Wohnen · Home', city: 'Stadt · City', travel: 'Reisen · Travel',
+  shopping: 'Einkaufen · Shopping', food: 'Essen · Food', work: 'Arbeit · Work', study: 'Lernen · Study', time: 'Zeit · Time', qualities: 'Eigenschaften · Qualities',
+  linking: 'Verbindungswörter · Linking words', nature: 'Natur · Nature', economy: 'Wirtschaft · Economy', general: 'Allgemein · General', imported: 'Import · Imported' } };</script>
+<script src="../../vocabulary/vocab.js"></script>
+</body>
+</html>

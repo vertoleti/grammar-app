@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tabellen</title>
+<meta name="description" content="Fill in German conjugation and declension tables: verbs, articles, adjective endings and pronouns.">
+<meta name="theme-color" content="#5d7a00">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+<script src="../../shared/progress.js"></script>
+<script>window.GR_LANG='de'</script>
+<script src="../../shared/lang.js"></script>
+<script src="../../shared/config.js"></script>
+<script src="../../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/engine.css">
+<link rel="stylesheet" href="../../shared/ui.css">
+<style>:root{--red:#5d7a00}.m{color:#5d7a00}</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises" title="All exercises">9</a><div><p class="home"><a href="../">← Alle Übungen · All exercises</a></p><h1>Tabellen</h1><p class="sub">Tables · conjugation and declension · <span id="count"></span> sentences</p></div></div>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="band">
+  <div class="wrap layout">
+    <div class="maincol">
+      <section class="card" id="card" aria-live="polite"></section>
+      <p class="keys"><kbd>Enter</kbd> moves to the next gap, then checks the table</p>
+    </div>
+    <aside class="ctrls" data-sheet><section class="grp" data-all="All levels" data-fmt="Level {v}"><h3>Level · Niveau</h3><div class="seg segctl" id="lvls" role="group" aria-label="Level"></div></section><section class="grp" data-all="Recommended"><h3>Table · Tabelle</h3><div class="seg list" id="topics" role="group" aria-label="Table"></div></section><section class="grp" data-fmt="{v}"><h3>Gaps · Lücken</h3><div class="seg segctl" id="gaps" role="group" aria-label="Gaps"></div></section><section class="grp" data-fmt="{v} per round"><h3>Tables per round · Tabellen pro Runde</h3><div class="seg segctl" id="sizes" role="group" aria-label="Tables per round"></div></section><p class="note">Progress is saved in this browser. <a href="../../profile/">Sign in to keep it on every device · Profil</a></p></aside>
+  </div>
+</main>
+
+<section class="band ref">
+  <div class="wrap">
+    <h2>Cheat sheet · Spickzettel</h2>
+<div class="cols"><div><h3>Verbs</h3><p>Present: vowel changes only in du and er/sie/es (fährst, liest, nimmt). Modals have no ending in ich and er (ich kann, er muss). Präteritum: strong verbs change the vowel and have no ending in ich and er (ging, kam); weak verbs add -te (machte).</p></div><div><h3>Articles and endings</h3><p>Only the masculine accusative differs from the nominative (den, einen). Every dative plural adds -n. After der the adjective takes -e or -en; after ein it shows the gender where ein can’t (ein guter Mann, ein gutes Kind).</p></div></div>
+  </div>
+</section>
+<script src="../../shared/levels.js"></script>
+<script src="data.js"></script>
+<script src="../../shared/coach.js"></script>
+<script src="../../shared/ui.js"></script>
+<script src="../../tables/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grammatik</title>
+<meta name="description" content="German grammar and vocabulary practice with a coach that tracks your level and moves you on.">
+<meta name="theme-color" content="#d4202c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
+<script>window.GR_LANG='de'</script>
+<script src="../shared/lang.js"></script>
+<script src="../shared/config.js"></script>
+<script src="../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/ui.css">
+<style>
+/* VOICE everyday study tool with a coach
+   IDEA a metro map: the coach is the route planner, each exercise is a line, each topic a station
+   PICTURE the "next step" panel with a six-stop level line (A1–C2) filled to where you are
+   COLOUR white ground, metro red band, each line in its own metro colour, mastery green/amber/red
+   TYPE Unbounded + PT Sans
+   LAYOUT header with level; coach panel; grammar lines grouped; vocabulary; skill map; settings folded */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121214);--ink:light-dark(#141414,#f2f0ee);--mute:light-dark(#5d5853,#a9a4a0);--soft:light-dark(#f5f2ef,#1c1b1f);--line:light-dark(#dcd6d0,#38353b);--red:light-dark(#d4202c,#b81b26);--blue:light-dark(#0b5cad,#7ab4f5);--ok:light-dark(#13804a,#55d08f);--bad:light-dark(#c4122b,#ff7f89);--good:#e0a100;--weak:#d84315}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 "PT Sans",system-ui,sans-serif;overflow-x:clip}
+.band{padding-block:clamp(22px,3.5vw,44px)}
+.wrap{max-width:1100px;margin:0 auto}
+h1,h2{font-family:Unbounded,"PT Sans",sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0}
+h2{font-size:clamp(21px,2.6vw,26px);margin-bottom:14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 small{font:400 15px "PT Sans",sans-serif;color:var(--mute);letter-spacing:0}
+.top{background:var(--red);color:#fff;padding-top:max(clamp(22px,3.5vw,44px),calc(env(safe-area-inset-top) + 14px))}
+.hd{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:14px;align-items:center}
+.m{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;color:#d4202c;display:grid;place-items:center;font:700 28px/1 Unbounded,sans-serif}
+h1{font-size:clamp(30px,5vw,46px);font-weight:700}
+.sub{margin:4px 0 0;opacity:.92;font-size:16px}
+.picker p{margin:0 0 6px;font-size:14px;opacity:.92}
+.hdr{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}
+.langs{display:flex;gap:2px;background:rgba(0,0,0,.18);border-radius:999px;padding:4px;align-self:center}
+.langs a{color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-weight:700;font-size:15px;min-height:28px;display:flex;align-items:center}
+.langs a[aria-current]{background:#fff;color:#141414}
+.me{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;background:rgba(0,0,0,.16);border-radius:14px;padding:6px 14px 6px 6px;min-height:52px}
+.me svg{flex:none;width:40px;height:40px}
+.me b{display:block;font-size:15px;line-height:1.2}
+.me span{display:block;font-size:13px;opacity:.9;line-height:1.2}
+.lvrow{display:flex;gap:2px;background:rgba(0,0,0,.16);border-radius:12px;padding:3px}
+.lvrow button{font:700 15px "PT Sans",sans-serif;color:#fff;background:transparent;border:0;border-radius:9px;min-height:40px;min-width:44px;padding:4px 10px;cursor:pointer}
+.lvrow button[aria-pressed=true]{background:#fff;color:#d4202c}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* coach */
+.coach{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px}
+.lvlcard,.next{background:var(--soft);border-radius:20px;padding:clamp(16px,2.5vw,24px)}
+.lvlcard h3,.next h3{font:700 14px "PT Sans",sans-serif;color:var(--mute);margin:0 0 8px}
+.lvlcard .big{font:700 clamp(44px,7vw,64px)/1 Unbounded,sans-serif;color:var(--red);margin:0}
+.lvlcard .big small{font:400 16px "PT Sans",sans-serif;color:var(--mute);margin-left:8px;letter-spacing:0}
+.ladder{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:18px 0 6px}
+.ladder::before{content:"";position:absolute;left:8%;right:8%;top:9px;height:5px;border-radius:3px;background:var(--line)}
+.ladder i{position:absolute;left:8%;top:9px;height:5px;border-radius:3px;background:var(--red);transition:width .6s}
+.ladder span{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;font:700 13px "PT Sans",sans-serif;color:var(--mute)}
+.ladder span::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--bg);border:4px solid var(--line);box-sizing:border-box}
+.ladder span.done::before{background:var(--red);border-color:var(--red)}
+.ladder span.now::before{border-color:var(--red);box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 22%,transparent)}
+.ladder span.done,.ladder span.now{color:var(--ink)}
+.lvlcard p{margin:8px 0 0;font-size:16px}
+.lvlcard .small{font-size:15px;margin-top:12px}.lvlcard .small a{color:inherit;font-weight:700}
+.sugs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sug{display:flex;gap:12px;align-items:center;background:var(--bg);border-radius:14px;padding:12px 14px;text-decoration:none;color:inherit;border:2px solid transparent;transition:border-color .2s,transform .12s}
+.sug:active{transform:scale(.99)}
+@media(hover:hover){.sug:hover{border-color:var(--c,var(--red))}}
+.sug .dot{flex:none;width:36px;height:36px;border-radius:50%;background:var(--c,var(--red));color:#fff;display:grid;place-items:center;font:700 15px Unbounded,sans-serif}
+.sug b{display:block;font-size:17px;line-height:1.25}
+.sug span.why{display:block;font-size:15px;color:var(--mute);line-height:1.3;margin-top:2px}
+.sug .go{margin-left:auto;flex:none;font:700 15px "PT Sans",sans-serif;color:var(--c,var(--red))}
+.sug.primary{background:var(--c,var(--red));color:#fff}
+.sug.primary .dot{background:#fff;color:var(--c,var(--red))}
+.sug.primary span.why,.sug.primary .go{color:#fff;opacity:.92}
+
+/* lines */
+.group{margin-bottom:22px}
+.group h3{font:700 15px "PT Sans",sans-serif;color:var(--mute);margin:0 0 8px}
+.lines{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
+.ex{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;background:var(--soft);border-radius:18px;padding:16px 18px;border:2px solid transparent;transition:border-color .2s,transform .12s}
+.ex:active{transform:scale(.99)}
+@media(hover:hover){.ex:hover{border-color:var(--c)}}
+.exh{display:flex;gap:12px;align-items:center}
+.num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font:700 17px Unbounded,sans-serif}
+.ex h4{margin:0;font:700 19px/1.2 "PT Sans",sans-serif}
+.ex h4 span{display:block;font-weight:400;font-size:15px;color:var(--mute)}
+.segs{display:flex;gap:3px;height:8px}
+.segs i{flex:1;border-radius:3px;background:var(--line)}
+.segs i.started{background:#9aa0a6}
+.segs i.weak{background:var(--weak)}
+.segs i.good{background:var(--good)}
+.segs i.mastered{background:var(--ok)}
+.exf{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--mute)}
+.lvs{display:flex;gap:4px}
+.lvs span{font-size:12px;font-weight:700;padding:1px 7px;border-radius:999px;border:1.5px solid var(--line)}
+.lvs span.on{border-color:var(--c);color:var(--ink)}
+.ex.wide{grid-column:1/-1}
+.lvs{flex-wrap:wrap}
+
+/* skill map */
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--mute);margin:0 0 12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend span::before,.chip::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--line)}
+.legend .started::before,.chip.started::before{background:#9aa0a6}
+.legend .weak::before,.chip.weak::before{background:var(--weak)}
+.legend .good::before,.chip.good::before{background:var(--good)}
+.legend .mastered::before,.chip.mastered::before{background:var(--ok)}
+.map{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start}
+.mrow>b{font:700 15px Unbounded,sans-serif;padding-top:7px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:15px;line-height:1.2;padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--ink);text-decoration:none;border:1.5px solid transparent}
+.chip small{color:var(--mute);font-size:13px}
+.chip.mastered{opacity:.7}
+@media(hover:hover){.chip:hover{border-color:var(--line)}}
+
+/* folded settings */
+details.fold,a.fold{background:var(--soft);border-radius:16px;padding:0 18px;margin-top:10px}
+a.acctlink{display:flex;align-items:center;gap:10px;min-height:54px;font-weight:700;color:var(--ink);text-decoration:none}
+a.acctlink .st{font-weight:400;font-size:15px;color:var(--mute)}
+details.fold summary{cursor:pointer;min-height:54px;display:flex;align-items:center;gap:10px;font-weight:700;list-style:none}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);transition:transform .25s}
+details.fold[open] summary::after{transform:rotate(-135deg)}
+details.fold summary .st{font-weight:400;font-size:15px;color:var(--mute)}
+.foldin{padding-bottom:18px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 40px}
+.cols h4{font:700 16px "PT Sans",sans-serif;margin:0 0 6px}
+.cols p{margin:0 0 10px;font-size:16px}
+.btn{font:700 16px "PT Sans",sans-serif;min-height:44px;padding:6px 20px;border-radius:999px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.dotst{flex:none;width:10px;height:10px;border-radius:50%;background:var(--mute)}
+.dotst.ok{background:var(--ok)}
+.dotst.bad{background:var(--bad)}
+input[type=password]{width:100%;font:16px "PT Sans",sans-serif;min-height:44px;padding:6px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.msg{color:var(--mute);font-size:15px;margin:6px 0 0}
+.msg.err{color:var(--bad)}
+ol.steps{margin:6px 0 10px;padding-left:1.2em;font-size:16px}
+@media(max-width:760px){.coach{grid-template-columns:minmax(0,1fr)}.cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.m{width:42px;height:42px;font-size:22px}.lvrow{overflow-x:auto;scrollbar-width:none}.lvrow::-webkit-scrollbar{display:none}.lvrow button{flex:none}.picker{width:100%}.sug{padding:10px 12px}.sug .go{display:none}}
+@media(prefers-reduced-motion:reduce){.ladder i,.ex,.sug{transition:none}}
+</style>
+</head>
+<body>
+<header class="top band">
+  <div class="wrap hd">
+    <div class="brand"><div class="m" aria-hidden="true">D</div><div><h1>Grammatik</h1><p class="sub">German grammar and vocabulary · Deutsche Grammatik und Wortschatz</p></div></div>
+    <div class="hdr">
+    <nav class="langs" aria-label="Language"><a href="../?ru" data-lang="ru">Русский</a><a href="./" data-lang="de" aria-current="page">Deutsch</a></nav>
+    <a class="me" id="me" href="../profile/"></a>
+    <div class="picker"><p id="lvl-lbl">My level · Mein Niveau</p><div class="lvrow" id="lvrow" role="group" aria-labelledby="lvl-lbl"></div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="band" aria-labelledby="h-next">
+    <div class="wrap">
+      <h2 id="h-next">Wie weiter? <small>Next step</small></h2>
+      <div class="coach">
+        <div class="lvlcard" id="lvlcard"></div>
+        <div class="next"><h3>Suggested for you · Empfehlungen</h3><ul class="sugs" id="sugs"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0" aria-labelledby="h-lines">
+    <div class="wrap">
+      <h2 id="h-lines">Linien <small>Exercises</small></h2>
+      <div id="groups"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0" aria-labelledby="h-map">
+    <div class="wrap">
+      <h2 id="h-map">Kompetenzkarte <small>Skill map: every grammar topic by level</small></h2>
+      <p class="legend"><span>not started</span><span class="started">just started</span><span class="weak">needs work</span><span class="good">good</span><span class="mastered">mastered</span></p>
+      <div class="map" id="map"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0" id="progress" aria-labelledby="h-set">
+    <div class="wrap">
+      <h2 id="h-set">Einstellungen <small>Progress and app</small></h2>
+      <a class="fold acctlink" href="../profile/"><span class="dotst ok"></span>Account and profile · Konto <span class="st" id="acct-st">goal, streak, charts, login</span></a>
+      <details class="fold" id="fold-progress">
+        <summary><span class="dotst" id="sdot"></span>Your progress · Dein Fortschritt <span class="st" id="sstate">Checking…</span></summary>
+        <div class="foldin cols">
+          <div>
+            <h4>Backup file · Sicherungskopie</h4>
+            <p>Download everything the app remembers as one file, and restore it on any device. Newer progress always wins, so restoring never replaces recent work with older data.</p>
+            <div class="btns"><button class="btn fill" id="bexp">Download backup</button><label class="btn" for="bimp" tabindex="0">Restore from file</label><input type="file" id="bimp" accept="application/json,.json" hidden></div>
+            <p class="msg" id="bmsg"></p>
+          </div>
+          <div>
+            <h4>Sync with GitHub · Synchronisieren</h4>
+            <div id="sync-off">
+              <p>Keep progress in a private Gist on your GitHub account so your phone and computer stay in step.</p>
+              <ol class="steps">
+                <li>On github.com open Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.</li>
+                <li>Under Account permissions, set <b>Gists</b> to <b>Read and write</b>.</li>
+                <li>Paste the token here, once on each device.</li>
+              </ol>
+              <input type="password" id="tok" placeholder="github_pat_…" autocomplete="off" aria-label="GitHub token">
+              <div class="btns"><button class="btn fill" id="bcon">Connect</button></div>
+            </div>
+            <div id="sync-on" hidden>
+              <p>Synced with a private Gist on your GitHub account. The token is stored only in this browser.</p>
+              <div class="btns"><button class="btn fill" id="bsync">Sync now</button><button class="btn" id="bdis">Disconnect this device</button></div>
+            </div>
+            <p class="msg" id="smsg"></p>
+          </div>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Keep it on your phone · Installieren</summary>
+        <div class="foldin cols">
+          <div><h4>iPhone and iPad</h4><p>Open this page in Safari, tap Share, then “Add to Home Screen”. It opens full screen and works offline.</p></div>
+          <div><h4>Android and computers</h4><p>In Chrome, open the menu and choose “Install app” or “Add to Home screen”.</p><button class="btn" id="install" hidden>Install Грамматика</button></div>
+        </div>
+      </details>
+    </div>
+  </section>
+</main>
+
+<script src="../shared/levels.js"></script>
+<script src="../shared/catalog-de.js"></script>
+<script src="../shared/coach.js"></script>
+<script>
+{
+const $=id=>document.getElementById(id);
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const C=window.GRCoach,CAT=window.CATALOG,ORDER=C.ORDER;
+const GRAM=CAT.filter(x=>x.topics),VOC=CAT.find(x=>x.vocab),PRAC=CAT.filter(x=>x.practice);
+const GROUPS=[['verbs','Verben · Verbs'],['nouns','Nomen und Präpositionen · Nouns and prepositions'],['adj','Adjektive · Adjectives'],['syntax','Satzbau · Sentence structure'],['adv','Fortgeschritten · Advanced'],['vocab','Wortschatz · Vocabulary']];
+const lvName=c=>{const l=window.CEFR.find(x=>x.code===c);return l?`${l.en} · ${l.ru}`:''};
+const short=n=>n.split(' · ')[0];
+
+function vocab(){
+  const s=LS.get('de-voc-srs',{}),now=Date.now(),end=new Date();end.setHours(23,59,59,999);
+  let due=0;const learned=new Set(),started=new Set();
+  Object.entries(s).forEach(([k,v])=>{const id=k.split('|')[0];started.add(id);if(v.q==='review')learned.add(id);if((v.q==='review'&&v.due<=end.getTime())||(v.q!=='review'&&v.due<=now+20*60000))due++});
+  return{due,learned:learned.size,started:started.size};
+}
+function suggestions(est){
+  const out=[],lvl=LS.get('de-level','all');
+  const target=lvl!=='all'?lvl:(est.working||'A1');
+  const v=vocab();
+  const placed=LS.get('de-placed',null);
+  if(!placed&&est.answers<40)out.push({c:'#3d3d3d',n:'?',title:'Find your level: placement test',why:'16 questions from A1 to B2. Skips the topics you already know',href:'placement/'});
+  const dueN0=GRAM.reduce((a,L)=>a+C.dueReviews(L.id).length,0);
+  out.push({c:'#141414',n:'★',title:'Daily mix · about 10 minutes',why:(dueN0?`${dueN0} grammar mistake${dueN0>1?'s':''} due, then`:'One question from each line,')+' your weakest topics across all grammar',href:'mix/'});
+  if(v.due)out.push({c:VOC.c,n:VOC.n,title:`Review ${v.due} flashcard${v.due>1?'s':''}`,why:'Due today: spaced repetition works best on time',href:VOC.href});
+  const all=[];GRAM.forEach(L=>{const s=C.stats(L.id);L.topics.forEach(t=>all.push(Object.assign({L,t},C.state(L.id,t.k,s))))});
+  const weak=all.filter(x=>x.st==='weak').sort((a,b)=>a.pct-b.pct)[0];
+  if(weak)out.push({c:weak.L.c,n:weak.L.n,title:`Strengthen: ${short(weak.t.name)}`,why:`${weak.pct}% right lately · ${weak.L.ru}`,href:`${weak.L.href}#${weak.t.k}`,level:weak.t.lv});
+  const atT=all.filter(x=>x.t.lv===target&&x.t.count);
+  const cont=atT.filter(x=>x.st==='started')[0];
+  const fresh=atT.filter(x=>x.st==='new')[0];
+  const allSolid=atT.length&&atT.every(x=>C.solid(x.st));
+  const nextLv=ORDER[ORDER.indexOf(target)+1];
+  if(allSolid&&nextLv&&all.some(x=>x.t.lv===nextLv)){
+    const first=all.filter(x=>x.t.lv===nextLv&&!C.solid(x.st))[0];
+    out.push({c:'#141414',n:nextLv,title:`Move up to ${nextLv}`,why:`All ${target} grammar topics are solid.${first?' Start with '+short(first.t.name)+'.':''}`,href:first?`${first.L.href}#smart`:'#',setLevel:nextLv});
+  }else if(cont&&(!weak||cont.t!==weak.t))out.push({c:cont.L.c,n:cont.L.n,title:`Continue: ${short(cont.t.name)}`,why:`${target} · ${cont.n} answers so far · ${cont.L.ru}`,href:`${cont.L.href}#${cont.t.k}`,level:target});
+  else if(fresh)out.push({c:fresh.L.c,n:fresh.L.n,title:`New for you: ${short(fresh.t.name)}`,why:`${target} · ${fresh.L.ru} · ${fresh.L.en}`,href:`${fresh.L.href}#${fresh.t.k}`,level:target});
+  if(out.length<3){
+    const score=L=>{const s=C.stats(L.id);return L.topics.filter(t=>(lvl==='all'||t.lv===target)&&!C.solid(C.state(L.id,t.k,s).st)).length};
+    const best=GRAM.slice().sort((a,b)=>score(b)-score(a))[0];
+    if(best&&score(best))out.push({c:best.c,n:best.n,title:`Recommended round: ${best.ru}`,why:`Mixes weak spots with new ${lvl==='all'?'':target+' '}topics and skips what you’ve mastered`,href:`${best.href}#smart`});
+  }
+  if(out.length<3&&!v.started)out.push({c:VOC.c,n:VOC.n,title:'Start the flashcards',why:`${VOC.total} words from A1 to C2`,href:VOC.href});
+  return out.slice(0,4);
+}
+function draw(){
+  const lvl=LS.get('de-level','all');
+  $('lvrow').innerHTML=`<button id="p-all" data-l="all" aria-pressed="${lvl==='all'}">All</button>`+window.CEFR.map(l=>`<button id="p-${l.code}" data-l="${l.code}" aria-pressed="${lvl===l.code}" title="${l.en} · ${l.ru} (${l.test})">${l.code}</button>`).join('');
+  const est=C.estimate(GRAM);
+  C.logLevel(est);
+  const pf=C.profile(),td=C.today(),sk=C.streak(),fr=Math.min(1,td.done/td.goal),R=16,LN=2*Math.PI*R;
+  $('me').innerHTML=`<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${R}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5"/><circle cx="20" cy="20" r="${R}" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="${LN}" stroke-dashoffset="${LN*(1-fr)}" transform="rotate(-90 20 20)"/><text x="20" y="25" text-anchor="middle" fill="#fff" style="font:700 13px 'PT Sans',sans-serif">${(pf.name||'I').slice(0,1).toUpperCase()}</text></svg><span><b>Today ${td.done}/${td.goal}</b><span>${sk.now} day streak · Profile</span></span>`;
+  const reachedIdx=est.reached?ORDER.indexOf(est.reached):-1,workIdx=est.working?ORDER.indexOf(est.working):-1;
+  const wp=est.working&&est.per[est.working]?est.per[est.working]:null;
+  const frac=wp?wp.solid/wp.total:0;
+  const width=reachedIdx<0?0:Math.min(84,(reachedIdx+(wp&&workIdx===reachedIdx+1?frac:0))*(84/5));
+  $('lvlcard').innerHTML=`<h3>Your grammar level · Dein Niveau</h3>
+<p class="big">${est.reached||'—'}<small>${est.reached?lvName(est.reached):'not enough answers yet'}</small></p>
+<div class="ladder" aria-hidden="true"><i style="width:${width}%"></i>${ORDER.map((c,i)=>`<span class="${i<=reachedIdx?'done':i===workIdx?'now':''}">${c}</span>`).join('')}</div>
+<p>${est.answers?(wp?`Working on <b>${est.working}</b>: ${wp.solid} of ${wp.total} topics solid. A level counts as reached when 70% of its topics are good or mastered.`:'Every level with grammar topics is reached.'):'Answer a few rounds and the coach will estimate your level and suggest what to do next.'}</p><p class="small"><a href="placement/">${LS.get('de-placed',null)?'Retake':'Take'} the placement test</a> · <a href="../profile/">Progress charts</a></p>`;
+  const sg=suggestions(est);
+  $('sugs').innerHTML=sg.map((x,i)=>`<li><a class="sug${i===0?' primary':''}" href="${x.href}" style="--c:${x.c}" ${x.level?`data-level="${x.level}"`:''} ${x.setLevel?`data-set="${x.setLevel}"`:''}><span class="dot">${x.n}</span><span><b>${x.title}</b><span class="why">${x.why}</span></span><span class="go">Go →</span></a></li>`).join('')||'<li class="msg">Nothing to suggest yet.</li>';
+  const v=vocab();
+  const card=L=>{
+    if(L.vocab)return`<a class="ex wide" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="de">${L.ru}<span>${L.en} · ${L.total} words · flashcards with spaced repetition</span></h4></div><div class="segs" aria-hidden="true"><i class="mastered" style="flex:${v.learned}"></i><i class="started" style="flex:${Math.max(0,v.started-v.learned)}"></i><i style="flex:${Math.max(1,L.total-v.started)}"></i></div><div class="exf"><span>${v.started?`${v.learned} learned · ${v.started} started · ${v.due} due today`:'Not started yet'}</span><span class="lvs">${ORDER.filter(c=>L.levels[c]).map(c=>`<span class="${lvl===c?'on':''}">${c} ${L.levels[c]}</span>`).join('')}</span></div></a>`;
+    if(L.practice){const s=C.stats(L.id),ms=L.modes.map(m=>Object.assign({m},C.state(L.id,m.k,s))),n=ms.reduce((a,x)=>a+x.n,0);
+      return`<a class="ex" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="de">${L.ru}<span>${L.en} · ${L.total} ${L.unit}</span></h4></div><div class="segs" title="One bar per exercise" aria-hidden="true">${ms.map(x=>`<i class="${x.st==='new'?'':x.st}"></i>`).join('')}</div><div class="exf"><span>${n?ms.filter(x=>x.n).map(x=>`${x.m.name.split(' · ')[1]} ${x.pct}%`).join(' · '):L.d}</span><span class="lvs">${ORDER.filter(c=>L.levels[c]).map(c=>`<span class="${lvl===c?'on':''}">${c}</span>`).join('')}</span></div></a>`}
+    const s=C.stats(L.id),states=L.topics.map(t=>C.state(L.id,t.k,s));
+    const mastered=states.filter(x=>x.st==='mastered').length,started=states.filter(x=>x.n).length;
+    const lvs=ORDER.filter(c=>L.topics.some(t=>t.lv===c));
+    const area=(GROUPS.find(g=>g[0]===L.group)||['',''])[1].split(' · ')[1];
+    return`<a class="ex" href="${L.href}" style="--c:${L.c}"><div class="exh"><span class="num">${L.n}</span><h4 lang="de">${L.ru}<span>${L.en} · ${L.total} sentences</span></h4></div><div class="segs" title="One bar per topic" aria-hidden="true">${states.map(x=>`<i class="${x.st==='new'?'':x.st}"></i>`).join('')}</div><div class="exf"><span>${started?`${mastered} of ${L.topics.length} topics mastered`:`${L.topics.length} topics · not started`}</span><span class="lvs">${lvs.map(c=>`<span class="${lvl===c?'on':''}">${c}</span>`).join('')}</span></div></a>`;
+  };
+  const order=['verbs','nouns','adj','syntax','adv'];
+  $('groups').innerHTML=`<div class="group"><h3>Grammatik · Grammar</h3><div class="lines">${GRAM.slice().sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group)).map(card).join('')}</div></div><div class="group"><h3>Fertigkeiten · Skills: whole sentences and tables</h3><div class="lines">${PRAC.map(card).join('')}</div></div><div class="group"><h3>Wortschatz · Vocabulary</h3><div class="lines">${card(VOC)}</div></div>`;
+  $('map').innerHTML=ORDER.filter(c=>GRAM.some(L=>L.topics.some(t=>t.lv===c))).map(c=>`<div class="mrow"><b>${c}</b><div class="chips">${GRAM.flatMap(L=>{const s=C.stats(L.id);return L.topics.filter(t=>t.lv===c).map(t=>{const m=C.state(L.id,t.k,s);return`<a class="chip ${m.st==='new'?'':m.st}" href="${L.href}#${t.k}" data-level="${c}" title="${L.en}: ${C.LABEL[m.st]}">${short(t.name)}<small>${m.pct!==null?m.pct+'%':L.ru}</small></a>`})}).join('')}</div></div>`).join('');
+}
+draw();
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-level],a[data-set]');if(!a)return;if(a.dataset.set){LS.set('de-level',a.dataset.set);if(a.getAttribute('href')==='#'){e.preventDefault();draw()}}else LS.set('de-level',a.dataset.level)});
+$('lvrow').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;LS.set('de-level',b.dataset.l);const v=LS.get('de-voc-settings',{});v.levels=b.dataset.l==='all'?window.CEFR.map(l=>l.code):[b.dataset.l];LS.set('de-voc-settings',v);draw()});
+window.GR_NO_TOAST=true;
+document.querySelectorAll('.langs a').forEach(a=>a.addEventListener('click',()=>LS.set('gr-lang',a.dataset.lang)));
+window.addEventListener('gr-progress-merged',draw);
+window.addEventListener('pageshow',e=>{if(e.persisted)draw()});
+
+const P=window.GRProgress;
+const ago=t=>{const s=Math.round((Date.now()-t)/1000);return s<60?'just now':s<3600?Math.round(s/60)+' min ago':s<86400?Math.round(s/3600)+' h ago':new Date(t).toLocaleDateString()};
+if(!P||!P.available){$('sstate').textContent='this browser is blocking saved data';$('sdot').className='dotst bad';$('fold-progress').open=true}
+else P.on(s=>{
+  $('sync-off').hidden=s.synced;$('sync-on').hidden=!s.synced;
+  $('sdot').className='dotst '+(s.error?'bad':'ok');
+  $('sstate').textContent=s.error?`sync problem: ${s.error}`:s.busy?'syncing…':s.synced?`saved and synced (${s.last?ago(s.last):'not yet'})`:'saved on this device only';
+  if(s.error)$('fold-progress').open=true;
+});
+$('bexp').onclick=()=>{P.exportFile();$('bmsg').textContent='Backup downloaded. Keep the file somewhere safe, for example in your cloud drive.'};
+$('bimp').onchange=async()=>{const f=$('bimp').files[0];if(!f)return;try{const ch=await P.importFile(f);$('bmsg').textContent=ch?'Progress restored.':'This device already had everything in that file.';draw()}catch(e){$('bmsg').textContent=e.message||'That file couldn’t be read.'}$('bimp').value=''};
+document.querySelector('label[for=bimp]').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('bimp').click()}});
+$('bcon').onclick=async()=>{const t=$('tok').value.trim();if(!t){$('smsg').textContent='Paste your token first.';return}$('bcon').disabled=true;$('smsg').className='msg';$('smsg').textContent='Connecting…';
+  try{await P.connect(t);$('tok').value='';$('smsg').textContent='Connected. Progress is now synced.';draw()}catch(e){$('smsg').className='msg err';$('smsg').textContent=e.message}$('bcon').disabled=false};
+$('bsync').onclick=async()=>{await P.sync();draw()};
+$('bdis').onclick=()=>{P.disconnect();$('smsg').className='msg';$('smsg').textContent='This device no longer syncs. Your Gist on GitHub is kept.'};
+if(location.hash==='#progress')$('fold-progress').open=true;
+
+let deferred=null;const btn=$('install');
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;btn.hidden=false});
+btn.addEventListener('click',async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;btn.hidden=true});
+try{if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(()=>{}))}catch(e){}
+}
+</script>
+</body>
+</html>

@@ -9,7 +9,8 @@ Q.forEach(q => { q.lv = q.lv || (EX.levels && EX.levels[q.t]) || 'B1'; });
 const LEVELS = (window.CEFR || []).filter(l => Q.some(q => q.lv === l.code));
 const $ = id => document.getElementById(id);
 const shuf = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/[.,!?«»"]/g, '').replace(/\s+/g, ' ').trim();
+const LG = window.GR_L || { code: 'ru', tts: 'ru-RU', root: '../', levelKey: 'gr-level', smart: 'Рекомендуем · Recommended', all: 'Все темы · All topics', miss: 'Мои ошибки · My mistakes', how: 'How you’re doing · Ваш уровень', listen: 'Listen · Слушать', typeHint: 'Type the form in Cyrillic', typeNote: 'You can type е instead of ё.', norm: s => String(s).toLowerCase().replace(/ё/g, 'е') };
+const norm = s => LG.norm(s).replace(/[.,!?«»"„“]/g, '').replace(/\s+/g, ' ').trim();
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const LS = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
@@ -17,7 +18,7 @@ const LS = {
 };
 const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
 const SIZES = [5, 10, 20, 30, 0];
-const TOP = Object.assign({ smart: EX.smartName || 'Рекомендуем · Recommended', all: 'Все темы · All topics' }, EX.topics, { miss: 'Мои ошибки · My mistakes' });
+const TOP = Object.assign({ smart: EX.smartName || LG.smart, all: LG.all }, EX.topics, { miss: LG.miss });
 const COACH = window.GRCoach;
 const NAMES = Object.assign({}, EX.topics);
 const miss = new Set(LS.get(EX.id + '-miss', []));
@@ -33,8 +34,8 @@ const TTS = 'speechSynthesis' in window;
 function say(text, slow) {
   if (!TTS) return;
   const u = new SpeechSynthesisUtterance(text.replace(/\u0301/g, ''));
-  u.lang = 'ru-RU'; u.rate = slow ? 0.7 : 0.95;
-  const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().startsWith('ru'));
+  u.lang = LG.tts; u.rate = slow ? 0.7 : 0.95;
+  const v = speechSynthesis.getVoices().find(x => x.lang && x.lang.toLowerCase().startsWith(LG.code));
   if (v) u.voice = v;
   speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
@@ -43,7 +44,7 @@ const spoken = q => q.ru.replace('___', full(q));
 const full = q => (GP(q) ? optLabel(q.o1[q.a1]) + ' ' : '') + q.forms[q.a2];
 const opt = o => EX.opts[o.kind] || { name: o.kind, use: '' };
 const optLabel = o => o.label || opt(o).name;
-const optHTML = o => { const t = optLabel(o); const i = t.indexOf(' · '); return i < 0 ? t : `<span lang="ru">${t.slice(0, i)}</span><small class="en2">${t.slice(i + 3)}</small>`; };
+const optHTML = o => { const t = optLabel(o); const i = t.indexOf(' · '); return i < 0 ? t : `<span lang="${LG.code}">${t.slice(0, i)}</span><small class="en2">${t.slice(i + 3)}</small>`; };
 
 function reveal(el) {
   if (!el) return;
@@ -158,7 +159,7 @@ function qHTML() {
     if (st.mode !== 'type') {
       body = `<div class="opts">${st.fo.map((f, k) => { let c = ''; if (st.step === 3) { if (f === ans) c = 'ok'; else if (f === st.pickF) c = 'bad'; } if (fx === 'f' && f === st.pickF) c += fxc(r.f); return `<button class="opt ${c}" data-act="f" data-k="${esc(f)}" ${st.step === 3 ? 'disabled' : ''}><kbd>${k + 1}</kbd>${f}</button>`; }).join('')}</div>`;
     } else if (st.step === 2) {
-      body = `<form class="type" id="tf"><input id="ans" lang="ru" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the form in Cyrillic" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">You can type е instead of ё.</p>`;
+      body = `<form class="type" id="tf"><input id="ans" lang="${LG.code}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${LG.typeHint}" aria-label="Your answer"><button class="btn go" type="submit">Check</button></form><p class="note">${LG.typeNote}</p>`;
     } else body = `<p class="quick ${r.f ? 'ok' : 'bad'}">${r.f ? 'Right: ' : `You wrote “${esc(st.pickF)}”. Correct: `}${ans}.</p>`;
     s2 = one ? `<div class="step one" id="s2"><h2>Fill the gap${q.hint ? ` · <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>` : `<div class="step ${fx === 'a' ? 'in' : ''}" id="s2"><h2><b>2</b> Choose the form${q.hint ? ` of <em>${q.hint}</em>` : ''}${q.tag && st.step === 3 ? `<span class="tag">${q.tag}</span>` : ''}</h2>${body}</div>`;
   }
@@ -181,7 +182,7 @@ ${one ? `<p class="verdict ${r.f ? 'ok' : 'bad'}">${r.f ? '✓ Right:' : '✗ No
   const L = (window.CEFR || []).find(l => l.code === q.lv);
   const up = st.topic === 'smart' && st.frontier && st.frontier.up && st.i === 0 && st.step === (one ? 2 : 1) ? `<p class="coachline">${st.frontier.base} is solid here, so this round adds ${st.frontier.up} sentences.</p>` : '';
   return `${up}<div class="meta"><span>${q.lv}${st.step === 3 ? ' · ' + (EX.label ? EX.label(q) : (NAMES[q.t] || TOP[q.t])) : ''}</span><span>Station ${st.i + 1} of ${st.round.length}</span></div>
-${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">Listen · Слушать</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="ru">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
+${st.mode === 'listen' && st.step < 3 && TTS ? `<div class="listen"><button class="btn go" data-act="say">${LG.listen}</button><button class="btn" data-act="slow">Slower</button><span class="note">Pick the form you hear. The sentence appears after you answer.</span></div>` : `<p class="ru" lang="${LG.code}">${mark(a)}<span class="gap ${gc}">${gap}</span>${mark(b)}</p><p class="en">${q.en}</p>${st.mode === 'listen' && TTS ? `<p><button class="btn" data-act="say">Listen again</button></p>` : ''}`}
 ${one ? '' : `<div class="step"><h2><b>1</b> ${q.s1 || EX.step1}</h2><div class="opts">${b1}</div>${quick}</div>`}${s2}${exp}`;
 }
 
@@ -193,7 +194,7 @@ function endHTML() {
   const ms = st.round.map((k, j) => ({ q: Q[k], r: st.res[j] })).filter(o => !(o.r.a && o.r.f));
   return `<p class="meta"><span>End of the line</span></p><p class="big">${tot}/${max}</p>
 <p>${tot === max ? 'A perfect ride: every answer right.' : one ? `You got ${right} of ${n} right.` : `You got ${st.res.filter(r => r.a).length} of ${n} choices and ${st.res.filter(r => r.f).length} of ${n} forms right.`}</p>
-${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="ru">${o.q.ru.replace('___', '<b>' + full(o.q) + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
+${ms.length ? `<h3 style="font:700 17px 'PT Sans',sans-serif;margin:20px 0 0">Worth another look (saved to My mistakes)</h3><ul class="misses">${ms.map(o => `<li><span lang="${LG.code}">${o.q.ru.replace('___', '<b>' + full(o.q) + '</b>')}</span><br><span class="note">${o.q.en} Rule: ${EX.rules[o.q.rule][0]}.</span></li>`).join('')}</ul>` : ''}
 ${report()}
 <div class="btns" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px"><button class="btn go" data-act="new" id="again">${st.topic === 'smart' ? 'Next recommended round' : 'New round'}</button>${nextButtons()}</div>`;
 }
@@ -208,7 +209,7 @@ function report() {
   }).join('');
   const nx = EX.multi ? null : COACH.nextStep(EX.id, Q, NAMES, st.level);
   st.next = nx;
-  return `<h3 class="rh">How you’re doing · Ваш уровень</h3><ul class="mlist">${rows}</ul>${nx ? `<p class="coachline">${nx.text}</p>` : ''}${EX.after ? EX.after() : ''}`;
+  return `<h3 class="rh">${LG.how}</h3><ul class="mlist">${rows}</ul>${nx ? `<p class="coachline">${nx.text}</p>` : ''}${EX.after ? EX.after() : ''}`;
 }
 function nextButtons() {
   const nx = st.next; if (!nx) return '';
@@ -259,7 +260,7 @@ function toggleMore() {
   if (st.open) setTimeout(() => reveal(p), RM.matches ? 0 : 120);
 }
 const savePrefs = () => LS.set(EX.id + '-prefs', { topic: st.topic, mode: st.mode });
-function setLevel(l) { st.level = l; LS.set('gr-level', l); newRound(); }
+function setLevel(l) { st.level = l; LS.set(LG.levelKey, l); newRound(); }
 function setTopic(t) { st.topic = t; savePrefs(); newRound(); const b = $('t-' + t); if (b) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); }
 
 $('card').addEventListener('click', e => {
@@ -292,10 +293,10 @@ $('sizes').addEventListener('click', e => { const b = e.target.closest('button')
 
 const prefs = LS.get(EX.id + '-prefs', {});
 const size = LS.get('gr-size', 10);
-const lvPref = LS.get('gr-level', 'all');
+const lvPref = LS.get(LG.levelKey, 'all');
 const hashT = decodeURIComponent((location.hash || '').slice(1));
 st = { level: lvPref === 'all' || LEVELS.some(l => l.code === lvPref) ? lvPref : 'all', topic: EX.lockTopic ? 'smart' : TOP[hashT] ? hashT : TOP[prefs.topic] ? prefs.topic : 'smart', mode: ['type', 'listen'].includes(prefs.mode) ? prefs.mode : 'pick', size: SIZES.includes(size) ? size : 10, round: [], i: 0, res: [], step: 1, o1: [], fo: [], p1: null, pickF: null, open: LS.get('gr-open', false) === true, steps: LS.get('gr-steps', 'one') === 'two' ? 'two' : 'one' };
 newRound();
-try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(() => {})); } catch (e) {}
+try { if ('serviceWorker' in navigator && window.top === window && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register(LG.root + 'sw.js', { scope: LG.root }).catch(() => {})); } catch (e) {}
 window.__gr = { answer: () => full(cur()) };   // used by the automated tests
 }

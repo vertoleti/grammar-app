@@ -13,7 +13,7 @@
   panel.setAttribute('aria-label', 'Settings');
   const head = document.createElement('div');
   head.className = 'sheethead';
-  head.innerHTML = '<span class="handle" aria-hidden="true"></span><h2>Settings · Настройки</h2><button class="done" type="button">Done</button>';
+  head.innerHTML = '<span class="handle" aria-hidden="true"></span><h2>' + (window.GR_L ? window.GR_L.settings : 'Settings · Настройки') + '</h2><button class="done" type="button">Done</button>';
   panel.prepend(head);
 
   const bar = document.createElement('div');
