@@ -155,3 +155,6 @@ a.fold::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px 
 .slink{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 12px;margin:6px 4px 0 0;font:14px Inter,sans-serif;cursor:pointer}
 body.noscroll{overflow:hidden}
 @media(max-width:420px){.hh .hsub{display:none}}
+.remrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.remrow label{font-size:13px;color:var(--mute)}
+.remrow input,.remrow select{font:15px Inter,sans-serif;min-height:40px;padding:4px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}

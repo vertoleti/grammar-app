@@ -81,6 +81,17 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 **Dictionary** (`dictionary/`, `de/dictionary/`, `shared/dictionary.js`): every word in the decks plus your own, searchable in either language (accents, ё and umlauts ignored), filtered by status (learning, known, not started, mine) and level. Tap a word for forms, an example and audio; *Learn this word* adds it to the flashcards. You can add your own words here too.
 
+## Learning tools added in v30
+
+- **Word tables**: `python3 tools/build_forms.py` (needs `pip install pymorphy3 pymorphy3-dicts-ru`) writes full tables for the dictionary: Russian cases, adjective forms, conjugation, past and imperative from the OpenCorpora dictionary; German noun cases (with n-declension), Präsens/Präteritum/Perfekt (separable and reflexive verbs) and comparison, generated from the deck's principal parts.
+- **Words in context** (`cloze/`, `de/cloze/`): `PYTHONPATH=tools python3 tools/build_cloze.py` finds each word (in any form) in the deck examples and reading texts and makes gap sentences; words you are learning come first.
+- **Dictation**: in any text, ✎ Dictation plays each sentence and marks the words you typed.
+- **Writing** (`writing/`, `de/writing/`): six tasks per language, A2–C1, with points to cover, phrases, word count, autosaved drafts and a model answer.
+- **Today's session**: four steps on the Today tab (flashcards, daily mix, words in context, a text), ticked off from what you did today; pages opened from it link back.
+- **Story series**: `reading/series.js`, `de/reading/series.js`, eight connected episodes A1–B2.
+- **Search**: the search button on the home page; guide index built by `python3 tools/build_search.py`.
+- **Daily reminder**: Progress → Settings → Daily reminder downloads a repeating calendar event (.ics); where supported, the app icon shows how many session steps are left.
+
 ## Reading, phrasebooks, exam, review (both languages)
 
 - **Reading** (`reading/`, `de/reading/`): 10 graded texts per language (A1–C1, `texts.js`) with translations and questions. **Import a text** (paste or a .txt file) to read your own; saved in the browser and synced. Tap any word to look it up and add it to that language's flashcards (with der/die/das for German nouns). ▶ Listen reads sentence by sentence; 🎤 Speaking practice checks each sentence with speech recognition (iPhone: Safari with Siri & Dictation on).

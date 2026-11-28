@@ -126,6 +126,7 @@
     const rest = sg.filter(x => !lastHref || x.href.split('#')[0] !== lastHref).slice(0, 3);
     const ss = session(v), nDone = ss.filter(x => x.done).length, nxt = ss.find(x => !x.done);
     if (!nxt) try { sessionStorage.removeItem('gr-session'); } catch (e) {}
+    if (window.GR_BADGE) window.GR_BADGE(ss.length - nDone);
     $('sess').innerHTML = `<div class="shead"><b>Today’s session</b><span>${nDone} of ${ss.length} done</span></div>
 <ol class="steps">${ss.map((x, i) => `<li><a class="step${x.done ? ' done' : ''}${x === nxt ? ' now' : ''}" href="${withS(x.href)}"><span class="ck">${x.done ? '✓' : i + 1}</span><span class="nt"><b ${x.lang ? `lang="${x.lang}"` : ''}>${esc(x.title)}</b><small>${esc(x.why)}</small></span><span class="chev" aria-hidden="true"></span></a></li>`).join('')}</ol>
 ${nxt ? `<a class="hbtn" href="${withS(nxt.href)}">${nDone ? 'Next step' : 'Start the session'}</a>` : '<p class="sdone">All done for today. Well done!</p>'}`;
@@ -200,6 +201,36 @@ ${wp ? `<p class="note">Working on <b>${est.working}</b>: ${wp.solid} of ${wp.to
   addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; ib.hidden = false; });
   ib.addEventListener('click', async () => { if (!deferred) return; deferred.prompt(); try { await deferred.userChoice; } catch (e) {} deferred = null; ib.hidden = true; });
   try { if ('serviceWorker' in navigator && location.protocol === 'https:') addEventListener('load', () => navigator.serviceWorker.register(H.sw, H.code === 'de' ? { scope: '../' } : undefined).catch(() => {})); } catch (e) {}
+
+  // ---------- daily reminder (calendar file) and app badge ----------
+  const REM = 'gr-reminder';
+  function remState() { const r = LS.get(REM, null); $('remst').textContent = r ? `every day at ${r.t}` : 'not set'; if (r) { $('remt').value = r.t; $('remd').value = String(r.d); } }
+  function ics(t, d) {
+    const [hh, mm] = t.split(':').map(Number), now = new Date(), start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, mm);
+    if (start < now) start.setDate(start.getDate() + 1);
+    const end = new Date(start.getTime() + d * 60000), f = x => `${x.getFullYear()}${String(x.getMonth() + 1).padStart(2, '0')}${String(x.getDate()).padStart(2, '0')}T${String(x.getHours()).padStart(2, '0')}${String(x.getMinutes()).padStart(2, '0')}00`;
+    const url = location.href.split('#')[0].split('?')[0] + '#today', st = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    const name = H.code === 'de' ? 'Deutsch üben · Grammatik' : 'Русский: практика · Грамматика';
+    return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Grammatika//Reminder//EN', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT', `UID:grammatika-${H.code}-daily@vertoleti.github.io`, `DTSTAMP:${st}`,
+      `DTSTART:${f(start)}`, `DTEND:${f(end)}`, 'RRULE:FREQ=DAILY', `SUMMARY:${name}`, `DESCRIPTION:Today’s session (${d} min): ${url}`, `URL:${url}`,
+      'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${name}`, 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n') + '\r\n';
+  }
+  $('remadd').addEventListener('click', () => {
+    const t = $('remt').value || '19:00', d = +$('remd').value || 15;
+    const blob = new Blob([ics(t, d)], { type: 'text/calendar' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = `grammatika-${H.code}-reminder.ics`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    LS.set(REM, { t, d }); remState();
+    $('remmsg').textContent = 'Open the downloaded file and tap “Add” (iPhone: “Add All”). To change the time later, delete the old event and add a new one.';
+  });
+  remState();
+  function badge(n) { try { if (!('setAppBadge' in navigator)) return; if (n) navigator.setAppBadge(n).catch(() => {}); else navigator.clearAppBadge().catch(() => {}); } catch (e) {} }
+  if ('setAppBadge' in navigator) {
+    $('badgebox').hidden = false;
+    const on = () => window.Notification && Notification.permission === 'granted';
+    const mark = () => { $('badgeon').textContent = on() ? 'Badge is on ✓' : 'Turn on the badge'; $('badgeon').disabled = on(); };
+    mark(); $('badgeon').addEventListener('click', async () => { try { if (window.Notification) await Notification.requestPermission(); } catch (e) {} mark(); draw(); });
+  }
+  window.GR_BADGE = badge;
 
   draw();
   show(location.hash === '#settings' ? 'progress' : location.hash.slice(1));

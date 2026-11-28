@@ -76,6 +76,13 @@
     <p class="legend"><span>grey: started</span><span>orange: needs work</span><span>yellow: good</span><span>green: mastered</span></p><div class="map" id="map"></div></div></details>
   <h3 class="sh">Settings</h3>
   <a class="fold" href="profile/">Account and profile <small>login, sync, daily goal</small></a>
+  <details class="fold" id="fold-rem"><summary>Daily reminder <small id="remst">not set</small></summary><div class="foldin">
+    <p>Add a short daily study slot to your phone’s calendar. The calendar reminds you, even when the app is closed, and the event links straight to today’s session.</p>
+    <div class="remrow"><label for="remt">Time</label><input type="time" id="remt" value="19:00"><label for="remd">Length</label><select id="remd"><option value="10">10 min</option><option value="15" selected>15 min</option><option value="20">20 min</option><option value="30">30 min</option></select></div>
+    <div class="btns"><button class="btn fill" id="remadd">Add to my calendar</button></div>
+    <p class="msg" id="remmsg"></p>
+    <div id="badgebox" hidden><h4>Badge on the app icon</h4><p>Show how many session steps are left on the home-screen icon (iPhone: the app must be on the Home Screen).</p><div class="btns"><button class="btn" id="badgeon">Turn on the badge</button></div></div>
+  </div></details>
   <details class="fold"><summary>Appearance <small>light or dark</small></summary><div class="foldin"><div class="themepick" role="group" aria-label="Appearance"><button data-th="auto">Like my phone</button><button data-th="light">Light</button><button data-th="dark">Dark</button></div></div></details>
   <details class="fold" id="fold-data"><summary>Backup <small id="sstate">checking…</small></summary><div class="foldin">
     <p>Download everything the app remembers as one file, and restore it on any device. Newer progress always wins.</p>
