@@ -56,6 +56,7 @@ svg text{font:13px "PT Sans",sans-serif;fill:var(--mute)}
 ol.steps{margin:6px 0 0;padding-left:1.2em;font-size:15px}
 code{font-size:14px;background:var(--bg);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
 @media(max-width:860px){.s4,.s5,.s6,.s7,.s8{grid-column:span 12}}
+#acct .small{font-size:14px;color:var(--mute);margin:6px 0 0}
 </style>
 </head>
 <body>
@@ -178,11 +179,11 @@ function acct(){
   box.innerHTML=`<p>Sign in to save your progress to your account and use it on every device. No password: we email you a 6-digit code.</p>
 <label class="f" for="a-email">Email</label><input class="t" id="a-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
 <div class="btns"><button class="btn go" id="a-send">Send code</button></div>
-<div id="a-step2" hidden><label class="f" for="a-code">6-digit code from the email</label><input class="t" id="a-code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"><div class="btns"><button class="btn go" id="a-verify">Sign in</button></div></div>
+<div id="a-step2" hidden><label class="f" for="a-code">The code from the email, or its sign-in link</label><input class="t" id="a-code" autocomplete="one-time-code" autocapitalize="none" spellcheck="false" placeholder="123456 or paste the link"><p class="small">If the email has a link instead of a code, don’t tap it: press and hold the link, choose <b>Copy Link</b>, and paste it here.</p><div class="btns"><button class="btn go" id="a-verify">Sign in</button></div></div>
 <p class="msg" id="a-msg"></p>`;
   const msg=(t,e)=>{$('a-msg').textContent=t;$('a-msg').className='msg'+(e?' err':'')};
-  $('a-send').onclick=async()=>{const e=$('a-email').value.trim();if(!/\S+@\S+\.\S+/.test(e)){msg('Enter your email address.',1);return}$('a-send').disabled=true;msg('Sending…');try{await A.sendCode(e);$('a-step2').hidden=false;$('a-code').focus();msg('Code sent. Check your inbox (and spam).')}catch(err){msg(err.message,1)}$('a-send').disabled=false};
-  $('a-verify').onclick=async()=>{const e=$('a-email').value.trim(),c=$('a-code').value.trim();if(!c){msg('Enter the code.',1);return}$('a-verify').disabled=true;msg('Signing in…');try{await A.verify(e,c);acct();draw()}catch(err){msg(err.message,1);$('a-verify').disabled=false}};
+  $('a-send').onclick=async()=>{const e=$('a-email').value.trim();if(!/\S+@\S+\.\S+/.test(e)){msg('Enter your email address.',1);return}$('a-send').disabled=true;msg('Sending…');try{await A.sendCode(e);$('a-step2').hidden=false;$('a-code').focus();msg('Email sent. Check your inbox (and spam).')}catch(err){msg(err.message,1)}$('a-send').disabled=false};
+  $('a-verify').onclick=async()=>{const e=$('a-email').value.trim(),c=$('a-code').value.trim();if(!c){msg('Enter the code or paste the link.',1);return}$('a-verify').disabled=true;msg('Signing in…');try{await A.verify(e,c);acct();draw()}catch(err){msg(err.message,1);$('a-verify').disabled=false}};
 }
 $('p-name').addEventListener('change',()=>{const p=profile();p.name=$('p-name').value.trim();saveProfile(p)});
 $('p-target').addEventListener('change',()=>{const p=profile();p.target=$('p-target').value;saveProfile(p)});

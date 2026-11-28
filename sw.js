@@ -1,5 +1,5 @@
 // Offline support for Грамматика. Bump VERSION whenever files change.
-const VERSION = 'grammar-v11';
+const VERSION = 'grammar-v12';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
   'verbs-of-motion/', 'verbs-of-motion/index.html',

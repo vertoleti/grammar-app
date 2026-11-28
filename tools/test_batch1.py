@@ -13,6 +13,10 @@ async def main():
             if "/auth/v1/otp" in u: return await route.fulfill(status=200,body="{}",content_type="application/json")
             if "/auth/v1/verify" in u:
                 body=json.loads(r.post_data)
+                if body.get("token_hash"):
+                    ok=body["token_hash"]=="abc123hash" and body["type"]=="magiclink"
+                    if not ok: return await route.fulfill(status=403,content_type="application/json",body=json.dumps({"msg":"bad link"}))
+                    return await route.fulfill(status=200,content_type="application/json",body=json.dumps({"access_token":"A","refresh_token":"R","expires_in":3600,"user":{"id":"u1","email":"me@example.com"}}))
                 if body["token"]!="123456": return await route.fulfill(status=403,content_type="application/json",body=json.dumps({"msg":"Token has expired or is invalid"}))
                 return await route.fulfill(status=200,content_type="application/json",body=json.dumps({"access_token":"A","refresh_token":"R","expires_in":3600,"user":{"id":"u1","email":body["email"]}}))
             if "/rest/v1/progress" in u and r.method=="GET":
@@ -57,7 +61,7 @@ async def main():
         p2=await ctx2.new_page(); p2.on("pageerror",lambda e:errs.append(str(e)))
         await p2.goto(B+"profile/"); await p2.wait_for_timeout(300)
         await p2.fill("#a-email","me@example.com"); await p2.click("#a-send"); await p2.wait_for_timeout(200)
-        await p2.fill("#a-code","123456"); await p2.click("#a-verify"); await p2.wait_for_timeout(1500)
+        await p2.fill("#a-code","https://demo.supabase.co/auth/v1/verify?token=abc123hash&type=magiclink&redirect_to=http://localhost:3000"); await p2.click("#a-verify"); await p2.wait_for_timeout(1500)
         print("device 2 name:", await p2.evaluate("JSON.parse(localStorage.getItem('gr-profile')||'{}').name"), "| answers today:", await p2.evaluate("Object.values(JSON.parse(localStorage.getItem('gr-log')||'{}'))[0]"))
         print("auth kept out of sync data:", "gr-auth" not in db["u1"]["data"])
         await p2.screenshot(path="/tmp/b1-prof-dt.png", full_page=True)

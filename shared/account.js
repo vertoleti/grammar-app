@@ -38,9 +38,29 @@
   async function sendCode(email) {
     await call('/auth/v1/otp', { method: 'POST', body: JSON.stringify({ email: email.trim(), create_user: true }) });
   }
-  async function verify(email, code) {
-    const b = await call('/auth/v1/verify', { method: 'POST', body: JSON.stringify({ type: 'email', email: email.trim(), token: code.trim() }) });
+  // Accepts the 6-digit code, or the sign-in link from the email pasted in. On the free plan Supabase's
+  // emails contain only a link, and on iPhone a link would open Safari instead of the home-screen app,
+  // so the link is read here and never opened.
+  function fromLink(text) {
+    const m = String(text).match(/https?:\/\/\S+/); if (!m) return null;
+    try { const u = new URL(m[0].replace(/[)>\]"']+$/, '')); const t = u.searchParams.get('token') || u.searchParams.get('token_hash'); return t ? { token_hash: t, type: u.searchParams.get('type') || 'magiclink' } : null; } catch (e) { return null; }
+  }
+  async function verify(email, input) {
+    const link = fromLink(input);
+    const body = link ? { type: link.type, token_hash: link.token_hash } : { type: 'email', email: email.trim(), token: String(input).replace(/\s/g, '') };
+    const b = await call('/auth/v1/verify', { method: 'POST', body: JSON.stringify(body) });
+    if (!b.user) b.user = await call('/auth/v1/user', { method: 'GET', headers: { Authorization: 'Bearer ' + b.access_token } });
     save(b); attach();
+  }
+  // If the link was opened in a browser instead, Supabase sends you back here with the session in the address.
+  async function fromRedirect() {
+    const h = new URLSearchParams(location.hash.slice(1));
+    if (!enabled || !h.get('access_token') || !h.get('refresh_token')) return;
+    history.replaceState(null, '', location.pathname + location.search);
+    try {
+      const user = await call('/auth/v1/user', { method: 'GET', headers: { Authorization: 'Bearer ' + h.get('access_token') } });
+      save({ access_token: h.get('access_token'), refresh_token: h.get('refresh_token'), expires_in: +h.get('expires_in') || 3600, user }); attach();
+    } catch (e) {}
   }
   function signOut() {
     if (session) call('/auth/v1/logout', { method: 'POST' }, true).catch(() => {});
@@ -66,4 +86,5 @@
   };
   window.GRAccount = api;
   attach();
+  fromRedirect();
 })();
