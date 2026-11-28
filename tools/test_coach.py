@@ -8,8 +8,8 @@ async def main():
         for h in ["https://fonts.googleapis.com/**","https://fonts.gstatic.com/**"]: await ctx.route(h,lambda r:r.fulfill(status=200,body=""))
         pg=await ctx.new_page(); errs=[]; pg.on("pageerror",lambda e:errs.append(str(e)))
         await pg.goto(B); await pg.wait_for_timeout(400)
-        print("FRESH level:", (await pg.locator(".big").inner_text()).replace("\n"," "))
-        print("FRESH sugs:", [t.split("\n")[1] for t in await pg.locator(".sug").all_inner_texts()])
+        print("FRESH level:", await pg.locator(".lvbig").inner_text())
+        print("FRESH hero:", (await pg.locator("#hero .ht b").inner_text()), "| sugs:", [t.split("\n")[0] for t in await pg.locator("#sugs li").all_inner_texts()])
         await pg.screenshot(path="/tmp/c-fresh.png", full_page=True)
         # first visit to cases: default topic is Recommended; topic hidden before answering
         await pg.goto(B+"cases/"); await pg.wait_for_timeout(400)
@@ -37,8 +37,8 @@ async def main():
         await pg.screenshot(path="/tmp/c-report.png", full_page=False)
         # home page with progress
         await pg.goto(B); await pg.wait_for_timeout(400)
-        print("HOME level:", (await pg.locator(".big").inner_text()).replace("\n"," "), "|", await pg.locator(".lvlcard p").last.inner_text())
-        print("HOME sugs:", [t.replace("\n"," / ") for t in await pg.locator(".sug").all_inner_texts()])
+        print("HOME level:", (await pg.locator(".lvbig").inner_text()), "|", await pg.locator("#lvl .note").inner_text() if await pg.locator("#lvl .note").count() else "")
+        print("HOME continue:", (await pg.locator("#hero").inner_text()).replace("\n"," / "), "| sugs:", [t.replace("\n"," / ") for t in await pg.locator("#sugs li").all_inner_texts()])
         await pg.screenshot(path="/tmp/c-home.png", full_page=True)
         # new exercises
         for ex in ["prep","compare"]:

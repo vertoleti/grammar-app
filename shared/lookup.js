@@ -62,7 +62,7 @@
     LS.set(C.prefix + 'custom', custom); pin(lang, id);
     if (cache[lang]) cache[lang].push({ id, term: word, k: key(word), b: base(word), meaning, mine: true });
   }
-  window.GRLookup = { addCustom, load, key };
+  window.GRLookup = { addCustom, load, key, pin };
 
   // ---------- popover ----------
   let box = null, ctx = null;

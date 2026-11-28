@@ -1,0 +1,141 @@
+"""Builds the two home pages, index.html (Russian) and de/index.html (German), from one template.
+Behaviour lives in shared/hub.js, styles in shared/hub.css. Run: python3 tools/build_hub.py"""
+import json
+
+ICON = {
+  'today': '<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+  'grammar': '<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7h6M9 10.5h4"/>',
+  'words': '<rect x="7" y="3" width="13" height="15" rx="2"/><path d="M4 7v12a2 2 0 0 0 2 2h10"/><path d="M11 12.5l2.2-6 2.3 6M11.8 10.7h2.9"/>',
+  'reading': '<path d="M2.5 5.5C6 4.5 9 5 12 7c3-2 6-2.5 9.5-1.5v13c-3.5-1-6.5-.5-9.5 1.5-3-2-6-2.5-9.5-1.5z"/><path d="M12 7v13"/>',
+  'progress': '<path d="M5 20v-6M12 20V9M19 20V4"/>',
+}
+TABS = [('today', 'Today'), ('grammar', 'Grammar'), ('words', 'Words'), ('reading', 'Reading'), ('progress', 'Progress')]
+
+LANGS = {
+  'ru': dict(path='index.html', R='', title='Грамматика', mark='Р', sub='Russian · Русский', color='#c8102e',
+             catalog='catalog.js', texts='reading/texts.js',
+             cur=('./?ru', 'ru'), other=('de/', 'de'),
+             head='', redirect='<script>try{if(JSON.parse(localStorage.getItem(\'gr-lang\')||\'"ru"\')===\'de\'&&!/[?&]ru\\b/.test(location.search))location.replace(\'de/\'+location.hash)}catch(e){}</script>\n',
+             h=dict(today='Сегодня', grammar='Грамматика', words='Слова', reading='Чтение', progress='Прогресс'),
+             cfg=dict(code='ru', levelKey='gr-level', placedKey='gr-placed', vp='voc-', read='gr-', last='gr-last', exams='gr-exams', me='Я',
+                      mix='Ежедневно', dict='Словарь', profile='profile/', sw='sw.js', examName='ТРКИ',
+                      groups=[['verbs', 'Глаголы · Verbs'], ['nouns', 'Существительные · Nouns and prepositions'], ['adj', 'Прилагательные · Adjectives'], ['adv', 'Продвинутый · Advanced']])),
+  'de': dict(path='de/index.html', R='../', title='Grammatik', mark='D', sub='German · Deutsch', color='#1f2937',
+             catalog='catalog-de.js', texts='reading/texts.js',
+             cur=('./', 'de'), other=('../?ru', 'ru'),
+             head="<script>window.GR_LANG='de'</script>\n", redirect='',
+             h=dict(today='Heute', grammar='Grammatik', words='Wörter', reading='Lesen', progress='Fortschritt'),
+             cfg=dict(code='de', levelKey='de-level', placedKey='de-placed', vp='de-voc-', read='de-', last='de-last', exams='de-exams', me='I',
+                      mix='Täglich', dict='Wörterbuch', profile='../profile/', sw='../sw.js', examName='Goethe',
+                      groups=[['verbs', 'Verben · Verbs'], ['nouns', 'Nomen · Nouns and prepositions'], ['adj', 'Adjektive · Adjectives'], ['syntax', 'Satzbau · Sentence structure'], ['adv', 'Fortgeschritten · Advanced']])),
+}
+
+
+def page(L):
+    R = L['R']
+    ru_first = L['cfg']['code'] == 'ru'
+    sw = ('<a href="./?ru" data-lang="ru" aria-current="page">RU</a><a href="de/" data-lang="de">DE</a>' if ru_first
+          else '<a href="../?ru" data-lang="ru">RU</a><a href="./" data-lang="de" aria-current="page">DE</a>')
+    tabs = ''.join(f'<a href="#{k}" data-tab="{k}"><svg viewBox="0 0 24 24" aria-hidden="true">{ICON[k]}</svg>{n}</a>' for k, n in TABS)
+    h = L['h']
+    return f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+{L['redirect']}<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{L['title']}</title>
+<meta name="description" content="{L['sub'].split(' · ')[0]} grammar, vocabulary and reading practice with a coach that tracks your level.">
+<meta name="theme-color" content="#f6f6f4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="{R}manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="{R}icons/favicon-32.png">
+<link rel="apple-touch-icon" href="{R}icons/apple-touch-icon.png">
+<script src="{R}shared/progress.js"></script>
+{L['head']}<script src="{R}shared/lang.js"></script>
+<script src="{R}shared/config.js"></script>
+<script src="{R}shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root{{--red:{L['color']}}}</style>
+<link rel="stylesheet" href="{R}shared/theme.css">
+<link rel="stylesheet" href="{R}shared/hub.css">
+</head>
+<body>
+<header class="hh"><div class="hw">
+  <span class="hm" aria-hidden="true">{L['mark']}</span>
+  <div><h1>{L['title']}</h1><p class="hsub">{L['sub']}</p></div>
+  <nav class="langs" aria-label="Language">{sw}</nav>
+  <a id="me" href="{L['cfg']['profile']}" aria-label="Profile and daily goal"></a>
+</div></header>
+<nav class="tabs" aria-label="Sections">{tabs}</nav>
+
+<main class="hw">
+<section class="tab" id="t-today" aria-label="Today">
+  <div id="hero"></div>
+  <div class="goal" id="goal"></div>
+  <h3 class="sh">Up next</h3>
+  <ul class="nxl" id="sugs"></ul>
+</section>
+
+<section class="tab" id="t-grammar" aria-label="Grammar" hidden>
+  <h2>Grammar <small lang="{L['cfg']['code']}">{h['grammar']}</small></h2>
+  <div class="lvpick"><span>My level</span><div class="seg" id="lvrow" role="group" aria-label="My level"></div></div>
+  <a class="guidecard" href="grammar/"><span class="gi" aria-hidden="true">§</span><span><b>Grammar guide</b><span class="s">Every rule explained, with tables and examples</span></span><span class="go">Open →</span></a>
+  <div id="gram"></div>
+  <h3 class="sh">Whole sentences and tables</h3>
+  <div class="cards" id="skills"></div>
+</section>
+
+<section class="tab" id="t-words" aria-label="Words" hidden>
+  <h2>Words <small lang="{L['cfg']['code']}">{h['words']}</small></h2>
+  <div id="words"></div>
+</section>
+
+<section class="tab" id="t-reading" aria-label="Reading" hidden>
+  <h2>Reading and speaking <small lang="{L['cfg']['code']}">{h['reading']}</small></h2>
+  <div id="rnext"></div>
+  <h3 class="sh">All texts and dialogues</h3>
+  <div id="reading"></div>
+</section>
+
+<section class="tab" id="t-progress" aria-label="Progress" hidden>
+  <h2>Progress <small lang="{L['cfg']['code']}">{h['progress']}</small></h2>
+  <div class="panel" id="lvl"></div>
+  <div class="nums" id="nums"></div>
+  <h3 class="sh">Check and test yourself</h3>
+  <ul class="nxl" id="plinks"></ul>
+  <details class="fold mapfold"><summary>Skill map <small>every grammar topic by level</small></summary><div class="foldin">
+    <p class="legend"><span>grey: started</span><span>orange: needs work</span><span>yellow: good</span><span>green: mastered</span></p><div class="map" id="map"></div></div></details>
+  <h3 class="sh">Settings</h3>
+  <a class="fold" href="{L['cfg']['profile']}">Account and profile <small>login, sync, daily goal</small></a>
+  <details class="fold"><summary>Appearance <small>light or dark</small></summary><div class="foldin"><div class="themepick" role="group" aria-label="Appearance"><button data-th="auto">Like my phone</button><button data-th="light">Light</button><button data-th="dark">Dark</button></div></div></details>
+  <details class="fold" id="fold-data"><summary>Backup <small id="sstate">checking…</small></summary><div class="foldin">
+    <p>Download everything the app remembers as one file, and restore it on any device. Newer progress always wins.</p>
+    <div class="btns"><button class="btn fill" id="bexp">Download backup</button><label class="btn" for="bimp" tabindex="0">Restore from file</label><input type="file" id="bimp" accept="application/json,.json" hidden></div><p class="msg" id="bmsg"></p>
+    <h4>Older option: sync through a GitHub Gist</h4>
+    <div id="sync-off"><p>Signing in on the profile page is simpler. If you prefer GitHub, paste a token with Gist read and write access.</p><input type="password" id="tok" placeholder="github_pat_…" autocomplete="off" aria-label="GitHub token"><div class="btns"><button class="btn" id="bcon">Connect</button></div></div>
+    <div id="sync-on" hidden><div class="btns"><button class="btn" id="bsync">Sync now</button><button class="btn" id="bdis">Disconnect</button></div></div><p class="msg" id="smsg"></p>
+  </div></details>
+  <details class="fold"><summary>Install on your phone</summary><div class="foldin"><p><b>iPhone:</b> open in Safari, tap Share, then “Add to Home Screen”. <b>Android:</b> Chrome menu → “Install app”.</p><button class="btn" id="install" hidden>Install</button></div></details>
+</section>
+</main>
+
+<script>window.HUB={json.dumps(L['cfg'], ensure_ascii=False)}</script>
+<script src="{R}shared/levels.js"></script>
+<script src="{R}shared/{L['catalog']}"></script>
+<script src="{R}shared/coach.js"></script>
+<script src="{L['texts']}"></script>
+<script src="{R}shared/hub.js"></script>
+</body>
+</html>
+'''
+
+
+if __name__ == '__main__':
+    for k, L in LANGS.items():
+        open(L['path'], 'w', encoding='utf-8').write(page(L))
+        print('built', L['path'])

@@ -45,7 +45,7 @@ ${my.length ? `<ul class="tl">${my.map(item).join('')}</ul>` : '<p class="note">
 
   // ---------- reader ----------
   function reader(t) {
-    S.stop(); st.playing = false;
+    S.stop(); st.playing = false; document.body.dataset.where = t.title;
     const paras = (t.p || []).map(x => Array.isArray(x) ? x : [x, '']);
     const hasTr = paras.some(x => x[1]);
     let sid = 0;
@@ -99,7 +99,7 @@ ${q.length ? `<section class="xcard" lang="en"><h2>${DE ? 'Fragen · Questions' 
 
   function render() {
     const m = location.hash.match(/^#t=(.+)$/), t = m && byId(decodeURIComponent(m[1]));
-    if (t) reader(t); else { S.stop(); st.playing = false; library(); }
+    if (t) reader(t); else { S.stop(); st.playing = false; document.body.dataset.where = ''; library(); }
     window.scrollTo(0, 0);
   }
   document.addEventListener('click', e => {

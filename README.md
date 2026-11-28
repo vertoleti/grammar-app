@@ -69,6 +69,18 @@ Both lines record progress per exercise type with the coach, and wrong answers c
 
 `mix/` is one short daily session across every grammar line: mistakes that are due again come first, then one recommended question per line, lines with the most left to learn first. `placement/` asks four questions at each level from A1 to B2; passing a level takes 3 of 4. Accepting the result sets your level one above the highest level passed and marks the topics up to it as known. Both are built from all the lines' `data.js` files by `shared/multi.js`, and `tools/build_pages.py` generates their pages.
 
+## Home page
+
+`index.html` (Russian) and `de/index.html` (German) are built by `python3 tools/build_hub.py` from one template; behaviour in `shared/hub.js`, styles in `shared/hub.css`. Five tabs (a bottom bar on phones, a top bar on wider screens):
+
+- **Today**: *Continue where you left off* first (the last exercise, text or situation you opened, saved as `gr-last` / `de-last` by `shared/progress.js`), then today's goal and streak, then up to three next steps.
+- **Grammar**: level picker, the grammar guide, the grammar lines by area, whole sentences and tables.
+- **Words**: flashcards, the dictionary, der · die · das.
+- **Reading**: the next text at your level, all texts, the phrasebook.
+- **Progress**: level, streak and totals, weekly review, charts, mock exam, placement test, skill map, settings.
+
+**Dictionary** (`dictionary/`, `de/dictionary/`, `shared/dictionary.js`): every word in the decks plus your own, searchable in either language (accents, ё and umlauts ignored), filtered by status (learning, known, not started, mine) and level. Tap a word for forms, an example and audio; *Learn this word* adds it to the flashcards. You can add your own words here too.
+
 ## Reading, phrasebooks, exam, review (both languages)
 
 - **Reading** (`reading/`, `de/reading/`): 10 graded texts per language (A1–C1, `texts.js`) with translations and questions. **Import a text** (paste or a .txt file) to read your own; saved in the browser and synced. Tap any word to look it up and add it to that language's flashcards (with der/die/das for German nouns). ▶ Listen reads sentence by sentence; 🎤 Speaking practice checks each sentence with speech recognition (iPhone: Safari with Siri & Dictation on).
@@ -88,7 +100,7 @@ Pages built by `python3 tools/build_extra.py`. Tests: `tools/test_reading.py`, `
 
 `shared/theme.css` (loaded last on every page) gives the app its calm style: one typeface (Inter), white cards, the line colour only as a small accent, a thin progress bar. Task screens show only the sentence and the choices; the translation appears after answering (or on tap, or always: Settings → Translation). A wrong answer shows the right answer and one specific reason, with links to the guide section and to the full details.
 
-Build everything: `python3 tools/build_guide.py && python3 tools/build_pages.py && python3 tools/build_vom.py && python3 tools/build_de.py && python3 tools/build_extra.py && node tools/build_catalog.js`.
+Build everything: `python3 tools/build_guide.py && python3 tools/build_pages.py && python3 tools/build_vom.py && python3 tools/build_de.py && python3 tools/build_extra.py && python3 tools/build_hub.py && node tools/build_catalog.js`.
 
 ## Deutsch · German
 

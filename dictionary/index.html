@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Словарь</title>
+<meta name="description" content="Dictionary">
+<meta name="theme-color" content="#f6f6f4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Грамматика">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<script src="../shared/progress.js"></script>
+<script src="../shared/lang.js"></script>
+<script src="../shared/config.js"></script>
+<script src="../shared/account.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/engine.css">
+<link rel="stylesheet" href="../shared/ui.css">
+<style>:root{--red:#7b5ea7}</style>
+<link rel="stylesheet" href="../shared/theme.css">
+<link rel="stylesheet" href="../shared/extra.css">
+</head>
+<body>
+<header class="top band">
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><a class="m" href="../" aria-label="All exercises">Aa</a><div><p class="home"><a href="../">← All exercises</a> · <a href="../grammar/">Grammar guide</a></p><h1>Словарь</h1><p class="sub">Dictionary · every word in the app, with your progress</p></div></div>
+      
+    </div>
+    
+  </div>
+</header>
+<main class="band">
+  <div class="wrap">
+<div id="main"></div>
+  </div>
+</main>
+<script src="../shared/speech.js"></script>
+<script src="../shared/lookup.js"></script>
+<script src="../shared/dictionary.js"></script>
+<script>try{if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(()=>{}))}catch(e){}</script>
+</body>
+</html>

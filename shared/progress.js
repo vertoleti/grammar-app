@@ -177,3 +177,19 @@ window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { lo
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && Date.now() - (syncCfg.last || 0) > 60000) sync(); });
   }
 })();
+
+/* Where you left off: the last exercise page you opened, for "Continue" on the home page.
+   Saved as gr-last (Russian) or de-last (German): { p: folder, h: hash, d: detail, at: time }.
+   Pages can set document.body.dataset.where (e.g. the text you're reading) for a better label. */
+(function () {
+  try {
+    const m = location.pathname.match(/\/(de\/)?([a-z-]+)\/(?:index\.html)?$/);
+    if (!m || ['de', 'grammar-app', 'profile', 'grammar', 'review', 'exam', 'placement'].includes(m[2])) return;
+    const key = m[1] ? 'de-last' : 'gr-last';
+    const save = () => { try { localStorage.setItem(key, JSON.stringify({ p: m[2], h: location.hash.replace(/^#/, ''), d: (document.body && document.body.dataset.where) || '', at: Date.now() })); } catch (e) {} };
+    addEventListener('DOMContentLoaded', () => setTimeout(save, 300));
+    addEventListener('hashchange', () => setTimeout(save, 300));
+    addEventListener('pagehide', save);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') save(); });
+  } catch (e) {}
+})();

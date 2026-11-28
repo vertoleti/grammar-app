@@ -58,7 +58,7 @@ async def main():
             await pg.goto("about:blank"); await pg.goto(B+"tables/#pron"); await pg.wait_for_timeout(400)
             print(tag,"pronoun inputs:", await pg.locator("#card input").count())
             await pg.goto(B); await pg.wait_for_timeout(400)
-            print(tag,"home skills cards:", await pg.locator('a.ex[href="sentences/"], a.ex[href="tables/"]').count())
+            print(tag,"home skills cards:", await pg.locator('#skills a.lc[href="sentences/"], #skills a.lc[href="tables/"]').count())
             print(tag,"errors",errs)
             await ctx.close()
         await b.close()

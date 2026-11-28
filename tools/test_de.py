@@ -108,7 +108,8 @@ async def main():
             print(tag,"de-voc-srs keys:",await pg.evaluate("Object.keys(JSON.parse(localStorage.getItem('de-voc-srs')||'{}')).length"),"| ru voc-srs:",await pg.evaluate("Object.keys(JSON.parse(localStorage.getItem('voc-srs')||'{}')).length"))
             # hubs and language switch
             await pg.goto(B+"de/"); await pg.wait_for_timeout(500)
-            print(tag,"German hub: lines",await pg.locator("a.ex").count(),"| level card:",(await pg.locator("#lvlcard .big").inner_text()).replace("\n"," "),"| suggestions:",await pg.locator("#sugs li").count())
+            await pg.click('.tabs [data-tab="grammar"]'); await pg.wait_for_timeout(200)
+            print(tag,"German hub: lines",await pg.locator("#gram a.lc").count(),"| continue:",(await pg.locator("#hero .ht b").inner_text()),"| suggestions:",await pg.locator("#sugs li").count())
             await pg.screenshot(path=f"/tmp/de-hub-{tag}.png",full_page=True)
             await pg.click('.langs a[data-lang="ru"]'); await pg.wait_for_timeout(500)
             print(tag,"switch to Russian ->",pg.url.replace(B,'/'))

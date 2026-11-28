@@ -92,42 +92,7 @@ practice('tabellen', 'tables', dict(num='9', color='#5d7a00', title='Tabellen', 
   '<kbd>Enter</kbd> moves to the next gap, then checks the table')
 print('German pages ok')
 
-# ---------- German home page, from the Russian one ----------
-import re as _re
-h = open('index.html').read()
-h = _re.sub(r'<!--redirect-->.*?<!--/redirect-->\n', '', h, flags=_re.S)
-R = [
-  ('href="manifest.webmanifest"', 'href="../manifest.webmanifest"'), ('href="icons/', 'href="../icons/'),
-  ('<script src="shared/progress.js"></script>\n', '<script src="../shared/progress.js"></script>\n<script>window.GR_LANG=\'de\'</script>\n<script src="../shared/lang.js"></script>\n'),
-  ('src="shared/catalog.js"', 'src="../shared/catalog-de.js"'), ('src="shared/', 'src="../shared/'), ('href="shared/', 'href="../shared/'),
-  ('href="profile/"', 'href="../profile/"'),
-  ('<title>Грамматика</title>', '<title>Grammatik</title>'),
-  ('content="Russian grammar and vocabulary practice with a coach that tracks your level and moves you on."', 'content="German grammar and vocabulary practice with a coach that tracks your level and moves you on."'),
-  ('<div class="m" aria-hidden="true">М</div><div><h1>Грамматика</h1><p class="sub">Russian grammar and vocabulary · Русская грамматика и лексика</p>', '<div class="m" aria-hidden="true">D</div><div><h1>Grammatik</h1><p class="sub">German grammar and vocabulary · Deutsche Grammatik und Wortschatz</p>'),
-  ('<a href="./?ru" data-lang="ru" aria-current="page">Русский</a><a href="de/" data-lang="de">Deutsch</a>', '<a href="../?ru" data-lang="ru">Русский</a><a href="./" data-lang="de" aria-current="page">Deutsch</a>'),
-  ('My level · Мой уровень', 'My level · Mein Niveau'), ('Что дальше <small>', 'Wie weiter? <small>'), ('Suggested for you · Рекомендации', 'Suggested for you · Empfehlungen'),
-  ('Линии <small>', 'Linien <small>'), ('Карта навыков · Skill map', 'Kompetenzkarte · Skill map'), ('Grammar guide · Справочник', 'Grammar guide · Grammatik'), ('Настройки <small>', 'Einstellungen <small>'),
-  ('Account and profile · Аккаунт', 'Account and profile · Konto'), ('Your progress · Ваш прогресс', 'Your progress · Dein Fortschritt'),
-  ('Backup file · Резервная копия', 'Backup file · Sicherungskopie'), ('Sync with GitHub · Синхронизация', 'Sync with GitHub · Synchronisieren'),
-  ('Keep it on your phone · Установить', 'Keep it on your phone · Installieren'), ('Appearance · Вид', 'Appearance · Ansicht'),
-  ("const GROUPS=[['verbs','Глаголы · Verbs'],['nouns','Существительные и предлоги · Nouns and prepositions'],['adj','Прилагательные · Adjectives'],['adv','Продвинутый уровень · Advanced'],['vocab','Лексика · Vocabulary']];",
-   "const GROUPS=[['verbs','Verben · Verbs'],['nouns','Nomen und Präpositionen · Nouns and prepositions'],['adj','Adjektive · Adjectives'],['syntax','Satzbau · Sentence structure'],['adv','Fortgeschritten · Advanced'],['vocab','Wortschatz · Vocabulary']];"),
-  ('Your grammar level · Ваш уровень', 'Your grammar level · Dein Niveau'),
-  ("const order=['verbs','nouns','adj','adv'];", "const order=['verbs','nouns','adj','syntax','adv'];"),
-  ('<h3>Грамматика · Grammar</h3>', '<h3>Grammatik · Grammar</h3>'), ('<h3>Навыки · Skills: whole sentences and tables</h3>', '<h3>Fertigkeiten · Skills: whole sentences and tables</h3>'),
-  ('<h3>Лексика · Vocabulary</h3>', '<h3>Wortschatz · Vocabulary</h3>'),
-  ("'gr-level'", "'de-level'"), ("'voc-srs'", "'de-voc-srs'"), ("'voc-settings'", "'de-voc-settings'"), ("'gr-placed'", "'de-placed'"),
-  ('lang="ru"', 'lang="de"'), ("(pf.name||'Я')", "(pf.name||'I')"),
-  ("navigator.serviceWorker.register('sw.js')", "navigator.serviceWorker.register('../sw.js',{scope:'../'})"),
-]
-for a, b in R:
-    if a not in h: raise SystemExit('hub: not found: ' + a[:70])
-    h = h.replace(a, b)
-h = h.replace('<a href="../?ru" data-lang="de">', '<a href="../?ru" data-lang="ru">')   # undo the generic lang="ru" swap on the switch
-left = sorted(set(_re.findall(r'[А-Яа-яЁё]+', h)) - {'Русский', 'Грамматика'})
-if left: print('Cyrillic left on the German hub:', left)
-open('de/index.html', 'w').write(h)
-print('German hub ok')
+# The German home page is built by tools/build_hub.py.
 
 # ---------- German flashcards page, from the Russian one ----------
 h = open('vocabulary/index.html').read()

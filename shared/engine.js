@@ -111,6 +111,7 @@ function renderControls() {
   $('sizes').innerHTML = SIZES.map(n => `<button id="n-${n || 'all'}" data-n="${n}" aria-pressed="${n === st.size}">${n || 'All'}</button>`).join('');
 }
 function render() {
+  try { document.body.dataset.where = NAMES[st.topic] ? String(NAMES[st.topic]).split(" · ")[0] : ""; } catch (e) {}
   renderControls();
   const n = st.round.length, done = st.res.filter(Boolean);
   const okA = done.filter(r => r.a).length, fd = done.filter(r => r.f !== undefined), okF = fd.filter(r => r.f).length;

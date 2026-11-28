@@ -24,7 +24,7 @@
   const playBtn = (t, i) => S.tts ? `<button class="mic" data-act="say" data-t="${esc(t)}" aria-label="Listen">▶</button>` : '';
   const micBtn = (t, i) => `<button class="mic" data-act="mic" data-i="${i}" data-t="${esc(t)}" aria-label="Say it">🎤</button>`;
   function situation(s) {
-    S.stop(); st.playing = false;
+    S.stop(); st.playing = false; document.body.dataset.where = s.title;
     const head = `<p class="back"><a href="#">← ${DE ? 'Alle Situationen · All situations' : 'Все ситуации · All situations'}</a></p>
 <section class="xcard pb" lang="${L}"><p class="meta"><span>${s.lv}</span><span lang="en">${esc(s.en)}</span></p><h2 class="rtitle">${esc(s.title)}</h2>
 <div class="seg segctl" id="tabs" role="group" aria-label="Section" lang="en">${TABS.map(([k, n]) => `<button data-tab="${k}" aria-pressed="${st.tab === k}">${n}</button>`).join('')}</div>`;
@@ -101,7 +101,7 @@ ${dr.ans !== null ? `<p class="note" lang="${L}">${esc(t)} — <span lang="en">$
   }
 
   function cur() { const m = location.hash.match(/^#s=(.+)$/); return m && D.find(s => s.id === m[1]); }
-  function render() { const s = cur(); if (s) situation(s); else { S.stop(); st.playing = false; list(); } window.scrollTo(0, 0); }
+  function render() { const s = cur(); if (s) situation(s); else { S.stop(); st.playing = false; document.body.dataset.where = ''; list(); } window.scrollTo(0, 0); }
   document.addEventListener('click', e => {
     const s = cur(); if (!s) return;
     const tb = e.target.closest('[data-tab]'); if (tb) { st.tab = tb.dataset.tab; st.resume = null; situation(s); return; }
