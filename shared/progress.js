@@ -5,6 +5,9 @@
    - exports and imports a backup file;
    - optionally syncs through a private GitHub Gist, so phone and computer share progress.
    Load it before any other script on the page. */
+/* Appearance: gr-theme = 'light' | 'dark' | absent (follow the phone). Applied before the page draws. */
+try { const t = JSON.parse(localStorage.getItem('gr-theme') || 'null'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+window.GRSetTheme = function (t) { try { if (t === 'light' || t === 'dark') { localStorage.setItem('gr-theme', JSON.stringify(t)); document.documentElement.dataset.theme = t; } else { localStorage.removeItem('gr-theme'); delete document.documentElement.dataset.theme; } } catch (e) {} };
 (function () {
   const PREFIXES = ['vom-', 'cases-', 'aspect-', 'numbers-', 'advanced-', 'prep-', 'compare-', 'voc-', 'gr-', 'mix-', 'placement-', 'sent-', 'tables-', 'gov-', 'de-'];
   const META = 'gr-meta', SYNC = 'gr-sync', FILE = 'grammar-app-progress.json';

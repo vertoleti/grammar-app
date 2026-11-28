@@ -140,5 +140,19 @@
   }
   // remember the estimated level once per day, for the progress chart
   function logLevel(est) { const H = get((window.GR_L && window.GR_L.levelsKey) || 'gr-levels', {}), k = dkey(); if (est.reached !== undefined && H[k] !== (est.reached || '')) { H[k] = est.reached || ''; set((window.GR_L && window.GR_L.levelsKey) || 'gr-levels', H); } }
-  window.GRCoach = { ORDER, LABEL, stats, record, state, solid, topicsOf, frontier, smartPick, nextStep, estimate, logCard, profile, today, streak, dueReviews, logLevel, dkey };
+  // ISO week key, e.g. 2026-W48 (weeks start on Monday)
+  function weekKey(d) {
+    d = d ? new Date(d) : new Date(); const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day);
+    const y = t.getUTCFullYear(), w = Math.ceil(((t - Date.UTC(y, 0, 1)) / 864e5 + 1) / 7);
+    return `${y}-W${String(w).padStart(2, '0')}`;
+  }
+  // Keeps one snapshot of every practised topic's score per week (the latest of that week), for the weekly review.
+  function snapshot(lines) {
+    const key = (window.GR_L && window.GR_L.code === 'de') ? 'de-weekly' : 'gr-weekly', all = get(key, {}), wk = weekKey(), cur = {};
+    (lines || []).forEach(L => { const s = stats(L.id); (L.topics || L.modes || []).forEach(t => { const m = state(L.id, t.k, s); if (m.n) cur[L.id + ':' + t.k] = { p: m.pct, st: m.st }; }); });
+    all[wk] = cur; const ks = Object.keys(all).sort(); while (ks.length > 12) delete all[ks.shift()];
+    set(key, all); return all;
+  }
+  window.GRCoach = { ORDER, LABEL, stats, record, state, solid, topicsOf, frontier, smartPick, nextStep, estimate, logCard, profile, today, streak, dueReviews, logLevel, dkey, weekKey, snapshot };
 })();

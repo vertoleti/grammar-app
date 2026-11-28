@@ -45,6 +45,10 @@ for (const L of LINES) {
     line.modes = [{ k: 'pres', name: 'Спряжение · Present and future' }, { k: 'past', name: 'Прошедшее время · Past tense' }, { k: 'noun', name: 'Склонение · Nouns' }, { k: 'pron', name: 'Местоимения · Pronouns' }];
     line.total = D.V.length + D.N.length + 1; line.unit = 'verbs, nouns and pronouns';
     line.levels = {}; [...D.V, ...D.N].forEach(x => { line.levels[x[0]] = (line.levels[x[0]] || 0) + 1; });
+  } else if (L.practice === 'genus') {
+    const W = {}; new Function('window', fs.readFileSync(`${L.dir}/data.js`, 'utf8'))(W);
+    line.modes = [{ k: 'genus', name: 'der · die · das' }]; line.levels = {}; line.total = 0; line.unit = 'nouns';
+    Object.values(W.GENUS).forEach(g => Object.entries(g).forEach(([l, t]) => { const n = t.trim().split('\n').length; line.levels[l] = (line.levels[l] || 0) + n; line.total += n; }));
   } else if (L.vocab) {
     const lv = {};
     ['vocabulary/decks/ru-core.tsv', 'vocabulary/decks/ru-levels.tsv'].forEach(f => fs.readFileSync(f, 'utf8').split('\n').filter(l => l && !l.startsWith('#')).forEach(l => { const c = l.split('\t')[13]; lv[c] = (lv[c] || 0) + 1; }));
@@ -68,6 +72,7 @@ const DE = [
   { id: 'de-adv', href: 'adv/', n: 7, c: '#9a7b00', ru: 'Fortgeschritten', en: 'Advanced grammar', d: 'Konjunktiv I, verbs with prepositions, participles (B2–C2)', group: 'adv', src: 'de/adv' },
   { id: 'de-sent', href: 'saetze/', n: 8, c: '#3949ab', ru: 'Sätze', en: 'Sentences', d: 'Translate, word order, dictation, find the mistake', group: 'practice', practice: 'sentences', dir: 'de/saetze' },
   { id: 'de-tables', href: 'tabellen/', n: 9, c: '#5d7a00', ru: 'Tabellen', en: 'Tables', d: 'Fill in conjugation and declension tables', group: 'practice', practice: 'tables', dir: 'de/tabellen' },
+  { id: 'de-genus', href: 'genus/', n: 11, c: '#1f8a3b', ru: 'der · die · das', en: 'Noun genders', d: 'A fast drill for the article of 275 common nouns', group: 'practice', practice: 'genus', dir: 'de/genus' },
   { id: 'de-voc', href: 'vocabulary/', n: 10, c: '#00897b', ru: 'Wortschatz', en: 'Vocabulary', d: 'Flashcards with spaced repetition', group: 'vocab', vocab: true, decks: ['de/vocabulary/decks/de-core.tsv'] }
 ];
 const LINESJS = fs.readFileSync('shared/lines.js', 'utf8');

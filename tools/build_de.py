@@ -109,7 +109,7 @@ R = [
   ('Линии <small>', 'Linien <small>'), ('Карта навыков · Skill map', 'Kompetenzkarte · Skill map'), ('Grammar guide · Справочник', 'Grammar guide · Grammatik'), ('Настройки <small>', 'Einstellungen <small>'),
   ('Account and profile · Аккаунт', 'Account and profile · Konto'), ('Your progress · Ваш прогресс', 'Your progress · Dein Fortschritt'),
   ('Backup file · Резервная копия', 'Backup file · Sicherungskopie'), ('Sync with GitHub · Синхронизация', 'Sync with GitHub · Synchronisieren'),
-  ('Keep it on your phone · Установить', 'Keep it on your phone · Installieren'),
+  ('Keep it on your phone · Установить', 'Keep it on your phone · Installieren'), ('Appearance · Вид', 'Appearance · Ansicht'),
   ("const GROUPS=[['verbs','Глаголы · Verbs'],['nouns','Существительные и предлоги · Nouns and prepositions'],['adj','Прилагательные · Adjectives'],['adv','Продвинутый уровень · Advanced'],['vocab','Лексика · Vocabulary']];",
    "const GROUPS=[['verbs','Verben · Verbs'],['nouns','Nomen und Präpositionen · Nouns and prepositions'],['adj','Adjektive · Adjectives'],['syntax','Satzbau · Sentence structure'],['adv','Fortgeschritten · Advanced'],['vocab','Wortschatz · Vocabulary']];"),
   ('Your grammar level · Ваш уровень', 'Your grammar level · Dein Niveau'),

@@ -1,0 +1,46 @@
+/* Components for the review, der/die/das, reading, phrasebook and exam pages */
+.xcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(16px,3vw,24px);margin-bottom:14px}
+.xcard>h2{font-size:17px;font-weight:650;margin:0 0 12px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.xcard>h2 small{font:400 13px Inter,sans-serif;color:var(--mute)}
+.xcard h3{font-size:13px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;margin:14px 0 6px}
+.nums4{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.nums4>div{background:var(--sunk);border-radius:10px;padding:10px 12px}
+.nums4 b{display:block;font-size:22px;font-weight:650;letter-spacing:-.02em}
+.nums4 span{font-size:13px;color:var(--mute)}
+.up{color:var(--ok);font-weight:600;white-space:nowrap}
+.down{color:var(--bad);font-weight:600;white-space:nowrap}
+.same{color:var(--mute)}
+.bars{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;height:150px;margin:18px 0 6px;padding-bottom:22px}
+.bar{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.bar i{display:block;width:100%;max-width:38px;background:var(--ink);border-radius:5px 5px 2px 2px;min-height:2px}
+.bar.future i{background:var(--line)}
+.bar span{position:absolute;bottom:-20px;font-size:12px;color:var(--mute)}
+.bar.now span{color:var(--ink);font-weight:700}
+.bar b{position:absolute;top:-2px;font-size:11px;color:var(--mute);font-weight:500}
+.bars em{position:absolute;left:0;right:0;border-top:1.5px dashed var(--mute);font:500 11px Inter,sans-serif;font-style:normal;color:var(--mute);text-align:right;pointer-events:none;line-height:0}
+ul.tl,ol.tl{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.tl li{display:flex;align-items:center;gap:10px;justify-content:space-between;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tl li a{text-decoration:none;color:inherit;flex:1;min-width:0}
+.tl li b{display:block;font-size:15px;font-weight:600}
+.tl li span{display:block;font-size:13px;color:var(--mute)}
+.tl li>span.up,.tl li>span.down{flex:none;font-size:13px}
+ol.plan{counter-reset:p}
+ol.plan li{counter-increment:p}
+ol.plan li::before{content:counter(p);flex:none;width:24px;height:24px;border-radius:7px;background:var(--sunk);display:grid;place-items:center;font:600 12px Inter,sans-serif}
+@media(hover:hover){.tl li:has(a):hover{border-color:var(--ink)}}
+
+/* der / die / das */
+.gnoun{font-size:clamp(32px,7vw,46px);font-weight:650;letter-spacing:-.02em;margin:18px 0 0;text-align:center}
+.card .en{text-align:center}
+#card .gnoun+.en{margin-bottom:22px}
+.arts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:480px;margin:0 auto}
+.art{font:600 20px Inter,sans-serif;min-height:60px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+@media(hover:hover){.art:not(:disabled):hover{border-color:var(--ink)}}
+.art.ok{border-color:var(--ok);background:var(--okbg);color:var(--ok)}
+.art.bad{border-color:var(--bad);background:var(--badbg);color:var(--bad);text-decoration:line-through}
+.art:disabled{cursor:default}
+.glist{list-style:none;padding:0;margin:0;columns:2;column-gap:20px}
+.glist li{padding:3px 0;break-inside:avoid}
+.glist span{color:var(--mute);font-size:14px}
+.rh{font-size:13px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;margin:16px 0 6px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}

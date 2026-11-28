@@ -341,6 +341,17 @@ window.CATALOG = [
   }
  },
  {
+  "id": "de-genus",
+  "href": "genus/",
+  "n": 11,
+  "c": "#1f8a3b",
+  "ru": "der · die · das",
+  "en": "Noun genders",
+  "d": "A fast drill for the article of 275 common nouns",
+  "group": "practice",
+  "practice": "genus"
+ },
+ {
   "id": "de-voc",
   "href": "vocabulary/",
   "n": 10,
