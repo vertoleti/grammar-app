@@ -10,6 +10,10 @@ create table if not exists public.progress (
 
 alter table public.progress enable row level security;
 
+-- Newer Supabase projects don't give the API roles access to new tables automatically.
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on table public.progress to authenticated;
+
 drop policy if exists "Users manage their own progress" on public.progress;
 create policy "Users manage their own progress"
   on public.progress
