@@ -68,10 +68,12 @@ def page(L):
 <header class="hh"><div class="hw">
   <span class="hm" aria-hidden="true">{L['mark']}</span>
   <div><h1>{L['title']}</h1><p class="hsub">{L['sub']}</p></div>
+  <button id="sbtn" class="iconbtn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
   <nav class="langs" aria-label="Language">{sw}</nav>
   <a id="me" href="{L['cfg']['profile']}" aria-label="Profile and daily goal"></a>
 </div></header>
 <nav class="tabs" aria-label="Sections">{tabs}</nav>
+<div id="srch" class="srch" hidden role="dialog" aria-label="Search"><div class="hw"><div class="sbar"><input id="sq" type="search" placeholder="Search words, rules, texts…" autocomplete="off" aria-label="Search"><button id="sclose" class="btnplain">Close</button></div><div id="sres"></div></div></div>
 
 <main class="hw">
 <section class="tab" id="t-today" aria-label="Today">
@@ -132,6 +134,7 @@ def page(L):
 <script src="{L['texts']}"></script>
 <script src="reading/series.js"></script>
 <script src="{R}shared/hub.js"></script>
+<script src="{R}shared/search.js"></script>
 </body>
 </html>
 '''

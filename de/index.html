@@ -29,10 +29,12 @@
 <header class="hh"><div class="hw">
   <span class="hm" aria-hidden="true">D</span>
   <div><h1>Grammatik</h1><p class="hsub">German · Deutsch</p></div>
+  <button id="sbtn" class="iconbtn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
   <nav class="langs" aria-label="Language"><a href="../?ru" data-lang="ru">RU</a><a href="./" data-lang="de" aria-current="page">DE</a></nav>
   <a id="me" href="../profile/" aria-label="Profile and daily goal"></a>
 </div></header>
 <nav class="tabs" aria-label="Sections"><a href="#today" data-tab="today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Today</a><a href="#grammar" data-tab="grammar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7h6M9 10.5h4"/></svg>Grammar</a><a href="#words" data-tab="words"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="13" height="15" rx="2"/><path d="M4 7v12a2 2 0 0 0 2 2h10"/><path d="M11 12.5l2.2-6 2.3 6M11.8 10.7h2.9"/></svg>Words</a><a href="#reading" data-tab="reading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5C6 4.5 9 5 12 7c3-2 6-2.5 9.5-1.5v13c-3.5-1-6.5-.5-9.5 1.5-3-2-6-2.5-9.5-1.5z"/><path d="M12 7v13"/></svg>Reading</a><a href="#progress" data-tab="progress"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-6M12 20V9M19 20V4"/></svg>Progress</a></nav>
+<div id="srch" class="srch" hidden role="dialog" aria-label="Search"><div class="hw"><div class="sbar"><input id="sq" type="search" placeholder="Search words, rules, texts…" autocomplete="off" aria-label="Search"><button id="sclose" class="btnplain">Close</button></div><div id="sres"></div></div></div>
 
 <main class="hw">
 <section class="tab" id="t-today" aria-label="Today">
@@ -93,5 +95,6 @@
 <script src="reading/texts.js"></script>
 <script src="reading/series.js"></script>
 <script src="../shared/hub.js"></script>
+<script src="../shared/search.js"></script>
 </body>
 </html>
