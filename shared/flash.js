@@ -11,7 +11,16 @@
   const bare = s => String(s || '').normalize('NFD').replace(/́/g, '').normalize('NFC');
   const fold = s => bare(strip(s)).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ё/g, 'е').replace(/ß/g, 'ss');
   const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-  const MIN = 60000, DAY = 86400000, LEARN = [1, 10], RELEARN = [10];
+  const MIN = 60000, DAY = 86400000;
+  // Recognising a word (DE/RU → EN) is easier than producing it (EN → DE/RU), so the two directions are
+  // scheduled differently, as two Anki presets would be: production gets an extra learning step, a lower
+  // starting ease, a shorter "easy" interval and slightly shorter review intervals. And a word's production
+  // card only appears once you can recognise it (its recognition card is due in 3 days or later).
+  const DIR = {
+    r: { learn: [1, 10], relearn: [10], ease: 2.5, easy: 4, mult: 1 },
+    p: { learn: [1, 10, 60], relearn: [10, 60], ease: 2.3, easy: 3, mult: 0.9 }
+  };
+  const UNLOCK = 3;   // days
   const LEVELS = window.CEFR || [], LV = LEVELS.map(l => l.code);
   const THEMES = VC.themes || {};
   const TL = (DE ? 'DE' : 'RU');
@@ -20,7 +29,7 @@
 
   let cards = [], byId = {}, forms = null;
   let srs = LS.get(K('srs'), {});
-  let cfg = Object.assign({ levels: LV.slice(), theme: 'all', dir: 'both', perDay: 20, auto: false }, LS.get(K('settings'), {}));
+  let cfg = Object.assign({ levels: LV.slice(), theme: 'all', dir: 'both', perDay: 20, auto: false, type: false }, LS.get(K('settings'), {}));
   const saveCfg = () => LS.set(K('settings'), cfg);
   const today = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; };
   const endOfDay = () => { const d = new Date(); d.setHours(23, 59, 59, 999); return d.getTime(); };
@@ -51,26 +60,38 @@
   const isMine = c => c.src === 'import' || /^(de-)?my-/.test(c.id);
 
   // ---------- scheduling ----------
-  function next(state, rating, now) {
-    const s = state ? Object.assign({}, state) : { q: 'learn', s: 0, ease: 2.5, ivl: 0, lap: 0, reps: 0 };
+  function next(state, rating, now, dir = 'r') {
+    const P = DIR[dir] || DIR.r;
+    const s = state ? Object.assign({}, state) : { q: 'learn', s: 0, ease: P.ease, ivl: 0, lap: 0, reps: 0 };
     if (s.q === 'learn' || s.q === 'relearn') {
-      const steps = s.q === 'learn' ? LEARN : RELEARN;
+      const steps = s.q === 'learn' ? P.learn : P.relearn;
+      s.s = Math.min(s.s || 0, steps.length - 1);
       if (rating === 1) { s.s = 0; s.due = now + steps[0] * MIN; }
       else if (rating === 2) { s.due = now + (s.s === 0 && steps[1] ? (steps[0] + steps[1]) / 2 : steps[s.s] * 1.5) * MIN; }
       else if (rating === 3 && s.s + 1 < steps.length) { s.s++; s.due = now + steps[s.s] * MIN; }
-      else { const wasLearn = s.q === 'learn'; s.ivl = rating === 4 ? (wasLearn ? 4 : Math.max(1, s.ivl) + 1) : (wasLearn ? 1 : Math.max(1, s.ivl)); s.q = 'review'; s.s = 0; s.due = now + s.ivl * DAY; }
+      else { const wasLearn = s.q === 'learn'; s.ivl = rating === 4 ? (wasLearn ? P.easy : Math.max(1, s.ivl) + 1) : (wasLearn ? 1 : Math.max(1, s.ivl)); s.q = 'review'; s.s = 0; s.due = now + s.ivl * DAY; }
     } else {
-      if (rating === 1) { s.lap++; s.ease = Math.max(1.3, s.ease - 0.2); s.ivl = 1; s.q = 'relearn'; s.s = 0; s.due = now + RELEARN[0] * MIN; }
+      if (rating === 1) { s.lap++; s.ease = Math.max(1.3, s.ease - 0.2); s.ivl = 1; s.q = 'relearn'; s.s = 0; s.due = now + P.relearn[0] * MIN; }
       else {
         if (rating === 2) { s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * 1.2)); s.ease = Math.max(1.3, s.ease - 0.15); }
-        if (rating === 3) s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * s.ease));
-        if (rating === 4) { s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * s.ease * 1.3)); s.ease += 0.15; }
+        if (rating === 3) s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * s.ease * P.mult));
+        if (rating === 4) { s.ivl = Math.max(s.ivl + 1, Math.round(s.ivl * s.ease * 1.3 * P.mult)); s.ease += 0.15; }
         s.due = now + s.ivl * DAY;
       }
     }
     s.reps = (s.reps || 0) + 1; s.m = now; delete s.pin;
     return s;
   }
+  // how hard a card is for you, from its ease and lapses (shown in Browse and on the card page)
+  function difficulty(st, dir = 'r') {
+    if (!st || !st.reps) return '';
+    const e0 = (DIR[dir] || DIR.r).ease;
+    if (st.lap >= 2 || st.ease < e0 - 0.45) return 'hard';
+    if (st.lap === 1 || st.ease < e0 - 0.1) return 'medium';
+    return 'easy';
+  }
+  // the production card waits until the word can be recognised
+  const unlocked = (c, d) => d !== 'p' || cfg.dir === 'p' || (() => { const r = srs[c.id + '|r']; return !!(r && r.q === 'review' && r.ivl >= UNLOCK); })() || !!srs[c.id + '|p'];
   function fmt(ms) {
     const m = Math.round(ms / MIN); if (m < 60) return `${Math.max(1, m)} min`;
     const h = m / 60; if (h < 24) return `${Math.round(h)} h`;
@@ -84,19 +105,30 @@
   const pinned = c => ['r', 'p'].some(d => srs[c.id + '|' + d] && srs[c.id + '|' + d].pin);
   const inScope = (c, scope) => !scope ? ((cfg.levels.includes(c.level) && (cfg.theme === 'all' || c.theme === cfg.theme)) || pinned(c) || isMine(c)) : scope === 'mine' ? isMine(c) : c.level === scope;
   function queue(scope, now = Date.now()) {
-    const end = endOfDay(), day = dayInfo(), newLeft = Math.max(0, cfg.perDay + (day.extra || 0) - day.n);
-    const learn = [], review = [], fresh = [], ahead = []; let learnToday = 0;
-    const touchedToday = id => dirs().some(d => { const s = srs[id + '|' + d]; return s && s.m && new Date(s.m).toDateString() === new Date(now).toDateString(); });
+    const end = endOfDay(), day = dayInfo();
+    const newLeft = Math.max(0, cfg.perDay + (day.extra || 0) - day.n);                       // new words (recognition)
+    const prodLeft = Math.max(0, cfg.perDay + (day.extra || 0) - (day.np || 0));              // newly unlocked production cards
+    const learn = [], review = [], fresh = [], freshP = [], ahead = []; let learnToday = 0, locked = 0;
+    const touchedToday = id => ['r', 'p'].some(d => { const s = srs[id + '|' + d]; return s && s.m && new Date(s.m).toDateString() === new Date(now).toDateString(); });
     cards.forEach(c => { if (!inScope(c, scope)) return; dirs().forEach(d => {
       const k = c.id + '|' + d, s = srs[k];
-      if (!s) { if (!touchedToday(c.id)) fresh.push(k); return; }
+      if (!s) {
+        if (!unlocked(c, d)) { locked++; return; }
+        if (!touchedToday(c.id)) (d === 'p' && cfg.dir !== 'p' ? freshP : fresh).push(k);
+        return;
+      }
       if (s.q === 'learn' || s.q === 'relearn') { if (s.due <= end) learnToday++; if (s.due <= now) learn.push(k); else if (s.due <= now + 20 * MIN) ahead.push(k); }
       else if (s.due <= end) review.push(k);
     }); });
     const by = (a, b) => srs[a].due - srs[b].due; learn.sort(by); review.sort(by); ahead.sort(by);
     const seen = new Set(), freshOne = []; fresh.forEach(k => { const id = k.split('|')[0]; if (!seen.has(id)) { seen.add(id); freshOne.push(k); } });
-    const newCards = freshOne.slice(0, newLeft);
-    return { learn, review, newCards, ahead, counts: { n: newCards.length, l: learnToday, r: review.length }, nextDue: Object.values(srs).filter(s => s.due > now).reduce((m, s) => Math.min(m, s.due), Infinity) };
+    // new cards: recognition of new words, mixed with production cards of words you already recognise
+    const nr = freshOne.slice(0, newLeft), np = freshP.slice(0, prodLeft), newCards = [];
+    // about one recall card after every two new words: the queue is rebuilt after each answer, so decide from today's counts
+    const pFirst = np.length && (!nr.length || day.n >= 2 * ((day.np || 0) + 1));
+    if (pFirst) newCards.push(np.shift());
+    while (nr.length || np.length) { if (nr.length) newCards.push(nr.shift()); if (nr.length) newCards.push(nr.shift()); if (np.length) newCards.push(np.shift()); }
+    return { learn, review, newCards, ahead, locked, counts: { n: newCards.length, l: learnToday, r: review.length }, nextDue: Object.values(srs).filter(s => s.due > now).reduce((m, s) => Math.min(m, s.due), Infinity) };
   }
   function status(c) {
     const ss = ['r', 'p'].map(d => srs[c.id + '|' + d]).filter(Boolean);
@@ -110,6 +142,7 @@
   function logReview(r, wasNew) {
     const log = LS.get(K('log'), {}), k = dk(), d = log[k] || { r: 0, a: 0, n: 0 };
     d.r++; if (r === 1) d.a++; if (wasNew) d.n++;
+    const dir = S.cur ? S.cur.split('|')[1] : 'r'; d['r' + dir] = (d['r' + dir] || 0) + 1; if (r === 1) d['a' + dir] = (d['a' + dir] || 0) + 1;
     log[k] = d; const ks = Object.keys(log).sort(); while (ks.length > 400) delete log[ks.shift()];
     LS.set(K('log'), log);
   }
@@ -152,6 +185,7 @@ ${opts.bare ? '' : `<nav class="fc-nav" aria-label="Flashcards">${NAV.map(([k, n
       : `<div class="fc-hero done"><p class="fc-big">All caught up</p><p class="fc-sub">${td.r ? `${td.r} review${td.r > 1 ? 's' : ''} today. ` : ''}${isFinite(q.nextDue) ? `Next card in ${fmt(q.nextDue - Date.now())}.` : ''}</p>
 <div class="fc-row"><button class="fc-btn" data-act="more">Learn 10 more new cards</button>${q.ahead.length ? '<a class="fc-btn" href="#study">Study ahead</a>' : ''}</div></div>`;
     frame('decks', VC.name, `${hero}
+${cfg.dir === 'both' && q.locked ? `<p class="fc-note">${q.locked} EN → ${TL} card${q.locked > 1 ? 's' : ''} will unlock once you recognise the words.</p>` : ''}
 <h2 class="fc-sh">Decks <small>new · learning · review</small></h2>
 <ul class="fc-decks">${LEVELS.map(l => deckRow(l.code, `${l.code} · ${l.en}`, DE && l.de ? l.de : l.ru)).join('')}${mine ? deckRow('mine', 'My cards', 'added by you') : ''}</ul>
 <p class="fc-note">“Study now” mixes every deck in your settings (levels: ${cfg.levels.length === LV.length ? 'all' : cfg.levels.join(', ')}${cfg.theme !== 'all' ? ', theme: ' + esc(String(THEMES[cfg.theme] || cfg.theme).split(' · ').pop()) : ''}). Tap a deck to study only that one.</p>`,
@@ -162,7 +196,7 @@ ${opts.bare ? '' : `<nav class="fc-nav" aria-label="Flashcards">${NAV.map(([k, n
   let S = { scope: '', cur: null, shown: false, undo: [], done: 0 };
   function pickNext() {
     const q = queue(S.scope);
-    S.cur = q.learn[0] || q.review[0] || q.newCards[0] || q.ahead[0] || null; S.shown = false; S.q = q;
+    S.cur = q.learn[0] || q.review[0] || q.newCards[0] || q.ahead[0] || null; S.shown = false; S.q = q; S.typed = null; S.typedOk = null;
   }
   function info(c) {
     const g = { m: DE ? 'masculine' : 'masculine', f: 'feminine', n: 'neuter', pl: 'plural' }[c.gender] || '';
@@ -187,7 +221,7 @@ ${opts.bare ? '' : `<nav class="fc-nav" aria-label="Flashcards">${NAV.map(([k, n
     const state = !s ? 'new' : s.q === 'review' ? 'review' : 'learning';
     const front = d === 'r'
       ? `<p class="fc-term" lang="${L}">${esc(c.term)}</p><p class="fc-info">${esc(info(c))}</p>${TTS ? `<button class="fc-say" data-act="say" aria-label="Listen">▶</button>` : ''}`
-      : `<p class="fc-mean">${esc(c.meaning)}</p><p class="fc-info">${esc(info(c))}${info(c) ? ' · ' : ''}in ${DE ? 'German' : 'Russian'}</p>`;
+      : `<p class="fc-mean">${esc(c.meaning)}</p><p class="fc-info">${esc(c.cat || '')}${c.cat ? ' · ' : ''}say it in ${DE ? 'German' : 'Russian'}${DE && c.cat === 'noun' ? ', with der, die or das' : ''}</p>${cfg.type && !S.shown ? `<form class="fc-type" id="ftype"><input id="fans" lang="${L}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type it in ${DE ? 'German' : 'Russian'}"><button class="fc-btn">Check</button></form>` : ''}${S.typed ? typedView(c) : ''}`;
     const back = !S.shown ? '' : `<div class="fc-back-side">
 ${d === 'r' ? `<p class="fc-mean">${esc(c.meaning)}</p>` : `<p class="fc-term" lang="${L}">${esc(c.term)}</p>${TTS ? `<button class="fc-say" data-act="say" aria-label="Listen">▶</button>` : ''}`}
 ${formTable(c)}
@@ -195,25 +229,37 @@ ${c.grammar ? `<div class="fc-sec"><h4>Grammar</h4><p>${esc(c.grammar)}</p></div
 ${c.ex ? `<div class="fc-sec fc-ex"><h4>Example${TTS ? ` <button class="fc-say sm" data-act="sayex" aria-label="Listen to the example">▶</button>` : ''}</h4><p lang="${L}">${esc(strip(c.ex))}</p>${c.exEn ? `<p class="fc-en">${esc(strip(c.exEn))}</p>` : ''}</div>` : ''}
 ${c.mistake ? `<div class="fc-sec"><h4>Watch out</h4><p>${esc(strip(c.mistake))}</p></div>` : ''}
 ${c.notes ? `<div class="fc-sec"><h4>Note</h4><p>${esc(strip(c.notes))}</p></div>` : ''}</div>`;
-    const btn = (r, cls, label) => `<button class="fc-rate ${cls}" data-act="rate" data-r="${r}"><b>${label}</b><small>${fmt(next(s, r, now).due - now)}</small></button>`;
+    const sug = S.typed !== undefined && S.typed !== null && S.shown ? S.typedOk : 0;
+    const btn = (r, cls, label) => `<button class="fc-rate ${cls}${sug === r ? ' sug' : ''}" data-act="rate" data-r="${r}"><b>${label}</b><small>${fmt(next(s, r, now, d).due - now)}</small></button>`;
     const hint = (+localStorage.getItem('gr-vtaps') || 0) < 6;
     frame('study', '', `<div class="fc-studytop"><a class="fc-x" href="#decks" aria-label="Close">✕</a>
 <span class="fc-left"><em class="n${state === 'new' ? ' on' : ''}">${q.counts.n}</em><em class="l${state === 'learning' ? ' on' : ''}">${q.counts.l}</em><em class="r${state === 'review' ? ' on' : ''}">${q.counts.r}</em></span>
 <button class="fc-x" data-act="undo" aria-label="Undo" ${S.undo.length ? '' : 'disabled'}>↶</button></div>
-<article class="fc-card${S.shown ? ' shown' : ''}" id="fcard"><div class="fc-meta"><span>${c.level}${c.theme && THEMES[c.theme] ? ' · ' + esc(String(THEMES[c.theme]).split(' · ').pop()) : ''}</span><span>${d === 'r' ? `${TL} → EN` : `EN → ${TL}`}</span></div>
+<article class="fc-card${S.shown ? ' shown' : ''}" id="fcard"><div class="fc-meta"><span>${c.level}${c.theme && THEMES[c.theme] ? ' · ' + esc(String(THEMES[c.theme]).split(' · ').pop()) : ''}</span><span>${d === 'r' ? `${TL} → EN · recognise` : `EN → ${TL} · recall`}</span></div>
 <div class="fc-front">${front}</div>${back}<span class="fc-flash" aria-hidden="true"></span></article>
 ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe right Good, left Again' : 'Tap the card to see the answer · double-tap if you knew it'}</p>` : ''}
 <div class="fc-bottom">${S.shown ? `<div class="fc-rates">${btn(1, 'again', 'Again')}${btn(2, 'hard', 'Hard')}${btn(3, 'good', 'Good')}${btn(4, 'easy', 'Easy')}</div>` : '<button class="fc-show" data-act="show">Show answer</button>'}</div>`, { bare: true });
     if (cfg.auto && !S.shown && d === 'r') say(c.term);
+    if ($('fans')) setTimeout(() => $('fans').focus(), 50);
     bindSwipe();
   }
-  function show() { if (!S.cur || S.shown) return; S.shown = true; viewStudy(); const c = byId[S.cur.split('|')[0]]; if (cfg.auto && S.cur.endsWith('|p')) say(c.term); }
+  // typed answers (production cards): compare, ignoring stress marks, ё/е, ß/ss and letter case
+  const tnorm = t => fold(t).replace(/[.!?,;:]/g, '').replace(/\s+/g, ' ').trim();
+  function typedView(c) {
+    const t = S.typed, want = tnorm(c.term), got = tnorm(t), noArt = want.replace(/^(der|die|das) /, '');
+    const ok = got === want, nearly = !ok && got === noArt;
+    S.typedOk = ok ? 3 : nearly ? 2 : 1;
+    return `<p class="fc-typed ${ok ? 'ok' : 'no'}">${ok ? '✓ Correct' : nearly ? `Almost: the article is missing` : `You wrote: <b lang="${L}">${esc(t || '—')}</b>`}</p>`;
+  }
+  function check() { const i = $('fans'); S.typed = i ? i.value.trim() : ''; S.shown = true; viewStudy(); }
+  function show() { if (!S.cur || S.shown) return; if (cfg.type && S.cur.endsWith('|p') && $('fans')) { check(); return; } S.shown = true; viewStudy(); const c = byId[S.cur.split('|')[0]]; if (cfg.auto && S.cur.endsWith('|p')) say(c.term); }
   function rate(r) {
     if (!S.cur) return;
     const now = Date.now(), wasNew = !srs[S.cur];
-    S.undo.push({ k: S.cur, prev: srs[S.cur] ? Object.assign({}, srs[S.cur]) : null, wasNew });
-    srs[S.cur] = next(srs[S.cur], r, now); LS.set(K('srs'), srs);
-    if (wasNew) { const d = dayInfo(); d.n++; LS.set(K('day'), d); }
+    S.undo.push({ k: S.cur, prev: srs[S.cur] ? Object.assign({}, srs[S.cur]) : null, wasNew, dir: S.cur.split('|')[1] });
+    const dir = S.cur.split('|')[1];
+    srs[S.cur] = next(srs[S.cur], r, now, dir); LS.set(K('srs'), srs);
+    if (wasNew) { const d = dayInfo(); if (dir === 'p' && cfg.dir !== 'p') d.np = (d.np || 0) + 1; else d.n++; LS.set(K('day'), d); }
     logReview(r, wasNew); if (C) C.logCard();
     S.done++; pickNext(); viewStudy();
   }
@@ -221,7 +267,7 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     const u = S.undo.pop(); if (!u) return;
     if (u.prev) srs[u.k] = u.prev; else delete srs[u.k];
     LS.set(K('srs'), srs);
-    if (u.wasNew) { const d = dayInfo(); d.n = Math.max(0, d.n - 1); LS.set(K('day'), d); }
+    if (u.wasNew) { const d = dayInfo(); if (u.dir === 'p' && cfg.dir !== 'p') d.np = Math.max(0, (d.np || 0) - 1); else d.n = Math.max(0, d.n - 1); LS.set(K('day'), d); }
     const log = LS.get(K('log'), {}), x = log[dk()]; if (x) { x.r = Math.max(0, x.r - 1); LS.set(K('log'), log); }
     S.done = Math.max(0, S.done - 1); S.cur = u.k; S.shown = true; viewStudy();
   }
@@ -267,13 +313,14 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     const items = cards.filter(c => (B.f === 'all' || (B.f === 'hard' ? hardCard(c) : B.f === 'mine' ? isMine(c) : status(c) === B.f)) && (!q || fold(c.term + ' ' + c.meaning).includes(q)));
     $('bl').innerHTML = items.slice(0, B.shown).map(c => {
       const st = status(c), due = Math.min(...['r', 'p'].map(d => (srs[c.id + '|' + d] || {}).due || Infinity));
-      return `<li><a href="#card=${encodeURIComponent(c.id)}"><span class="fc-lt"><b lang="${L}">${esc(c.term)}</b><small>${esc(c.meaning)}</small></span><span class="fc-lr"><i class="fc-st ${st}">${st}</i><small>${c.level}${isFinite(due) ? ' · ' + (due <= now ? 'due' : fmt(due - now)) : ''}</small></span></a></li>`;
+      const dfs = ['r', 'p'].map(d => difficulty(srs[c.id + '|' + d], d)).filter(Boolean), df = dfs.includes('hard') ? 'hard' : dfs.includes('medium') ? 'medium' : dfs[0] || '';
+      return `<li><a href="#card=${encodeURIComponent(c.id)}"><span class="fc-lt"><b lang="${L}">${esc(c.term)}</b><small>${esc(c.meaning)}</small></span><span class="fc-lr"><i class="fc-st ${st}">${st}</i>${df && df !== 'easy' ? ` <i class="fc-df ${df}">${df}</i>` : ''}<small>${c.level}${isFinite(due) ? ' · ' + (due <= now ? 'due' : fmt(due - now)) : ''}</small></span></a></li>`;
     }).join('') || '<li class="fc-none">No cards match.</li>';
     $('bm').hidden = items.length <= B.shown;
   }
   function viewCard(id) {
     const c = byId[id]; if (!c) { location.hash = '#browse'; return; }
-    const rows = ['r', 'p'].map(d => { const s = srs[id + '|' + d]; return `<tr><th>${d === 'r' ? `${TL} → EN` : `EN → ${TL}`}</th><td>${!s ? 'new' : s.q === 'review' ? `every ${fmt(s.ivl * DAY)}` : 'learning'}</td><td>${s ? `${s.reps || 0} reviews` : ''}</td><td>${s && s.lap ? `${s.lap} lapse${s.lap > 1 ? 's' : ''}` : ''}</td></tr>`; }).join('');
+    const rows = ['r', 'p'].map(d => { const s2 = srs[id + '|' + d], df = difficulty(s2, d); return `<tr><th>${d === 'r' ? `${TL} → EN · recognise` : `EN → ${TL} · recall`}</th><td>${!s2 ? (unlocked(c, d) ? 'new' : 'unlocks later') : s2.q === 'review' ? `every ${fmt(s2.ivl * DAY)}` : 'learning'}</td><td>${df ? `<i class="fc-df ${df}">${df}</i>` : ''}</td><td>${s2 ? `${s2.reps || 0} reviews${s2.lap ? ` · ${s2.lap} lapse${s2.lap > 1 ? 's' : ''}` : ''}` : ''}</td></tr>`; }).join('');
     frame('browse', '', `<p class="fc-crumb"><a href="#browse">‹ Browse</a></p><article class="fc-card static"><div class="fc-meta"><span>${c.level} · ${esc(String(THEMES[c.theme] || c.theme).split(' · ').pop())}</span><span>${status(c)}</span></div>
 <div class="fc-front"><p class="fc-term" lang="${L}">${esc(c.term)}</p><p class="fc-info">${esc(info(c))}</p>${TTS ? '<button class="fc-say" data-act="saycard" aria-label="Listen">▶</button>' : ''}<p class="fc-mean sm">${esc(c.meaning)}</p></div>
 <div class="fc-back-side">${formTable(c)}${c.grammar ? `<div class="fc-sec"><h4>Grammar</h4><p>${esc(c.grammar)}</p></div>` : ''}${c.ex ? `<div class="fc-sec fc-ex"><h4>Example</h4><p lang="${L}">${esc(strip(c.ex))}</p><p class="fc-en">${esc(strip(c.exEn))}</p></div>` : ''}
@@ -293,7 +340,9 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     const tot = cards.length || 1;
     const days14 = [...Array(14)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - 13 + i); return d; });
     const rev = days14.map(d => (log[dk(d)] || {}).r || 0);
-    let r30 = 0, a30 = 0; for (let i = 0; i < 30; i++) { const d = new Date(); d.setDate(d.getDate() - i); const x = log[dk(d)]; if (x) { r30 += x.r; a30 += x.a; } }
+    let r30 = 0, a30 = 0; const dr = { r: [0, 0], p: [0, 0] };
+    for (let i = 0; i < 30; i++) { const d = new Date(); d.setDate(d.getDate() - i); const x = log[dk(d)]; if (x) { r30 += x.r; a30 += x.a; ['r', 'p'].forEach(k => { dr[k][0] += x['r' + k] || 0; dr[k][1] += x['a' + k] || 0; }); } }
+    const byDir = ['r', 'p'].map(k => { const vals = Object.entries(srs).filter(([kk]) => kk.endsWith('|' + k)).map(([, v]) => v), learned = vals.filter(v => v.q === 'review').length; const lv = { easy: 0, medium: 0, hard: 0 }; vals.forEach(v => { const df = difficulty(v, k); if (df) lv[df]++; }); return { k, n: vals.length, learned, lv, ret: dr[k][0] ? Math.round((1 - dr[k][1] / dr[k][0]) * 100) : null }; });
     const fc = [...Array(7)].map((_, i) => { const s0 = new Date(); s0.setHours(0, 0, 0, 0); const a = s0.getTime() + i * DAY, b = a + DAY; return Object.values(srs).filter(s => s.q === 'review' && (i === 0 ? s.due < b : s.due >= a && s.due < b)).length; });
     const wd = d => d.toLocaleDateString('en', { weekday: 'narrow' });
     let streak = 0; { const d = new Date(); if (!(log[dk(d)] || {}).r) d.setDate(d.getDate() - 1); while ((log[dk(d)] || {}).r) { streak++; d.setDate(d.getDate() - 1); } }
@@ -301,6 +350,7 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     frame('stats', 'Statistics', `<div class="fc-grid4">${num(td.r, '', 'reviews today')}${num(td.n, '', 'new today')}${num(streak, '', 'day streak')}${num(r30 ? Math.round((1 - a30 / r30) * 100) + '%' : '–', '', 'right, 30 days')}</div>
 <section class="fc-panel"><h3>Your cards</h3><div class="fc-stack">${['mature', 'young', 'learning', 'new'].map(k => `<i class="${k}" style="flex:${st[k]}"></i>`).join('')}</div>
 <ul class="fc-legend">${[['mature', 'Mature', 'interval 3 weeks or more'], ['young', 'Young', 'learned, shorter interval'], ['learning', 'Learning', 'in the learning steps'], ['new', 'New', 'not seen yet']].map(([k, n, s]) => `<li><i class="${k}"></i><b>${st[k]}</b> ${n} <small>${s}</small></li>`).join('')}</ul></section>
+<section class="fc-panel"><h3>By direction</h3><table class="fc-dir"><thead><tr><th></th><th>started</th><th>learned</th><th>right (30 d)</th><th>easy · medium · hard</th></tr></thead><tbody>${byDir.map(x => `<tr><th>${x.k === 'r' ? `${TL} → EN<small>recognise</small>` : `EN → ${TL}<small>recall</small>`}</th><td>${x.n}</td><td>${x.learned}</td><td>${x.ret === null ? '–' : x.ret + '%'}</td><td><i class="fc-df easy">${x.lv.easy}</i> <i class="fc-df medium">${x.lv.medium}</i> <i class="fc-df hard">${x.lv.hard}</i></td></tr>`).join('')}</tbody></table><p class="fc-note">Recall is usually harder: expect fewer right answers there, and more cards marked hard.</p></section>
 <section class="fc-panel"><h3>Reviews, last 14 days</h3>${bars(rev, days14.map(wd))}</section>
 <section class="fc-panel"><h3>Due in the next 7 days</h3>${bars(fc, fc.map((_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return i ? wd(d) : 'today'; }), 'fc')}</section>
 <section class="fc-panel"><h3>Learned by level</h3><ul class="fc-lvl">${LEVELS.map(l => { const ls = cards.filter(c => c.level === l.code); if (!ls.length) return ''; const n = ls.filter(c => ['young', 'mature'].includes(status(c))).length; return `<li><b>${l.code}</b><i class="fc-bar"><i style="width:${Math.round(n / ls.length * 100)}%"></i></i><span>${n}/${ls.length}</span></li>`; }).join('')}</ul></section>`);
@@ -315,7 +365,9 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
 <label class="fc-lab">New cards per day</label>${seg('snew', [[5, '5'], [10, '10'], [20, '20'], [30, '30'], [50, '50']], cfg.perDay)}
 <label class="fc-lab">Levels in “Study now”</label><div class="fc-seg multi" id="slv">${LV.map(l => `<button data-v="${l}" aria-pressed="${cfg.levels.includes(l)}">${l}</button>`).join('')}</div>
 <label class="fc-lab">Theme</label><select id="sth" class="fc-select"><option value="all">All themes</option>${Object.keys(THEMES).filter(t => themeCounts[t]).map(t => `<option value="${t}" ${cfg.theme === t ? 'selected' : ''}>${esc(String(THEMES[t]).split(' · ').pop())} (${themeCounts[t]})</option>`).join('')}</select>
-<label class="fc-check"><input type="checkbox" id="sauto" ${cfg.auto ? 'checked' : ''}> Read ${DE ? 'German' : 'Russian'} words aloud automatically</label></section>
+<label class="fc-check"><input type="checkbox" id="stype" ${cfg.type ? 'checked' : ''}> Type the answer on EN → ${TL} cards</label>
+<label class="fc-check"><input type="checkbox" id="sauto" ${cfg.auto ? 'checked' : ''}> Read ${DE ? 'German' : 'Russian'} words aloud automatically</label>
+<p class="fc-note"><b>${TL} → EN (recognise)</b> is the easier direction: steps 1 and 10 minutes, then 1 day, “Easy” 4 days. <b>EN → ${TL} (recall)</b> is harder, so it has an extra 1-hour step, starts with a lower ease, “Easy” gives 3 days and intervals grow a little more slowly. A word’s EN → ${TL} card only appears once you recognise it reliably (its ${TL} → EN card is due in ${UNLOCK} days or more).</p></section>
 <section class="fc-panel"><h3>Add cards</h3><form id="addf" class="fc-form"><input id="at" required placeholder="${DE ? 'Wort, e.g. die Brücke' : 'Слово, e.g. мост'}" lang="${L}"><input id="am" required placeholder="Meaning in English"><div class="lk-sugs" id="asug"></div><input id="ae" placeholder="Example sentence (optional)" lang="${L}"><button class="fc-go">Add card</button></form><p class="fc-msg" id="amsg"></p></section>
 <section class="fc-panel"><h3>Import from Anki</h3><p class="fc-note">Paste or open an Anki text export (.txt or .tsv). With a <code>#columns:</code> header all fields are kept; otherwise column 1 is ${DE ? 'German' : 'Russian'} and column 2 English.</p>
 <input type="file" id="ifile" accept=".txt,.tsv,.csv,text/plain"><textarea id="itext" rows="4" placeholder="${DE ? 'das Haus&#9;house' : 'дом&#9;house'}"></textarea>
@@ -329,6 +381,7 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     segBind('slv', (v, b) => { const on = cfg.levels.includes(v); if (on && cfg.levels.length === 1) return; cfg.levels = on ? cfg.levels.filter(x => x !== v) : LV.filter(x => x === v || cfg.levels.includes(x)); b.setAttribute('aria-pressed', !on); });
     $('sth').addEventListener('change', () => { cfg.theme = $('sth').value; saveCfg(); });
     $('sauto').addEventListener('change', () => { cfg.auto = $('sauto').checked; saveCfg(); });
+    $('stype').addEventListener('change', () => { cfg.type = $('stype').checked; saveCfg(); });
     let st2 = null;
     $('at').addEventListener('input', () => { clearTimeout(st2); const w = $('at').value.trim(); if (w.length < 2 || !window.GRMeanings) { $('asug').innerHTML = ''; return; } st2 = setTimeout(() => { if (!$('asug')) return; $('asug').innerHTML = '<span class="lk-wait">Finding meanings…</span>'; GRMeanings.suggest(L, w, []).then(r => { if ($('at') && $('asug') && $('at').value.trim() === w) GRMeanings.chips($('asug'), r, m => { $('am').value = m; }, lemma => { $('at').value = lemma; $('at').dispatchEvent(new Event('input')); }); }); }, 600); });
     $('addf').addEventListener('submit', e => {
@@ -384,7 +437,7 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
   addEventListener('hashchange', route);
   document.addEventListener('click', e => {
     if (document.body.dataset.view === 'study' && S.cur) {
-      if (e.target.closest('#fcard') && !e.target.closest('button, a, summary, details')) {
+      if (e.target.closest('#fcard') && !e.target.closest('button, a, summary, details, input, form')) {
         if (swiped) { swiped = false; return; }
         const now = Date.now();
         if (now - lastTap < 320) { clearTimeout(tapT); lastTap = 0; quick(3, 'Good ✓'); return; }
@@ -406,6 +459,7 @@ ${hint ? `<p class="fc-hint">${S.shown ? 'Double-tap the card for Good · swipe 
     else if (a === 'reset' && confirm('Reset the progress of this card? It becomes new again.')) { ['r', 'p'].forEach(d => delete srs[b.dataset.id + '|' + d]); LS.set(K('srs'), srs); route(); }
     else if (a === 'del' && confirm('Delete this card?')) { LS.set(K('custom'), custom().filter(x => x.id !== b.dataset.id)); ['r', 'p'].forEach(d => delete srs[b.dataset.id + '|' + d]); LS.set(K('srs'), srs); setCards(cards.filter(x => x.id !== b.dataset.id)); location.hash = '#browse'; }
   });
+  document.addEventListener('submit', e => { if (e.target.id === 'ftype') { e.preventDefault(); check(); } });
   document.addEventListener('keydown', e => {
     if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
     if (document.body.dataset.view !== 'study' || !S.cur) return;

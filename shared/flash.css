@@ -155,3 +155,15 @@ code{font-size:13px;background:var(--sunk);padding:1px 5px;border-radius:5px}
 .lk-chip{display:inline-flex;flex-direction:column;align-items:flex-start;text-align:left;font:500 14px Inter,sans-serif;padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;max-width:100%}
 .lk-chip small{font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
 .lk-none,.lk-wait{font-size:13px;color:var(--mute)}.lk-lemma{margin:0 0 6px;font-size:13px;color:var(--mute);width:100%}.lk-lemma button{font:600 13px Inter,sans-serif;border:0;background:none;color:var(--blue);padding:0;cursor:pointer;text-decoration:underline}
+
+/* directions and difficulty */
+.fc-df{font-style:normal;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:1px 6px;border-radius:6px;background:var(--sunk)}
+.fc-df.easy{color:var(--ok)}.fc-df.medium{color:var(--good)}.fc-df.hard{color:var(--bad)}
+.fc-dir{width:100%;border-collapse:collapse;font-size:14px}
+.fc-dir th,.fc-dir td{text-align:left;padding:6px 6px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.fc-dir thead th{font-size:11px;color:var(--mute);font-weight:600}
+.fc-dir tbody th small{display:block;font-size:11px;color:var(--mute);font-weight:500}
+.fc-type{display:flex;gap:8px;margin-top:16px;width:100%;max-width:360px}
+.fc-type input{flex:1;font:18px Inter,sans-serif;min-height:46px;padding:6px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);text-align:center}
+.fc-typed{margin:12px 0 0;font-size:15px}.fc-typed.ok{color:var(--ok);font-weight:600}.fc-typed.no{color:var(--bad)}
+.fc-rate.sug{box-shadow:0 0 0 2px var(--ink)}
