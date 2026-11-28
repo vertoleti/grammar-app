@@ -345,6 +345,35 @@ window.CATALOG = [
   }
  },
  {
+  "id": "phrases",
+  "href": "phrases/",
+  "n": 13,
+  "c": "#5c6bc0",
+  "ru": "Разговорник",
+  "en": "Phrasebook",
+  "d": "Everyday situations: key phrases, a dialogue to role-play, a drill",
+  "group": "practice",
+  "practice": "phrases",
+  "dir": "phrases",
+  "modes": [
+   {
+    "k": "phrases",
+    "name": "Phrases"
+   },
+   {
+    "k": "speaking",
+    "name": "Speaking"
+   }
+  ],
+  "total": 8,
+  "unit": "situations",
+  "levels": {
+   "A2": 3,
+   "B1": 3,
+   "A1": 2
+  }
+ },
+ {
   "id": "gov",
   "href": "gov/",
   "n": 11,

@@ -66,3 +66,22 @@ ol.qs .opt{font-size:15px;min-height:42px;text-align:left;padding:8px 14px}
 .impf{display:grid;gap:8px}
 .impf input,.impf select,.impf textarea{font:16px Inter,sans-serif;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:42px}
 .impf textarea{min-height:160px;resize:vertical;line-height:1.5}
+
+/* phrasebook */
+.pb .segctl{margin:10px 0 4px}
+.plist,.dlg{list-style:none;margin:8px 0 0;padding:0}
+.plist li,.dlg li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
+.plist li>div,.dlg li>div{flex:1;min-width:0;font-size:18px;line-height:1.45}
+.plist small,.dlg small{display:block;font-size:14px;color:var(--mute);margin-top:2px}
+.pbtn{display:flex;gap:6px;flex:none}
+.dlg li{align-items:flex-start}
+.dlg li>b{flex:none;width:86px;font-size:13px;font-weight:600;color:var(--mute);padding-top:4px;overflow:hidden;text-overflow:ellipsis}
+.dlg li.me>b{color:var(--ink)}
+.dlg li.me>div{font-weight:500}
+.dlg .hid{color:var(--mute);cursor:pointer;letter-spacing:.1em}
+.dlg .sent.now{background:var(--mark)}
+.dq{font-size:20px;font-weight:600;margin:14px 0 4px}
+.pb .opts{grid-template-columns:1fr;gap:8px;margin-top:12px}
+.pb .opt{font-size:16px;min-height:46px;text-align:left;padding:8px 14px}
+.xdone{text-align:center;padding:20px 0}.xdone .big{font-size:44px;font-weight:700;margin:0}
+@media(max-width:420px){.dlg li{flex-wrap:wrap}.dlg li>b{width:100%;padding:0}}

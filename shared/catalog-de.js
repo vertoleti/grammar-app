@@ -371,6 +371,34 @@ window.CATALOG = [
   }
  },
  {
+  "id": "de-phrases",
+  "href": "phrases/",
+  "n": 13,
+  "c": "#5c6bc0",
+  "ru": "Redemittel",
+  "en": "Phrasebook",
+  "d": "Everyday situations: key phrases, a dialogue to role-play, a drill",
+  "group": "practice",
+  "practice": "phrases",
+  "modes": [
+   {
+    "k": "phrases",
+    "name": "Phrases"
+   },
+   {
+    "k": "speaking",
+    "name": "Speaking"
+   }
+  ],
+  "total": 8,
+  "unit": "situations",
+  "levels": {
+   "A2": 3,
+   "B1": 3,
+   "A1": 2
+  }
+ },
+ {
   "id": "de-genus",
   "href": "genus/",
   "n": 11,
@@ -379,7 +407,20 @@ window.CATALOG = [
   "en": "Noun genders",
   "d": "A fast drill for the article of 275 common nouns",
   "group": "practice",
-  "practice": "genus"
+  "practice": "genus",
+  "modes": [
+   {
+    "k": "genus",
+    "name": "der · die · das"
+   }
+  ],
+  "levels": {
+   "A1": 90,
+   "A2": 105,
+   "B1": 80
+  },
+  "total": 275,
+  "unit": "nouns"
  },
  {
   "id": "de-voc",

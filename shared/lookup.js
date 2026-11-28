@@ -125,7 +125,7 @@ ${r.exact ? '' : `<form>${artSel}<input placeholder="Meaning in English" aria-la
   document.addEventListener('click', e => {
     if (box && box.contains(e.target)) return;
     const host = e.target.closest('[lang="ru"],[lang="de"]');
-    if (!host || e.target.closest('button, a, input, textarea, select, label, .tile, .wtok, .gap, .art') || !host.closest('#card, .misses, .reader')) { close(); return; }
+    if (!host || e.target.closest('button, a, input, textarea, select, label, .tile, .wtok, .gap, .art, .hid') || !host.closest('#card, .misses, .reader, .pb')) { close(); return; }
     if (String(window.getSelection && window.getSelection()).length > 1) return;
     const lang = host.getAttribute('lang'), C = CFG[lang]; if (!C) return;
     const w = wordAt(e.clientX, e.clientY, C); if (!w) { close(); return; }

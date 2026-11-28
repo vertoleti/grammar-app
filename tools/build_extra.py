@@ -94,3 +94,10 @@ built.append(shell('reading/index.html', 'ru', 'Чтение', 'Reading', '¶', 
 built.append(shell('de/reading/index.html', 'de', 'Lesen', 'Reading', '¶', '#00796b', '<div id="main"></div>', READ_JS, sub='graded texts and your own', score=False))
 if __name__ == '__main__':
     for p in built[-2:]: print('built', p)
+
+# ---------- phrasebooks ----------
+PB_JS = '<script src="{R}shared/coach.js"></script>\n<script src="{R}shared/speech.js"></script>\n<script src="data.js"></script>\n<script src="{R}shared/phrases.js"></script>\n<script src="{R}shared/lookup.js"></script>'
+built.append(shell('phrases/index.html', 'ru', 'Разговорник', 'Phrasebook', '“', '#5c6bc0', '<div id="main"></div>', PB_JS, sub='situations: phrases, dialogues, drills', score=False))
+built.append(shell('de/phrases/index.html', 'de', 'Redemittel', 'Phrasebook', '“', '#5c6bc0', '<div id="main"></div>', PB_JS, sub='situations: phrases, dialogues, drills', score=False))
+if __name__ == '__main__':
+    for p in built[-2:]: print('built', p)
