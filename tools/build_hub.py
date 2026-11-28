@@ -34,8 +34,9 @@ LANGS = {
 def page(L):
     R = L['R']
     ru_first = L['cfg']['code'] == 'ru'
-    sw = ('<a href="./?ru" data-lang="ru" aria-current="page">RU</a><a href="de/" data-lang="de">DE</a>' if ru_first
-          else '<a href="../?ru" data-lang="ru">RU</a><a href="./" data-lang="de" aria-current="page">DE</a>')
+    sw = (f'<span class="langsel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
+          f'<select id="langsel" aria-label="Language" data-ru="{"./?ru" if ru_first else "../?ru"}" data-de="{"de/" if ru_first else "./"}">'
+          f'<option value="ru"{" selected" if ru_first else ""}>Русский</option><option value="de"{"" if ru_first else " selected"}>Deutsch</option></select></span>')
     tabs = ''.join(f'<a href="#{k}" data-tab="{k}"><svg viewBox="0 0 24 24" aria-hidden="true">{ICON[k]}</svg>{n}</a>' for k, n in TABS)
     h = L['h']
     return f'''<!DOCTYPE html>
@@ -69,7 +70,7 @@ def page(L):
   <span class="hm" aria-hidden="true">{L['mark']}</span>
   <div><h1>{L['title']}</h1><p class="hsub">{L['sub']}</p></div>
   <button id="sbtn" class="iconbtn" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
-  <nav class="langs" aria-label="Language">{sw}</nav>
+  {sw}
   <a id="me" href="{L['cfg']['profile']}" aria-label="Profile and daily goal"></a>
 </div></header>
 <nav class="tabs" aria-label="Sections">{tabs}</nav>
@@ -95,14 +96,14 @@ def page(L):
 
 <section class="tab" id="t-words" aria-label="Words" hidden>
   <h2>Words <small lang="{L['cfg']['code']}">{h['words']}</small></h2>
-  <div id="words"></div>
+  <div class="cards" id="words"></div>
 </section>
 
 <section class="tab" id="t-reading" aria-label="Reading" hidden>
   <h2>Reading, writing, speaking <small lang="{L['cfg']['code']}">{h['reading']}</small></h2>
   <div id="rnext"></div>
   <h3 class="sh">Read, write, speak</h3>
-  <div id="reading"></div>
+  <div class="cards" id="reading"></div>
 </section>
 
 <section class="tab" id="t-progress" aria-label="Progress" hidden>

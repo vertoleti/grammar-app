@@ -12,7 +12,7 @@ const LS = {
 const MIN = 60000, DAY = 86400000;
 const LEARN = [1, 10], RELEARN = [10];
 // German flashcards set window.VOC_CFG before loading this file; the Russian page uses the defaults.
-const VC = Object.assign({ decks: ['decks/ru-core.tsv', 'decks/ru-levels.tsv'], prefix: 'voc-', lang: 'ru', tts: 'ru-RU', themes: null, all: 'Все темы · All', done: 'Готово!', listen: 'Listen · Слушать' }, window.VOC_CFG || {});
+const VC = Object.assign({ decks: ['decks/ru-core.tsv', 'decks/ru-levels.tsv'], prefix: 'voc-', lang: 'ru', tts: 'ru-RU', themes: null, all: 'Все темы · All', done: 'Готово!', listen: '▶ Listen' }, window.VOC_CFG || {});
 const DECKS = VC.decks, K = n => VC.prefix + n;
 const LEVELS = window.CEFR;
 const LV = LEVELS.map(l => l.code);
@@ -168,7 +168,7 @@ function render(q) {
   }
   const [id, d] = cur.split('|'), c = byId[id], s = srs[cur];
   const lvl = LEVELS.find(l => l.code === c.level);
-  const state = !s ? '<span class="chip c-new">new</span>' : s.q === 'review' ? '<span class="chip c-rev">review</span>' : '<span class="chip c-lrn">learning</span>';
+  const state = !s ? '<span class="st s-new">new</span>' : s.q === 'review' ? '<span class="st s-rev">review</span>' : '<span class="st s-lrn">learning</span>';
   const tts = 'speechSynthesis' in window ? `<button class="say" data-act="say">${VC.listen}</button>` : '';
   const front = d === 'r'
     ? `<p class="term" lang="${VC.lang}">${esc(c.term)}</p><p class="gram">${esc(info(c))}</p>${tts}`
@@ -180,9 +180,10 @@ ${c.ex ? row('Example', `<span class="ex" lang="${VC.lang}">${esc(c.ex)}<small>$
 ${row('Note', esc(c.notes))}${row('Watch out', esc(c.mistake))}${row('IPA', c.ipa ? '/' + esc(c.ipa) + '/' : '')}</div>`;
   const now = Date.now();
   const btn = (r, cls, label) => `<button class="${cls}" data-act="rate" data-r="${r}">${label}<small>${fmt(next(s, r, now).due - now)}</small></button>`;
-  el.innerHTML = `<div class="vtop"><span><span class="chip">${c.level} · ${lvl.en} · ${VC.lang === 'de' && lvl.de ? lvl.de : lvl.ru}</span><span class="chip">${THEMES[c.theme] || c.theme}</span>${state}</span><span class="chip">${d === 'r' ? VC.lang.toUpperCase() + ' → EN' : 'EN → ' + VC.lang.toUpperCase()}</span></div>
-<div class="face">${front}${back}</div>
-<div class="actions">${shown ? `<div class="rate">${btn(1, 'again', 'Again')}${btn(2, '', 'Hard')}${btn(3, 'good', 'Good')}${btn(4, '', 'Easy')}</div>` : '<button class="show" data-act="show" id="showbtn">Show answer</button>'}</div>`;
+  el.innerHTML = `<div class="vtop"><span class="vmeta">${c.level} · ${esc(String(THEMES[c.theme] || c.theme).split(' · ').pop())} · ${state}</span><span class="vmeta">${d === 'r' ? VC.lang.toUpperCase() + ' → EN' : 'EN → ' + VC.lang.toUpperCase()}</span></div>
+<div class="face" title="Tap to turn · double-tap = Good">${front}${back}<span class="flash" aria-hidden="true"></span></div>
+<div class="actions">${shown ? `<div class="rate">${btn(1, 'again', 'Again')}${btn(2, '', 'Hard')}${btn(3, 'good', 'Good')}${btn(4, '', 'Easy')}</div>` : '<button class="show" data-act="show" id="showbtn">Show answer</button>'}</div>
+${tapHint() ? '<p class="taphint2">Tap the card to turn it · double-tap if you knew it (Good)</p>' : ''}`;
 }
 function renderBrowse() {
   const q = bare($('q').value.trim().toLowerCase());
@@ -219,7 +220,25 @@ function say(text) {
   if (v) u.voice = v;
   speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
+/* tap the card to turn it; double-tap = Good (also before turning it) */
+function tapHint() { return (+localStorage.getItem('gr-vtaps') || 0) < 6; }
+let tapT = null, lastTap = 0;
+function goodNow() {
+  if (!cur) return;
+  const f = document.querySelector('.face .flash');
+  if (!shown) { shown = true; }
+  try { localStorage.setItem('gr-vtaps', (+localStorage.getItem('gr-vtaps') || 0) + 1); } catch (e) {}
+  if (f) { f.textContent = 'Good ✓'; f.classList.add('on'); }
+  setTimeout(() => rate(3), 380);
+}
 $('card').addEventListener('click', e => {
+  if (!e.target.closest('button, a, input, select') && e.target.closest('.face')) {
+    const now = Date.now();
+    if (now - lastTap < 320) { clearTimeout(tapT); lastTap = 0; goodNow(); return; }
+    lastTap = now; clearTimeout(tapT);
+    tapT = setTimeout(() => { if (!shown) show(); }, 300);
+    return;
+  }
   const b = e.target.closest('button[data-act]'); if (!b) return;
   const a = b.dataset.act;
   if (a === 'show') show();

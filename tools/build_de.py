@@ -109,7 +109,7 @@ R = [('"../shared/', '"../../shared/'), ('"../icons/', '"../../icons/'), ('"../m
    ('data-d="r">RU → EN</button><button id="d-p" data-d="p">EN → RU</button>', 'data-d="r">DE → EN</button><button id="d-p" data-d="p">EN → DE</button>'),
    ('<h3>New cards per day · Новых в день</h3>', '<h3>New cards per day · Neue pro Tag</h3>'), ('<h3>Theme · Тема</h3>', '<h3>Theme · Thema</h3>'),
    ('<a href="../#progress">Back it up or sync it between devices · Сохранить прогресс</a>', '<a href="../../profile/">Sign in to keep it on every device · Profil</a>'),
-   ('<script src="vocab.js"></script>', '''<script>window.VOC_CFG = { decks: ['decks/de-core.tsv'], prefix: 'de-voc-', lang: 'de', tts: 'de-DE', all: 'Alle Themen · All', done: 'Fertig!', listen: 'Listen · Anhören', themes: {
+   ('<script src="vocab.js"></script>', '''<script>window.VOC_CFG = { decks: ['decks/de-core.tsv'], prefix: 'de-voc-', lang: 'de', tts: 'de-DE', all: 'Alle Themen · All', done: 'Fertig!', listen: '▶ Listen', themes: {
   basic: 'Grundlagen · Basics', people: 'Menschen · People', feelings: 'Gefühle · Feelings', health: 'Gesundheit · Health', society: 'Gesellschaft · Society',
   communication: 'Kommunikation · Communication', abstract: 'Begriffe · Ideas', home: 'Wohnen · Home', city: 'Stadt · City', travel: 'Reisen · Travel',
   shopping: 'Einkaufen · Shopping', food: 'Essen · Food', work: 'Arbeit · Work', study: 'Lernen · Study', time: 'Zeit · Time', qualities: 'Eigenschaften · Qualities',

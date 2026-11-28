@@ -89,15 +89,15 @@
   // ---------- cards ----------
   function lineCard(L) {
     const s = lineState(L), lvs = ORDER.filter(c => L.topics.some(t => t.lv === c));
-    return `<a class="lc" href="${L.href}" style="--c:${L.c}"><span class="nd">${L.n}</span><span class="lt"><b lang="${H.code}">${esc(L.ru)}</b><small>${esc(L.en)} · ${lvs[0]}${lvs.length > 1 ? '–' + lvs[lvs.length - 1] : ''}</small></span>
+    return `<a class="lc" href="${L.href}" style="--c:${L.c}"><span class="lch"><span class="nd">${L.n}</span><span class="lt"><b lang="${H.code}">${esc(L.ru)}</b><small>${esc(L.en)} · ${lvs[0]}${lvs.length > 1 ? '–' + lvs[lvs.length - 1] : ''}</small></span><span class="chev" aria-hidden="true"></span></span>
 <span class="bar" aria-hidden="true">${s.st.map(x => `<i class="${x.st === 'new' ? '' : x.st}"></i>`).join('')}</span><span class="lf">${s.started ? `${s.mastered} of ${L.topics.length} topics mastered` : `${L.topics.length} topics`}</span></a>`;
   }
   function pracCard(L, sub) {
     const s = C.stats(L.id), ms = (L.modes || []).map(m => C.state(L.id, m.k, s)), n = ms.reduce((a, x) => a + x.n, 0);
-    return `<a class="lc" href="${L.href}" style="--c:${L.c}"><span class="nd">${L.n}</span><span class="lt"><b lang="${H.code}">${esc(L.ru)}</b><small>${esc(L.en)}${L.total ? ` · ${L.total} ${L.unit}` : ''}</small></span><span class="lf">${sub || (n ? `${n} answers so far` : esc(L.d || ''))}</span></a>`;
+    return `<a class="lc" href="${L.href}" style="--c:${L.c}"><span class="lch"><span class="nd">${L.n}</span><span class="lt"><b lang="${H.code}">${esc(L.ru)}</b><small>${esc(L.en)}${L.total ? ` · ${L.total} ${L.unit}` : ''}</small></span><span class="chev" aria-hidden="true"></span></span><span class="lf">${sub || (n ? `${n} answers so far` : esc(L.d || ''))}</span></a>`;
   }
   function simpleCard(href, c, n, title, en, sub) {
-    return `<a class="lc" href="${href}" style="--c:${c}"><span class="nd">${n}</span><span class="lt"><b lang="${H.code}">${esc(title)}</b><small>${esc(en)}</small></span><span class="lf">${sub}</span></a>`;
+    return `<a class="lc" href="${href}" style="--c:${c}"><span class="lch"><span class="nd">${n}</span><span class="lt"><b lang="${H.code}">${esc(title)}</b><small>${esc(en)}</small></span><span class="chev" aria-hidden="true"></span></span><span class="lf">${sub}</span></a>`;
   }
 
   // ---------- tabs ----------
@@ -145,7 +145,7 @@ ${nxt ? `<a class="hbtn" href="${withS(nxt.href)}">${nDone ? 'Next step' : 'Star
 
     // Words
     const dictN = LS.get(H.vp + 'custom', []).length;
-    $('words').innerHTML = `<a class="lc wide" href="${VOC.href}" style="--c:${VOC.c}"><span class="nd">${VOC.n}</span><span class="lt"><b lang="${H.code}">${esc(VOC.ru)}</b><small>Flashcards · spaced repetition</small></span>
+    $('words').innerHTML = `<a class="lc" href="${VOC.href}" style="--c:${VOC.c}"><span class="lch"><span class="nd">${VOC.n}</span><span class="lt"><b lang="${H.code}">${esc(VOC.ru)}</b><small>Flashcards · spaced repetition</small></span><span class="chev" aria-hidden="true"></span></span>
 <span class="bar" aria-hidden="true"><i class="mastered" style="flex:${v.learned}"></i><i class="started" style="flex:${Math.max(0, v.started - v.learned)}"></i><i style="flex:${Math.max(1, VOC.total - v.started)}"></i></span><span class="lf">${v.due ? `<b class="due">${v.due} due today</b> · ` : ''}${v.learned} learned · ${v.started} started · ${VOC.total} in the decks</span></a>` +
       simpleCard('dictionary/', '#7b5ea7', 'Aa', H.dict, 'Dictionary · every word, searchable', `${VOC.total + dictN} words${dictN ? ` · ${dictN} of your own` : ''}`) +
       (CLOZE ? pracCard(CLOZE, `${CLOZE.total} sentences · learning words first`) : '') +
@@ -180,7 +180,7 @@ ${wp ? `<p class="note">Working on <b>${est.working}</b>: ${wp.solid} of ${wp.to
     else LS.set(H.levelKey, a.dataset.level);
   });
   $('lvrow').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; LS.set(H.levelKey, b.dataset.l); const v = LS.get(H.vp + 'settings', {}); v.levels = b.dataset.l === 'all' ? (window.CEFR || []).map(l => l.code) : [b.dataset.l]; LS.set(H.vp + 'settings', v); draw(); });
-  document.querySelectorAll('.langs a').forEach(a => a.addEventListener('click', () => LS.set('gr-lang', a.dataset.lang)));
+  const ls = $('langsel'); if (ls) ls.addEventListener('change', () => { LS.set('gr-lang', ls.value); location.href = ls.dataset[ls.value]; });
   window.GR_NO_TOAST = true;
   addEventListener('gr-progress-merged', draw);
   addEventListener('pageshow', e => { if (e.persisted) draw(); });
